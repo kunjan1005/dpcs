@@ -8,17 +8,20 @@ import Home from './components/Home';
 import Profile from './components/Profile'
 import Explore from './components/Explore'
 import Notifications from './components/Notification'
+import Singup from './components/Signup';
 
 function App() {
   return (
     <>
     <div className="super_container">
     <Header/>
-    <div style={{height:"700px"}} className='mt-4'> 
+    <div style={{height:"700px"}} className='html_content_body'> 
        <div className='container-fluid '>
        <Routes>
          <Route exact path='/' element={<Home/>}></Route>
          <Route exact path='/login' element={<Login/>}></Route>
+         <Route exact path='/singup' element={<Singup/>}></Route>
+
          <Route exact path='/explore' element={<Explore/>}></Route>
          <Route exact path='/notifications' element={<Notifications/>}></Route>
          <Route exact path='/profile' element={<Profile/>}></Route>

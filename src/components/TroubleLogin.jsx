@@ -1,11 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 const TroubleLogin = () => {
+    let navigate=useNavigate()
     return (
+
         <>
             <div className='container-fluid user_container'>
                 <div className="card m-auto " style={{ height: "30rem", padding: "2rem" }}>
-                    <div className='exit_button justify-content-end' ><Exit /></div>
+                    <div className='exit_button justify-content-end' ><Exit onClick={()=>{navigate('/')}}/></div>
                     <img src="dpcs_app/public/images/img_logo.png" className='login_card_img' alt="" />
                     <h3 className='m-auto login-title'>Login Here</h3>
                     <div className="card-body">

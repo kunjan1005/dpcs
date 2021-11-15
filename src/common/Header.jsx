@@ -15,23 +15,15 @@ const Header=()=>{
         <div className="header_main">
             <div className="container">
                 <div className="row">
-               
                     <div className="col-lg-2 col-sm-2 col-3 order-1 logo-div">
                         <div className="logo_container">
                             <div className="logo"><img src="./../public/imges/img_logo.png" alt="logo" /></div>
                         </div>
                     </div> 
-                    <div className="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-                        <div className="header_search">
-                            <div className="header_search_content">
-                                <div className="header_search_form_container">
-                                    <form action="#" className="header_search_form clearfix"> <input type="search" required="required" className="header_search_input" placeholder="Search for products..."/>
-                                        <button type="submit" className="header_search_button trans_300" value="Submit"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918770/search.png" alt=""/></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="col-lg-5 col-12 order-lg-2 order-3 text-lg-left text-right header_search">
+                      <input type='text' placeholder='search here'></input>
                     </div>
+                  
                     <div className="col-lg-4 col-4 order-lg-3 order-1 ">
                         <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                             <div className="d-flex flex-row align-items-center justify-content-end m-3">
