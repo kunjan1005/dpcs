@@ -266,7 +266,7 @@ section {
 .logo a {
     font-size: 36px;
     font-weight: 500;
-    color: #0e8ce4
+    color:pink
 }
 header{
   box-shadow: 1px 2px 3px grey;
@@ -389,7 +389,7 @@ header{
     cursor: pointer
 }
 
-.custom_dropdown_placeholder i {}
+
 
 .custom_list {
     text-align: left;
@@ -474,7 +474,7 @@ select option {
     right: 0;
     width: 50px;
     height: 100%;
-    background: #0e8ce4;
+    background: pink;
     border: none;
     outline: none;
     cursor: pointer;
@@ -485,7 +485,15 @@ select option {
 .wishlist_cart {
     height: 90px
 }
-
+@media only screen and (max-width: 500px) {
+    .header{
+       bottom: 0;
+       position: absolute;
+    }
+    .col-lg-2.col-sm-2.col-3.order-1.logo-div{
+        display: none;
+    }
+}
 .wishlist {
     margin-right: 50px
 }
@@ -597,7 +605,7 @@ select option {
 .cat_menu_container {
     width: 293px;
     height: 100%;
-    background: #0e8ce4;
+    background:whitesmoke;
     padding-left: 35px;
     cursor: pointer;
     z-index: 1
@@ -722,9 +730,7 @@ select option {
 
 
 @media only screen and (max-width: 767px) {
-    .header_search {
-        /* display: none */
-    }
+
 
     .page_menu_search {
         display: block
@@ -903,4 +909,67 @@ select option {
     width:60%;
     height: 10rem;
    }
+ }
+ .links{
+     text-decoration: none;
+     color:pink;
+     /* width:2rem; */
+     /* padding: 1rem; */
+
+ }
+ .links:hover{
+    color:palevioletred;
+ }
+ .active{
+     font-size: larger;
+     color:palevioletred;
+ }
+ .user_container{
+     padding: 3rem;
+     position: fixed;
+     /* background-color:black; */
+     left: 0px;
+     top: 0px;
+     z-index: 10;
+     height: 100vh;
+     /* opacity: 0.5; */
+ }
+ .user_container .card{
+     /* z-index:-1; */
+     box-shadow: 2px 3px 20px grey;
+     width: 30%;
+ }
+
+ .user_container div .login-title{
+     color: pink;
+ }
+ .login_btn{
+     width: 100%;
+ }
+  .login_with{
+     bottom: 0;
+     position:absolute;
+     width:100%;
+     border: 1px solid black;
+     
+ }
+ 
+ .exit_button{
+     /* border: 1px solid black; */
+     text-align: right;
+
+ }
+ .login_card_img{
+     height: 1rem;
+ }
+ .policy_paragraph{
+     font-size: small;
+ }
+ @media only screen and (max-width:500px) { 
+    .user_container .card{
+        /* z-index:-1; */
+        box-shadow: 2px 3px 20px grey;
+        width: 98%;
+    }
+     
  }
