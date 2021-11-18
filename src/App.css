@@ -16,10 +16,12 @@ body {
     background:#fafafa;
     color: #000000;
     /* height:100vh; */
-    /* overflow: hidden; */
+    overflow-y: scroll;
 }
 .html_content_body{
-    margin-top: 6%;
+    padding-bottom: 2vh;
+    margin-top: 9vh;
+    height:92vh;
     /* width: 80%; */
     /* margin: auto; */
 }
@@ -240,7 +242,7 @@ section {
     position:fixed;
     width: 100%;
     z-index: 1;
-    height:54px;
+    height:8vh;
     background-color: #fafafa;
 }
 .header_main {
@@ -362,43 +364,6 @@ header{
     padding-left: 26px
 }
 
-.custom_dropdown::before {
-    display: block;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-    left: 0;
-    width: 1px;
-    height: 28px;
-    background: #e5e5e5;
-    content: ''
-}
-
-.custom_dropdown_list i {
-    display: inline-block;
-    color: #a3a3a3;
-    font-size: 10px;
-    margin-left: 3px;
-    -webkit-transform: translateY(-1px);
-    -moz-transform: translateY(-1px);
-    -ms-transform: translateY(-1px);
-    -o-transform: translateY(-1px);
-    transform: translateY(-1px)
-}
-
-.custom_dropdown_placeholder {
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 300;
-    color: #a3a3a3;
-    line-height: 48px;
-    cursor: pointer
-}
-
 
 
 .custom_list {
@@ -481,6 +446,9 @@ select option {
 .wishlist_cart {
    line-height:27px;   
 }
+.nav_link{
+    margin:auto !important;
+}
 @media only screen and (max-width: 500px) {
     .header{
        bottom: 0;
@@ -492,6 +460,10 @@ select option {
     }
     .html_content_body{
         margin-top: 2%;
+    }
+    .nav_link{
+        margin:auto !important;
+        line-height: 3rem !important;
     }
 }
 .wishlist {
@@ -807,13 +779,6 @@ select option {
         font-size: 12px
     }
 
-    .wishlist_icon {
-        /* width: 20px */
-    }
-
-    .cart_content {
-        /* margin-left: 18px */
-    }
 
     .cart_icon {
         width: 17px
@@ -899,7 +864,7 @@ select option {
 @media only screen and (max-width:500px) {
  .card{
    width:100%;
-   height: 10rem;
+   height: 32rem;
   }
 }
 @media only screen and (min-width:1000px) {
@@ -925,9 +890,9 @@ select option {
      color:palevioletred;
  }
  .user_container{
-     padding: 3rem;
+     padding: 1rem;
      position: fixed;
-     /* background-color:black; */
+     background-color:white;
      left: 0px;
      top: 0px;
      z-index: 10;
@@ -937,12 +902,37 @@ select option {
  .user_container .card{
      /* z-index:-1; */
      box-shadow: 2px 3px 20px grey;
-     width: 30%;
+     width: 60%;
+     height:100vh;
  }
 
+.kv-avatar {
+    display: inline-block;
+    border: 3px solid grey;
+    width:6rem;
+    height: 6rem;
+    border-radius: 10rem;
+    overflow: hidden;
+    margin: auto;
+   
+}
+.kv-avatar img{
+    margin: auto;
+    width:100%;
+    height:100%;
+}
+.kv-avatar .file-loading {
+    /* display: table-cell; */
+    display: none;
+    width: 213px;
+}
  .user_container div .login-title{
      color: pink;
  }
+ #private_data{
+    display: none;
+    
+}
  .login_btn{
      width: 100%;
  }
@@ -966,18 +956,61 @@ select option {
      font-size: small;
  }
  @media only screen and (max-width:500px) { 
+     .user_container{
+         overflow: scroll;
+       
+     }
     .user_container .card{
-        /* z-index:-1; */
+        z-index:-1;
         box-shadow: 2px 3px 20px grey;
         width: 98%;
+        height:max-content !important;
     }
-     
+    #private_data{
+        display: block !important;
+    }
+    .main-profile-pick{
+        width:5rem;
+        height: 5rem;
+        border-radius:10rem !important;
+      
+      
+    }
+    .main-profile-pick img{
+        border-radius:0 !important;
+        width: 100%;
+        height: 100%;
+        
+    }
+    .profile_title{
+        font-size:1rem !important;
+    }
+    .profile-div{
+        border: none;
+        /* border-radius: 1rem !important; */
+
+    }
+    .following,.followers{
+        font-size: smaller;
+    }
+    .followers h4,.following h4,.following h6, .followers h6{
+        margin:0px !important;
+        font-size: 12px !important;
+    }
+     .followers .profile_btn,.following .profile_btn{
+         margin:0px !important;
+         line-height: normal !important;
+         font-size: 8px !important;
+     }
+
  }
  /* //profile page css  */
  .profile-div{
      /* border: 1px solid grey; */
+     padding: 1rem;
      height:50vh;
-     box-shadow: 2px 3px 4px grey;
+     /* box-shadow: 2px 4px 4px grey; */
+    
  }
  .main-profile-pick{
     width: 10rem;
@@ -1025,9 +1058,10 @@ select option {
  .profile_post_container{
      margin-top: 10rem;
      justify-content: center;
+     height:50vh !important;
  }
  .post_container{
-     box-shadow: 1px 2px 3px grey;
+     /* box-shadow: 1px 2px 3px grey; */
      margin-top:1rem;
  }
  .post_box img{
@@ -1039,7 +1073,7 @@ select option {
  }
  @media only screen and (max-width:500px) { 
     .profile-div{
-        border: 1px solid grey;
+        border: 1px solid whitesmoke;
         height: max-content;
     }
     .main-profile-pick{
@@ -1055,13 +1089,18 @@ select option {
       
         height: 10rem;
     }
-    .following h4,.followers h4{
-        line-height: 3rem;
-   
+    .profile_links{
+        font-size: 8px !important;
+
     }
-    .profile_btn{
+    .profile_post_container{
+        color:pink !important;
+        font-size: 13px !important;
+    }
+    .profile_btn .mt-5{
         /* border: 1px solid b/lack; */
         text-align: center;
+        margin-top: 0px;
     }
     .main-profile-pick img{
         width: 10rem;
@@ -1069,5 +1108,44 @@ select option {
         border-radius: 10rem;
     }
     
+}
+/* //comments  */
+body {
+    background-color: #eee;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bdge {
+    height: 21px;
+    background-color: orange;
+    color: #fff;
+    font-size: 11px;
+    padding: 8px;
+    border-radius: 4px;
+    line-height: 3px
+}
+
+.comments {
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer
+}
+
+.dot {
+    height: 7px;
+    width: 7px;
+    margin-top: 3px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.hit-voting:hover {
+    color: blue
+}
+
+.hit-voting {
+    cursor: pointer
 }
  

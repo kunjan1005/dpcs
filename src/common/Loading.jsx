@@ -6,7 +6,6 @@ import Twitter from '@material-ui/icons/Twitter'
 import FacebookLogin from 'react-facebook-login';
 import Button from '@material-ui/core/Button'
 import { NavLink } from "react-router-dom";
-import { useCookies } from 'react-cookie';
 import axios from 'axios'
 import env from '../env'
 import { toast } from 'react-toastify'
@@ -23,7 +22,6 @@ const Login = () => {
         register_id: "",
         device_type: ""
     })
-    const [cookies, setCookie] = useCookies(['userToken']);
     const whileFillUpForm = (e) => {
         const name = e.target.name;
         setFormData({ ...formData, [name]: e.target.value })
@@ -31,12 +29,15 @@ const Login = () => {
     }
     const loggingIn = async (e) => {
         e.preventDefault()
-        let response =await axios.post(`https://www.dipicious.com/dipicious/api/user/login`, {
+        let response = axios.post(`user/login`, {
             'Authorization': 'Basic ' + btoa(`${formData.username}:${formData.password}`)
         }, JSON.stringify({ ...formData }))
         console.log(response)
-        setCookie('token','Basic' + btoa(`${formData.username}:${formData.password}`))
-       
+        // if(response.status){
+        //     console.log('hello')
+        //     toast ("I am Tostify!")
+
+        // }
     }
 
     let navigate = useNavigate()
@@ -45,7 +46,7 @@ const Login = () => {
     }
     return (
         <div className='container-fluid user_container'>
-            <div className="card m-auto " style={{ height: "max-content", padding: "1rem" }}>
+            <div className="card m-auto " style={{ height: "max-content", padding: "2rem" }}>
                 <div className='exit_button justify-content-end' ><Exit onClick={() => { navigate('/') }} /></div>
                 <img src="dpcs_app/public/images/img_logo.png" className='login_card_img' alt="" />
                 <h3 className='m-auto login-title'>Login Here</h3>
