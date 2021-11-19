@@ -20,22 +20,25 @@ const Post = () => {
     let isliked=1 in state.likes.id ?false :true;
     return (
         posts.map((post)=>{
-            return  <div className="card m-auto" >
+            return  <div className="card m-auto mt-2" >
+                  <div className="col-md-12 pt-1 pb-1" style={{borderBottom:'1px solid whitesmoke'}}>
                   <div style={{
-                             width:'4rem',
+                             width:'6rem',
                              paddingRight:"1rem",
                              textAlign:'right',
+                             color:"whitesmoke",
                              borderRadius:"0 1rem 1rem 0",
-                             backgroundColor:'lightgreen'}}><b>Dip</b></div>
+                             backgroundColor:'palevioletred'}}><b>Dip in</b></div>
+                    </div>
+               
             <div className="card-body">
               
-            <NavLink to='/post/1'>
+            <NavLink to='/post/1' style={{color:'palevioletred'}}>
                 <h6 className="card-title">
-                    <img src='https://tse1.mm.bing.net/th?id=OIP.quWoktJ7LaFdlCyPWtHrhAHaK-&pid=Api&P=0&w=300&h=300' className='profile_pick' />Barot kunjan <span className='post_side_title'>@helo</span>
+                    <img src='https://tse1.mm.bing.net/th?id=OIP.DehJRV6LJqhu0gx-3lSd4AHaHa&pid=Api&P=0&w=300&h=300' className='profile_pick' />Depecious <span className='post_side_title' style={{color:"black"}}>Dipped in <span style={{color:"orange"}}>@helo</span></span>
                     </h6>
             </NavLink>
-                <hr />
-                <p className="" style={{ float: "left" }}>{post.overview}</p>
+             
                 <p style={{ float: "right" }}>{post.visit}</p>
   
             </div>

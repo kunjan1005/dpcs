@@ -31,12 +31,12 @@ const Login = () => {
     }
     const loggingIn = async (e) => {
         e.preventDefault()
-        let response =await axios.post(`https://www.dipicious.com/dipicious/api/user/login`, {
+        let response = await axios.post(`user/login`, {
             'Authorization': 'Basic ' + btoa(`${formData.username}:${formData.password}`)
         }, JSON.stringify({ ...formData }))
         console.log(response)
-        setCookie('token','Basic' + btoa(`${formData.username}:${formData.password}`))
-       
+        setCookie('token', 'Basic' + btoa(`${formData.username}:${formData.password}`))
+
     }
 
     let navigate = useNavigate()
@@ -45,59 +45,74 @@ const Login = () => {
     }
     return (
         <div className='container-fluid user_container'>
-            <div className="card m-auto " style={{ height: "max-content", padding: "1rem" }}>
-                <div className='exit_button justify-content-end' ><Exit onClick={() => { navigate('/') }} /></div>
-                <img src="dpcs_app/public/images/img_logo.png" className='login_card_img' alt="" />
-                <h3 className='m-auto login-title'>Login Here</h3>
-                <div className="card-body">
+            <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
+                <img src="https://tse2.mm.bing.net/th?id=OIP.iXgfnR6m1gF15E25778qngHaHa&pid=Api&P=0&w=300&h=300"
+                    className='login_card_img' id='profile_img'
+                    style={{ width: "6rem", height: '4rem', margin: 'auto' }}
+                    alt="" />
+                <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
+
+                <div className="card-body p-2">
+
                     <form onSubmit={loggingIn}>
-                        <div className="mb-2">
-                            <select name="lang" id="" className="form-control" onChange={whileFillUpForm} >
-                                <option value='' selected disabled>Select Language</option>
-                                <option value="0">English</option>
-                                <option value="1">Arabic</option>
-                            </select>
+                        <div className='row'>
+                            <div className='row'>
+
+                            </div>
+                            <div className='col-md-12'>
+
+                                <div className="mb-1">
+                                    <select name="language" id="" className="form-control" onChange={whileFillUpForm}>
+                                        <option value='' selected disabled>Select Language</option>
+                                        <option value='english'>English</option>
+                                        <option value='arabice'>Arabic</option>
+                                    </select>
+                                </div>
+
+
+
+                                <div className="mb-1">
+                                    <input type="text" className="form-control"
+                                        id="" name='username' placeholder='username'
+                                        onChange={whileFillUpForm} />
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+
+
+                                <div className="mb-1">
+                                    <input type="password" className="form-control"
+                                        name='password' placeholder='password'
+                                        onChange={whileFillUpForm} />
+                                </div>
+
+
+                            </div>
+
                         </div>
-                        <div className="mb-2">
-                            <input type="text" className="form-control"
-                                name='username'
-                                placeholder='username'
-                                onChange={whileFillUpForm} />
-                        </div>
-                        <div className="mb-2">
-                            <input type="password" className="form-control"
-                                name='password'
-                                placeholder='password'
-                                onChange={whileFillUpForm} />
-                        </div>
-                        <div className="mb-3 form-check">
+                        <div className="mb-1 form-check">
                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                             <label className="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
                         <button type="submit" className="btn btn-danger login_btn">Login</button>
+                        <span className='policy_paragraph'><b><NavLink to='/fotgot_password' className='links' id=''>forgot passwword?</NavLink></b></span><br />
+                        <span className='policy_paragraph'>By Singing up.you agree to our Terms.Data Policy and Cookies Policy</span><br />
+
                     </form>
 
-                    <div className='m-auto'>
-                        <span className='policy_paragraph'><b><NavLink to='/forgot_password' className='links' >Forgot password?</NavLink></b></span><br />
-                        <span className='policy_paragraph'><b>Create New Account?<NavLink to='/singup' className='links' >Singup</NavLink></b></span><br />
+                </div>
+            </div>
+            <div className='card m-auto mt-3'>
+                <div className='m-auto p-3'>
 
-                    </div>
-                    <div className='row m-auto mt-3'>
-                        <span className='policy_paragraph text-center'><b>Or</b></span><br /><hr />
-                        <div className='col-lg-6 col-12 mt-1'><FacebookLogin
-                            appId="855305195153167"
-                            autoLoad={true}
-                            fields="name,email,picture"
-                            scope="public_profile,user_friends"
-                            callback={responseFacebook}
-                        />
-                        </div>
-                        <div className='col-lg-3 col-6 mt-1'><Button color='secondary' variant="contained"><Instagram /></Button></div>
-                        <div className='col-lg-3 col-6 mt-1'><Button color='primary' variant="contained"><Twitter /></Button></div>
-                        <div className='col-lg-3 col-6 mt-1'><Button color='primary' variant="contained">G</Button></div>
+                    <span className='policy_paragraph'><b> Create New Account?<NavLink to='/singup' className='links' id=''>Signup</NavLink></b></span><br />
 
-                    </div>
-
+                </div>
+            </div>
+            <div className='card m-auto mt-1' style={{ border: 'none' }}>
+                <div className='m-auto'>
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.hehIrUW0uy5YbWbJF9sviAHaB-&pid=Api&P=0&w=570&h=153"
+                        className='col-lg-12' alt="" />
 
                 </div>
             </div>

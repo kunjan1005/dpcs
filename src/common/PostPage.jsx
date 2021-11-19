@@ -1,6 +1,9 @@
 import React from "react";
 import LikeIcon from '@material-ui/icons/FavoriteBorderRounded'
 import Comment from '@material-ui/icons/MessageOutlined'
+import { NavLink } from "react-router-dom";
+import { Tooltip } from "@material-ui/core";
+
 import $ from 'jquery'
 
 const PostPage = () => {
@@ -18,31 +21,49 @@ const PostPage = () => {
             })
     return (
         <>
-            <div className='row'>
-                <div className="card col-md-6 col-12 order-1" >
-                    <div className="card-body">
-                        <h6 className="card-title">
-                            <img src='https://tse1.mm.bing.net/th?id=OIP.quWoktJ7LaFdlCyPWtHrhAHaK-&pid=Api&P=0&w=200&h=200' className='profile_pick' />Barot kunjan <span className='post_side_title'>@helo</span></h6>
-                        <hr />
-                        <p className="" style={{ float: "left" }}>fhjfkhdfkjdfh</p>
-                        <p style={{ float: "right" }}>5m</p>
-
+            <div className='row pb-2'>
+            <div className="card col-lg-6 m-auto" style={{top:"8px"}} >
+                  <div className="col-md-12 pt-1 pb-1" style={{borderBottom:'1px solid whitesmoke'}}>
+                  <div style={{
+                             width:'6rem',
+                             paddingRight:"1rem",
+                             textAlign:'right',
+                             color:"whitesmoke",
+                             borderRadius:"0 1rem 1rem 0",
+                             backgroundColor:'palevioletred'}}><b>Dip in</b></div>
                     </div>
-                    <img className="card-img-top" src="https://tse3.mm.bing.net/th?id=OIP.0M93xFE7qiNcVpBIFJTgiQHaE8&pid=Api&P=0&w=291&h=195" alt="Card image cap" />
-                    <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <span className='post-icons'>
-                            <LikeIcon className='post-icon' />
-                            <Comment className='post-icon' />
-                        </span>
-                    </div>
-                </div>
+               
+            <div className="card-body">
+              
+            <NavLink to='/post/1' style={{color:'palevioletred'}}>
+                <h6 className="card-title">
+                    <img src='https://tse1.mm.bing.net/th?id=OIP.DehJRV6LJqhu0gx-3lSd4AHaHa&pid=Api&P=0&w=300&h=300' className='profile_pick' />Depecious <span className='post_side_title' style={{color:"black"}}>Dipped in <span style={{color:"orange"}}>@helo</span></span>
+                    </h6>
+            </NavLink>
+             
+                <p style={{ float: "right" }}>5m</p>
+  
+            </div>
+            <img className="card-img-top" src='https://tse2.mm.bing.net/th?id=OIP._h7s27M_cYLoJ7SzE7XRZQHaEK&pid=Api&P=0&w=284&h=160' alt="Card image cap" />
+            <div className="card-body">
+                <h5 className="card-title">title</h5>
+                <p className="card-text">discription</p>
+                <span>2 likes</span>
+                <span className='post-icons'>
+                      <Tooltip title='like'>
+                      <LikeIcon className='post-icon' />
+                   </Tooltip>
+                   
+                    <NavLink to='/post/1'><Comment className='post-icon' /></NavLink>
+                </span>
+            </div>
+        </div>
+         
 
 
-                <div className=" col-md-5 col-12 m-auto order-2 mt-3" >
-                    <div className="container mt-1 mb-5">
-                        <div className="d-flex justify-content-center row col-12">
+                <div className=" col-md-6 col-12 m-auto order-2 mt-1" >
+                    <div className="mt-1 mb-5">
+                        <div className="d-flex justify-content-center col-12">
                             {/* <div className="d-flex flex-column col-md-8">
                                 <div className="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
                                     <div className="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1" /></div>

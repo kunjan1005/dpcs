@@ -13,15 +13,16 @@ body {
     font-family: 'Rubik', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    background:#fafafa;
+    background-color:#fafafa;
     color: #000000;
-    /* height:100vh; */
-    overflow-y: scroll;
+    height:100%;
+    
 }
 .html_content_body{
     padding-bottom: 2vh;
-    margin-top: 9vh;
+    margin-top: 8vh;
     height:92vh;
+    overflow-y: scroll;
     /* width: 80%; */
     /* margin: auto; */
 }
@@ -243,7 +244,7 @@ section {
     width: 100%;
     z-index: 1;
     height:8vh;
-    background-color: #fafafa;
+    /* background-color; */
 }
 .header_main {
     /* z-index: 1 */
@@ -281,7 +282,8 @@ section {
     color:pink
 }
 header{
-  box-shadow: 1px 2px 3px grey;
+  /* box-shadow: 1px 2px 3px grey; */
+  border-bottom: 1px solid whitesmoke;
 }
 
 .header_search {
@@ -417,6 +419,7 @@ header{
     color: #0e8ce4
 }
 
+
 select {
     display: inline;
     border: 0;
@@ -453,7 +456,8 @@ select option {
     .header{
        bottom: 0;
        position: fixed;
-       box-shadow: 1px 2px 23px  grey;
+       z-index: 1;
+     
     }
     .col-lg-2.col-sm-2.col-3.order-1.logo-div{
         display: none;
@@ -845,6 +849,7 @@ select option {
   width: 3rem !important;
   height: 3rem !important;
   border-radius: 5rem;
+  color:palevioletred !important;
 
 }
 .card-img-top{
@@ -896,14 +901,19 @@ select option {
      left: 0px;
      top: 0px;
      z-index: 10;
-     height: 100vh;
+     height:100%;
      /* opacity: 0.5; */
+     overflow-y: scroll;
  }
  .user_container .card{
      /* z-index:-1; */
-     box-shadow: 2px 3px 20px grey;
-     width: 60%;
-     height:100vh;
+     width: 25%;
+     height:max-content !important;
+ }
+ .user_container input,.user_container select{
+    
+        background-color: #fafafa;
+
  }
 
 .kv-avatar {
@@ -927,7 +937,11 @@ select option {
     width: 213px;
 }
  .user_container div .login-title{
-     color: pink;
+     color: rgb(129, 125, 125);
+     font-size:1rem;
+     width:60%;
+     /* justify-content: center; */
+     align-items: center;
  }
  #private_data{
     display: none;
@@ -962,7 +976,7 @@ select option {
      }
     .user_container .card{
         z-index:-1;
-        box-shadow: 2px 3px 20px grey;
+        /* box-shadow: 2px 3px 20px grey; */
         width: 98%;
         height:max-content !important;
     }

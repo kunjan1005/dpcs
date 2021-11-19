@@ -5,7 +5,7 @@ import PerfactScroll from 'react-perfect-scrollbar'
 const Profile = () => {
   return (
     <div className='row main-profile'>
-      <div className='col-lg-8 col-sm-12 m-auto profile-div '>
+      <div className='card col-lg-8 col-sm-12 m-auto profile-div '>
         <div className='row '>
           <div className='col-lg-4 col-4 m-auto followers order-2'>
             <h4>66</h4>
@@ -37,12 +37,14 @@ const Profile = () => {
 
       </div>
       <br />
-      <div className='col-md-8 col-sm-12 m-auto profile_post_container'>
-        <div className="row ">
-          <div className='col-md-3 col-3'><b>16 Activities</b></div>
-          <div className='col-md-3 col-3'><b>18 Favriate</b></div>
-          <div className='col-md-3 col-3'><b>26 Reviews</b></div>
-          <div className='col-md-3 col-3'><b>126 points</b></div>
+      
+      <div className='col-lg-8 col-sm-12 m-auto profile_post_container'>
+      <hr/>
+        <div className="row m-auto">
+          <div className='col-md-3 col-3'><b>16 </b>ACTIVITIES</div>
+          <div className='col-md-3 col-3'><b>18 </b>FAVRIATE</div>
+          <div className='col-md-3 col-3'><b>26 </b>REVIEWS</div>
+          <div className='col-md-3 col-3'><b>126 </b>POINTS</div>
         </div>
         <div className='row post_container'>
     

@@ -12,6 +12,7 @@ import Explore from './components/Explore'
 import Notifications from './components/Notification'
 import Singup from './components/Signup';
 import PostPage from './common/PostPage';
+import TroubleLogin from './components/TroubleLogin'
 import Error from './common/Error'
 
 
@@ -20,13 +21,14 @@ function App() {
     <>
     <div className="super_container">
     <Header/>
-    <div style={{overflowY:'scroll'}} className='html_content_body'> 
-       <div className='container-fluid '>
+    <div style={{backgroundColor:'#fafafa'}} className='html_content_body'> 
+       <div className='container-fluid'>
        <Routes>
          <Route exact path='/' element={<Home/>}></Route>
          <Route exact path='/post/:no' element={<PostPage/>}></Route>
          <Route exact path='/login' element={<Login/>}></Route>
          <Route exact path='/singup' element={<Singup/>}></Route>
+         <Route exact path='/fotgot_password' element={<TroubleLogin/>}></Route>
          <Route exact path='/explore' element={<Explore/>}></Route>
          <Route exact path='/notifications' element={<Notifications/>}></Route>
          <Route exact path='/profile' element={<Profile/>}></Route>
