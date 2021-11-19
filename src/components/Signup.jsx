@@ -5,34 +5,53 @@ import FacebookLogin from 'react-facebook-login';
 import Exit from '@material-ui/icons/Clear'
 import '../js/fileuploader'
 import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify';
 const fileUploadFunction = () => {
     const fileInput = document.getElementById('avatar-1')
     fileInput.click()
 }
-const uploadAndSetImg = (e) => {
-    console.log(e)
 
-}
 const Singup = () => {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         language: '',
         name: '',
         username: '',
-        website: '',
-        description: '',
         email: '',
         mobilno: '',
-        birthDate: '',
         password: "",
-        confirmPassword: ''
+        profile_pic: ""
     })
     const whileFillUpForm = (e) => {
         const name = e.target.name
+        let value = name == 'profile_pic' ? URL.createObjectURL(e.target.files[0]) : e.target.value
+        if (name == 'profile_pic') {
+            let image = document.getElementById('profile_img')
+            // console.log(e.target.files)
+            image.src = URL.createObjectURL(e.target.files[0])
+
+        }
         setFormData({
-            ...formData, [name]: e.target.value
+            ...formData, [name]: value
         })
         console.log(formData)
+
+
+    }
+
+    const singingUp = (e) => {
+        e.preventDefault()
+        if (formData.name == '') {
+            toast.error('name required!')
+        } else if (formData.username == '') {
+            toast.error('username required!')
+        } else if (formData.email == '') {
+            toast.error('email required!')
+        } else if (formData.mobilno == '') {
+            toast.error('mobile number required!')
+        } else if (formData.password == '') {
+            toast.error('password required!')
+        }
     }
 
     return (
@@ -41,7 +60,7 @@ const Singup = () => {
                 <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
                     <div className='exit_button justify-content-end' ><Exit onClick={() => { navigate('/') }} /></div>
                     <img src="https://tse2.mm.bing.net/th?id=OIP.iXgfnR6m1gF15E25778qngHaHa&pid=Api&P=0&w=300&h=300"
-                        className='login_card_img' id='profile_img'
+                        className='login_card_img'
                         style={{ width: "6rem", height: '4rem', margin: 'auto' }}
                         alt="" />
                     <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
@@ -54,19 +73,19 @@ const Singup = () => {
                         style={{ margin: "auto", border: '1px solid black !important' }}
                     />
                     </div>
-                    <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5' /><span className='col-lg-2' >OR</span><hr className='col-lg-5' /></span>
+                    <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-5 col-5' /></span>
                     <div className="card-body p-2">
 
-                        <form >
+                        <form onSubmit={singingUp}>
                             <div className='row'>
                                 <div className='row'>
                                     <div className="col-sm-4 text-center m-auto">
                                         <div className="kv-avatar" onClick={fileUploadFunction}>
 
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8xLzLf17gMCxAddkKdchnl_gc4d7KFgHUYZi19MtA8sp4-v1RNrQzjB1ufxOX4R4-e0s&usqp=CAU" alt="" />
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8xLzLf17gMCxAddkKdchnl_gc4d7KFgHUYZi19MtA8sp4-v1RNrQzjB1ufxOX4R4-e0s&usqp=CAU" id='profile_img' alt="" />
 
                                             <div className="file-loading">
-                                                <input id="avatar-1" name="avatar-1" type="file" required onChange={uploadAndSetImg} />
+                                                <input id="avatar-1" name="profile_pic" type="file" required onChange={whileFillUpForm} />
                                             </div>
                                         </div>
 
@@ -142,11 +161,11 @@ const Singup = () => {
 
                     </div>
                 </div>
-                <div className='card m-auto mt-1' style={{border:'none'}}>
+                <div className='card m-auto mt-1' style={{ border: 'none' }}>
                     <div className='m-auto'>
                         <img src="https://tse4.mm.bing.net/th?id=OIP.hehIrUW0uy5YbWbJF9sviAHaB-&pid=Api&P=0&w=570&h=153"
-                        className='col-lg-12' alt="" />
-                         
+                            className='col-lg-12' alt="" />
+
                     </div>
                 </div>
             </div>

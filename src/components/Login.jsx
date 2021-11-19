@@ -17,13 +17,13 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
     let [formData, setFormData] = useState({
         username: "",
-        lang: "",
+        language: "",
         password: "",
         device_token: "",
         register_id: "",
         device_type: ""
     })
-    const [cookies, setCookie] = useCookies(['userToken']);
+
     const whileFillUpForm = (e) => {
         const name = e.target.name;
         setFormData({ ...formData, [name]: e.target.value })
@@ -31,11 +31,20 @@ const Login = () => {
     }
     const loggingIn = async (e) => {
         e.preventDefault()
-        let response = await axios.post(`user/login`, {
+        var alphaExp = /^[a-zA-Z]+$/;
+        if (formData.lang == '') {
+            return toast.error('select langauge!')
+        }else if (formData.username == '') {
+            return toast.error('username required!')
+        } else if (formData.password.match(alphaExp)) {
+            return toast.error('username contains only character!')
+        }
+        let response = await axios.post(`https://www.dipicious.com/api/user/login`, {
             'Authorization': 'Basic ' + btoa(`${formData.username}:${formData.password}`)
         }, JSON.stringify({ ...formData }))
         console.log(response)
-        setCookie('token', 'Basic' + btoa(`${formData.username}:${formData.password}`))
+
+        // ('token', 'Basic' + btoa(`${formData.username}:${formData.password}`))
 
     }
 
@@ -68,9 +77,6 @@ const Login = () => {
                                         <option value='arabice'>Arabic</option>
                                     </select>
                                 </div>
-
-
-
                                 <div className="mb-1">
                                     <input type="text" className="form-control"
                                         id="" name='username' placeholder='username'
@@ -78,17 +84,12 @@ const Login = () => {
                                 </div>
                             </div>
                             <div className='col-md-12'>
-
-
                                 <div className="mb-1">
                                     <input type="password" className="form-control"
                                         name='password' placeholder='password'
                                         onChange={whileFillUpForm} />
                                 </div>
-
-
                             </div>
-
                         </div>
                         <div className="mb-1 form-check">
                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
@@ -97,9 +98,7 @@ const Login = () => {
                         <button type="submit" className="btn btn-danger login_btn">Login</button>
                         <span className='policy_paragraph'><b><NavLink to='/fotgot_password' className='links' id=''>forgot passwword?</NavLink></b></span><br />
                         <span className='policy_paragraph'>By Singing up.you agree to our Terms.Data Policy and Cookies Policy</span><br />
-
                     </form>
-
                 </div>
             </div>
             <div className='card m-auto mt-3'>
@@ -112,10 +111,11 @@ const Login = () => {
             <div className='card m-auto mt-1' style={{ border: 'none' }}>
                 <div className='m-auto'>
                     <img src="https://tse4.mm.bing.net/th?id=OIP.hehIrUW0uy5YbWbJF9sviAHaB-&pid=Api&P=0&w=570&h=153"
-                        className='col-lg-12' alt="" />
+                        className='col-lg-12 col-12' alt="" />
 
                 </div>
             </div>
+
         </div>
     )
 }
