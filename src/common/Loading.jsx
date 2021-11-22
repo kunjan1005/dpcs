@@ -29,7 +29,7 @@ const Login = () => {
     }
     const loggingIn = async (e) => {
         e.preventDefault()
-        let response = axios.post(`user/login`, {
+        let response = axios.post(`https://www.dipicious.com/dipicious/api/user/login`, {
             'Authorization': 'Basic ' + btoa(`${formData.username}:${formData.password}`)
         }, JSON.stringify({ ...formData }))
         console.log(response)
