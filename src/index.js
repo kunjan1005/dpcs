@@ -2,12 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import store from './store';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom'
+import { CookiesProvider } from "react-cookie";
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <>
+    <React.StrictMode>
+
+      <BrowserRouter>
+        <Provider store={store}>
+          <CookiesProvider>
+            <App />
+          </CookiesProvider>
+        </Provider>
+      </BrowserRouter>
+
+    </React.StrictMode>
+  </>,
   document.getElementById('root')
 );
 
