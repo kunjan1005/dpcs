@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import Exit from '@material-ui/icons/Clear'
-import FaceBook from '@material-ui/icons/Facebook'
-import Instagram from '@material-ui/icons/Instagram'
-import Twitter from '@material-ui/icons/Twitter'
-import FacebookLogin from 'react-facebook-login';
-import Button from '@material-ui/core/Button'
+import logo from '../images/dpcs_logo.png'
 import { NavLink } from "react-router-dom";
-import { useCookies } from 'react-cookie';
 import axios from 'axios'
 import env from '../env'
 import { toast } from 'react-toastify'
@@ -55,7 +49,7 @@ const Login = () => {
     return (
         <div className='container-fluid user_container'>
             <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
-                <img src="https://tse2.mm.bing.net/th?id=OIP.iXgfnR6m1gF15E25778qngHaHa&pid=Api&P=0&w=300&h=300"
+                <img src={logo}
                     className='login_card_img' id='profile_img'
                     style={{ width: "6rem", height: '4rem', margin: 'auto' }}
                     alt="" />

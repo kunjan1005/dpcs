@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import logo from '../images/dpcs_logo.png'
 // import { toast, toast } from 'react-toastify'
 import FacebookLogin from 'react-facebook-login';
 import Exit from '@material-ui/icons/Clear'
@@ -59,12 +60,12 @@ const Singup = () => {
             <div className='container-fluid user_container'>
                 <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
                     <div className='exit_button justify-content-end' ><Exit onClick={() => { navigate('/') }} /></div>
-                    <img src="https://tse2.mm.bing.net/th?id=OIP.iXgfnR6m1gF15E25778qngHaHa&pid=Api&P=0&w=300&h=300"
+                    <img src={logo}
                         className='login_card_img'
                         style={{ width: "6rem", height: '4rem', margin: 'auto' }}
                         alt="" />
                     <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
-                    <div className='col-lg-12 col-12 m-auto' ><FacebookLogin
+                    {/* <div className='col-lg-12 col-12 m-auto' ><FacebookLogin
                         appId="855305195153167"
                         // autoLoad={true}
                         fields="name,email,picture"
@@ -72,7 +73,7 @@ const Singup = () => {
                         // callback={}
                         style={{ margin: "auto", border: '1px solid black !important' }}
                     />
-                    </div>
+                    </div> */}
                     <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-5 col-5' /></span>
                     <div className="card-body p-2">
 

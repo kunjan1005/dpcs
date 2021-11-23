@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from '../images/dpcs_logo.png'
 import HomeIcone from '@material-ui/icons/Home';
 import ExploreOutlined from '@material-ui/icons/ExploreOutlined'
 import PlusOneRounded from '@material-ui/icons/PlusOneRounded'
@@ -17,7 +18,7 @@ const Header=()=>{
                 <div className="row">
                     <div className="col-lg-2 col-sm-2 col-3 order-1 logo-div">
                         <div className="logo_container">
-                            <div className="logo"><img src="./../public/imges/img_logo.png" alt="logo" /></div>
+                            <div className="logo"><img src={logo} alt="logo" /></div>
                         </div>
                     </div> 
                     <div className="col-lg-5 col-12 order-lg-2 order-3 text-lg-left text-right header_search">
