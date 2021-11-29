@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 const Home = () => {
-    let loggin=false
+    let loggin=true
     if (loggin) {
         return (
             <div className="container-fluid p-2">
