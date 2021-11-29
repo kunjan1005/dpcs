@@ -1,11 +1,5 @@
 import React, { useState } from "react";
 import logo from '../images/dpcs_logo.png'
-// import Exit from '@material-ui/icons/Clear'
-// import FaceBook from '@material-ui/icons/Facebook'
-// import Instagram from '@material-ui/icons/Instagram'
-// import Twitter from '@material-ui/icons/Twitter'
-// import FacebookLogin from 'react-facebook-login';
-// import Button from '@material-ui/core/Button'
 import { NavLink } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import axios from 'axios'
