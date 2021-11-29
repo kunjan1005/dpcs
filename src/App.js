@@ -14,9 +14,12 @@ import Singup from './components/Signup';
 import PostPage from './common/PostPage';
 import TroubleLogin from './components/TroubleLogin'
 import Error from './common/Error'
+import dotenv from 'dotenv'
+
 
 
 function App() {
+  dotenv.config()
   return (
     <>
     <div className="super_container">

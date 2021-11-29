@@ -4,8 +4,10 @@ import { NavLink } from "react-router-dom";
 import axios from 'axios'
 import env from '../env'
 import { toast } from 'react-toastify'
+import jwt from 'jsonwebtoken'
 
 import { useNavigate } from 'react-router-dom'
+import genrateToken from "../authorization/genrateToken";
 
 
 const Login = () => {
@@ -28,24 +30,30 @@ const Login = () => {
         var alphaExp = /^[a-zA-Z]+$/;
         if (formData.lang == '') {
             return toast.error('select langauge!')
-        }else if (formData.username == '') {
+        } else if (formData.username == '') {
             return toast.error('username required!')
         } else if (formData.password.match(alphaExp)) {
             return toast.error('username contains only character!')
         }
-        let response = await axios.post(`https://www.dipicious.com/api/user/login`, {
-            'Authorization': 'Basic ' + btoa(`${formData.username}:${formData.password}`)
-        }, JSON.stringify({ ...formData }))
-        console.log(response)
-
-        // ('token', 'Basic' + btoa(`${formData.username}:${formData.password}`))
+        let response = await fetch(`/dipicious/api/user/login`,
+         {
+             method:"post",
+             body:JSON.stringify({ ...formData }),
+             headers:{
+                 "Content-Type":"application/json; charset=UTF-8",
+                 'Authorization': 'Basic ' + jwt.sign(`${formData.username}:${formData.password}`,env.JWT_SEC_KEY)
+            }
+        })
+        if (response.flag !== 0) {
+            let token = await genrateToken(response.username, response.password)
+        } else {
+            toast('Username and Password are incorrect')
+        }
 
     }
 
     let navigate = useNavigate()
-    const responseFacebook = () => {
 
-    }
     return (
         <div className='container-fluid user_container'>
             <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
@@ -66,9 +74,9 @@ const Login = () => {
 
                                 <div className="mb-1">
                                     <select name="language" id="" className="form-control" onChange={whileFillUpForm}>
-                                        <option value='' selected disabled>Select Language</option>
-                                        <option value='english'>English</option>
-                                        <option value='arabice'>Arabic</option>
+                                        <option defaultValue='false ' selected disabled>Select Language</option>
+                                        <option value='0'>English</option>
+                                        <option value='1'>Arabic</option>
                                     </select>
                                 </div>
                                 <div className="mb-1">

@@ -2,6 +2,7 @@
   "name": "dpcs_app",
   "homepage": "https://619c7bb8a301a374fac4caf4--vibrant-ride-26c66d.netlify.app/",
   "version": "0.1.0",
+  "proxy": "https://www.dipicious.com",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -11,8 +12,11 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
+    "dotenv": "^10.0.0",
     "gh-pages": "^3.2.3",
+    "http-proxy-middleware": "^2.0.1",
     "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
     "react": "^17.0.2",
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
@@ -27,10 +31,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "predeploy":"npm run build",
+    "predeploy": "npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy":"gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
