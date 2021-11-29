@@ -6,16 +6,10 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 const Home = () => {
-    let loggin=true
-    if (loggin) {
         return (
             <div className="container-fluid p-2">
                 <Post />
-
             </div>
-
         )
-    }
-    return <Login />
-    }
-    export default Home
+}
+export default Home
