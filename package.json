@@ -2,8 +2,8 @@
   "name": "dpcs_app",
   "homepage": "https://619c7bb8a301a374fac4caf4--vibrant-ride-26c66d.netlify.app/",
   "version": "0.1.0",
-  "proxy": "https://www.dipicious.com",
   "private": true,
+  "proxy": "http://www.dipicious.com",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
@@ -14,10 +14,12 @@
     "bootstrap": "^5.1.3",
     "dotenv": "^10.0.0",
     "gh-pages": "^3.2.3",
+    "google-maps-react": "^2.0.6",
     "http-proxy-middleware": "^2.0.1",
     "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
     "react": "^17.0.2",
+    "react-alice-carousel": "^2.5.1",
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-facebook-login": "^4.1.1",
@@ -26,8 +28,10 @@
     "react-router": "^6.0.2",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
+    "react-slick": "^0.28.1",
     "react-toastify": "^8.1.0",
     "redux": "^4.1.2",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

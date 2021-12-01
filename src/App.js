@@ -28,7 +28,7 @@ function App() {
        <div className='container-fluid'>
        <Routes>
          <Route exact path='/' element={<Home/>}></Route>
-         <Route exact path='/post/:no' element={<PostPage/>}></Route>
+         <Route exact path='/restaurant/:username' element={<PostPage/>}></Route>
          <Route exact path='/login' element={<Login/>}></Route>
          <Route exact path='/singup' element={<Singup/>}></Route>
          <Route exact path='/fotgot_password' element={<TroubleLogin/>}></Route>

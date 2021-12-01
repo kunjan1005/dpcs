@@ -246,9 +246,7 @@ section {
     height:8vh;
     /* background-color; */
 }
-.header_main {
-    /* z-index: 1 */
-}
+
 
 .header.scrolled .header_main {
     display: none
@@ -262,66 +260,24 @@ section {
     -o-transform: translateY(-50%);
     transform: translateY(-50%)
 }
-
-
-
-
-
 .logo a {
     font-size: 36px;
     font-weight: 500;
     color:pink
 }
 .logo img{
-    line-height: 1rem;
+    line-height: 1.5rem;
     width:7rem;
-    height: 2rem;
+    height: 2.5rem;
 }
 header{
-  /* box-shadow: 1px 2px 3px grey; */
   border-bottom: 1px solid whitesmoke;
 }
 
 .header_search{
-    /* margin-top: 1rem; */
+    /* margin-top:2rem; */
     line-height: 1rem;
 }
-.custom_list.active {
-    visibility: visible;
-    opacity: 1;
-    top: 50px;
-    box-shadow: 0 0 25px rgba(63, 78, 100, 0.15);
-    -webkit-transition: opacity 0.3s ease;
-    -moz-transition: opacity 0.3s ease;
-    -ms-transition: opacity 0.3s ease;
-    -o-transition: opacity 0.3s ease;
-    transition: all 0.3s ease
-}
-
-.custom_list li {
-    height: 35px;
-    padding-left: 15px;
-    padding-right: 15px;
-    background: #FFFFFF
-}
-
-.custom_list li a {
-    display: block;
-    color: #a3a3a3;
-    line-height: 35px;
-    border-bottom: solid 1px #ededed;
-    -webkit-transition: all 200ms ease;
-    -moz-transition: all 200ms ease;
-    -ms-transition: all 200ms ease;
-    -o-transition: all 200ms ease;
-    transition: all 200ms ease
-}
-
-.custom_list li a:hover {
-    color: #0e8ce4
-}
-
-
 select {
     display: inline;
     border: 0;
@@ -349,9 +305,11 @@ select option {
 
 .wishlist_cart {
    line-height:27px;   
+
 }
 .nav_link{
     margin:auto !important;
+ 
 }
 @media only screen and (max-width: 500px) {
     .header{
@@ -360,7 +318,7 @@ select option {
        z-index: 1;
      
     }
-    .col-lg-2.col-sm-2.col-3.order-1.logo-div{
+.logo-div{
         display: none;
     }
     .html_content_body{
@@ -369,6 +327,11 @@ select option {
     .nav_link{
         margin:auto !important;
         line-height: 3rem !important;
+        width: 100% !important;
+        
+    }
+    .offset-1 {
+        margin-left:0px !important;
     }
 }
 .wishlist {
@@ -744,6 +707,44 @@ select option {
   width:40rem;
   height:40rem;
 }
+.explore_main{
+    border: 1px solid whitesmoke;
+    background-color: white;
+    width:60%;
+}
+.explore_header{
+    width:40rem;
+    height:3rem;
+    line-height: 1.5rem;
+}
+.explore_header .explore_links{
+    line-height: 2.5rem;
+}
+.explore_header .explore_links li{
+ /* float: left; */
+ display:inline-block;
+ margin:auto;
+}
+.card-list-container{
+    width:60%;
+    border: 1px solid whitesmoke;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    /* box-shadow: 1px 1px 2px whitesmoke; */
+    margin:10px auto;
+    color:palevioletred;
+    /* border-bottom: 1px solid black; */
+    background-color: white;
+}
+.see_more{
+    float: right;
+    color: grey;
+    cursor: pointer;
+}
+.card-list{
+    text-align: center;
+    color: palevioletred;
+}
 .profile_pick{
   /* border: 1px solid grey; */
   margin-right: 10px;
@@ -767,26 +768,56 @@ select option {
   margin:1rem;
   
 }
+.wdt{  
+    width: 100%  !important;  
+}  
+.img  
+{ 
+ width: 100% !important;
+}  
 @media only screen and (max-width:500px) {
+ .explore_main{
+     width: 100%;
+     overflow: hidden;
+     z-index: 1;
+     position:fixed;
+ }
+ .card-list-container{
+     width: 100% !important;
+ }
+ .explore_header .explore_links li{
+    /* float: left; */
+    /* display:inline-block; */
+    margin:0px 10px !important;
+   }
+
  .card{
    width:100%;
-   height: 32rem;
+   height: 40rem;
   }
+  .card-body{
+      flex: 0 !important;
+  }
+  .wdt{  
+    width: 100%  !important;  
+}  
+.img  
+{ 
+ width: 100% !important; 
+} 
 }
 @media only screen and (min-width:1000px) {
 
  
   .card{
-    width:60%;
+    width:70%;
     height: 40rem;
    }
  }
  .links{
      text-decoration: none;
-     color:pink;
-     /* width:2rem; */
-     /* padding: 1rem; */
-
+     color:palevioletred;
+     font-size:15px;
  }
  .links:hover{
     color:palevioletred;
@@ -998,6 +1029,14 @@ select option {
       
    
     }
+    .main-profile-pick img{
+        width:0px;
+        height:0px;
+        /* overflow: hidden; */
+        /* border:1px solid grey; */
+        border-radius: 0rem;
+   
+    }
     .following,.followers{
         
         text-align: center;
@@ -1062,5 +1101,19 @@ body {
 
 .hit-voting {
     cursor: pointer
+}
+.chef-container{
+    width:5rem !important;
+    height: 5rem !important;
+    border:1px solid grey;
+    border-radius:15rem !important;
+    overflow: hidden;  
+  
+}
+.chef-container img{
+    border-radius:0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    
 }
  

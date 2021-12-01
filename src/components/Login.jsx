@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from '../images/dpcs_logo.png'
 import { NavLink } from "react-router-dom";
 import axios from 'axios'
@@ -11,14 +11,20 @@ import genrateToken from "../authorization/genrateToken";
 
 
 const Login = () => {
+    let navigate=useNavigate()
     let [formData, setFormData] = useState({
         username: "",
         language: "",
         password: "",
         device_token: "",
         register_id: "",
-        device_type: ""
+        device_type: "",
+        rememberMe:false
     })
+    // useEffect(async()=>{
+    //     let reponse=await axios.get('https://api.sampleapis.com/wines/reds')
+    //     console.log(reponse)
+    // },[1])
 
     const whileFillUpForm = (e) => {
         const name = e.target.name;
@@ -35,24 +41,23 @@ const Login = () => {
         } else if (formData.password.match(alphaExp)) {
             return toast.error('username contains only character!')
         }
-        let response = await fetch(`/dipicious/api/user/login`,
-         {
-             method:"post",
-             body:JSON.stringify({ ...formData }),
-             headers:{
-                 "Content-Type":"application/json; charset=UTF-8",
-                 'Authorization': 'Basic ' + jwt.sign(`${formData.username}:${formData.password}`,env.JWT_SEC_KEY)
+        let response = await axios.post(`${env.URL}/dipicious/api/user/login`,JSON.stringify({ ...formData }),{
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-        if (response.flag !== 0) {
-            let token = await genrateToken(response.username, response.password)
+        console.log(response)
+        if (response.data.flag !== 0) {
+            localStorage.setItem('rememberMe', formData.rememberMe);
+            localStorage.setItem('user', formData.rememberMe);
+            toast('you are loggin...')
+            navigate('/')
         } else {
             toast('Username and Password are incorrect')
         }
-
     }
-
-    let navigate = useNavigate()
+ 
 
     return (
         <div className='container-fluid user_container'>
@@ -94,7 +99,7 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="mb-1 form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                            <input type="checkbox" name='rememberMe' onChange={whileFillUpForm} value='true' className="form-check-input" id="exampleCheck1" />
                             <label className="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
                         <button type="submit" className="btn btn-danger login_btn">Login</button>

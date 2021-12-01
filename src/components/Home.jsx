@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const Home = () => {
         return (
-            <div className="container-fluid p-2">
+            <div className="container-fliud p-2">
                 <Post />
             </div>
         )
