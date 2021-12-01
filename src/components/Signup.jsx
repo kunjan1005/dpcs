@@ -19,7 +19,7 @@ const Singup = () => {
         name: '',
         username: '',
         email: '',
-        mobilno: '',
+        mobile: '',
         password: "",
         profile_pic: ""
     })
@@ -118,7 +118,7 @@ const Singup = () => {
                                     </div>
                                     <div className="mb-1">
                                         <input type="text" className="form-control"
-                                            id="" name='mobilno' placeholder='mobile no'
+                                            id="" name='mobile' placeholder='mobile no'
                                             onChange={whileFillUpForm} />
                                     </div>
                                     <div className="mb-1">
@@ -129,16 +129,16 @@ const Singup = () => {
                                     <div className="mb-1">
                                         <select name="language" id="" className="form-control" onChange={whileFillUpForm}>
                                             <option value='' selected disabled>Select Language</option>
-                                            <option value='english'>English</option>
-                                            <option value='arabice'>Arabic</option>
+                                            <option value='0'>English</option>
+                                            <option value='1'>Arabic</option>
                                         </select>
                                     </div>
                                     <div className="mb-1">
                                         <select name="gender" id="" className="form-control" onChange={whileFillUpForm}>
                                             <option value='' selected disabled>Select Gender</option>
-                                            <option value='0'>Male</option>
-                                            <option value='1'>Female</option>
-                                            <option value='2'>Other</option>
+                                            <option value='male'>Male</option>
+                                            <option value='female'>Female</option>
+                                            <option value='other'>Other</option>
                                         </select>
                                     </div>
                                 </div>

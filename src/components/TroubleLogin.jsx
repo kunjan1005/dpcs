@@ -11,21 +11,39 @@ import { useNavigate } from 'react-router-dom'
 
 const TroubleLogin = () => {
     let [formData, setFormData] = useState({
-        username: "",
         lang: "",
-        password: "",
-        device_token: "",
-        register_id: "",
-        device_type: ""
+        email_or_mobile:""
     })
 
     const whileFillUpForm = (e) => {
         const name = e.target.name;
         setFormData({ ...formData, [name]: e.target.value })
-
+        
     }
     const loggingIn = async (e) => {
+        console.log(formData)
 
+       e.preventDefault()
+       var alphaExp = /^[a-zA-Z]+$/;
+       if (formData.lang == '') {
+          return toast.error('select langauge!')
+       }else if(formData.email_or_mobile==''){
+        return toast.error('enter email or mobile number!')
+       }
+       let response = await axios.post(`${env.URL}/dipicious/api/user/forgot_password`,JSON.stringify({ ...formData }),{
+           headers:{
+               'Content-Type': 'application/json',
+               'Authorization': 'Basic cm9vdDoxMjM='
+           }
+       })
+       console.log(response)
+       if (response.data.flag !== 0) {
+           // let token = await genrateToken(response.username, response.password)
+           toast('your password sent your register email...')
+        
+       } else {
+           toast('password not sent on your email..')
+       }
 
     }
 
@@ -53,7 +71,7 @@ const TroubleLogin = () => {
                             <div className='col-md-12'>
 
                                 <div className="mb-2">
-                                    <select name="language" id="" className="form-control" onChange={whileFillUpForm}>
+                                    <select name="lang" id="" className="form-control" onChange={whileFillUpForm}>
                                         <option value='' selected disabled>Select Language</option>
                                         <option value='0'>English</option>
                                         <option value='1'>Arabic</option>
@@ -62,16 +80,13 @@ const TroubleLogin = () => {
 
                                 <div className="mb-2">
                                     <input type="text" className="form-control"
-                                        id="" name='username' placeholder='Mobile Number or email'
+                                        id="" name='email_or_mobile' placeholder='Mobile Number or email'
                                         onChange={whileFillUpForm} />
                                 </div>
                             </div>
-
-
                         </div>
-
                         <button type="submit" className="btn btn-danger login_btn">Send Login Link</button>
-                        <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5' /><span className='col-lg-2' >OR</span><hr className='col-lg-5' /></span>
+                        <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-5 col-5'/></span>
                         <h4 className='m-auto login-title' style={{ color: 'black' }}>Create New Account</h4><br />
                     </form>
 

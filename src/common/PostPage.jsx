@@ -22,7 +22,7 @@ const PostPage = () => {
     return (
         <>
             <div className='row pb-2'>
-                <div className="card col-lg-11 m-auto" style={{ top: "8px" }} >
+                <div className="card col-lg-8 m-auto" style={{ top: "8px" }} >
                     <div className="col-md-12 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
                         <div style={{
                             width: '6rem',
@@ -55,7 +55,7 @@ const PostPage = () => {
                                 <LikeIcon className='post-icon' />
                             </Tooltip>
 
-                            <NavLink to='/post/1'><Comment className='post-icon' /></NavLink>
+                          <Comment className='post-icon' />
                         </span>
                     </div>
                     <div className="mt-1" >
