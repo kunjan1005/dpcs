@@ -7,6 +7,8 @@ import Exit from '@material-ui/icons/Clear'
 import '../js/fileuploader'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify';
+import axios from 'axios'
+import env from '../env'
 const fileUploadFunction = () => {
     const fileInput = document.getElementById('avatar-1')
     fileInput.click()
@@ -15,32 +17,33 @@ const fileUploadFunction = () => {
 const Singup = () => {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        language: '',
+        lang: '',
         name: '',
         username: '',
         email: '',
         mobile: '',
         password: "",
-        profile_pic: ""
+        profile_pic: "",
+        gender:""
     })
     const whileFillUpForm = (e) => {
         const name = e.target.name
-        let value = name == 'profile_pic' ? URL.createObjectURL(e.target.files[0]) : e.target.value
-        if (name == 'profile_pic') {
-            let image = document.getElementById('profile_img')
-            // console.log(e.target.files)
-            image.src = URL.createObjectURL(e.target.files[0])
+        // let value = name == 'profile_pic' ? URL.createObjectURL(e.target.files[0]) : e.target.value
+        // // if (name == 'profile_pic') {
+        // //     let image = document.getElementById('profile_img')
+        // //     // console.log(e.target.files)
+        // //     image.src = URL.createObjectURL(e.target.files[0])
 
-        }
+        // // }
         setFormData({
-            ...formData, [name]: value
+            ...formData, [name]: e.target.value
         })
         console.log(formData)
 
 
     }
 
-    const singingUp = (e) => {
+    const singingUp = async(e) => {
         e.preventDefault()
         if (formData.name == '') {
             toast.error('name required!')
@@ -48,11 +51,33 @@ const Singup = () => {
             toast.error('username required!')
         } else if (formData.email == '') {
             toast.error('email required!')
-        } else if (formData.mobilno == '') {
+        } else if (formData.mobile == '') {
             toast.error('mobile number required!')
         } else if (formData.password == '') {
             toast.error('password required!')
         }
+        let jsonData=JSON.stringify({ ...formData })
+        console.log(jsonData)
+        // let response = await axios.post(`${env.URL}/dipicious/api/user/register`,jsonData,{
+        //     headers:{
+        //         // 'Content-Type': 'application/json',
+        //         'Authorization': 'Basic cm9vdDoxMjM='
+        //     }
+        // })
+       let reponse= await fetch(`${env.URL}/dipicious/api/user/register`, {
+            method: 'POST',
+            mode: 'no-cors', 
+            cache: 'no-cache',
+            credentials: 'localhost:3000', 
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Basic cm9vdDoxMjM='
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: jsonData // body data type must match "Content-Type" header
+          });
+        console.log(reponse)
     }
 
     return (
@@ -86,7 +111,7 @@ const Singup = () => {
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8xLzLf17gMCxAddkKdchnl_gc4d7KFgHUYZi19MtA8sp4-v1RNrQzjB1ufxOX4R4-e0s&usqp=CAU" id='profile_img' alt="" />
 
                                             <div className="file-loading">
-                                                <input id="avatar-1" name="profile_pic" type="file" required onChange={whileFillUpForm} />
+                                                <input id="avatar-1" name="profile_pic" type="file" onChange={whileFillUpForm} />
                                             </div>
                                         </div>
 
@@ -127,7 +152,7 @@ const Singup = () => {
                                             onChange={whileFillUpForm} />
                                     </div>
                                     <div className="mb-1">
-                                        <select name="language" id="" className="form-control" onChange={whileFillUpForm}>
+                                        <select name="lang" id="" className="form-control" onChange={whileFillUpForm}>
                                             <option value='' selected disabled>Select Language</option>
                                             <option value='0'>English</option>
                                             <option value='1'>Arabic</option>
@@ -136,9 +161,9 @@ const Singup = () => {
                                     <div className="mb-1">
                                         <select name="gender" id="" className="form-control" onChange={whileFillUpForm}>
                                             <option value='' selected disabled>Select Gender</option>
-                                            <option value='male'>Male</option>
-                                            <option value='female'>Female</option>
-                                            <option value='other'>Other</option>
+                                            <option value='Male'>Male</option>
+                                            <option value='Female'>Female</option>
+                                            <option value='Other'>Other</option>
                                         </select>
                                     </div>
                                 </div>
