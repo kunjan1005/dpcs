@@ -5,12 +5,15 @@ import axios from 'axios'
 import env from '../env'
 import { toast } from 'react-toastify'
 import jwt from 'jsonwebtoken'
-
+import {useSelector,useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import genrateToken from "../authorization/genrateToken";
+import { login } from "../actions";
 
 
 const Login = () => {
+    let state=useSelector((state)=>state.loginReducer)
+    let dispatch=useDispatch()
     let navigate=useNavigate()
     let [formData, setFormData] = useState({
         username: "",
@@ -49,9 +52,14 @@ const Login = () => {
         })
         console.log(response)
         if (response.data.flag !== 0) {
-            localStorage.setItem('rememberMe', formData.rememberMe);
-            localStorage.setItem('user', formData.rememberMe);
-            toast('you are loggin...')
+            // localStorage.setItem('rememberMe', formData.rememberMe);
+            // let {user_id,email}=response.data.data
+            let token=await genrateToken(response.data.data)
+            localStorage.setItem('token',token);
+            // localStorage.setItem('user',response.data.data)
+            
+            // dispatch(login())
+            toast.success('you are loggin...')
             navigate('/')
         } else {
             toast('Username and Password are incorrect')

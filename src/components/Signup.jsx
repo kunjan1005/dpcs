@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../images/dpcs_logo.png'
-// import { toast, toast } from 'react-toastify'
 import FacebookLogin from 'react-facebook-login';
 import Exit from '@material-ui/icons/Clear'
 import '../js/fileuploader'
@@ -28,17 +27,17 @@ const Singup = () => {
     })
     const whileFillUpForm = (e) => {
         const name = e.target.name
-        // let value = name == 'profile_pic' ? URL.createObjectURL(e.target.files[0]) : e.target.value
-        // // if (name == 'profile_pic') {
-        // //     let image = document.getElementById('profile_img')
-        // //     // console.log(e.target.files)
-        // //     image.src = URL.createObjectURL(e.target.files[0])
+        let value = name == 'profile_pic' ? URL.createObjectURL(e.target.files[0]) : e.target.value
+        if (name == 'profile_pic') {
+            let image = document.getElementById('profile_img')
+            // console.log(e.target.files)
+            image.src = URL.createObjectURL(e.target.files[0])
 
-        // // }
+        }
         setFormData({
             ...formData, [name]: e.target.value
         })
-        console.log(formData)
+     
 
 
     }
@@ -57,27 +56,26 @@ const Singup = () => {
             toast.error('password required!')
         }
         let jsonData=JSON.stringify({ ...formData })
-        console.log(jsonData)
-        // let response = await axios.post(`${env.URL}/dipicious/api/user/register`,jsonData,{
-        //     headers:{
-        //         // 'Content-Type': 'application/json',
-        //         'Authorization': 'Basic cm9vdDoxMjM='
-        //     }
-        // })
-       let reponse= await fetch(`${env.URL}/dipicious/api/user/register`, {
-            method: 'POST',
-            mode: 'no-cors', 
-            cache: 'no-cache',
-            credentials: 'localhost:3000', 
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Basic cm9vdDoxMjM='
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: jsonData // body data type must match "Content-Type" header
-          });
-        console.log(reponse)
+         axios.post(`${env.URL}/dipicious/api/user/register`,jsonData,{
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        }).then((response)=>{
+            if(response.data.flag==1){
+                toast.success('your account created')
+                navigate('/')
+            }
+        })
+    //    let reponse= await fetch(`${env.URL}/dipicious/api/user/register`, {
+    //         method: 'POST', 
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //           'Authorization': 'Basic cm9vdDoxMjM='
+    //         },
+    //         body: jsonData // body data type must match "Content-Type" header
+    //       });
+        
     }
 
     return (
@@ -161,9 +159,9 @@ const Singup = () => {
                                     <div className="mb-1">
                                         <select name="gender" id="" className="form-control" onChange={whileFillUpForm}>
                                             <option value='' selected disabled>Select Gender</option>
-                                            <option value='Male'>Male</option>
-                                            <option value='Female'>Female</option>
-                                            <option value='Other'>Other</option>
+                                            <option value='0'>Male</option>
+                                            <option value='1'>Female</option>
+                                            <option value='2'>Other</option>
                                         </select>
                                     </div>
                                 </div>

@@ -10,7 +10,6 @@ import Recipe from './Recipe'
 const Explore = () => {
   const location=useLocation()
   let tabindex=location.hash.split('#')[1]
-  console.log(tabindex)
 
   return (<>
     <ExploreHeader />

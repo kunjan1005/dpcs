@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LikeIcon from '@material-ui/icons/FavoriteBorderRounded'
+import LikeIcon from '@material-ui/icons/Favorite'
 import Comment from '@material-ui/icons/MessageOutlined'
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -81,12 +81,12 @@ const Post = () => {
                     <span>{state.likes.like} likes</span>
                     <span className='post-icons'>
                         {isliked ? <Tooltip title='like'>
-                            <LikeIcon className='post-icon' onClick={() => { dispatch(like(index, index + 1)) }} />
+                            <LikeIcon className='post-icon' style={{ color: "palevioletred"}} onClick={() => { dispatch(like(index, index + 1)) }} />
                         </Tooltip> : <Tooltip title='dislike'>
-                            <LikeIcon className='post-icon' style={{ color: "red" }} onClick={() => { dispatch(dislike(index)) }} />
+                            <LikeIcon className='post-icon' style={{ color: "palevioletred"}} onClick={() => { dispatch(dislike(index)) }} />
                         </Tooltip>}
 
-                        <NavLink to={`/restaurant/${post.title}`}><Comment className='post-icon' /></NavLink>
+                        <NavLink to={`/restaurant/${post.title}`} style={{color:"black"}}><Comment className='post-icon' /></NavLink>
                     </span>
                 </div>
             </div>

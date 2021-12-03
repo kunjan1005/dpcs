@@ -1,5 +1,5 @@
 import React from "react";
-import LikeIcon from '@material-ui/icons/FavoriteBorderRounded'
+import LikeIcon from '@material-ui/icons/Favorite'
 import Comment from '@material-ui/icons/MessageOutlined'
 import { NavLink } from "react-router-dom";
 import { Tooltip } from "@material-ui/core";
@@ -52,7 +52,7 @@ const PostPage = () => {
                         <span>2 likes</span>
                         <span className='post-icons'>
                             <Tooltip title='like'>
-                                <LikeIcon className='post-icon' />
+                                <LikeIcon className='post-icon' style={{ color: "palevioletred"}} />
                             </Tooltip>
 
                           <Comment className='post-icon' />
