@@ -33,6 +33,22 @@ const contentHide=(text)=>{
         payload:text
     }
 }
+const login=()=>{
+    return{
+        type:"LOGIN",
+    }
+}
+const logout=()=>{
+    return{
+        type:"LOGOUT"
+    }
+}
+const getProfile=()=>{
+    return {
+        type:"GET_PROFILE"
+    }
+}
+
 
 export default storePostData
-export {getPostData,like,dislike,contentShow,contentHide}
+export {getPostData,like,dislike,contentShow,contentHide,login,logout,getProfile}

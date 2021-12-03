@@ -1,3 +1,4 @@
+import React,{useState,useEffect} from 'react'
 import logo from './logo.svg';
 import './App.css';
 import Login from './components/Login';
@@ -13,19 +14,21 @@ import Notifications from './components/Notification'
 import Singup from './components/Signup';
 import PostPage from './common/PostPage';
 import TroubleLogin from './components/TroubleLogin'
+import Loading from "./common/Loading";
 import Error from './common/Error'
 import dotenv from 'dotenv'
-
-
-
+import Editprofile from './components/Editprofile';
 function App() {
-  dotenv.config()
+
   return (
     <>
     <div className="super_container">
+    {/* <Loading/> */}
+
     <Header/>
     <div style={{backgroundColor:'#fafafa'}} className='html_content_body'> 
        <div className='container-fluid'>
+      
        <Routes>
          <Route exact path='/' element={<Home/>}></Route>
          <Route exact path='/restaurant/:username' element={<PostPage/>}></Route>
@@ -35,6 +38,7 @@ function App() {
          <Route exact path='/explore' element={<Explore/>}></Route>
          <Route exact path='/notifications' element={<Notifications/>}></Route>
          <Route exact path='/profile' element={<Profile/>}></Route>
+         <Route exact path='/profile/edit' element={<Editprofile/>}></Route>
          <Route path='*' element={<Error/>}></Route>
        </Routes>
           

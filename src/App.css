@@ -304,7 +304,7 @@ select option {
 }
 
 .wishlist_cart {
-   line-height:27px;   
+   line-height:39px;   
 
 }
 .nav_link{
@@ -707,9 +707,25 @@ select option {
   width:40rem;
   height:40rem;
 }
+.serach_box{
+    border: 2px solid palevioletred;
+    border-radius: 5px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding: 3px;
+
+}
+.search_input{
+    outline: none;
+    padding: 1px;
+    width:100%;
+    border:none;
+    
+}
 .explore_main{
     border: 1px solid whitesmoke;
-    background-color: white;
+    background-color: palevioletred;
+    
     width:60%;
 }
 .explore_header{
@@ -719,11 +735,16 @@ select option {
 }
 .explore_header .explore_links{
     line-height: 2.5rem;
+    color: white;
 }
 .explore_header .explore_links li{
  /* float: left; */
  display:inline-block;
  margin:auto;
+
+}
+.explore_header .explore_links li .links{
+    color: white;
 }
 .card-list-container{
     width:60%;
@@ -766,6 +787,7 @@ select option {
 }
 .post-icon{
   margin:1rem;
+ 
   
 }
 .wdt{  
@@ -793,7 +815,7 @@ select option {
 
  .card{
    width:100%;
-   height: 40rem;
+   height: 32rem !important;
   }
   .card-body{
       flex: 0 !important;
@@ -801,6 +823,9 @@ select option {
   .wdt{  
     width: 100%  !important;  
 }  
+.card-img-top {
+    height: 12rem;
+}
 .img  
 { 
  width: 100% !important; 
@@ -1020,7 +1045,7 @@ select option {
  @media only screen and (max-width:500px) { 
     .profile-div{
         border: 1px solid whitesmoke;
-        height: max-content;
+        height: max-content !important;
     }
     .main-profile-pick{
         width: 5rem;
@@ -1102,12 +1127,14 @@ body {
 .hit-voting {
     cursor: pointer
 }
+
 .chef-container{
     width:5rem !important;
     height: 5rem !important;
-    border:1px solid grey;
+    border:3px solid whitesmoke;
     border-radius:15rem !important;
     overflow: hidden;  
+    margin: auto;
   
 }
 .chef-container img{
@@ -1116,4 +1143,128 @@ body {
     height: 100% !important;
     
 }
- 
+.chef-title{
+    text-align: center;
+    margin: auto;
+    font-size: 15px;
+}
+@media only screen and (max-width:500px) { 
+    .chef-container{
+        width:3rem !important;
+        height: 3rem !important;
+        border:3px solid whitesmoke;
+        border-radius:15rem !important;
+        overflow: hidden;  
+        margin: auto;
+      
+    }
+    .chef-container img{
+        border-radius:0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        
+    }
+    .chef-title{
+        text-align: center;
+        margin: auto;
+        font-size: 7px;
+    }  
+    .card-list h5{
+        font-size: 5px !important;
+    }
+    .card-list .see_more{
+        font-size: 8px;
+    }
+    .loading{
+        background-color:whitesmoke;
+        opacity: 0.9;
+        position: fixed;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+    }
+    .loading .loader{
+        margin: 25% 32% !important;
+    }
+    .loader {
+   
+        border-radius: 50%;
+        border-top:10px solid pink;
+        border-bottom: 10px solid pink;
+        width: 110px;
+        height: 110px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+}
+.loading{
+    background-color:whitesmoke;
+    opacity: 0.9;
+    position: fixed;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+}
+.loading .loader{
+   
+
+    margin: 20% 45%;
+
+}
+.loader {
+   
+    border-radius: 50%;
+    border-top:10px solid pink;
+    border-bottom: 10px solid pink;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+.loader_div h5{
+      margin:2.4rem auto;
+      width: 100%;
+      text-align: center;
+      z-index:2;
+      position: fixed;
+  }
+  /* edit page  */
+
+.edit_profile_container{
+    border: 1px solid whitesmoke;
+    background-color: white;
+}
+.upload_img_btn{
+    /* position:fixed; */
+    /* top:15rem; */
+    width:100%;
+    margin: auto;
+    z-index: 1;
+    opacity: 0.;
+    background-color:rgb(105, 104, 104);
+    border:none;
+    color:white;
+    outline: none;
+
+}
+.edit_profile_img_container{
+    border:2px solid whitesmoke;
+    border-radius: 0!important;
+    overflow: hidden;
+}
+.edit_profile{
+    width: 100%;
+}
+.edit_form input,.edit_form select{
+    background-color: #fafafa;
+} 
