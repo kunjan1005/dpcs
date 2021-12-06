@@ -10,11 +10,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import genrateToken from "../authorization/genrateToken";
 import { useAuth0 } from '@auth0/auth0-react';
+import  login from '../actions/index'
 
 
 const Login = () => {
     const { loginWithRedirect } = useAuth0();
-    let state = useSelector((state) => state.loginReducer)
     const [cookies, setCookie] = useCookies(['token'])
     let dispatch = useDispatch()
     let navigate = useNavigate()
@@ -61,6 +61,7 @@ const Login = () => {
             localStorage.setItem('token',token)
             toast.success('you are loggin...')
             // loginWithRedirect({})
+            // dispatch(login(response.data.data))
             navigate('/')
         } else {
             toast('Username and Password are incorrect')

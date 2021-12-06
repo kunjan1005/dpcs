@@ -10,6 +10,7 @@ const Profile = () => {
   const { isLoading } = useAuth0();
   let [user, setUser] = useState({})
   let state = useSelector((state) => state.userReducer)
+  console.log(state)
   const { logout } = useAuth0();
   useEffect(() => {
     setTimeout(() => { setUser(state) }, 900)
