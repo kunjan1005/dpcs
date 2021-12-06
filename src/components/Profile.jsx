@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import PerfactScroll from 'react-perfect-scrollbar'
 import { useSelector } from "react-redux";
 import Loading from '../common/Loading'
+import Logout from '@material-ui/icons/ExitToApp'
 import _ from 'underscore'
 const Profile = () => {
   let [user, setUser] = useState({})
@@ -18,7 +19,9 @@ const Profile = () => {
   return (
     <div className='row main-profile mt-2'>
       <div className='card col-lg-8 col-sm-12 m-auto profile-div '>
+        
         <div className='row '>
+           <div className='logout'><NavLink to='/logout'><Button variant='outlined'><Logout/></Button></NavLink></div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
             <h4>{user.following ? 0 : 1}</h4>
             <h6>following</h6>

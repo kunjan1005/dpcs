@@ -6,6 +6,7 @@ const initialState={}
       switch(action.type){       
           case 'GET_PROFILE': 
           let token = localStorage.getItem('token')
+          console.log(token)
           let isValid = jwt.verify(token, env.JWT_SEC_KEY)
           if (isValid) {
               let user = jwt_decode(token)

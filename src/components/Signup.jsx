@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify';
 import axios from 'axios'
 import env from '../env'
+import genrateToken from '../authorization/genrateToken';
 const fileUploadFunction = () => {
     const fileInput = document.getElementById('avatar-1')
     fileInput.click()
@@ -61,21 +62,14 @@ const Singup = () => {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
-        }).then((response)=>{
+        }).then(async(response)=>{
             if(response.data.flag==1){
                 toast.success('your account created')
+                let token=await genrateToken(response.data.data)
+                localStorage.setItem('token',token)
                 navigate('/')
             }
         })
-    //    let reponse= await fetch(`${env.URL}/dipicious/api/user/register`, {
-    //         method: 'POST', 
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //           'Authorization': 'Basic cm9vdDoxMjM='
-    //         },
-    //         body: jsonData // body data type must match "Content-Type" header
-    //       });
-        
     }
 
     return (
