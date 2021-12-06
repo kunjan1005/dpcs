@@ -33,9 +33,10 @@ const contentHide=(text)=>{
         payload:text
     }
 }
-const login=()=>{
+const login=(user)=>{
     return{
         type:"LOGIN",
+        payload:user
     }
 }
 const logout=()=>{
