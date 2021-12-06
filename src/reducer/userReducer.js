@@ -9,7 +9,7 @@ const userReducer = (state = initialState, action) => {
                 return {}
             }else{
                 let token = localStorage.getItem('token')
-                console.log(token)
+                // console.log('token',token)
                 let isValid = jwt.verify(token, env.JWT_SEC_KEY)
                 if (isValid) {
                     let user = jwt_decode(token)
