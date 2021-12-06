@@ -8,8 +8,8 @@ const login = {
 const loginReducer = async (state = login, action) => {
     switch (action.type) {
         case 'LOGIN':
-            return { isLogin: true, user: action.payload }
-            if (localStorage.getItem('token') == '') {
+           
+            if (localStorage.getItem('token') == '' || localStorage.getItem('token')==null) {
                 return {isLogin:false,user:{}}
             } else {
                 let token = localStorage.getItem('token')
