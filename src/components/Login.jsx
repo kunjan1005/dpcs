@@ -5,16 +5,18 @@ import axios from 'axios'
 import env from '../env'
 import { toast } from 'react-toastify'
 import jwt from 'jsonwebtoken'
-import {useSelector,useDispatch} from 'react-redux'
+import  { useCookies } from "react-cookie";
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import genrateToken from "../authorization/genrateToken";
 import { login } from "../actions";
 
 
 const Login = () => {
-    let state=useSelector((state)=>state.loginReducer)
-    let dispatch=useDispatch()
-    let navigate=useNavigate()
+    let state = useSelector((state) => state.loginReducer)
+    const [cookies, setCookie] = useCookies(['token'])
+    let dispatch = useDispatch()
+    let navigate = useNavigate()
     let [formData, setFormData] = useState({
         username: "",
         language: "",
@@ -22,7 +24,7 @@ const Login = () => {
         device_token: "",
         register_id: "",
         device_type: "",
-        rememberMe:false
+        rememberMe: false
     })
     // useEffect(async()=>{
     //     let reponse=await axios.get('https://api.sampleapis.com/wines/reds')
@@ -30,6 +32,8 @@ const Login = () => {
     // },[1])
 
     const whileFillUpForm = (e) => {
+
+      
         const name = e.target.name;
         setFormData({ ...formData, [name]: e.target.value })
 
@@ -44,28 +48,23 @@ const Login = () => {
         } else if (formData.password.match(alphaExp)) {
             return toast.error('username contains only character!')
         }
-        let response = await axios.post(`${env.URL}/dipicious/api/user/login`,JSON.stringify({ ...formData }),{
-            headers:{
+        let response = await axios.post(`${env.URL}/dipicious/api/user/login`, JSON.stringify({ ...formData }), {
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
         console.log(response)
         if (response.data.flag !== 0) {
-            // localStorage.setItem('rememberMe', formData.rememberMe);
-            // let {user_id,email}=response.data.data
-            let token=await genrateToken(response.data.data)
-            localStorage.setItem('token',token);
-            // localStorage.setItem('user',response.data.data)
-            
-            // dispatch(login())
+            let token = await genrateToken(response.data.data)
+            localStorage.setItem('token',token)
             toast.success('you are loggin...')
             navigate('/')
         } else {
             toast('Username and Password are incorrect')
         }
     }
- 
+
 
     return (
         <div className='container-fluid user_container'>

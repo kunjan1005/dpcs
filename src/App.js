@@ -14,10 +14,9 @@ import Notifications from './components/Notification'
 import Singup from './components/Signup';
 import PostPage from './common/PostPage';
 import TroubleLogin from './components/TroubleLogin'
-import Loading from "./common/Loading";
 import Error from './common/Error'
-import dotenv from 'dotenv'
 import Editprofile from './components/Editprofile';
+import Logout from './components/Logout';
 function App() {
 
   return (
@@ -39,6 +38,7 @@ function App() {
          <Route exact path='/notifications' element={<Notifications/>}></Route>
          <Route exact path='/profile' element={<Profile/>}></Route>
          <Route exact path='/profile/edit' element={<Editprofile/>}></Route>
+         <Route exact path='/logout' element={<Logout/>}></Route>
          <Route path='*' element={<Error/>}></Route>
        </Routes>
           

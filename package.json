@@ -1,6 +1,5 @@
 {
   "name": "dpcs_app",
-  "homepage": "https://61aa1dd49add4441f6f5f0d5--practical-dijkstra-62bf3a.netlify.app/",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://www.dipicious.com",

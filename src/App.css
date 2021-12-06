@@ -286,7 +286,6 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     border-bottom: 2px solid #555;
-    color: #7b00ff;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out
 }
@@ -1257,14 +1256,24 @@ body {
     outline: none;
 
 }
-.edit_profile_img_container{
-    border:2px solid whitesmoke;
-    border-radius: 0!important;
-    overflow: hidden;
+
+.circular {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
 }
-.edit_profile{
-    width: 100%;
+.circular img {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-.edit_form input,.edit_form select{
-    background-color: #fafafa;
-} 
