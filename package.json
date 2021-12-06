@@ -1,10 +1,11 @@
 {
   "name": "dpcs_app",
   "version": "0.1.0",
-  "homepage": "https://dpcs.vercel.app/",
+  "homepage": "https://61adfbc2e27107eeea4bee36--elastic-mahavira-57bb04.netlify.app/",
   "private": true,
   "proxy": "http://www.dipicious.com",
   "dependencies": {
+    "@auth0/auth0-react": "^1.8.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.15.0",
