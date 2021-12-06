@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
 import { NavLink } from "react-router-dom";
-import PerfactScroll from 'react-perfect-scrollbar'
 import { useSelector } from "react-redux";
 import Loading from '../common/Loading'
 import Logout from '@material-ui/icons/ExitToApp'
 import _ from 'underscore'
+import { useAuth0 ,withAuthenticationRequired } from '@auth0/auth0-react';
 const Profile = () => {
+  const { isLoading } = useAuth0();
   let [user, setUser] = useState({})
   let state = useSelector((state) => state.userReducer)
+  const { logout } = useAuth0();
   useEffect(() => {
     setTimeout(() => { setUser(state) }, 900)
   }, [user])
-  if (_.isEmpty(user)) {
+  if (isLoading) {
+    return <Loading></Loading>
+  }
+  if(_.isEmpty(user)){
     return <Loading></Loading>
   }
 
   return (
     <div className='row main-profile mt-2'>
       <div className='card col-lg-8 col-sm-12 m-auto profile-div '>
-        
+
         <div className='row '>
-           <div className='logout'><NavLink to='/logout'><Button variant='outlined'><Logout/></Button></NavLink></div>
+          <div className='logout'><NavLink to={() => {
+            logout({
+              returnTo: window.location.origin,
+            })
+          }}><Button variant='outlined'><Logout /></Button></NavLink></div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
             <h4>{user.following ? 0 : 1}</h4>
             <h6>following</h6>
@@ -109,4 +118,8 @@ const Profile = () => {
     </div>
   )
 }
+
+// export default withAuthenticationRequired(Profile, {
+//   onRedirecting: () => <Loading />,
+// });
 export default Profile

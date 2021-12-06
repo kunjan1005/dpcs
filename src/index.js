@@ -8,17 +8,21 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import { CookiesProvider } from "react-cookie";
 import { Provider } from 'react-redux'
+import Auth0ProviderWithHistory from './authorization/useAuth';
+
 
 ReactDOM.render(
   <>
     <React.StrictMode>
 
       <BrowserRouter>
-        <Provider store={store}>
+      <Auth0ProviderWithHistory>
+         <Provider store={store}>
           <CookiesProvider>
             <App />
           </CookiesProvider>
         </Provider>
+        </Auth0ProviderWithHistory>
       </BrowserRouter>
 
     </React.StrictMode>
