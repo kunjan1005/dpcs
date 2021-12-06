@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loading from '../common/Loading'
 import Logout from '@material-ui/icons/ExitToApp'
@@ -9,8 +9,12 @@ import { useAuth0 ,withAuthenticationRequired } from '@auth0/auth0-react';
 const Profile = () => {
   const { isLoading } = useAuth0();
   let [user, setUser] = useState({})
+  let navigate=useNavigate()
   let state = useSelector((state) => state.userReducer)
-  console.log(state)
+  // console.log(state)
+  // if(_.isEmpty(state)){
+  //   navigate('/login')
+  // }
   const { logout } = useAuth0();
   useEffect(() => {
     setTimeout(() => { setUser(state) }, 900)

@@ -5,11 +5,11 @@ const initialState = {}
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_PROFILE':
-            if (localStorage.getItem('token') == '') {
+            if (localStorage.getItem('token') == '' || localStorage.getItem('token')==null) {
                 return {}
             }else{
                 let token = localStorage.getItem('token')
-                console.log(token)
+                // console.log('token',token)
                 let isValid = jwt.verify(token, env.JWT_SEC_KEY)
                 if (isValid) {
                     let user = jwt_decode(token)
