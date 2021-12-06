@@ -1,6 +1,7 @@
 {
   "name": "dpcs_app",
   "version": "0.1.0",
+  "homepage": "https://dpcs.vercel.app/",
   "private": true,
   "proxy": "http://www.dipicious.com",
   "dependencies": {
