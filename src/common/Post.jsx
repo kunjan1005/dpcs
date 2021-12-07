@@ -8,6 +8,9 @@ import { Tooltip } from "@material-ui/core";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { isUserLoging } from "../authorization/useAuth";
+import axios from "axios";
+import env from "../env";
 
 const Post = () => {
     var settings = {
@@ -18,13 +21,28 @@ const Post = () => {
         slidesToShow: 1,
         slidesToScroll: 1
     };
+
     let [posts, setPosts] = useState([])
     let state = useSelector((state) => {
         return { post: state.storePostData, likes: state.likeDislike }
     })
-
     let dispatch = useDispatch()
     useEffect(() => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            let location = { latitude: position.coords.latitude, longitude: position.coords.longitude }
+            let data = isUserLoging()
+            let { user_id, lang } = data.user
+            console.log(location)
+            let jsonData = JSON.stringify({ user_id, lang, ...location })
+            let response = axios.post(`${env.URL}/api/user/resturant_list`, jsonData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic cm9vdDoxMjM='
+                }
+            })
+            console.log(response)
+
+        });
         dispatch(getPostData())
         setPosts(state.post)
     }, [])
@@ -57,20 +75,20 @@ const Post = () => {
                 </div>
                 <Slider {...settings} >
 
-                    <div  className="wdt">
-                        <img  className="card-img-top" src={post.picture}  />
+                    <div className="wdt">
+                        <img className="card-img-top" src={post.picture} />
                     </div>
                     <div className="wdt">
-                        <img  className="card-img-top" src={post.picture}  />
+                        <img className="card-img-top" src={post.picture} />
                     </div>
                     <div className="wdt">
-                        <img   className="card-img-top" src={post.picture}  />
+                        <img className="card-img-top" src={post.picture} />
                     </div >
                     <div className="wdt">
-                        <img  className="card-img-top" src={post.picture}  />
+                        <img className="card-img-top" src={post.picture} />
                     </div>
                     <div className="wdt">
-                        <img  className="card-img-top" src={post.picture}  />
+                        <img className="card-img-top" src={post.picture} />
                     </div>
 
                 </Slider>
@@ -81,12 +99,12 @@ const Post = () => {
                     <span>{state.likes.like} likes</span>
                     <span className='post-icons'>
                         {isliked ? <Tooltip title='like'>
-                            <LikeIcon className='post-icon' style={{ color: "palevioletred"}} onClick={() => { dispatch(like(index, index + 1)) }} />
+                            <LikeIcon className='post-icon' style={{ color: "palevioletred" }} onClick={() => { dispatch(like(index, index + 1)) }} />
                         </Tooltip> : <Tooltip title='dislike'>
-                            <LikeIcon className='post-icon' style={{ color: "palevioletred"}} onClick={() => { dispatch(dislike(index)) }} />
+                            <LikeIcon className='post-icon' style={{ color: "palevioletred" }} onClick={() => { dispatch(dislike(index)) }} />
                         </Tooltip>}
 
-                        <NavLink to={`/restaurant/${post.title}`} style={{color:"black"}}><Comment className='post-icon' /></NavLink>
+                        <NavLink to={`/restaurant/${post.title}`} style={{ color: "black" }}><Comment className='post-icon' /></NavLink>
                     </span>
                 </div>
             </div>

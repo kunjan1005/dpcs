@@ -21,7 +21,6 @@ const TroubleLogin = () => {
         
     }
     const loggingIn = async (e) => {
-        console.log(formData)
 
        e.preventDefault()
        var alphaExp = /^[a-zA-Z]+$/;
@@ -30,7 +29,7 @@ const TroubleLogin = () => {
        }else if(formData.email_or_mobile==''){
         return toast.error('enter email or mobile number!')
        }
-       let response = await axios.post(`${env.URL}/dipicious/api/user/forgot_password`,JSON.stringify({ ...formData }),{
+       let response = await axios.post(`${env.URL}/dipicious/api/user/forgot_password`,JSON.stringify(formData),{
            headers:{
                'Content-Type': 'application/json',
                'Authorization': 'Basic cm9vdDoxMjM='

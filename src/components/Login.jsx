@@ -4,19 +4,14 @@ import { NavLink } from "react-router-dom";
 import axios from 'axios'
 import env from '../env'
 import { toast } from 'react-toastify'
-import jwt from 'jsonwebtoken'
-import  { useCookies } from "react-cookie";
-import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import genrateToken from "../authorization/genrateToken";
 import { useAuth0 } from '@auth0/auth0-react';
-import  login from '../actions/index'
+
 
 
 const Login = () => {
     const { loginWithRedirect } = useAuth0();
-    const [cookies, setCookie] = useCookies(['token'])
-    let dispatch = useDispatch()
     let navigate = useNavigate()
     let [formData, setFormData] = useState({
         username: "",
@@ -27,14 +22,7 @@ const Login = () => {
         device_type: "",
         rememberMe: false
     })
-    // useEffect(async()=>{
-    //     let reponse=await axios.get('https://api.sampleapis.com/wines/reds')
-    //     console.log(reponse)
-    // },[1])
-
     const whileFillUpForm = (e) => {
-
-      
         const name = e.target.name;
         setFormData({ ...formData, [name]: e.target.value })
 
@@ -58,23 +46,20 @@ const Login = () => {
         console.log(response)
         if (response.data.flag !== 0) {
             let token = await genrateToken(response.data.data)
-            localStorage.setItem('token',token)
+            localStorage.setItem('token', token)
             toast.success('you are loggin...')
             // loginWithRedirect({})
-            // dispatch(login(response.data.data))
             navigate('/')
         } else {
             toast('Username and Password are incorrect')
         }
     }
-
-
     return (
         <div className='container-fluid user_container'>
             <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
                 <img src={logo}
                     className='login_card_img' id='profile_img'
-                    style={{ width: "6rem", height: '4rem', margin: 'auto' }}
+                    style={{ width: "7.5rem", height: '3rem', margin: 'auto' }}
                     alt="" />
                 <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
 
