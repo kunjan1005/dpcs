@@ -1021,7 +1021,7 @@ select option {
  }
  .profile_links{
      font-size: small;
-     width: 15rem;
+     width:max-content;
      position:absolute;
      bottom: 0;
  }
@@ -1276,4 +1276,20 @@ body {
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+.edit_button .btn{
+    margin: auto;
+}
+.edit_form label{
+    font-size: 0.9rem;
+    color: grey;
+    font-weight: bold;
+    font-family:sans-serif;
+}
+.edit_form input,.edit_form textarea,.edit_form select{
+    font-weight: bold;
+    color: grey;
+    font-size: 0.9rem;
+
+    font-family:sans-serif;
 }

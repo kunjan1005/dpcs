@@ -79,18 +79,11 @@ const Singup = () => {
                     <div className='exit_button justify-content-end' ><Exit onClick={() => { navigate('/') }} /></div>
                     <img src={logo}
                         className='login_card_img'
-                        style={{ width: "6rem", height: '4rem', margin: 'auto' }}
+                        style={{ width: "7.5rem", height: '3rem', margin: 'auto' }}
                         alt="" />
                     <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
-                    {/* <div className='col-lg-12 col-12 m-auto' ><FacebookLogin
-                        appId="855305195153167"
-                        // autoLoad={true}
-                        fields="name,email,picture"
-                        scope="public_profile,user_friends"
-                        // callback={}
-                        style={{ margin: "auto", border: '1px solid black !important' }}
-                    />
-                    </div> */}
+            
+                    
                     <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-5 col-5' /></span>
                     <div className="card-body p-2">
 

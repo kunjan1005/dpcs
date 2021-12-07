@@ -1,3 +1,5 @@
+import axios from 'axios'
+import env from '../env'
 const initialState= [
   {
       title:'hotel test',
@@ -23,6 +25,7 @@ const storePostData=(state=initialState,action)=>{
           let posts=action.posts
           return {...initialState,...posts}
         case 'GET_DATA': 
+       
           return initialState
         default:return initialState
     }

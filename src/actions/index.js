@@ -4,9 +4,10 @@ const storePostData=(post)=>{
         payload:post
     }
 }
-const getPostData=()=>{
+const getPostData=(payload)=>{
     return{
         type:'GET_DATA',
+        payload
     }
 }
 const like=(id,uid)=>{
