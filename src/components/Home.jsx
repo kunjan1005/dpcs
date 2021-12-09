@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Post from "../common/Post";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import Login from "./Login";
+import { fatchData } from "../actions";
+import { isUserLoging } from "../authorization/useAuth";
+import axios from "axios";
+import env from "../env";
 
-const Home = () => {  
-    let state=useSelector((state)=>state.loginReducer)
-    let navigate=useNavigate()
-    // console.log(state)
-    // if(state.isLogin){
-       if(localStorage.getItem('token')=='' || localStorage.getItem("token")==null){ 
-       
-       return <Login/>
-    }
+const Home = () => {
+    let dispatch = useDispatch()
+    let navigate = useNavigate()
+    // let post=useSelector((state)=>state.storePostData)
+    useEffect(async () => {
+        let { login } = isUserLoging()
+        if (login) {
+            dispatch(fatchData())
+
+        } else {
+            navigate('/login')
+        }
+        return ()=>{
+            
+        }
+    }, [1])
+
     return (
-      
+
         <div className="container-fluid p-2">
             <Post />
         </div>

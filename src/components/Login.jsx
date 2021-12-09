@@ -7,6 +7,8 @@ import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import genrateToken from "../authorization/genrateToken";
 import { useAuth0 } from '@auth0/auth0-react';
+import { useDispatch } from "react-redux";
+
 
 
 
@@ -45,10 +47,11 @@ const Login = () => {
         })
         console.log(response)
         if (response.data.flag !== 0) {
+           
             let token = await genrateToken(response.data.data)
             localStorage.setItem('token', token)
             toast.success('you are loggin...')
-            // loginWithRedirect({})
+            
             navigate('/')
         } else {
             toast('Username and Password are incorrect')

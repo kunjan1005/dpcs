@@ -10,6 +10,7 @@ import _ from 'underscore'
 import Loading from '../common/Loading';
 import env from '../env'
 const Editprofile = () => {
+    let [isLoading,setLoading]=useState(true)
     let [user, setUser] = useState({
         user_id: "",
         name: '',
@@ -29,15 +30,21 @@ const Editprofile = () => {
         fileInput.click()
     }
     useEffect(() => {
+        
         setTimeout(() => {
+
             let response = isUserLoging()
             if (response.login) {
+                
                 setUser(response.user)
+                
             } else {
                 navigate('/login')
             }
+            setLoading(false)
         }, 900);
         return () => {
+           
             setUser({})
         }
     }, [1])
@@ -89,7 +96,7 @@ const Editprofile = () => {
         })
 
     }
-    if (_.isEmpty(user)) {
+    if (isLoading) {
         return <Loading></Loading>
     }
     return (

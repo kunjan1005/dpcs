@@ -3,14 +3,15 @@ import LikeIcon from '@material-ui/icons/Favorite'
 import Comment from '@material-ui/icons/MessageOutlined'
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getPostData, like, dislike } from '../actions/index'
+import { getPostData, like, dislike, fatchData } from '../actions/index'
 import { Tooltip } from "@material-ui/core";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { isUserLoging } from "../authorization/useAuth";
-import axios from "axios";
+import { LocationOn } from "@material-ui/icons";
 import env from "../env";
+import Loading from "./Loading";
+import _ from "underscore";
 
 const Post = () => {
     var settings = {
@@ -27,30 +28,19 @@ const Post = () => {
         return { post: state.storePostData, likes: state.likeDislike }
     })
     let dispatch = useDispatch()
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            let location = { latitude: position.coords.latitude, longitude: position.coords.longitude }
-            let data = isUserLoging()
-            let { user_id, lang } = data.user
-            console.log(location)
-            let jsonData = JSON.stringify({ user_id, lang, ...location })
-            let response = axios.post(`${env.URL}/api/user/resturant_list`, jsonData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Basic cm9vdDoxMjM='
-                }
-            })
-            console.log(response)
+   
+        setTimeout(() => {
+            setPosts(state.post)
 
-        });
-        dispatch(getPostData())
-        setPosts(state.post)
-    }, [])
-    // let isliked==1 in state.likes.id ?false :true;
+        }, 900)
+ 
+    if (_.isEmpty(posts)) {
+        return <Loading />
+    }
     let isliked = true
     return (
         posts.map((post, index) => {
-            return <div className="card m-auto mt-2" >
+            return <div className="card m-auto mt-2 col-lg-8" >
                 <div className="col-md-12 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <div style={{
                         width: '6rem',
@@ -64,41 +54,36 @@ const Post = () => {
 
                 <div className="card-body">
 
-                    <NavLink to={`/restaurant/${post.title}`} style={{ color: 'palevioletred' }}>
+                    <NavLink to={`/post/${post.post_id}`} style={{ color: 'palevioletred' }}>
                         <h6 className="card-title">
-                            <img src='https://tse1.mm.bing.net/th?id=OIP.DehJRV6LJqhu0gx-3lSd4AHaHa&pid=Api&P=0&w=300&h=300' className='profile_pick' />Depecious <span className='post_side_title' style={{ color: "black" }}>Dipped in <span style={{ color: "orange" }}>@helo</span></span>
+                            <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name} <span className='post_side_title' style={{ color: "black" }}>Dipped in {post.restaurant_name != null ? <span style={{ color: "orange" }}>@{post.restaurant_name}</span> : ""} {post.location_name !== null ? <span><LocationOn />{post.location_name}</span> : ''} <br />
+                                <span>{post.description}</span></span>
                         </h6>
+
                     </NavLink>
 
-                    <p style={{ float: "right" }}>{post.visit}</p>
+                    <p style={{ float: "right" }}>{post.time}</p>
 
                 </div>
                 <Slider {...settings} >
+                    {post.post_image.map((img) => {
 
-                    <div className="wdt">
-                        <img className="card-img-top" src={post.picture} />
-                    </div>
-                    <div className="wdt">
-                        <img className="card-img-top" src={post.picture} />
-                    </div>
-                    <div className="wdt">
-                        <img className="card-img-top" src={post.picture} />
-                    </div >
-                    <div className="wdt">
-                        <img className="card-img-top" src={post.picture} />
-                    </div>
-                    <div className="wdt">
-                        <img className="card-img-top" src={post.picture} />
-                    </div>
+                        return <div className="wdt">
+                            {img.image_url.split('.')[1] == 'mp4' ? <iframe className="card-img-top" src={`${env.URL}/dipicious/${img.image_url}`} /> : <img className="card-img-top" src={`${env.URL}/dipicious/${img.image_url}`} />}
 
+                        </div>
+                    })}
                 </Slider>
                 {/* <img className="card-img-top" src={post.picture} alt="Card image cap" /> */}
                 <div className="card-body">
                     <h5 className="card-title">{post.title}</h5>
                     <p className="card-text">{post.discription}</p>
-                    <span>{state.likes.like} likes</span>
+                    <span><b>{post.like_count} likes</b></span>&nbsp;&nbsp;
+                    <span><b>{post.comment_count} comments</b></span>&nbsp;&nbsp;
+                    <span><b>{post.share_count} share</b></span>
                     <span className='post-icons'>
                         {isliked ? <Tooltip title='like'>
+
                             <LikeIcon className='post-icon' style={{ color: "palevioletred" }} onClick={() => { dispatch(like(index, index + 1)) }} />
                         </Tooltip> : <Tooltip title='dislike'>
                             <LikeIcon className='post-icon' style={{ color: "palevioletred" }} onClick={() => { dispatch(dislike(index)) }} />

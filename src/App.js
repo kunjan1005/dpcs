@@ -19,6 +19,7 @@ import Editprofile from './components/Editprofile';
 import Logout from './components/Logout';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loading from './common/Loading';
+import Restaurant from './components/Restaurant';
 function App() {
   let { isLoading } = useAuth0()
   if (isLoading) {
@@ -37,7 +38,8 @@ function App() {
 
             <Routes>
               <Route exact path='/' element={<Home />}></Route>
-              <Route exact path='/restaurant/:username' element={<PostPage />}></Route>
+              <Route exact path='/post/:id' element={<PostPage />}></Route>
+              <Route exact  path='/restaurant/:sid' element={<Restaurant/>}/>
               <Route exact path='/login' element={<Login />}></Route>
               <Route exact path='/singup' element={<Singup />}></Route>
               <Route exact path='/fotgot_password' element={<TroubleLogin />}></Route>
