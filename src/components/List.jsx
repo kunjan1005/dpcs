@@ -9,6 +9,8 @@ import { getRestaurant } from '../actions/index'
 import { NavLink } from "react-router-dom";
 import env from "../env";
 import $ from 'jquery'
+import _ from "underscore";
+import Loading from "../common/Loading";
 // const genrateRating=(rating)=>{
 //     // let ratingContainer=document.getElementsByClassName('rating-container')
 //      for(let i=1;i<=5;i++){
@@ -31,8 +33,15 @@ const List = () => {
     })
     let dispatch = useDispatch()
     useEffect(() => {
-        setRestaurant(state.restaurant)
+        setTimeout(() => {
+            setRestaurant(state.restaurant.restaurants)
+        }, 900);
+       
+        return ()=>{setRestaurant({})}
     }, [1])
+    if(_.isEmpty(restaurant)){
+        return <Loading/>
+    }
 
     return (<>
         <div className='card-list-container'>

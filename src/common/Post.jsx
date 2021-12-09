@@ -28,12 +28,12 @@ const Post = () => {
         return { post: state.storePostData, likes: state.likeDislike }
     })
     let dispatch = useDispatch()
-    useEffect(async () => {
+   
         setTimeout(() => {
             setPosts(state.post)
 
         }, 900)
-    }, [posts.length])
+ 
     if (_.isEmpty(posts)) {
         return <Loading />
     }

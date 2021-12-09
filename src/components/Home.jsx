@@ -10,7 +10,7 @@ import env from "../env";
 const Home = () => {
     let dispatch = useDispatch()
     let navigate = useNavigate()
-    let post=useSelector((state)=>state.storePostData)
+    // let post=useSelector((state)=>state.storePostData)
     useEffect(async () => {
         let { login } = isUserLoging()
         if (login) {
@@ -19,7 +19,10 @@ const Home = () => {
         } else {
             navigate('/login')
         }
-    }, [])
+        return ()=>{
+            
+        }
+    }, [1])
 
     return (
 

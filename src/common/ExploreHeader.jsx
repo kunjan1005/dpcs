@@ -14,6 +14,7 @@ const ExploreHeader=()=>{
   let dispatch=useDispatch()
   useEffect(async()=>{
      dispatch(fatchRetaurant())
+     return ()=>{}
   })
   return (
        <div className='container explore_main '>

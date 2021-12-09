@@ -92,10 +92,18 @@ const getRestaurant=()=>{
         type:"GET_RES_DATA",
     }
 }
+const getSingleRestaurant=(payload)=>{
+    return{
+        type:"GET_SINGLE_RES",
+        payload
+    
+    }
+}
 
 
 export default storePostData
 export {
     getPostData, like, dislike, contentShow, contentHide, login, logout,
-    getProfile, fatchData, setSinglePost, fatchRetaurant,getRestaurant
+    getProfile, fatchData, setSinglePost, fatchRetaurant,getRestaurant,
+    getSingleRestaurant
 }
