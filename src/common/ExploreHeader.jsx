@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Restaurant from '@material-ui/icons/Restaurant'
 import List from '@material-ui/icons/ListAlt'
 import Map from '@material-ui/icons/Map'
 import MenuBook from '@material-ui/icons/MenuBook'
 import { NavLink } from "react-router-dom";
 import Tooltip from '@material-ui/core/Tooltip';
+import env from "../env";
+import { isUserLoging } from "../authorization/useAuth";
+import { fatchRetaurant } from "../actions";
+import { useDispatch } from "react-redux";
 
 const ExploreHeader=()=>{
+  let dispatch=useDispatch()
+  useEffect(async()=>{
+     dispatch(fatchRetaurant())
+  })
   return (
        <div className='container explore_main '>
          <div className='explore_header m-auto'>

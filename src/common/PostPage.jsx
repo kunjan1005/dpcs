@@ -1,24 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LikeIcon from '@material-ui/icons/Favorite'
 import Comment from '@material-ui/icons/MessageOutlined'
-import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Tooltip } from "@material-ui/core";
-
 import $ from 'jquery'
+import axios from "axios";
+import env from "../env";
+import { isUserLoging } from "../authorization/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { LocationOn } from "@material-ui/icons";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import _ from "underscore";
+import Loading from "./Loading";
+$(document).ready(function () {
+    $(this).on('click', '#reply', function () {
+        if ($(this).text() == 'Reply') {
+            $(this).next().show()
+            $(this).html("<b>Hide</b>")
+        } else {
+            $(this).next().hide()
+            $(this).html("<b>Reply</b>")
+        }
+    })
+})
 
 const PostPage = () => {
+    let [post, setPost] = useState({})
+    let dispatch = useDispatch()
+    let { id } = useParams('id')
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        centerMode: false,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+  
+    let userData = isUserLoging()
+    let { user_id, access_token, lang } = userData.user
 
-    $(document).ready(function () {
-        $(this).on('click', '#reply', function () {
-            if ($(this).text() == 'Reply') {
-                $(this).next().show()
-                $(this).html("<b>Hide</b>")
-            } else {
-                $(this).next().hide()
-                $(this).html("<b>Reply</b>")
+    useEffect(async () => {
+        let response = await axios.post(`${env.URL}/dipicious/api/user/post_detail`, JSON.stringify({ user_id, access_token, lang, post_id: id }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-    })
+        if (_.isEmpty(response.data.data[0])) {
+            return <h3>No Post Found</h3>
+        }
+        setTimeout(() => {
+            setPost(response.data.data[0])
+        }, 900);
+
+
+    }, [1])
+    // return ""
+    if (_.isEmpty(post)) {
+        return <Loading />
+    }
     return (
         <>
             <div className='row pb-2'>
@@ -36,26 +79,33 @@ const PostPage = () => {
 
                     <div className="card-body">
 
-                        <NavLink to='/post/1' style={{ color: 'palevioletred' }}>
-                            <h6 className="card-title">
-                                <img src='https://tse1.mm.bing.net/th?id=OIP.DehJRV6LJqhu0gx-3lSd4AHaHa&pid=Api&P=0&w=300&h=300' className='profile_pick' />Depecious <span className='post_side_title' style={{ color: "black" }}>Dipped in <span style={{ color: "orange" }}>@helo</span></span>
-                            </h6>
-                        </NavLink>
+                        <h6 className="card-title" style={{ color: 'palevioletred' }}>
+                            <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name} <span className='post_side_title' style={{ color: "black" }}>Dipped in {post.restaurant_name != null ? <span style={{ color: "orange" }}>@{post.restaurant_name}</span> : ""} {post.location_name !== null ? <span><LocationOn />{post.location_name}</span> : ''}</span>
+                        </h6>
 
-                        <p style={{ float: "right" }}>5m</p>
+
+                        <p style={{ float: "right" }}>{post.time}</p>
 
                     </div>
-                    <img className="card-img-top" src='https://tse2.mm.bing.net/th?id=OIP._h7s27M_cYLoJ7SzE7XRZQHaEK&pid=Api&P=0&w=284&h=160' alt="Card image cap" />
+                    <Slider {...settings} >
+                        {post.post_image.map((img) => {
+
+                            return <div className="wdt">
+                                {img.image_url.split('.')[1] == 'mp4' ? <iframe className="card-img-top" src={`${env.URL}/dipicious/${img.image_url}`} /> : <img className="card-img-top" src={`${env.URL}/dipicious/${img.image_url}`} />}
+
+                            </div>
+                        })}
+                    </Slider>
                     <div className="card-body">
-                        <h5 className="card-title">title</h5>
-                        <p className="card-text">discription</p>
-                        <span>2 likes</span>
+                        <h5 className="card-title">{post.name}</h5>
+                        <p className="card-text">{post.description}</p>
+                        <span>{post.like_count} likes</span>
                         <span className='post-icons'>
                             <Tooltip title='like'>
-                                <LikeIcon className='post-icon' style={{ color: "palevioletred"}} />
+                                <LikeIcon className='post-icon' style={{ color: "palevioletred" }} />
                             </Tooltip>
 
-                          <Comment className='post-icon' />
+                            <Comment className='post-icon' />
                         </span>
                     </div>
                     <div className="mt-1" >
@@ -74,7 +124,7 @@ const PostPage = () => {
                                         </div>
                                         <div className="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
                                         <div className="reply-section">
-                                            <div className="align-items-center voting-icons"><i className="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i className="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span className="ml-2">10</span><span className="dot ml-2"></span>
+                                            <div className="align-items-center voting-icons"><span className="ml-2">10</span><span className="dot ml-2"></span>
                                                 <span className="ml-2 mt-1" id='reply' style={{ cursor: 'pointer' }}><b>Reply</b></span>
                                                 {/* <br /> */}
 
@@ -108,7 +158,7 @@ const PostPage = () => {
                                         </div>
                                         <div className="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
                                         <div className="reply-section">
-                                            <div className="align-items-center voting-icons"><i className="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i className="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span className="ml-2">10</span><span className="dot ml-2"></span>
+                                            <div className="align-items-center voting-icons"><span className="ml-2">10</span><span className="dot ml-2"></span>
                                                 <span className="ml-2 mt-1" id='reply' style={{ cursor: 'pointer' }}><b>Reply</b></span>
                                                 {/* <br /> */}
 

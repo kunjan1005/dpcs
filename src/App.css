@@ -55,7 +55,7 @@ p a {
     display: inline;
     position: relative;
     color: inherit;
-    border-bottom: solid 1px #ffa07f;
+    border-bottom: solid 1px #d31f33;
     -webkit-transition: all 200ms ease;
     -moz-transition: all 200ms ease;
     -ms-transition: all 200ms ease;
@@ -76,12 +76,12 @@ a:link {
 
 p a:active {
     position: relative;
-    color: #FF6347
+    color: #d31f33
 }
 
 p a:hover {
     color: #FFFFFF;
-    background: #ffa07f
+    background: #d31f33
 }
 
 p a:hover::after {
@@ -263,7 +263,7 @@ section {
 .logo a {
     font-size: 36px;
     font-weight: 500;
-    color:pink
+    color:#d31f33
 }
 .logo img{
     line-height: 1.5rem;
@@ -707,11 +707,11 @@ select option {
   height:40rem;
 }
 .serach_box{
-    border: 2px solid palevioletred;
+    border: 2px solid #d31f33;
     border-radius: 5px;
     margin-top: 5px;
     overflow: hidden;
-    padding: 3px;
+   
 
 }
 .search_input{
@@ -723,10 +723,11 @@ select option {
 }
 .explore_main{
     border: 1px solid whitesmoke;
-    background-color: palevioletred;
+    background-color: #d31f33;
     
     width:60%;
 }
+
 .explore_header{
     width:40rem;
     height:3rem;
@@ -749,12 +750,16 @@ select option {
     width:60%;
     border: 1px solid whitesmoke;
     padding: 0.5rem;
+    height:100% !important;
     border-radius: 0.5rem;
     /* box-shadow: 1px 1px 2px whitesmoke; */
     margin:10px auto;
-    color:palevioletred;
+    color:#d31f33;
     /* border-bottom: 1px solid black; */
     background-color: white;
+}
+.card-list-container .card-list{
+    overflow: hidden;
 }
 .see_more{
     float: right;
@@ -763,7 +768,7 @@ select option {
 }
 .card-list{
     text-align: center;
-    color: palevioletred;
+    color: #d31f33;
 }
 .profile_pick{
   /* border: 1px solid grey; */
@@ -771,14 +776,14 @@ select option {
   width: 3rem !important;
   height: 3rem !important;
   border-radius: 5rem;
-  color:palevioletred !important;
+  color:#d31f33 !important;
 
 }
 .card-img-top{
   height: 20rem;
 }
 .post_side_title{
-  color: palevioletred;
+  color: #d31f33;
 }
 .post-icons{
   float:right;
@@ -801,7 +806,7 @@ select option {
      width: 100%;
      overflow: hidden;
      z-index: 1;
-     position:fixed;
+
  }
  .card-list-container{
      width: 100% !important;
@@ -840,15 +845,15 @@ select option {
  }
  .links{
      text-decoration: none;
-     color:palevioletred;
+     color:#d31f33;
      font-size:15px;
  }
  .links:hover{
-    color:palevioletred;
+    color:#d31f33;
  }
  .active{
      font-size: larger;
-     color:palevioletred;
+     color:#d31f33;
  }
  .user_container{
      padding: 1rem;
@@ -948,8 +953,8 @@ select option {
     }
     .main-profile-pick img{
         border-radius:0 !important;
-        width: 100%;
-        height: 100%;
+        width: 5rem !important;
+        height: 5rem !important;
         
     }
     .profile_title{
@@ -1008,7 +1013,7 @@ select option {
 
  }
  .profile_title{
-     color:lightcoral;
+     color:#d31f33;
  }
  .profile_btn{
      /* border: 1px solid b/lack; */
@@ -1072,7 +1077,7 @@ select option {
 
     }
     .profile_post_container{
-        color:pink !important;
+        color:#d31f33 !important;
         font-size: 13px !important;
     }
     .profile_btn .mt-5{
@@ -1147,55 +1152,7 @@ body {
     margin: auto;
     font-size: 15px;
 }
-@media only screen and (max-width:500px) { 
-    .chef-container{
-        width:3rem !important;
-        height: 3rem !important;
-        border:3px solid whitesmoke;
-        border-radius:15rem !important;
-        overflow: hidden;  
-        margin: auto;
-      
-    }
-    .chef-container img{
-        border-radius:0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        
-    }
-    .chef-title{
-        text-align: center;
-        margin: auto;
-        font-size: 7px;
-    }  
-    .card-list h5{
-        font-size: 5px !important;
-    }
-    .card-list .see_more{
-        font-size: 8px;
-    }
-    .loading{
-        background-color:whitesmoke;
-        opacity: 0.9;
-        position: fixed;
-        z-index: 10;
-        height: 100%;
-        width: 100%;
-    }
-    .loading .loader{
-        margin: 25% 32% !important;
-    }
-    .loader {
-   
-        border-radius: 50%;
-        border-top:10px solid pink;
-        border-bottom: 10px solid pink;
-        width: 110px;
-        height: 110px;
-        -webkit-animation: spin 2s linear infinite;
-        animation: spin 2s linear infinite;
-      }
-}
+
 .loading{
     background-color:whitesmoke;
     opacity: 0.9;
@@ -1213,8 +1170,8 @@ body {
 .loader {
    
     border-radius: 50%;
-    border-top:10px solid pink;
-    border-bottom: 10px solid pink;
+    border-top:10px solid #d31f33;
+    border-bottom: 10px solid #d31f33;
     width: 120px;
     height: 120px;
     -webkit-animation: spin 2s linear infinite;
@@ -1292,4 +1249,312 @@ body {
     font-size: 0.9rem;
 
     font-family:sans-serif;
+}
+.res_img .circular{
+    border: 2px solid whitesmoke;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+.res_img .circular img{
+  width: 80px;
+  height: 80px;
+  /* width: auto; */
+  /* height: auto; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.rating-container .checked{
+    color:orange;
+}
+@media only screen and (max-width:500px) { 
+    .chef-container{
+        width:3rem !important;
+        height: 3rem !important;
+        border:3px solid whitesmoke;
+        border-radius:15rem !important;
+        overflow: hidden;  
+        margin: auto;
+      
+    }
+    .chef-container img{
+        border-radius:0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        
+    }
+    .chef-title{
+        text-align: center;
+        margin: auto;
+        font-size: 7px;
+    }  
+    .card-list h5{
+        font-size: 5px !important;
+    }
+    .card-list .see_more{
+        font-size: 8px;
+    }
+    .loading{
+        background-color:whitesmoke;
+        opacity: 0.9;
+        position: fixed;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+    }
+    .loading .loader{
+        margin: 25% 32% !important;
+    }
+    .loader {
+   
+        border-radius: 50%;
+        border-top:10px solid #d31f33;
+        border-bottom: 10px solid #d31f33;
+        width: 110px;
+        height: 110px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      .card-list small{
+          font-size: smaller;
+
+      }
+}
+/* single restaurant page view  */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+.res-card {
+    background-color: #fff;
+    padding: 14px;
+    border: none
+}
+
+.demo {
+    width: 100%
+}
+
+.res-card ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom: 0
+}
+
+.res ul li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor: pointer
+}
+
+.res-card img {
+    display: block;
+    height: auto;
+    width: 100%
+}
+
+.stars i {
+    color: #f6d151
+}
+
+.stars span {
+    font-size: 13px
+}
+
+hr {
+    color: #d4d4d4
+}
+
+.res-badge {
+    padding: 5px !important;
+    padding-bottom: 6px !important
+}
+
+.res-badge i {
+    font-size: 10px
+}
+
+.res-profile-image {
+    width: 35px
+}
+
+.res-comment-ratings i {
+    font-size: 13px
+}
+
+.username {
+    font-size: 12px
+}
+
+.res-comment-profile {
+    line-height: 17px
+}
+
+.res-date span {
+    font-size: 12px
+}
+
+.res-p-ratings i {
+    color: #f6d151;
+    font-size: 12px
+}
+
+.btn-long {
+    padding-left: 35px;
+    padding-right: 35px
+}
+
+.buttons {
+    margin-top: 15px
+}
+
+.buttons .btn {
+    height: 46px
+}
+
+.buttons .res-cart {
+    border-color: #ff7676;
+    color: #ff7676
+}
+
+.buttons .res-cart:hover {
+    background-color: #e86464 !important;
+    color: #fff
+}
+
+.buttons .buy {
+    color: #fff;
+    background-color: #ff7676;
+    border-color: #ff7676
+}
+
+.buttons .buy:focus,
+.buy:active {
+    color: #fff;
+    background-color: #ff7676;
+    border-color: #ff7676;
+    box-shadow: none
+}
+
+.buttons .buy:hover {
+    color: #fff;
+    background-color: #e86464;
+    border-color: #e86464
+}
+
+.buttons .wishlist {
+    background-color: #fff;
+    border-color: #ff7676
+}
+
+.buttons .wishlist:hover {
+    background-color: #e86464;
+    border-color: #e86464;
+    color: #fff
+}
+
+.buttons .wishlist:hover i {
+    color: #fff
+}
+
+.buttons .wishlist i {
+    color: #ff7676
+}
+
+.comment-ratings i {
+    color: #f6d151
+}
+
+.followers {
+    font-size: 9px;
+    color: #d6d4d4
+}
+
+.store-image {
+    width: 42px
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px
+}
+
+.bullet-text {
+    font-size: 12px
+}
+
+.my-color {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+label.radio {
+    cursor: pointer
+}
+
+label.radio input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none
+}
+
+label.radio span {
+    border: 2px solid #8f37aa;
+    display: inline-block;
+    color: #8f37aa;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-transform: uppercase;
+    transition: 0.5s all
+}
+
+label.radio .red {
+    background-color: red;
+    border-color: red
+}
+
+label.radio .blue {
+    background-color: blue;
+    border-color: blue
+}
+
+label.radio .green {
+    background-color: green;
+    border-color: green
+}
+
+label.radio .orange {
+    background-color: orange;
+    border-color: orange
+}
+
+label.radio input:checked+span {
+    color: #fff;
+    position: relative
+}
+
+label.radio input:checked+span::before {
+    opacity: 1;
+    content: '\2713';
+    position: absolute;
+    font-size: 13px;
+    font-weight: bold;
+    left: 4px
+}
+
+.card-body {
+    padding: 0.3rem 0.3rem 0.2rem
 }
