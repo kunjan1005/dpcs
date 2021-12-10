@@ -40,7 +40,7 @@ const Post = () => {
     let isliked = true
     return (
         posts.map((post, index) => {
-            return <div className="card m-auto mt-2 col-lg-8" >
+            return <div className="card m-auto mt-2 col-lg-7" >
                 <div className="col-md-12 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <div style={{
                         width: '6rem',
@@ -48,13 +48,13 @@ const Post = () => {
                         textAlign: 'right',
                         color: "whitesmoke",
                         borderRadius: "0 1rem 1rem 0",
-                        backgroundColor: 'palevioletred'
+                        backgroundColor: '#d31f33'
                     }}><b>Dip in</b></div>
                 </div>
 
                 <div className="card-body">
 
-                    <NavLink to={`/post/${post.post_id}`} style={{ color: 'palevioletred' }}>
+                    <NavLink to={`/post/${post.post_id}`} style={{ color: '#d31f33' }}>
                         <h6 className="card-title">
                             <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name} <span className='post_side_title' style={{ color: "black" }}>Dipped in {post.restaurant_name != null ? <span style={{ color: "orange" }}>@{post.restaurant_name}</span> : ""} {post.location_name !== null ? <span><LocationOn />{post.location_name}</span> : ''} <br />
                                 <span>{post.description}</span></span>
@@ -69,7 +69,7 @@ const Post = () => {
                     {post.post_image.map((img) => {
 
                         return <div className="wdt">
-                            {img.image_url.split('.')[1] == 'mp4' ? <iframe className="card-img-top" src={`${env.URL}/dipicious/${img.image_url}`} /> : <img className="card-img-top" src={`${env.URL}/dipicious/${img.image_url}`} />}
+                            {img.image_url.split('.')[1] == 'mp4' ? <iframe className="card-img-top" src={`${env.URL}/dipicious/${img.image_url}`} /> : <img className="card-img-top home-img" src={`${env.URL}/dipicious/${img.image_url}`} />}
 
                         </div>
                     })}
