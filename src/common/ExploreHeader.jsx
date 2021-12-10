@@ -7,13 +7,14 @@ import { NavLink } from "react-router-dom";
 import Tooltip from '@material-ui/core/Tooltip';
 import env from "../env";
 import { isUserLoging } from "../authorization/useAuth";
-import { fatchRetaurant } from "../actions";
+import { fatchRetaurant ,paginatedData} from "../actions";
 import { useDispatch } from "react-redux";
 
 const ExploreHeader=()=>{
   let dispatch=useDispatch()
   useEffect(async()=>{
      dispatch(fatchRetaurant())
+    
      return ()=>{}
   })
   return (

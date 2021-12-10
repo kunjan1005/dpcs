@@ -758,7 +758,7 @@ select option {
     /* border-bottom: 1px solid black; */
     background-color: white;
 }
-.card-list-container .card-list{
+.card-list-container{
     overflow: hidden;
 }
 .see_more{
