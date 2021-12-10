@@ -782,6 +782,9 @@ select option {
 .card-img-top{
   height: 20rem;
 }
+.home-img{
+    height:30rem !important;
+}
 .post_side_title{
   color: #d31f33;
 }
