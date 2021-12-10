@@ -84,6 +84,7 @@ const fatchRetaurant = () => {
             }
         })
         dispatch({ type: "FATCH_RES_DATA", payload: response.data.data })
+        dispatch({type:"GET_LIMITED_POST",payload:{current_page:1,per_page_items:3}})
     }
 
 }
@@ -99,11 +100,17 @@ const getSingleRestaurant=(payload)=>{
     
     }
 }
+const paginatedData=(payload=5)=>{
+    return{
+        type:"GET_LIMITED_POST",
+        payload
+    }
+}
 
 
 export default storePostData
 export {
     getPostData, like, dislike, contentShow, contentHide, login, logout,
     getProfile, fatchData, setSinglePost, fatchRetaurant,getRestaurant,
-    getSingleRestaurant
+    getSingleRestaurant,paginatedData
 }
