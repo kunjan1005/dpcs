@@ -67,7 +67,7 @@ const Singup = () => {
                 toast.success('your account created')
                 let token=await genrateToken(response.data.data)
                 localStorage.setItem('token',token)
-                navigate('/')
+                navigate('/profile')
             }
         })
     }

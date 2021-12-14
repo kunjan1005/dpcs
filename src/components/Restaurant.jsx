@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import $ from 'jquery'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { useParams } from 'react-router'
 import { isUserLoging } from '../authorization/useAuth'
 import Active from '@material-ui/icons/FiberManualRecord'
 import LocationOn from '@material-ui/icons/LocationOn'
+import { NavLink } from 'react-router-dom'
 import RestaurantIcon from '@material-ui/icons/Restaurant'
 import Delivery from '@material-ui/icons/DirectionsBikeOutlined'
-
-
 import { TableHead, Paper, Table, TableContainer, TableRow, TableCell, TableBody } from '@material-ui/core'
 import { Tooltip } from "@material-ui/core";
 import OnlionOrder from "@material-ui/icons/MobileFriendly"
 import env from '../env'
 import axios from 'axios'
+import {useLocation} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSingleRestaurant } from '../actions/index'
 import Loading from '../common/Loading'
+import AddDipin from './dipComponents/AddDipIn'
 import _ from 'underscore'
+import ModelForm from '../custom/ModelForm';
 const Restaurant = () => {
     let [restaurant, setRestaurant] = useState({})
+    let location=useLocation()
+    let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
     let restaurant_id = useParams('sid')
     let state = useSelector((state) => state.restaurantReducer)
     let restaurantData = state.restaurant
+    let daysInWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let today = new Date()
+    let curreDay = today.getDay();
     useEffect(() => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
@@ -34,11 +42,11 @@ const Restaurant = () => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         }).then((response) => {
-
             dispatch(getSingleRestaurant(response.data.data))
-
-
         })
+        return ()=>{
+            setRestaurant({})
+        }
 
     }, [1])
 
@@ -61,15 +69,65 @@ const Restaurant = () => {
                         </div>
                     </div>
                     <div className="res-card mt-2">
-                        <h6>Reviews</h6>
+                        <h6 className='profile_title'>Reviews</h6>
                         <div className="d-flex flex-row">
-                            <div className="stars"> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </div> <span className="ml-1 font-weight-bold">4.6</span>
+                            <div className='col-lg-6'>
+                                <span>Service</span>
+                                <div className="stars"> 
+                                  <i className="fa fa-star"></i> 
+                                  <i className="fa fa-star"></i> 
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i> 
+                                  <span className="ml-1 font-weight-bold">4.6</span>
+                                </div> 
+                                <span>Food</span>
+                                <div className="stars"> 
+                                  <i className="fa fa-star"></i> 
+                                  <i className="fa fa-star"></i> 
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i> 
+                                  <span className="ml-1 font-weight-bold">4.6</span>
+                                </div> 
+                                
+                              
+                               
+                            </div>
+                            <div className='co-lg-6'>
+                            <span>Ambiance</span>
+                                <div className="stars"> 
+                                  <i className="fa fa-star"></i> 
+                                  <i className="fa fa-star"></i> 
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i> 
+                                  <span className="ml-1 font-weight-bold">4.6</span>
+                                </div> 
+                                <span>Noise Level</span>
+                                <div className="stars"> 
+                                  <i className="fa fa-star"></i> 
+                                  <i className="fa fa-star"></i> 
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i> 
+                                  <span className="ml-1 font-weight-bold">4.6</span>
+                                </div>
+                            </div>
                         </div>
-                        <hr />
-                        <div className="res-badges"> <span className="badge bg-dark ">All (230)</span> <span className="badge bg-dark "> <i className="fa fa-image"></i> 23 </span> <span className="badge bg-dark "> <i className="fa fa-comments-o"></i> 23 </span> <span className="badge bg-warning"> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <span className="ml-1">2,123</span> </span> </div>
                         <hr />
                         <div className="res-comment-section">
 
+                        </div>
+                    </div>
+                    <div className="res-card mt-2">
+                        <h6 className='profile_title'>Address</h6>
+
+                        <div className="res-comment-section">
+                            <ul>
+                                {restaurant.locations.map((each, index) => {
+                                    return index <= 4 ? <li>
+                                        <p>{each.location} <NavLink to=''>Get Directions</NavLink></p><hr />
+                                    </li> : ''
+                                })}
+
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -80,9 +138,9 @@ const Restaurant = () => {
                             <h6 className="font-weight-bold">{restaurant.username}</h6>
                         </div>
                         <div className="res-buttons">
-                            <button className="btn btn-outline-danger btn-long res-cart">Book</button>&nbsp;
-                            <button className="btn btn-outline-danger btn-long buy">Buy it Now</button>
-                            {restaurant.is_open == 1 ? <small ><Active style={{ width: "15px", color: "greenyellow" }} /><b>Active</b></small> : <small ><Active style={{ width: "15px", color: "red" }} /><b>Close</b></small>}
+                            <NavLink to={`/restaurant/${restaurant.restaurant_id}#dipin`}><button className="btn btn-outline-danger btn-long res-cart">DIP-IN</button></NavLink>&nbsp;
+                            <button className="btn btn-outline-danger btn-long buy">{restaurant.is_fav?"UN-FAVORITE":"FAVORITE"}</button>
+                            {restaurant.is_open == 1 ? <small ><Active style={{ width: "15px", color: "greenyellow" }} /><b>Open</b></small> : <small ><Active style={{ width: "15px", color: "red" }} /><b>Closed</b></small>}
                         </div>
                         <div className="res-product-description">
                             <div className="res-similar-products mt-3 d-flex flex-row">
@@ -103,7 +161,7 @@ const Restaurant = () => {
                                     <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
                                         <div className="res-card-body">
                                             <Tooltip title='online order'>
-                                                <OnlionOrder style={{ color: 'green' }} />
+                                                <NavLink to={`/restaurant/order/${restaurant.restaurant_id}`}><OnlionOrder style={{ color: 'green' }} /></NavLink>
                                             </Tooltip></div></div> :
                                     <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
                                         <div className="res-card-body">
@@ -143,9 +201,9 @@ const Restaurant = () => {
 
                             </div>
                         </div>
-                        <div className="res-card mt-2"> <span className='profile_title'><b>Restaurant type</b></span>
+                        <div className="res-card mt-2 row"> <span className='profile_title'><b>Restaurant type</b></span>
                             <hr />
-                            <div className="res-similar-products mt-2 d-flex flex-row">
+                            <div className="res-similar-products mt-2 d-flex flex-row col-lg-6">
                                 {restaurant.restaurant_type.map((each) => {
                                     return <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
                                         <img src={`${env.URL}/dipicious/${each.icon}`} className="card-img-top" alt="..." />
@@ -157,11 +215,19 @@ const Restaurant = () => {
 
 
                             </div>
+                            <div className="res-similar-products mt-2  col-lg-6">
+                                <ul style={{ fontSize: "10px", color: "#d31f33" }}>
+                                    <li><b>AVERAGE TIME TO DELIVER</b><br /><span style={{ color: "grey" }}>{restaurant.delivery_time_estimation} min</span></li>
+                                    <li><b>MINIMUM ORDER</b>  <br /><span style={{ color: "grey" }}>KD {restaurant.min_order_price}</span></li>
+                                    <li><b>PAYMENT OPTIONS</b>  <br /><span style={{ color: "grey" }}>{restaurant.disable_online_payment ? 'Closed' : 'Open'}</span></li>
+                                </ul>
+                            </div>
                         </div>
                         <hr />
 
                     </div>
                     <div className="res-card mt-2"> <span className='profile_title'><b>Restaurant Pictures</b></span>
+                        <hr />
                         <div className="res-similar-products mt-2 d-flex flex-row">
                             {restaurant.image_restaurant.map((each) => {
                                 return <div className="res-card  p-1" style={{ width: "9rem", marginRight: "3px" }}> <img src={`${env.URL}/dipicious/${each.image_url}`} className="card-img-top" alt="..." />
@@ -171,53 +237,63 @@ const Restaurant = () => {
 
                         </div>
                     </div>
-                    <div className="res-card mt-2">
-                    <span className='profile_title'><b>Delivery Schedule</b></span>
-                    <div className="res-product-description">
-                    
-                        <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                <TableHead style={{backgroundColor:"#d31f33"}}>
-                                    <TableRow  >
-                                        <TableCell></TableCell>
-                                        {restaurant.hour_full_data.map((each) => {
-                                            return <TableCell style={{fontSize:"15px",color:"white",fontWeight:"bolder"}}>{each.day_name}</TableCell>
-                                        })}
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
+                    <div className="res-card mt-2"> <span className='profile_title'><b>Restaurant Pictures</b></span>
+                        <hr />
+                        <div className="res-similar-products mt-2 d-flex flex-row">
+                            {restaurant.discount.length == 0 ? <h6>There is no discount/offers at this time</h6> : ''}
 
-                                    <TableRow
-                                        key=''
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="row">Morning</TableCell>
-                                        {restaurant.hour_full_data.map((each) => {
-                                            return <TableCell align="right" style={{fontSize:"10px"}}>{each.strat_time_morning}-{each.end_time_morning}</TableCell>
-                                        })}
-
-                                    </TableRow>
-                                    <TableRow
-                                        key=''
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="row">Afternoon</TableCell>
-                                        {restaurant.hour_full_data.map((each) => {
-                                            return <TableCell align="right" style={{fontSize:"10px"}}>{each.strat_time_afternoon}-{each.end_time_afternoon}</TableCell>
-                                        })}
-
-                                    </TableRow>
-
-
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                        </div>
                     </div>
+                    <div className="res-card mt-2">
+                        <span className='profile_title'><b>Opening Hours</b></span>
+                        <hr />
+                        <div className="res-product-description">
+
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                    <TableHead style={{ backgroundColor: "#d31f33" }}>
+                                        <TableRow  >
+                                            <TableCell></TableCell>
+                                            {restaurant.hour_full_data.map((each, index) => {
+                                                return daysInWeek[index] == daysInWeek[curreDay] ? <TableCell style={{ fontSize: "15px", color: "white", fontWeight: "bolder" }}><Active style={{ width: "15px", color: "greenyellow" }} />{daysInWeek[index]}</TableCell> :
+                                                    <TableCell style={{ fontSize: "15px", color: "white", fontWeight: "bolder" }}>{daysInWeek[index]}</TableCell>
+                                            })}
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+
+                                        <TableRow
+                                            key=''
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component="th" scope="row">Morning</TableCell>
+                                            {restaurant.hour_full_data.map((each, index) => {
+                                                return <TableCell align="right" style={{ fontSize: "10px" }}>{each.strat_time_morning}-{each.end_time_morning}</TableCell>
+                                            })}
+
+                                        </TableRow>
+                                        <TableRow
+                                            key=''
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component="th" scope="row">Afternoon</TableCell>
+                                            {restaurant.hour_full_data.map((each) => {
+                                                return <TableCell align="right" style={{ fontSize: "10px" }}>{each.strat_time_afternoon}-{each.end_time_afternoon}</TableCell>
+                                            })}
+
+                                        </TableRow>
+
+
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
+         {tabindex=='dipin'?<ModelForm/>:""}
 
     </>)
 }

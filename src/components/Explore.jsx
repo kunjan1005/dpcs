@@ -15,8 +15,8 @@ const Explore = () => {
     <ExploreHeader />
     <div className='container-fluid '>
       <div className='row'>
-        <div className='card m-auto'>
-          {tabindex=='explore'?<Cuisines/>:false}
+        <div className='explore_card m-auto'>
+  
           {tabindex=='cuisines'?<Cuisines/>:false}
           {tabindex=='list'?<List/>:false}
           {tabindex=='map'?<Map/>:false}

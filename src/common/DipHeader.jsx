@@ -5,41 +5,43 @@ import Map from '@material-ui/icons/Map'
 import MenuBook from '@material-ui/icons/MenuBook'
 import { NavLink } from "react-router-dom";
 import Tooltip from '@material-ui/core/Tooltip';
+import Dipin from '@material-ui/icons/LocationOnRounded'
+import CampaignIcon from '@material-ui/icons/VoiceChatRounded';
+import FavIcon from '@material-ui/icons/StarBorderRounded';
+import AddRestaurant from '@material-ui/icons/RestaurantRounded'
+
 import env from "../env";
-import { isUserLoging } from "../authorization/useAuth";
-import { fatchRetaurant ,paginatedData} from "../actions";
 import { useDispatch } from "react-redux";
 
 const ExploreHeader=()=>{
-  let dispatch=useDispatch()
-  useEffect(async()=>{
-    let {login,user}=isUserLoging()
-     dispatch(fatchRetaurant())
-     return ()=>{}
-  })
-
+//   let dispatch=useDispatch()
+//   useEffect(async()=>{
+//      dispatch(fatchRetaurant())
+    
+//      return ()=>{}
+//   })
   return (
        <div className='container explore_main '>
          <div className='explore_header m-auto'>
            <ul className='explore_links row'>
              <li className='col-lg-3 col-1'>
-               <Tooltip title='CUISINES'>
-               <NavLink to='#cuisines' className='links' activeclass='active'><Restaurant/></NavLink>
+               <Tooltip title='DIP IN'>
+               <NavLink to='#dipin' className='links' activeclass='active'><Dipin/></NavLink>
                </Tooltip>
                </li>
              <li className='col-lg-3 col-1'>
-               <Tooltip title='LIST'>
-               <NavLink to='#list' className='links' activeclass='active'><List/></NavLink>
+               <Tooltip title='DIP OUT'>
+               <NavLink to='#dipout' className='links' activeclass='active'><CampaignIcon/></NavLink>
                </Tooltip>
                </li>
              <li className='col-lg-3 col-1'>
-               <Tooltip title='MAP'>
-               <NavLink to='#map' className='links' activeclass='active'><Map/></NavLink>
+               <Tooltip title='REVIEW'>
+               <NavLink to='#review' className='links' activeclass='active'><FavIcon/></NavLink>
                </Tooltip>
                </li>
              <li className='col-lg-3 col-1'>
-               <Tooltip title='RECIPE'>
-               <NavLink  to='#recipe' className='links' activeclass='active'><MenuBook/></NavLink>
+               <Tooltip title='ADD RESTAURANT'>
+               <NavLink  to='#restaurant' className='links' activeclass='active'><AddRestaurant/></NavLink>
                </Tooltip>
                </li>
            </ul>

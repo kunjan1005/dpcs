@@ -706,17 +706,25 @@ select option {
   width:40rem;
   height:40rem;
 }
+.explore_card{
+  width:40rem;
+  height:40rem;
+
+
+}
 .serach_box{
-    border: 2px solid #d31f33;
+    border: 2px solid #f55769;
     border-radius: 5px;
+    background-color: rgb(252, 175, 175);
     margin-top: 5px;
     overflow: hidden;
-   
+  
+      
 
 }
 .search_input{
+    padding: 3px;
     outline: none;
-    padding: 1px;
     width:100%;
     border:none;
     
@@ -782,15 +790,14 @@ select option {
 .card-img-top{
   height: 20rem;
 }
-.home-img{
+/* .home-img{
     height:30rem !important;
-}
+} */
 .post_side_title{
   color: #d31f33;
 }
 .post-icons{
   float:right;
-  
 }
 .post-icon{
   margin:1rem;
@@ -1470,6 +1477,9 @@ hr {
 .comment-ratings i {
     color: #f6d151
 }
+.items{
+    border: 1px solid whitesmoke;
+}
 
 
 
@@ -1555,3 +1565,90 @@ label.radio input:checked+span::before {
 .card-body {
     padding: 0.3rem 0.3rem 0.2rem
 }
+.add_dip{
+    border: 1px solid whitesmoke;
+    width:100%;
+    padding:1rem;
+    background-color: white;
+
+
+}
+.input_box{
+    border: 1px solid grey;
+    border-radius: 2px;
+    background-color: whitesmoke;
+    padding: .5rem;
+
+}
+#demo-simple-select-required-label{
+    /* color: #d31f33; */
+    outline: #d31f33;
+}
+.model{
+    top:0;
+    /* border: 1px solid black; */
+    padding: 5rem;
+    background-color: rgb(250, 248, 248);
+    opacity:.8;
+    position:fixed;
+    height: 100%;
+    z-index: 1;
+}
+.model-form{
+    margin-top:1rem;
+    background-color:white;
+    border:1px solid black;
+    width: 60% !important;
+    margin: auto;
+    z-index:1;
+}
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .quantity__minus,
+  .quantity__plus {
+    display: block;
+    width: 22px;
+    height: 23px;
+    margin: 0;
+    background: #dee0ee;
+    text-decoration: none;
+    text-align: center;
+    line-height: 23px;
+  }
+  .quantity__minus:hover,
+  .quantity__plus:hover {
+    background: #575b71;
+    color: #fff;
+  } 
+  .quantity__minus {
+    border-radius: 3px 0 0 3px;
+  }
+  .quantity__plus {
+    border-radius: 0 3px 3px 0;
+  }
+  .quantity__input {
+    width: 32px;
+    height: 19px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-top: 2px solid #dee0ee;
+    border-bottom: 2px solid #dee0ee;
+    border-left: 1px solid #dee0ee;
+    border-right: 2px solid #dee0ee;
+    background: #fff;
+    color: #8184a1;
+    outline: none;
+  }
+  .quantity__minus:link,
+  .quantity__plus:link {
+    color: #8184a1;
+  } 
+  .quantity__minus:visited,
+  .quantity__plus:visited {
+    color: #fff;
+  }

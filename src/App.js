@@ -10,6 +10,7 @@ import { Route, Routes } from 'react-router';
 import Home from './components/Home';
 import Profile from './components/Profile'
 import Explore from './components/Explore'
+import Dip from './components/Dip'
 import Notifications from './components/Notification'
 import Singup from './components/Signup';
 import PostPage from './common/PostPage';
@@ -20,6 +21,7 @@ import Logout from './components/Logout';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loading from './common/Loading';
 import Restaurant from './components/Restaurant';
+import Order from './components/Order';
 function App() {
   let { isLoading } = useAuth0()
   if (isLoading) {
@@ -40,11 +42,12 @@ function App() {
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/post/:id' element={<PostPage />}></Route>
               <Route exact  path='/restaurant/:sid' element={<Restaurant/>}/>
+              <Route exact  path='/restaurant/order/:sid' element={<Order/>}/>
               <Route exact path='/login' element={<Login />}></Route>
               <Route exact path='/singup' element={<Singup />}></Route>
               <Route exact path='/fotgot_password' element={<TroubleLogin />}></Route>
               <Route exact path='/explore' element={<Explore />}></Route>
-              <Route exact path='/notifications' element={<Notifications />}></Route>
+              <Route exact path='/dip' element={<Dip />}></Route>
               <Route exact path='/profile' element={<Profile />}></Route>
               <Route exact path='/profile/edit' element={<Editprofile />}></Route>
               <Route exact path='/logout' element={<Logout />}></Route>
