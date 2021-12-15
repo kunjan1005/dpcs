@@ -151,36 +151,36 @@ const Restaurant = () => {
                                     <div className="res-card  p-1" >
                                         <div className="res-card-body">
                                             <Tooltip title='Delivery available'>
-                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<Call/>}>Call</Button>
+                                                <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }}  variant="contained" startIcon={<Call/>}>Call</Button>
                                             </Tooltip></div> </div> :
                                     <div className="res-card  p-1" >
                                         <div className="res-card-body">
                                             <Tooltip title='Delivery not available'>
-                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
+                                                <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
                                             </Tooltip></div></div>
                                 }
                                 {restaurant.is_online_order == 1 ?
                                     <div className="res-card  p-1" >
                                         <div className="res-card-body">
                                             <Tooltip title='online order'>
-                                                <NavLink to={`/restaurant/order/${restaurant.restaurant_id}`}><Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />}>Order</Button></NavLink>
+                                                <NavLink to={`/restaurant/order/${restaurant.restaurant_id}`}><Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />}>Order</Button></NavLink>
                                             </Tooltip></div></div> :
                                     <div className="res-card  p-1">
                                         <div className="res-card-body">
                                             <Tooltip title='offline order'>
-                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />} disabled>Closed</Button>
+                                                <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />} disabled>Closed</Button>
                                             </Tooltip></div></div>}
 
                                 {restaurant.is_table_online == 1 ?
                                     <div className="res-card  p-1">
                                         <div className="res-card-body">
                                             <Tooltip title='table availabel'>
-                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />}>Online</Button>
+                                                <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />}>Online</Button>
                                             </Tooltip></div></div> :
                                     <div className="res-card  p-1">
                                         <div className="res-card-body">
                                             <Tooltip title='offline table only'>
-                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
+                                                <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
                                             </Tooltip></div></div>}
                             </div>
 
