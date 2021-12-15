@@ -119,8 +119,8 @@ const restaurantOrderDetails = (resId) => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-        console.log(response)
-      dispatch({type:'FES_RES_ORDER_DATA',payload:response.data.data})
+        // console.log(response.data)
+      dispatch({type:'FATCH_RES_ORDER_DATA',payload:response.data})
       
     }
 
