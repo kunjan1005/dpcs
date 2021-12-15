@@ -54,13 +54,13 @@ const Post = () => {
 
                 <div className="card-body">
 
-                    <NavLink to={`/post/${post.post_id}`} style={{ color: '#d31f33' }}>
+                
                         <h6 className="card-title">
-                            <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name} <span className='post_side_title' style={{ color: "black" }}>Dipped in {post.restaurant_name != null ? <span style={{ color: "orange" }}>@{post.restaurant_name}</span> : ""} {post.location_name !== null ? <span><LocationOn />{post.location_name}</span> : ''} <br />
+                       <NavLink to='/profile' style={{color:"#d31f33"}}><img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name}</NavLink><span className='post_side_title' style={{ color: "black" }}>Dipped in {post.restaurant_name != null ? <NavLink to={`/restaurant/${post.restaurant_id}`}><span style={{ color: "orange" }}>@{post.restaurant_name}</span></NavLink> : ""} {post.location_name !== null ? <span><LocationOn />{post.location_name}</span> : ''} <br />
                                 <span>{post.description}</span></span>
                         </h6>
 
-                    </NavLink>
+          
 
                     <p style={{ float: "right" }}>{post.time}</p>
 

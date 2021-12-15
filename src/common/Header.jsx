@@ -1,19 +1,30 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import logo from '../images/dpcs_logo.png'
 import HomeIcone from '@material-ui/icons/Home';
 import ExploreOutlined from '@material-ui/icons/ExploreOutlined'
 import PlusOneRounded from '@material-ui/icons/PlusOneRounded'
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import  TouchAppIcon from '@material-ui/icons/TouchApp';
 import Tooltip from '@material-ui/core/Tooltip';
 import Profile from '@material-ui/icons/PersonOutline'
 import { NavLink } from 'react-router-dom'
 import {getProfile} from '../actions/index'
 import { useSelector,useDispatch } from "react-redux";
+import { isUserLoging } from '../authorization/useAuth';
+import * as rdd from 'react-device-detect'
+
+// import Custominput from '../custom/CustomInput'
 const Header = () => {
-    let dispatch=useDispatch()
+     let [isLogin,setLogin]=useState(false)
+     let [curUser,setUser]=useState({})
     useEffect(()=>{
-      dispatch(getProfile())
+        let {login,user}=isUserLoging()
+        setLogin(login)
+        setUser(user)
+      
     },[1])
+    console.log(rdd)
     return (
 
 
@@ -30,8 +41,9 @@ const Header = () => {
                             <div className="logo_container">
                                     <div className="serach_box">
                                         <input type="search" id="" className="search_input" placeholder='search here' />
-                                  
+                                                                     
                                     </div>
+                                    {/* <Custominput/> */}
                             </div>
                         </div>
                         {/* <div className="offset-2 col-lg-3 col-12 order-lg-2 order-3 text-lg-left text-right header_search">
@@ -52,13 +64,13 @@ const Header = () => {
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
-                                    <Tooltip title='new post'>
-                                        <NavLink className='links' activeclass='active' to='/post'><div className="wishlist_icon"><PlusOneRounded /></div></NavLink>
+                                    <Tooltip title='dip'>
+                                        <NavLink className='links' activeclass='active' to='/dip#dipin'><div className="wishlist_icon"><TouchAppIcon /></div></NavLink>
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='notifications'>
-                                        <NavLink className='links' activeclass='active' to='/notifications'><div className="wishlist_icon"><NotificationsActiveIcon /></div></NavLink>
+                                        <NavLink className='links' activeclass='active' to='/activities'><div className="wishlist_icon"><DirectionsRunIcon /></div></NavLink>
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
