@@ -74,7 +74,7 @@ const getProfile = () => {
     }
 }
 const fatchRetaurant = () => {
-    return async(dispatch, getState)=>{
+    return async (dispatch, getState) => {
         let { user } = isUserLoging()
         let { user_id, lang, longitude, latitude, access_token } = user
         let response = await axios.post(`${env.URL}/dipicious/api/user/resturant_list_explore_tab`, JSON.stringify({ user_id, lang, longitude, latitude, access_token }), {
@@ -84,33 +84,52 @@ const fatchRetaurant = () => {
             }
         })
         dispatch({ type: "FATCH_RES_DATA", payload: response.data.data })
-        dispatch({type:"GET_LIMITED_POST",payload:{current_page:1,per_page_items:3}})
+        dispatch({ type: "GET_LIMITED_POST", payload: { current_page: 1, per_page_items: 3 } })
     }
 
 }
-const getRestaurant=()=>{
-    return{
-        type:"GET_RES_DATA",
+const getRestaurant = () => {
+    return {
+        type: "GET_RES_DATA",
     }
 }
-const getSingleRestaurant=(payload)=>{
-    return{
-        type:"GET_SINGLE_RES",
+const getSingleRestaurant = (payload) => {
+    return {
+        type: "GET_SINGLE_RES",
         payload
-    
+
     }
 }
-const paginatedData=(payload=5)=>{
-    return{
-        type:"GET_LIMITED_POST",
+const paginatedData = (payload = 5) => {
+    return {
+        type: "GET_LIMITED_POST",
         payload
     }
+}
+const restaurantOrderDetails = (resId) => {
+    return async(dispatch,getState) => {
+        let userData = isUserLoging()
+        let restaurant_id=resId
+        let { user_id, lang, latitude, longitude, access_token } = userData.user
+
+        let response=await axios.post(`${env.URL}/dipicious/api/user/category_product_list`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id: restaurant_id }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        console.log(response)
+      dispatch({type:'FES_RES_ORDER_DATA',payload:response.data.data})
+      
+    }
+
 }
 
 
 export default storePostData
 export {
     getPostData, like, dislike, contentShow, contentHide, login, logout,
-    getProfile, fatchData, setSinglePost, fatchRetaurant,getRestaurant,
-    getSingleRestaurant,paginatedData
+    getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
+    getSingleRestaurant, paginatedData,restaurantOrderDetails
 }

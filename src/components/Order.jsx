@@ -13,31 +13,22 @@ import { getSingleRestaurant } from '../actions/index'
 import Loading from '../common/Loading'
 import AddDipin from './dipComponents/AddDipIn'
 import _ from 'underscore'
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import ModelForm from '../custom/ModelForm';
+import {restaurantOrderDetails} from '../actions/index'
 const Order = () => {
     let [restaurant, setRestaurant] = useState({})
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
     let restaurant_id = useParams('sid')
-    let state = useSelector((state) => state.restaurantReducer)
-    let restaurantData = state.restaurant
-    let daysInWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    let today = new Date()
-    let curreDay = today.getDay();
-    useEffect(() => {
-        let userData = isUserLoging()
-        let { user_id, lang, latitude, longitude, access_token } = userData.user
+    let state = useSelector((state) => state.restaurantOrderReducer)
+    let restaurantData = state.restaurantOrderDetails
 
-        axios.post(`${env.URL}/dipicious/api/user/restaurant_detail`,
-            JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id: restaurant_id.sid }), {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic cm9vdDoxMjM='
-            }
-        }).then((response) => {
-            dispatch(getSingleRestaurant(response.data.data))
-        })
+    useEffect(() => {
+      
+            dispatch(restaurantOrderDetails(restaurant_id.sid))
+
         return () => {
             setRestaurant({})
         }
@@ -78,6 +69,7 @@ const Order = () => {
                     <div className="res-card">
                         <span className='profile_title'><b>Test</b></span>
                         <hr />
+                
                         <div className="res-card mt-2 row items">
                             <div className='product_pick col-lg-3'>
                                 <img src='https://tse3.mm.bing.net/th?id=OIP.R2yUp_MMHqec9NZpSx-X5gHaE7&pid=Api&P=0&w=233&h=155' />

@@ -8,12 +8,14 @@ import LocationOn from '@material-ui/icons/LocationOn'
 import { NavLink } from 'react-router-dom'
 import RestaurantIcon from '@material-ui/icons/Restaurant'
 import Delivery from '@material-ui/icons/DirectionsBikeOutlined'
+import { Button } from '@material-ui/core'
+import { LocalShippingOutlined,Call} from '@material-ui/icons'
 import { TableHead, Paper, Table, TableContainer, TableRow, TableCell, TableBody } from '@material-ui/core'
 import { Tooltip } from "@material-ui/core";
 import OnlionOrder from "@material-ui/icons/MobileFriendly"
 import env from '../env'
 import axios from 'axios'
-import {useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSingleRestaurant } from '../actions/index'
 import Loading from '../common/Loading'
@@ -22,7 +24,7 @@ import _ from 'underscore'
 import ModelForm from '../custom/ModelForm';
 const Restaurant = () => {
     let [restaurant, setRestaurant] = useState({})
-    let location=useLocation()
+    let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
     let restaurant_id = useParams('sid')
@@ -44,7 +46,7 @@ const Restaurant = () => {
         }).then((response) => {
             dispatch(getSingleRestaurant(response.data.data))
         })
-        return ()=>{
+        return () => {
             setRestaurant({})
         }
 
@@ -73,41 +75,41 @@ const Restaurant = () => {
                         <div className="d-flex flex-row">
                             <div className='col-lg-6'>
                                 <span>Service</span>
-                                <div className="stars"> 
-                                  <i className="fa fa-star"></i> 
-                                  <i className="fa fa-star"></i> 
-                                  <i className="fa fa-star"></i>
-                                  <i className="fa fa-star"></i> 
-                                  <span className="ml-1 font-weight-bold">4.6</span>
-                                </div> 
+                                <div className="stars">
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <span className="ml-1 font-weight-bold">4.6</span>
+                                </div>
                                 <span>Food</span>
-                                <div className="stars"> 
-                                  <i className="fa fa-star"></i> 
-                                  <i className="fa fa-star"></i> 
-                                  <i className="fa fa-star"></i>
-                                  <i className="fa fa-star"></i> 
-                                  <span className="ml-1 font-weight-bold">4.6</span>
-                                </div> 
-                                
-                              
-                               
+                                <div className="stars">
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <span className="ml-1 font-weight-bold">4.6</span>
+                                </div>
+
+
+
                             </div>
                             <div className='co-lg-6'>
-                            <span>Ambiance</span>
-                                <div className="stars"> 
-                                  <i className="fa fa-star"></i> 
-                                  <i className="fa fa-star"></i> 
-                                  <i className="fa fa-star"></i>
-                                  <i className="fa fa-star"></i> 
-                                  <span className="ml-1 font-weight-bold">4.6</span>
-                                </div> 
+                                <span>Ambiance</span>
+                                <div className="stars">
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <span className="ml-1 font-weight-bold">4.6</span>
+                                </div>
                                 <span>Noise Level</span>
-                                <div className="stars"> 
-                                  <i className="fa fa-star"></i> 
-                                  <i className="fa fa-star"></i> 
-                                  <i className="fa fa-star"></i>
-                                  <i className="fa fa-star"></i> 
-                                  <span className="ml-1 font-weight-bold">4.6</span>
+                                <div className="stars">
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <i className="fa fa-star"></i>
+                                    <span className="ml-1 font-weight-bold">4.6</span>
                                 </div>
                             </div>
                         </div>
@@ -139,46 +141,46 @@ const Restaurant = () => {
                         </div>
                         <div className="res-buttons">
                             <NavLink to={`/restaurant/${restaurant.restaurant_id}#dipin`}><button className="btn btn-outline-danger btn-long res-cart">DIP-IN</button></NavLink>&nbsp;
-                            <button className="btn btn-outline-danger btn-long buy">{restaurant.is_fav?"UN-FAVORITE":"FAVORITE"}</button>
+                            <button className="btn btn-outline-danger btn-long buy">{restaurant.is_fav ? "UN-FAVORITE" : "FAVORITE"}</button>
                             {restaurant.is_open == 1 ? <small ><Active style={{ width: "15px", color: "greenyellow" }} /><b>Open</b></small> : <small ><Active style={{ width: "15px", color: "red" }} /><b>Closed</b></small>}
                         </div>
                         <div className="res-product-description">
                             <div className="res-similar-products mt-3 d-flex flex-row">
 
-                                {restaurant.pickup_or_delivery ?
-                                    <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
+                                {restaurant.pickup_or_delivery == 1 ?
+                                    <div className="res-card  p-1" >
                                         <div className="res-card-body">
                                             <Tooltip title='Delivery available'>
-                                                <Delivery style={{ color: 'green' }} />
+                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<Call/>}>Call</Button>
                                             </Tooltip></div> </div> :
-                                    <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
+                                    <div className="res-card  p-1" >
                                         <div className="res-card-body">
                                             <Tooltip title='Delivery not available'>
-                                                <Delivery style={{ color: 'red' }} />
+                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
                                             </Tooltip></div></div>
                                 }
-                                {restaurant.is_online_order ?
-                                    <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
+                                {restaurant.is_online_order == 1 ?
+                                    <div className="res-card  p-1" >
                                         <div className="res-card-body">
                                             <Tooltip title='online order'>
-                                                <NavLink to={`/restaurant/order/${restaurant.restaurant_id}`}><OnlionOrder style={{ color: 'green' }} /></NavLink>
+                                                <NavLink to={`/restaurant/order/${restaurant.restaurant_id}`}><Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />}>Order</Button></NavLink>
                                             </Tooltip></div></div> :
-                                    <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
+                                    <div className="res-card  p-1">
                                         <div className="res-card-body">
                                             <Tooltip title='offline order'>
-                                                <OnlionOrder style={{ color: 'red' }} />
+                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />} disabled>Closed</Button>
                                             </Tooltip></div></div>}
 
-                                {restaurant.is_table_online ?
-                                    <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
+                                {restaurant.is_table_online == 1 ?
+                                    <div className="res-card  p-1">
                                         <div className="res-card-body">
                                             <Tooltip title='table availabel'>
-                                                <RestaurantIcon style={{ color: 'green' }} />
+                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />}>Online</Button>
                                             </Tooltip></div></div> :
-                                    <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
+                                    <div className="res-card  p-1">
                                         <div className="res-card-body">
                                             <Tooltip title='offline table only'>
-                                                <RestaurantIcon style={{ color: 'red' }} />
+                                                <Button style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
                                             </Tooltip></div></div>}
                             </div>
 
@@ -293,7 +295,7 @@ const Restaurant = () => {
                 </div>
             </div>
         </div>
-         {tabindex=='dipin'?<ModelForm/>:""}
+        {tabindex == 'dipin' ? <ModelForm /> : ""}
 
     </>)
 }
