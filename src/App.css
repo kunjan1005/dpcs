@@ -723,6 +723,7 @@ select option {
     background-color:#fafafa !important;
     margin-top: 5px;
     overflow: hidden;
+    padding: 2px;
 }
 .search_input{
     padding: 4px;
