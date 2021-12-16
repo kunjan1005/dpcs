@@ -313,6 +313,8 @@ select option {
 }
 .nav_link{
     margin:auto !important;
+    display: block !important;
+    text-align: center !important;
  
 }
 @media only screen and (max-width: 500px) {
@@ -330,8 +332,10 @@ select option {
     }
     .nav_link{
         margin:auto !important;
-        line-height: 3rem !important;
-        width: 100% !important;
+        line-height: 50px;
+        display: block !important;
+        text-align: center !important;
+         
         
     }
     .offset-1 {
@@ -709,7 +713,7 @@ select option {
 }
 .card{
   width:40rem;
-  height:40rem;
+  height:auto !important;
 }
 .explore_card{
   width:40rem;
@@ -790,7 +794,11 @@ select option {
 
 }
 .card-img-top{
-  height: 20rem;
+  height:100%;
+}
+.wdt{
+    height:32rem ;
+    overflow: hidden !important;
 }
 /* .home-img{
     height:30rem !important;
@@ -831,7 +839,7 @@ select option {
 
  .card{
    width:100%;
-   height: 32rem !important;
+   height: auto !important;
   }
   .card-body{
       flex: 0 !important;
@@ -1702,5 +1710,16 @@ label.radio input:checked+span::before {
       width: 5rem;
       font-size: .6rem !important;
     }
+}
+.warnning{
+    /* border: 1px solid black; */
+    padding: 10px;
+    text-align: center;
+    color:red;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px whitesmoke;
+    font-size: smaller;
+
+
 }
   
