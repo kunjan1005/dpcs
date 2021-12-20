@@ -44,10 +44,7 @@ const Header = () => {
                                     {/* <Custominput/> */}
                             </div>
                         </div>
-                        {/* <div className="offset-2 col-lg-3 col-12 order-lg-2 order-3 text-lg-left text-right header_search">
-                            <input type='text' placeholder='search here'></input>
-                        </div>  */}
-
+                
 
                         <div className="col-lg-3 col-12 order-lg-3 order-1 offset-lg-1">
                             <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end ">
