@@ -38,7 +38,7 @@ const Header = () => {
                         <div className="offset-2 col-lg-3 col-sm-2 col-2 order-1 logo-div header_search p-1">
                             <div className="logo_container">
                                     <div className="serach_box">
-                                        <input type="search" id="" className="search_input" placeholder='search here' />
+                                        <input type="search" id="" className="search_input border" placeholder='search here' />
                                                                      
                                     </div>
                                     {/* <Custominput/> */}
