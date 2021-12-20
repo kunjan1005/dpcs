@@ -22,11 +22,8 @@ import Loading from '../common/Loading'
 import AddDipin from './dipComponents/AddDipIn'
 import _ from 'underscore'
 import ModelForm from '../custom/ModelForm';
-import BookTable from './BookTable';
 const Restaurant = () => {
     let [restaurant, setRestaurant] = useState({})
-    let [open, setOpen] = useState(false)
-
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
@@ -64,7 +61,6 @@ const Restaurant = () => {
     }
     return (<>
         <div className="container-fluid mt-2 mb-3">
-            {open?<BookTable img={restaurant.image_restaurant[0].image_url} />:''}
             <div className="row no-gutters">
                 <div className="col-md-5 pr-2">
                     <div className="res-card">
@@ -94,6 +90,9 @@ const Restaurant = () => {
                                     <i className="fa fa-star"></i>
                                     <span className="ml-1 font-weight-bold">4.6</span>
                                 </div>
+
+
+
                             </div>
                             <div className='co-lg-6'>
                                 <span>Ambiance</span>
@@ -176,7 +175,7 @@ const Restaurant = () => {
                                     <div className="res-card  p-1">
                                         <div className="res-card-body">
                                             <Tooltip title='table availabel'>
-                                         <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} onClick={()=>{setOpen(true)}}>Book Table</Button>
+                                               <NavLink to='/restaurant/book/'><Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />}>Book Table</Button></NavLink> 
                                             </Tooltip></div></div> :
                                     <div className="res-card  p-1">
                                         <div className="res-card-body">

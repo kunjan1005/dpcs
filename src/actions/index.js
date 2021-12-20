@@ -125,11 +125,17 @@ const restaurantOrderDetails = (resId) => {
     }
 
 }
+const increment=(id)=>{
+  return {
+      type:"INCREMENT",
+      payload:id
+  }
+}
 
 
 export default storePostData
 export {
     getPostData, like, dislike, contentShow, contentHide, login, logout,
     getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
-    getSingleRestaurant, paginatedData,restaurantOrderDetails
+    getSingleRestaurant, paginatedData,restaurantOrderDetails,increment
 }

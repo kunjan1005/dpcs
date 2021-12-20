@@ -58,9 +58,7 @@ const Post = () => {
                         <h6 className="card-title">
                        <NavLink to='/profile' style={{color:"#d31f33"}}><img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name}</NavLink><span className='post_side_title' style={{ color: "black" }}>Dipped in {post.restaurant_name != null ? <NavLink to={`/restaurant/${post.restaurant_id}`}><span style={{ color: "orange" }}>@{post.restaurant_name}</span></NavLink> : ""} {post.location_name !== null ? <span><LocationOn />{post.location_name}</span> : ''} <br />
                                 <span>{post.description}</span></span>
-                        </h6>
-
-          
+                        </h6>          
 
                     <p style={{ float: "right" }}>{post.time}</p>
 
