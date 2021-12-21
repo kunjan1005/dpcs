@@ -191,7 +191,7 @@ const Editprofile = () => {
                     </div>
 
 
-                    <button className="btn btn-danger login_btn edit_btn" onClick={onSubmitForm}>Save Changes</button>
+                    <button className="btn btn-danger login_btn edit_btn m-auto mt-4" onClick={onSubmitForm}>Save Changes</button>
                 </div>
             </div>
 

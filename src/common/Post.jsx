@@ -29,40 +29,48 @@ const Post = () => {
         return { post: state.storePostData, likes: state.likeDislike }
     })
     let dispatch = useDispatch()
-   
-        setTimeout(() => {
-            setPosts(state.post)
 
-        }, 900)
- 
+    setTimeout(() => {
+        setPosts(state.post)
+
+    }, 900)
+
     if (_.isEmpty(posts)) {
         return <Loading />
     }
     let isliked = true
     return (
-  
+
         posts.map((post, index) => {
-            return <div className="card m-auto mt-2 col-lg-7" >
-                <div className="col-md-12 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
+            return <div className="card m-auto mt-5 col-lg-7" >
+                <div className="col-md-12 mt-2 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <div style={{
-                        width: '6rem',
+                        width: '10rem',
                         paddingRight: "1rem",
                         textAlign: 'right',
                         color: "whitesmoke",
                         borderRadius: "0 1rem 1rem 0",
-                        backgroundColor: '#d31f33'
+                        backgroundColor: '#d31f33',padding: "5px 50px 5px 5px"
                     }}><b>Dip in</b></div>
                 </div>
 
-                <div className="card-body">
+                <div className="card-body d-flex">
 
-                
-                        <h6 className="card-title">
-                       <NavLink to='/profile' style={{color:"#d31f33"}}><img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name}</NavLink><span className='post_side_title' style={{ color: "black" }}>Dipped in {post.restaurant_name != null ? <NavLink to={`/restaurant/${post.restaurant_id}`}><span style={{ color: "orange" }}>@{post.restaurant_name}</span></NavLink> : ""} {post.location_name !== null ? <span><LocationOn />{post.location_name}</span> : ''} <br />
-                                <span>{post.description}</span></span>
-                        </h6>          
 
-                    <p style={{ float: "right" }}>{post.time}</p>
+                    <h6 className="card-title">
+                        <NavLink to='/profile' style={{ color: "#d31f33" }}>
+                            <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name}
+                        </NavLink>
+                        <span className='post_side_title' style={{ color: "black" }}> Dipped in {post.restaurant_name != null ? 
+                            <NavLink to={`/restaurant/${post.restaurant_id}`}>
+                                <span style={{ color: "orange" }}>@{post.restaurant_name}</span>
+                            </NavLink> : ""} {post.location_name !== null ? <span>
+                            <LocationOn />{post.location_name}</span> : ''} <br />
+                            <span className="user">{post.description}</span>
+                        </span>
+                    </h6>
+
+                    <p className="mt-2 text1">{post.time}</p>
 
                 </div>
                 <Slider {...settings} >
