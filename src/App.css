@@ -771,7 +771,7 @@ select option {
     color: white;
 }
 .card-list-container{
-    width:60%;
+    /* width:60%; */
     border: 1px solid whitesmoke;
     padding: 0.5rem;
     height:100% !important;
@@ -1071,7 +1071,7 @@ select option {
  .profile_post_container{
      margin-top: 10rem;
      justify-content: center;
-     height:50vh !important;
+     height:70vh !important;
  }
  .profile_post_container .row .col-md-3{
      text-align: center;
@@ -1084,6 +1084,9 @@ select option {
  .post_container{
      /* box-shadow: 1px 2px 3px grey; */
      margin-top:1rem;
+ }
+ .post_container .card{
+     height: 100% !important;
  }
  .post_box img{
      border:1px solid grey;
@@ -1929,18 +1932,23 @@ label.radio input:checked+span::before {
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
-@media only screen and (max-width:1024px) {
+@media only screen and (max-width:500px) {
 .form-popup {
-        width: 100%;
+    width: 90% !important;
+
     }
     div.book-table {
         display: block !important;
     }
-}
-@media only screen and (max-width:400px) {
-.form-popup {
-        width: 100%;
-    }
+    .form-container {
+        border: 3px solid #f1f1f1;
+        box-shadow: 2px 2px 3px whitesmoke,-2px 2px 3px whitesmoke;
+        max-width:none !important;
+        margin:1% auto;
+        padding:5px;
+        height: 38rem  !important;
+        background-color: white;
+      }
 }
 @media only screen and (max-width: 500px) {
 .Cart-Container{
@@ -1951,6 +1959,7 @@ label.radio input:checked+span::before {
     border-radius: 20px;
     
     }
+
     .cart-header{
     margin: auto;
     width: 95%;
@@ -2026,4 +2035,13 @@ label.radio input:checked+span::before {
     background-color: #d31f33;
     color: white;
     border-radius: 1rem;
+}
+.editor{
+    box-sizing: border-box;
+    border: 1px solid black;
+    cursor: text;
+    padding: 14px;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    background-color: #fafafa;
 }

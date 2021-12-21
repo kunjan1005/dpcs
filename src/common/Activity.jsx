@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import env from '../env'
 import Post from './Post'
+// import 
 
 const Activity = (props) => {
     let [post, setPost] = useState([])
@@ -16,9 +17,8 @@ const Activity = (props) => {
         })
         setPost(response.data.data)
     },[1])
-    let isLiked = true
     return (
-       <Post post={post}/>
+       <Post post={post} status="1"/>
     )
 }
 export default Activity

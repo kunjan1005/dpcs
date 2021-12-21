@@ -158,7 +158,7 @@ const Singup = () => {
                                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                                 <label className="form-check-label" for="exampleCheck1">Check me out</label>
                             </div>
-                            <button type="submit" className="btn btn-danger login_btn  m-auto mt-3">Sign up</button>
+                            <button type="submit" className="btn btn-danger login_btn m-auto mt-3">Sign up</button>
                             <span className='policy_paragraph'>By Singing up.you agree to our Terms.Data Policy and Cookies Policy</span><br />
 
                         </form>

@@ -53,9 +53,9 @@ const TroubleLogin = () => {
     return (
         <div className='container-fluid user_container'>
             <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
-                <img src={logo}
+            <img src={logo}
                     className='login_card_img' id='profile_img'
-                    style={{ width: "6rem", height: '4rem', margin: 'auto' }}
+                    style={{ width: "7.5rem", height: '3rem', margin: 'auto' }}
                     alt="" />
                 <h4 className='m-auto login-title' style={{ color: 'black' }}>Trouble Logging in?</h4><br />
                 <h4 className='m-auto login-title'>Enter your email,phone or username and we'll send you a link to get back into your account</h4>

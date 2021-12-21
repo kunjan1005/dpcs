@@ -39,9 +39,10 @@ const Restaurant = () => {
     let daysInWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     let today = new Date()
     let curreDay = today.getDay();
+    let userData = isUserLoging()
 
     useEffect(() => {
-        let userData = isUserLoging()
+       
         let { user_id, lang, latitude, longitude, access_token } = userData.user
 
         axios.post(`${env.URL}/dipicious/api/user/restaurant_detail`,
@@ -68,7 +69,7 @@ const Restaurant = () => {
     return (<>
       <SetDipIn.Provider value={setDip}>
         <div className="container-fluid mt-2 mb-3">
-            {open?<BookTable img={restaurant.image_restaurant[0].image_url} state={setOpen} />:''}
+            {open?<BookTable img={restaurant.image_restaurant[0].image_url} state={setOpen} { ...userData.user} />:''}
             {dip?<DipinForm/>:""}
             <div className="row no-gutters">
                 <div className="col-md-5 pr-2">

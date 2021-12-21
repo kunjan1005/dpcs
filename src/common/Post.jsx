@@ -23,13 +23,15 @@ const Post = (props) => {
         slidesToShow: 1,
         slidesToScroll: 1
     };
-  useEffect(()=>{setPosts(props.post)},[1])
+  useEffect(()=>{setPosts(props.post)},[2])
+
+
     let dispatch = useDispatch()
     let isliked = true
     return (
 
         posts.map((post, index) => {
-            return <div className="card m-auto mt-5 col-lg-7" >
+            return <div className={`card m-auto mt-5 ${props.status==1?"col-lg-12":"col-lg-7"} `} key={index}>
                 <div className="col-md-12 mt-2 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <div style={{
                         width: '10rem',
