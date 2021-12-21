@@ -5,17 +5,17 @@ import { useParams } from 'react-router'
 import { isUserLoging } from '../authorization/useAuth'
 import env from '../env'
 import { IconButton } from '@material-ui/core'
-import { AddShoppingCart } from '@material-ui/icons'
-import axios from 'axios'
+import { AddShoppingCart} from '@material-ui/icons'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSingleRestaurant } from '../actions/index'
+import {increment,decrement} from '../actions/index'
+
 import Loading from '../common/Loading'
-import AddDipin from './dipComponents/AddDipIn'
+
 import _ from 'underscore'
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { NavLink } from 'react-router-dom'
-import { increment } from '../actions/index';
+
 import { restaurantOrderDetails } from '../actions/index'
 import CustomCart from '../custom/CartForm';
 $(document).on('click', '.category_btn', function () {
@@ -35,24 +35,16 @@ $(document).on('click', '.category_btn', function () {
 const Order = () => {
     let {login,user}=isUserLoging()
     let  {user_id,lang,access_token}=user
-    let [restaurant, setRestaurant] = useState({})
-
-
     let location = useLocation()
+    let [restaurant,setRestaurant]=useState({})
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
     let restaurant_id = useParams('sid')
     let state = useSelector((state) => state.restaurantOrderReducer)
     let restaurantData = state.restaurantOrderDetails
-
-  
     useEffect(() => {
-
         dispatch(restaurantOrderDetails(restaurant_id.sid))
-
-
-    }, [1])
-
+    },[1])
     if (_.isEmpty(restaurantData)) {
         return <Loading />
     }
@@ -89,20 +81,22 @@ const Order = () => {
                     </div>
                 </div>
                 <div className="col-md-7">
+                {/* <div className='res-card'><b className='profile_title'>Subtotal</b> Kd {21} <span style={{float:'right'}}>Cart <ArrowForwardIosOutlined/></span></div> */}
                     <div className="res-card">
                         {restaurantData.data == undefined ? <h3 className='warnning'>No data Found</h3> : restaurantData.data.map((each) => {
                             return <>
                                 <div className='category_box'><h5 className='profile_title'><b>{each.category_name}</b></h5><span className='category_btn'><i class="fa fa-sort-up"></i></span></div>
                                 <hr />
                                 <div className='category_items'>
-                                    {each.products.map((item) => {
-                                        return <div className="res-card mt-2 row items">
+                                    {each.products.map((item,index) => {
+                                        return <div className="res-card mt-2 row items" key={index}>
 
                                             <div className='product_pick col-lg-3'>
                                                 <img src={`${env.URL}/dipicious/${item.image}`} />
                                             </div>
                                             <div className='col-lg-7'>
                                                 <h5 className='profile_title'>{item.item_name}</h5>
+                                                <h6 className='profile_title'>Kd {item.item_price}</h6>
                                                 <p>{item.description}</p>
                                             </div>
                                             <div className='col-lg-2 items-align-right row'>
@@ -114,7 +108,7 @@ const Order = () => {
                                                             access_token={access_token}
                                                             restaurant_id={each.restaurant_id}
                                                             food_item_id={item.food_item_id}
-                                                            quantity={item.quantity}
+                                                            quantity={item.quantity==undefined?1:item.quantity}
                                                             description={item.description}
                                                              />
                                                     </IconButton> :

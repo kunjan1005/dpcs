@@ -13,6 +13,7 @@ import env from "../env";
 import Loading from "./Loading";
 import _ from "underscore";
 
+
 const Post = () => {
     var settings = {
         dots: true,
@@ -39,6 +40,7 @@ const Post = () => {
     }
     let isliked = true
     return (
+  
         posts.map((post, index) => {
             return <div className="card m-auto mt-2 col-lg-7" >
                 <div className="col-md-12 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
@@ -92,10 +94,7 @@ const Post = () => {
                 </div>
             </div>
 
-
         })
-
-
     )
 }
 export default Post

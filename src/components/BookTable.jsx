@@ -1,12 +1,14 @@
 import React from 'react'
 import env from '../env'
-
+import Exit from '@material-ui/icons/Clear'
+import { NavLink } from 'react-router-dom'
 
 const BookTable = (props) => {
     return (<>
         <div className="form-popup py-1">
+            
             <form action="#" className="form-container">
-               
+                <span style={{float:"right"}}><Exit onClick={()=>props.state(false)}/></span>
                 <h4 className='profile_title'> <img src={`${env.URL}/dipicious/${props.img}`}
                     className=''
                     style={{ width: "8rem", height: '6.5rem', margin: 'auto' }}

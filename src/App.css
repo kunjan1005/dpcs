@@ -21,10 +21,9 @@ body {
 .html_content_body{
     padding-bottom: 2vh;
     margin-top: 8vh;
-    height:92vh;
-    /* overflow-y: scroll; */
-    /* width: 80%; */
-    /* margin: auto; */
+    height:90vh;
+    overflow-y: scroll;
+ 
 }
 
 div {
@@ -738,6 +737,7 @@ select option {
     outline: none;
     width:100%;
     border:none;
+    background-color:#fafafa !important;
     
 }
 .explore_main{
@@ -798,7 +798,7 @@ select option {
   color:#d31f33 !important;
 
 }
-.card-img-top{
+.card-img-top,.res-img{
   height:100%;
 }
 .wdt{
@@ -852,7 +852,7 @@ select option {
   .wdt{  
     width: 100%  !important;  
 }  
-.card-img-top {
+.card-img-top,.res-img{
     height: 10rem;
 }
 .img  
@@ -1995,4 +1995,12 @@ label.radio input:checked+span::before {
     font-weight: 600;
     color: #909090;
     }
+}
+.discount{
+    border:1px solid whitesmoke;
+    width: 20rem;
+    text-align: center;
+    background-color: #d31f33;
+    color: white;
+    border-radius: 1rem;
 }

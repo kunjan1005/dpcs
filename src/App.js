@@ -24,6 +24,7 @@ import Restaurant from './components/Restaurant';
 import Order from './components/Order';
 import Cart from './components/Cart';
 import BookTable from './components/BookTable';
+import ScrollBar from 'react-perfect-scrollbar';
 function App() {
   let { isLoading } = useAuth0()
   if (isLoading) {
@@ -38,6 +39,7 @@ function App() {
 
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
+          <ScrollBar>
           <div className='container-fluid'>
 
             <Routes>
@@ -59,6 +61,7 @@ function App() {
             </Routes>
 
           </div>
+         </ScrollBar>
         </div>
         <ToastContainer />
       </div>
