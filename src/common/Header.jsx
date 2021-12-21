@@ -38,16 +38,13 @@ const Header = () => {
                         <div className="offset-2 col-lg-3 col-sm-2 col-2 order-1 logo-div header_search p-1">
                             <div className="logo_container">
                                     <div className="serach_box">
-                                        <input type="search" id="" className="search_input border" placeholder='search here' />
+                                        <input type="search" id="" className="search_input" placeholder='search here' />
                                                                      
                                     </div>
                                     {/* <Custominput/> */}
                             </div>
                         </div>
-                        {/* <div className="offset-2 col-lg-3 col-12 order-lg-2 order-3 text-lg-left text-right header_search">
-                            <input type='text' placeholder='search here'></input>
-                        </div>  */}
-
+                
 
                         <div className="col-lg-3 col-12 order-lg-3 order-1 offset-lg-1">
                             <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end ">
