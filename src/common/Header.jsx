@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import logo from '../images/dpcs_logo.png'
+import home from '../images/home.png'
 import HomeIcone from '@material-ui/icons/HomeOutlined';
 import ExploreOutlined from '@material-ui/icons/ExploreOutlined'
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRunOutlined';
@@ -22,7 +23,7 @@ const Header = () => {
         setUser(user)
       
     },[1])
-    console.log(rdd)
+    // console.log(rdd)
     return (
 
         
@@ -51,12 +52,17 @@ const Header = () => {
                             <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end ">
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='home'>
-                                        <NavLink className='links' activeclass='active' to='/'><div className="wishlist_icon"><HomeIcone className='header_btn' /></div></NavLink>
+                                        <NavLink className='links' activeclass='active' to='/'><div className="wishlist_icon">
+                                            {/* <HomeIcone className='header_btn' /> */}
+                                            <img src={home}/>
+                                            </div></NavLink>
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='explore'>
-                                        <NavLink className='links' activeclass='active' to='/explore#cuisines'><div className="wishlist_icon"><ExploreOutlined  className='header_btn'/></div></NavLink>
+                                        <NavLink className='links' activeclass='active' to='/explore#cuisines'><div className="wishlist_icon">
+                                            <ExploreOutlined  className='header_btn'/>
+                                            </div></NavLink>
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
@@ -71,7 +77,7 @@ const Header = () => {
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='profile'>
-                                        <NavLink className='links' activeclass='active' to='/profile'><div className="wishlist_icon"><Profile  className='header_btn' /></div></NavLink>
+                                        <NavLink className='links' activeclass='active' to='/profile'><div className="wishlist_icon"><Profile  className='header_btn'   /></div></NavLink>
                                     </Tooltip>
                                 </div>
 

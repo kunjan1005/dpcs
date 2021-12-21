@@ -1205,6 +1205,12 @@ body {
     z-index: 1;
 }
 
+.pre-loader {
+    width: 50%;
+    margin: 3% auto;
+    display: block;
+}
+
 .loader {
    
     border-radius: 50%;
