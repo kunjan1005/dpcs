@@ -1,4 +1,4 @@
-import React, { useEffect, useState,createContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import $ from 'jquery'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { useParams } from 'react-router'
@@ -22,14 +22,8 @@ import Loading from '../common/Loading'
 import AddDipin from './dipComponents/AddDipIn'
 import _ from 'underscore'
 import ModelForm from '../custom/ModelForm';
-import BookTable from './BookTable';
-import DipinForm from '../custom/DipinForm';
-import ResturantMap from '../custom/CustomMap'
-let SetDipIn=createContext()
 const Restaurant = () => {
     let [restaurant, setRestaurant] = useState({})
-    let [open, setOpen] = useState(false)
-    let [dip, setDip] = useState(false)
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
@@ -39,7 +33,6 @@ const Restaurant = () => {
     let daysInWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     let today = new Date()
     let curreDay = today.getDay();
-
     useEffect(() => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
@@ -67,10 +60,7 @@ const Restaurant = () => {
         return <Loading />
     }
     return (<>
-      <SetDipIn.Provider value={setDip}>
         <div className="container-fluid mt-2 mb-3">
-            {open?<BookTable img={restaurant.image_restaurant[0].image_url} state={setOpen} />:''}
-            {dip?<DipinForm/>:""}
             <div className="row no-gutters">
                 <div className="col-md-5 pr-2">
                     <div className="res-card">
@@ -100,6 +90,9 @@ const Restaurant = () => {
                                     <i className="fa fa-star"></i>
                                     <span className="ml-1 font-weight-bold">4.6</span>
                                 </div>
+
+
+
                             </div>
                             <div className='co-lg-6'>
                                 <span>Ambiance</span>
@@ -127,10 +120,7 @@ const Restaurant = () => {
                     </div>
                     <div className="res-card mt-2">
                         <h6 className='profile_title'>Address</h6>
-                        <div className="res-comment-section">
-                            <ResturantMap/>
-                        </div>
-   
+
                         <div className="res-comment-section">
                             <ul>
                                 {restaurant.locations.map((each, index) => {
@@ -150,7 +140,7 @@ const Restaurant = () => {
                             <h6 className="font-weight-bold">{restaurant.username}</h6>
                         </div>
                         <div className="res-buttons">
-                            <button className="btn btn-outline-danger btn-long res-cart" onClick={()=>setDip(true)}>DIP-IN</button>&nbsp;
+                            <NavLink to={`/restaurant/${restaurant.restaurant_id}#dipin`}><button className="btn btn-outline-danger btn-long res-cart">DIP-IN</button></NavLink>&nbsp;
                             <button className="btn btn-outline-danger btn-long buy">{restaurant.is_fav ? "UN-FAVORITE" : "FAVORITE"}</button>
                             {restaurant.is_open == 1 ? <small ><Active style={{ width: "15px", color: "greenyellow" }} /><b>Open</b></small> : <small ><Active style={{ width: "15px", color: "red" }} /><b>Closed</b></small>}
                         </div>
@@ -185,7 +175,7 @@ const Restaurant = () => {
                                     <div className="res-card  p-1">
                                         <div className="res-card-body">
                                             <Tooltip title='table availabel'>
-                                         <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} onClick={()=>{setOpen(true)}}>Book Table</Button>
+                                               <NavLink to='/restaurant/book/'><Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />}>Book Table</Button></NavLink> 
                                             </Tooltip></div></div> :
                                     <div className="res-card  p-1">
                                         <div className="res-card-body">
@@ -203,7 +193,7 @@ const Restaurant = () => {
                             <div className="res-similar-products mt-2 d-flex flex-row">
                                 {restaurant.cuisine.map((each) => {
                                     return <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
-                                        <img src={`${env.URL}/dipicious/${each.icon}`} className="res-img" alt="..." />
+                                        <img src={`${env.URL}/dipicious/${each.icon}`} className="card-img-top" alt="..." />
                                         <div className="res-card-body">
                                             <small className="card-title">{each.name}</small>
                                         </div>
@@ -218,7 +208,7 @@ const Restaurant = () => {
                             <div className="res-similar-products mt-2 d-flex flex-row col-lg-6">
                                 {restaurant.restaurant_type.map((each) => {
                                     return <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
-                                        <img src={`${env.URL}/dipicious/${each.icon}`} className="res-img" alt="..." />
+                                        <img src={`${env.URL}/dipicious/${each.icon}`} className="card-img-top" alt="..." />
                                         <div className="res-ard-body">
                                             <small className="card-title">{each.name}</small>
                                         </div>
@@ -242,19 +232,17 @@ const Restaurant = () => {
                         <hr />
                         <div className="res-similar-products mt-2 d-flex flex-row">
                             {restaurant.image_restaurant.map((each) => {
-                                return <div className="res-card  p-1" style={{ width: "9rem", marginRight: "3px" }}> <img src={`${env.URL}/dipicious/${each.image_url}`} className="res-img" alt="..." />
+                                return <div className="res-card  p-1" style={{ width: "9rem", marginRight: "3px" }}> <img src={`${env.URL}/dipicious/${each.image_url}`} className="card-img-top" alt="..." />
 
                                 </div>
                             })}
 
                         </div>
                     </div>
-                    <div className="res-card mt-2"> <span className='profile_title'><b>Discounts</b></span>
+                    <div className="res-card mt-2"> <span className='profile_title'><b>Restaurant Pictures</b></span>
                         <hr />
                         <div className="res-similar-products mt-2 d-flex flex-row">
-                            {restaurant.discount.length == 0 ? <h6>There is no discount/offers at this time</h6>
-                             :
-                             restaurant.discount.map((each)=>{return <div className='discount'>{each.discount_name}</div>})}
+                            {restaurant.discount.length == 0 ? <h6>There is no discount/offers at this time</h6> : ''}
 
                         </div>
                     </div>
@@ -307,9 +295,8 @@ const Restaurant = () => {
                 </div>
             </div>
         </div>
-        {/* {tabindex == 'dipin' ? <ModelForm /> : ""} */}
-        </SetDipIn.Provider>
+        {tabindex == 'dipin' ? <ModelForm /> : ""}
+
     </>)
 }
 export default Restaurant
-export {SetDipIn}

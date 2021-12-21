@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { fatchData } from "../actions";
 import { isUserLoging } from "../authorization/useAuth";
-import axios from "axios";
-import env from "../env";
+
 
 const Home = () => {
     let dispatch = useDispatch()
@@ -27,6 +26,7 @@ const Home = () => {
     return (
 
         <div className="container-fluid p-2">
+           
             <Post />
         </div>
     )

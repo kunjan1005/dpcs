@@ -17,6 +17,7 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import { NavLink } from 'react-router-dom'
 
 import { restaurantOrderDetails } from '../actions/index'
+import CustomCart from '../custom/CartForm';
 $(document).on('click', '.category_btn', function () {
     let hideShowDiv = $(this).parent().next().next()
     if (hideShowDiv.css('display') != 'none') {
@@ -32,6 +33,8 @@ $(document).on('click', '.category_btn', function () {
 })
 
 const Order = () => {
+    let {login,user}=isUserLoging()
+    let  {user_id,lang,access_token}=user
     let location = useLocation()
     let [restaurant,setRestaurant]=useState({})
     let tabindex = location.hash.split('#')[1]
@@ -39,17 +42,9 @@ const Order = () => {
     let restaurant_id = useParams('sid')
     let state = useSelector((state) => state.restaurantOrderReducer)
     let restaurantData = state.restaurantOrderDetails
-
-
     useEffect(() => {
-        dispatch(restaurantOrderDetails(restaurant_id.sid)) 
-       
+        dispatch(restaurantOrderDetails(restaurant_id.sid))
     },[1])
-    // setTimeout(()=>{
-    //     setRestaurant(restaurantData)        
-    //  },900)
-    //  console.log("this is data",restaurant)
-    console.log(restaurantData)
     if (_.isEmpty(restaurantData)) {
         return <Loading />
     }
@@ -88,7 +83,7 @@ const Order = () => {
                 <div className="col-md-7">
                 {/* <div className='res-card'><b className='profile_title'>Subtotal</b> Kd {21} <span style={{float:'right'}}>Cart <ArrowForwardIosOutlined/></span></div> */}
                     <div className="res-card">
-                        {restaurantData.data.map((each) => {
+                        {restaurantData.data == undefined ? <h3 className='warnning'>No data Found</h3> : restaurantData.data.map((each) => {
                             return <>
                                 <div className='category_box'><h5 className='profile_title'><b>{each.category_name}</b></h5><span className='category_btn'><i class="fa fa-sort-up"></i></span></div>
                                 <hr />
@@ -105,16 +100,27 @@ const Order = () => {
                                                 <p>{item.description}</p>
                                             </div>
                                             <div className='col-lg-2 items-align-right row'>
+                                                {item.quantity == undefined ?
+                                                    <IconButton color="primary" aria-label="add to shopping cart">
+                                                        <CustomCart
+                                                            user_id={user_id}
+                                                            lang={lang}
+                                                            access_token={access_token}
+                                                            restaurant_id={each.restaurant_id}
+                                                            food_item_id={item.food_item_id}
+                                                            quantity={item.quantity==undefined?1:item.quantity}
+                                                            description={item.description}
+                                                             />
+                                                    </IconButton> :
+                                                    <div class="quantity">
+                                                        <a href="#" class="quantity__minus"><span>-</span></a>
+                                                        <input name="quantity" type="text" class="quantity__input" value={item.quantity} />
+                                                        <a href="#" class="quantity__plus" onClick={() => dispatch(increment(item.food_item_id))}><span>+</span></a>
+                                                    </div>
+                                                }
 
-                                                <IconButton color="primary" aria-label="add to shopping cart">
-                                                    <AddShoppingCart />
-                                                </IconButton>
 
-                                                <div class="quantity">
-                                                    <a href="#" class="quantity__minus" onClick={()=>{dispatch(decrement(item.food_item_id))}}><span>-</span></a>
-                                                    <input name="quantity" type="text" class="quantity__input" value={item.quantity>0?item.quantity:1} />
-                                                    <a href="#" class="quantity__plus" onClick={()=>{dispatch(increment(item.food_item_id))}}><span>+</span></a>
-                                                </div>
+
                                             </div>
                                         </div>
                                     })}

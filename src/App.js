@@ -22,6 +22,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Loading from './common/Loading';
 import Restaurant from './components/Restaurant';
 import Order from './components/Order';
+import Cart from './components/Cart';
+import BookTable from './components/BookTable';
+import ScrollBar from 'react-perfect-scrollbar';
 function App() {
   let { isLoading } = useAuth0()
   if (isLoading) {
@@ -36,13 +39,16 @@ function App() {
 
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
+          <ScrollBar>
           <div className='container-fluid'>
 
             <Routes>
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/post/:id' element={<PostPage />}></Route>
-              <Route exact  path='/restaurant/:sid' element={<Restaurant/>}/>
-              <Route exact  path='/restaurant/order/:sid' element={<Order/>}/>
+              <Route exact path='/restaurant/:sid' element={<Restaurant/>}/>
+              <Route exact path='/restaurant/order/:sid' element={<Order/>}/>
+              <Route exact path='/restaurant/cart/' element={<Cart/>}/>
+              <Route exact path='/restaurant/book' element={<BookTable/>}/>
               <Route exact path='/login' element={<Login />}></Route>
               <Route exact path='/singup' element={<Singup />}></Route>
               <Route exact path='/fotgot_password' element={<TroubleLogin />}></Route>
@@ -55,6 +61,7 @@ function App() {
             </Routes>
 
           </div>
+         </ScrollBar>
         </div>
         <ToastContainer />
       </div>
