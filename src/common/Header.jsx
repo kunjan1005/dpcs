@@ -25,7 +25,7 @@ const Header = () => {
     console.log(rdd)
     return (
 
-
+        
         <header className="header">
             <div className="header_main">
                 <div className="container">
@@ -38,8 +38,9 @@ const Header = () => {
                         <div className="offset-2 col-lg-3 col-sm-2 col-2 order-1 logo-div header_search p-1">
                             <div className="logo_container">
                                     <div className="serach_box">
-                                        <input type="search" id="" className="search_input" placeholder='search here' />
-                                                                     
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    <input type="search" id="" className="search_input"/>
+
                                     </div>
                                     {/* <Custominput/> */}
                             </div>
