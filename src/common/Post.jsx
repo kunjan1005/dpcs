@@ -10,11 +10,11 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { LocationOn } from "@material-ui/icons";
 import env from "../env";
-import Loading from "./Loading";
-import _ from "underscore";
 
 
-const Post = () => {
+const Post = (props) => {
+
+    let [posts, setPosts] = useState([])
     var settings = {
         dots: true,
         infinite: true,
@@ -23,21 +23,8 @@ const Post = () => {
         slidesToShow: 1,
         slidesToScroll: 1
     };
-
-    let [posts, setPosts] = useState([])
-    let state = useSelector((state) => {
-        return { post: state.storePostData, likes: state.likeDislike }
-    })
+  useEffect(()=>{setPosts(props.post)},[1])
     let dispatch = useDispatch()
-   
-        setTimeout(() => {
-            setPosts(state.post)
-
-        }, 900)
- 
-    if (_.isEmpty(posts)) {
-        return <Loading />
-    }
     let isliked = true
     return (
   

@@ -100,7 +100,7 @@ const Login = () => {
                             <input type="checkbox" name='rememberMe' onChange={whileFillUpForm} value='true' className="form-check-input" id="exampleCheck1" />
                             <label className="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
-                        <button type="submit" className="btn btn-danger login_btn">Login</button>
+                        <button type="submit" className="btn btn-danger login_btn  m-auto mt-3">Login</button>
                         <span className='policy_paragraph'><b><NavLink to='/fotgot_password' className='links' id=''>forgot passwword?</NavLink></b></span><br />
                         <span className='policy_paragraph'>By Singing up.you agree to our Terms.Data Policy and Cookies Policy</span><br />
                     </form>

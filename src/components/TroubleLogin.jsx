@@ -84,7 +84,7 @@ const TroubleLogin = () => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-danger login_btn">Send Login Link</button>
+                        <button type="submit" className="btn btn-danger login_btn  m-auto mt-2 mb-2">Send Login Link</button>
                         <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-5 col-5'/></span>
                         <h4 className='m-auto login-title' style={{ color: 'black' }}>Create New Account</h4><br />
                     </form>

@@ -4,30 +4,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { fatchData } from "../actions";
 import { isUserLoging } from "../authorization/useAuth";
+import _ from 'underscore'
+import Loading from '../common/Loading'
 
 
 const Home = () => {
+
+    let state = useSelector((state) => {
+        return { post: state.storePostData, likes: state.likeDislike }
+    })
     let dispatch = useDispatch()
     let navigate = useNavigate()
-    // let post=useSelector((state)=>state.storePostData)
-    useEffect(async () => {
-        let { login } = isUserLoging()
-        if (login) {
-            dispatch(fatchData())
 
-        } else {
-            navigate('/login')
-        }
+    useEffect(async () => {
+            dispatch(fatchData())
         return ()=>{
             
         }
     }, [1])
+    if (_.isEmpty(state.post)) {
+        return <Loading />
+    }
 
     return (
 
         <div className="container-fluid p-2">
            
-            <Post />
+            <Post post={state.post} />
         </div>
     )
 }
