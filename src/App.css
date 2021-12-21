@@ -61,7 +61,12 @@ p a {
     -o-transition: all 200ms ease;
     transition: all 200ms ease
 }
-
+.text1 {
+    margin-left: 50%;
+}
+.user {
+    margin-left: 17%;
+}
 a,
 a:hover,
 a:visited,
@@ -725,17 +730,17 @@ select option {
 
 }
 .serach_box{
-    border: 1px solid whitesmoke;
+    border: 1px solid #d5cfcf;
     border-radius: 5px;
     background-color:#fafafa !important;
-    margin-top: 5px;
+    margin: 5px;
     overflow: hidden;
-    padding: 2px;
+    padding: 2px 10px;
 }
 .search_input{
     padding: 4px;
     outline: none;
-    width:100%;
+    /* width:100%; */
     border:none;
     background-color:#fafafa !important;
     
@@ -1210,6 +1215,12 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1;
+}
+
+.pre-loader {
+    width: 50%;
+    margin: 3% auto;
+    display: block;
 }
 
 .loader {
