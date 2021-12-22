@@ -786,9 +786,13 @@ select option {
     overflow: hidden;
 }
 .see_more{
-    float: right;
+    /* float: right; */
     color: grey;
     cursor: pointer;
+}
+iframe {
+    width: 100%;
+    margin-top: 10px;
 }
 .card-list{
     text-align: center;
@@ -1932,6 +1936,34 @@ label.radio input:checked+span::before {
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
+@media only screen and (max-width:1024px) {
+    .col-md-12 {
+        width: 100% !important;
+    }
+}
+@media only screen and (max-width:400px) {
+    .text1 {
+        margin-left: 0%;
+        width: 14%;
+    }
+    .user {
+        margin-left: 22%;
+    }
+    .resturant_name {
+        margin-left: 60px;
+    }
+    .date-picker, .guest, .time, .location {
+        margin: 5px 0 0px 0px !important;
+        width: 100%;
+    }
+    .gowith, .description   {
+        margin: 10px 0px;
+        width: 100%;
+    }
+    .MuiFormControl-root {
+        width: 100%;
+    }
+}
 @media only screen and (max-width:500px) {
 .form-popup {
     width: 90% !important;
