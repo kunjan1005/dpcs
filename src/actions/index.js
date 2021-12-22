@@ -131,11 +131,58 @@ const increment=(id)=>{
       payload:id
   }
 }
+const userActivity=()=>{
+    return async(dispatch,getState)=>{
+        let userData = isUserLoging()
+        let { user_id, lang, latitude, longitude, access_token } = userData.user
 
+        let response=await axios.post(`${env.URL}/dipicious/api/user/user_activity_listing`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        console.log(response.data)
+      dispatch({type:'FATCH_USER_ACTIVITY',payload:response.data.data})
+      
+
+
+    }
+}
+const userFavorites=()=>{
+    return async(dispatch,getState)=>{
+        let userData = isUserLoging()
+        let { user_id, lang, latitude, longitude, access_token } = userData.user
+        let response=await axios.post(`${env.URL}/dipicious/api/user/user_favorite_listing`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+      dispatch({type:'FATCH_USER_FAVORIATES',payload:response.data.data})
+    }
+}
+const userfeedback=()=>{
+    return async(dispatch,getState)=>{
+        let userData = isUserLoging()
+        let { user_id, lang, latitude, longitude, access_token } = userData.user
+        let response=await axios.post(`${env.URL}/dipicious/api/user/user_feedback_listing`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+      dispatch({type:'FATCH_USER_FEEDBACK',payload:response.data.data})
+    }
+}
 
 export default storePostData
 export {
     getPostData, like, dislike, contentShow, contentHide, login, logout,
     getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
-    getSingleRestaurant, paginatedData,restaurantOrderDetails,increment
+    getSingleRestaurant, paginatedData,restaurantOrderDetails,increment,
+    userActivity,userFavorites,userfeedback
 }
