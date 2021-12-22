@@ -31,7 +31,7 @@ const Post = (props) => {
     return (
 
         posts.map((post, index) => {
-            return <div className={`card m-auto mt-5 ${props.status==1?"col-lg-12":"col-lg-7"} `} key={index}>
+            return <div className={`card m-auto mt-1 ${props.status==1?"col-lg-12":"col-lg-7 col-md-12"} `} key={index}>
                 <div className="col-md-12 mt-2 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <div style={{
                         width: '10rem',
@@ -45,7 +45,7 @@ const Post = (props) => {
 
                 <div className="card-body d-flex">
 
-                    
+
                     <h6 className="card-title">
                         <NavLink to='/profile' style={{ color: "#d31f33" }}>
                             <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name}
