@@ -3,13 +3,12 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import env from '../env'
 import Post from './Post'
-// import 
 
-const Activity = (props) => {
+const Review = (props) => {
     let [post, setPost] = useState([])
     useEffect(async () => {
         let jsonData = JSON.stringify(props)
-        let response = await axios.post(`${env.URL}/dipicious/api/user/user_activity_listing`, jsonData, {
+        let response = await axios.post(`${env.URL}/dipicious/api/user/`, jsonData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
@@ -17,8 +16,9 @@ const Activity = (props) => {
         })
         setPost(response.data.data)
     },[1])
+    let isLiked = true
     return (
-       <Post post={post} status="1"/>
+       <Post post={post}/>
     )
 }
-export default Activity
+export default Review

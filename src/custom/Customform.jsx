@@ -16,7 +16,7 @@ const CustomForm = () => {
     return (<>
     <SetDipIn.Consumer >{(setDip)=>{
         return <>
-        <div className='form-container' style={{height:"100%"}}>
+        <div className='form-container'>
         <span style={{float:"right"}}><Exit onClick={()=>setDip(false)} /></span>
                 <h4 className='profile_title' style={{textAlign:'center'}}> 
                 Dip in</h4>

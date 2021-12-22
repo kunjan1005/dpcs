@@ -44,7 +44,7 @@ const Header = () => {
                             <div className="logo_container">
                                 <div className="serach_box">
                                     <i class="fa fa-search" aria-hidden="true"></i>
-                                    <input type="search" id="" className="search_input" />
+                                    <input type="search" id="" className="search_input" placeholder='Search here' />
 
                                 </div>
                                 {/* <Custominput/> */}
@@ -92,7 +92,7 @@ const Header = () => {
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='profile'>
-                                        <NavLink className='links' activeclass='active' to='/profile'>
+                                        <NavLink className='links' activeclass='active' to='/profile#activities'>
                                             <div className="wishlist_icon">
                                                 {/* <Profile className='header_btn' /> */}
                                                 <img src={user}/>

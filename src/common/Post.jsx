@@ -10,11 +10,11 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { LocationOn } from "@material-ui/icons";
 import env from "../env";
-import Loading from "./Loading";
-import _ from "underscore";
 
 
-const Post = () => {
+const Post = (props) => {
+
+    let [posts, setPosts] = useState([])
     var settings = {
         dots: true,
         infinite: true,
@@ -23,27 +23,16 @@ const Post = () => {
         slidesToShow: 1,
         slidesToScroll: 1
     };
+  useEffect(()=>{setPosts(props.post)},[2])
 
-    let [posts, setPosts] = useState([])
-    let state = useSelector((state) => {
-        return { post: state.storePostData, likes: state.likeDislike }
-    })
+
     let dispatch = useDispatch()
-
-    setTimeout(() => {
-        setPosts(state.post)
-
-    }, 900)
-
-    if (_.isEmpty(posts)) {
-        return <Loading />
-    }
     let isliked = true
     return (
 
         posts.map((post, index) => {
-            return <div className="card m-auto mt-5 col-lg-7" >
-                <div className="col-md-12 mt-2 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
+            return <div className={`card m-auto mt-1 ${props.status==1?"col-lg-12":"col-lg-7 col-md-12"} `} key={index}>
+                <div className="col-md-12 mt-2 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <div style={{
                         width: '10rem',
                         paddingRight: "1rem",
@@ -63,7 +52,7 @@ const Post = () => {
                         </NavLink>
                         <span className='post_side_title' style={{ color: "black" }}> Dipped in {post.restaurant_name != null ? 
                             <NavLink to={`/restaurant/${post.restaurant_id}`}>
-                                <span style={{ color: "orange" }}>@{post.restaurant_name}</span>
+                                <span style={{ color: "orange" }} className="resturant_name">@{post.restaurant_name}</span>
                             </NavLink> : ""} {post.location_name !== null ? <span>
                             <LocationOn />{post.location_name}</span> : ''} <br />
                             <span className="user">{post.description}</span>

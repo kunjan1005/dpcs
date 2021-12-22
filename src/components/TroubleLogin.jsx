@@ -53,9 +53,9 @@ const TroubleLogin = () => {
     return (
         <div className='container-fluid user_container'>
             <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
-                <img src={logo}
+            <img src={logo}
                     className='login_card_img' id='profile_img'
-                    style={{ width: "6rem", height: '4rem', margin: 'auto' }}
+                    style={{ width: "7.5rem", height: '3rem', margin: 'auto' }}
                     alt="" />
                 <h4 className='m-auto login-title' style={{ color: 'black' }}>Trouble Logging in?</h4><br />
                 <h4 className='m-auto login-title'>Enter your email,phone or username and we'll send you a link to get back into your account</h4>
@@ -84,7 +84,7 @@ const TroubleLogin = () => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-danger login_btn">Send Login Link</button>
+                        <button type="submit" className="btn btn-danger login_btn  m-auto mt-2 mb-2">Send Login Link</button>
                         <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-5 col-5'/></span>
                         <h4 className='m-auto login-title' style={{ color: 'black' }}>Create New Account</h4><br />
                     </form>
