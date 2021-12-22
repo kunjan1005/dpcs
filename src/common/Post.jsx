@@ -31,8 +31,8 @@ const Post = (props) => {
     return (
 
         posts.map((post, index) => {
-            return <div className={`card m-auto mt-5 ${props.status==1?"col-lg-12":"col-lg-7"} `} key={index}>
-                <div className="col-md-12 mt-2 pt-1 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
+            return <div className={`card m-auto mt-1 ${props.status==1?"col-lg-12":"col-lg-7 col-md-12"} `} key={index}>
+                <div className="col-md-12 mt-2 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <div style={{
                         width: '10rem',
                         paddingRight: "1rem",
@@ -52,7 +52,7 @@ const Post = (props) => {
                         </NavLink>
                         <span className='post_side_title' style={{ color: "black" }}> Dipped in {post.restaurant_name != null ? 
                             <NavLink to={`/restaurant/${post.restaurant_id}`}>
-                                <span style={{ color: "orange" }}>@{post.restaurant_name}</span>
+                                <span style={{ color: "orange" }} className="resturant_name">@{post.restaurant_name}</span>
                             </NavLink> : ""} {post.location_name !== null ? <span>
                             <LocationOn />{post.location_name}</span> : ''} <br />
                             <span className="user">{post.description}</span>

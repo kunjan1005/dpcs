@@ -13,7 +13,7 @@ const Explore = () => {
 
   return (<>
     <ExploreHeader />
-    <div className='container-fluid '>
+    <div className='container'>
       <div className='row'>
         <div className='explore_card m-auto'>
   
