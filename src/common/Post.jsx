@@ -40,7 +40,8 @@ const Post = (props) => {
                         color: "whitesmoke",
                         borderRadius: "0 1rem 1rem 0",
                         backgroundColor: '#d31f33',padding: "5px 50px 5px 5px"
-                    }}><b>Dip in</b></div>
+                    }}><b>Dip in</b>
+                    </div>
                 </div>
 
                 <div className="card-body d-flex">
@@ -59,9 +60,8 @@ const Post = (props) => {
                         </span>
                     </h6>
 
-                    <p className="mt-2 text1">{post.time}</p>
-
                 </div>
+                <p className="text1">{post.time}</p>
                 <Slider {...settings} >
                     {post.post_image.map((img) => {
 

@@ -62,7 +62,9 @@ p a {
     transition: all 200ms ease
 }
 .text1 {
-    margin-left: 50%;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: -60px !important;
 }
 .user {
     margin-left: 17%;
@@ -749,7 +751,7 @@ select option {
     border: 1px solid whitesmoke;
     background-color: #d31f33;
     
-    width:60%;
+    width:100%;
 }
 
 .explore_header{
@@ -2055,7 +2057,7 @@ label.radio input:checked+span::before {
     .subtitle{
     /* line-height: 10px; */
     font-size: 10px !important;
-    font-family: ‘Open Sans’;
+    font-family: 'Open Sans';
     font-weight: 600;
     color: #909090;
     }
