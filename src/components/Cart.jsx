@@ -10,7 +10,7 @@ const Cart = () => {
     useEffect(()=>{dispatch(cartData(sid))},[1])
     return (
         <>
-            <div className="Cart-Container">
+            <div className="Cart-Container mt-3">
                 <div class="cart-header">
                     <h3 class="cart-heading">Shopping Cart</h3>
                     <h3 class="cart-heading">Total Amount:Kd 20</h3>

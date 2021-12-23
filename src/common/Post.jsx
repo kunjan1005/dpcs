@@ -32,21 +32,22 @@ const Post = (props) => {
 
         posts.map((post, index) => {
             return <div className={`card m-auto mt-1 ${props.status==1?"col-lg-12":"col-lg-7 col-md-12"} `} key={index}>
-                 {props.review==1?<p style={{display:'flex',
-                   color:'white',
-                   backgroundColor:'green',
-                   width:"1.5rem"}}>{post.feedback}</p>:""}
+                 
                 <div className="col-md-12 mt-2 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
-                    <div style={{
+                    <span style={{
                         width: '10rem',
                         paddingRight: "1rem",
                         textAlign: 'right',
                         color: "whitesmoke",
                         borderRadius: "0 1rem 1rem 0",
                         backgroundColor:props.review==1?'lightgreen':"#d31f33",
-                        padding: "5px 50px 5px 5px"
-                    }}><b>{props.review==1?'Reviewed':'Dip in'}</b></div>
-                
+                        padding: "5px 50px 5px 5px",display: "inline-block"
+                    }}><b>{props.review==1?'Reviewed':'Dip in'}</b></span>
+
+                {props.review==1?<span style={{ float:"right",
+                   color:'white',
+                   backgroundColor:'green',
+                   width:"1.5rem"}}>{post.feedback}</span>:""}
                 </div>
               
                 <div className="card-body d-flex">
@@ -65,9 +66,8 @@ const Post = (props) => {
                         </span>
                     </h6>
 
-                    <p className="mt-2 text1">{post.time}</p>
-
                 </div>
+                <p className="text1">{post.time}</p>
                 <Slider {...settings} >
                     {post.post_image.map((img) => {
 

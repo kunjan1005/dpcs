@@ -6,7 +6,7 @@ const Favriate=(props)=>{
     return (<>
     {props.data.map((each)=>{
         return <div className='col-lg-12 col-12 border p-3' style={{backgroundColor:'white'}}>
-        <div className='col-lg-3 col-6 border' style={{height:'13rem',width:"11rem"}}>
+        <div className='col-lg-3 col-6 border'>
         <p style={{float:'right',
                    position:"absolute",
                    zIndex:99,
@@ -20,9 +20,9 @@ const Favriate=(props)=>{
             <NavLink to={`/restaurant/${each.restaurant_id}`}>
                 <h6 className='profile_title'>{each.restaurant_name}</h6>
             </NavLink>
-              <p>{each.cuisine}</p>
-              <div className="d-flex">
-                  {each.is_open==1?<span style={{margin:'auto',color:'green'}}><b>Open</b></span>:<span style={{margin:'auto',color:'red'}}><b>Close</b></span>}
+              <p className='sub-title'>{each.cuisine}</p>
+              <div className="d-flex justify-content-around">
+                  {each.is_open==1?<span style={{margin:'auto',color:'green'}}><b>Open</b></span>:<span style={{color:'red'}}><b>Close</b></span>}
                   <span style={{margin:'auto'}}>{Math.round(each.distance)} KM</span></div>
              </div>
         </div>
