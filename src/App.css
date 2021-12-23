@@ -1944,10 +1944,6 @@ label.radio input:checked+span::before {
     }
 }
 @media only screen and (max-width:400px) {
-    .text1 {
-        margin-left: 0%;
-        width: 14%;
-    }
     .user {
         margin-left: 22%;
     }
