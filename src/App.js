@@ -47,7 +47,7 @@ function App() {
               <Route exact path='/post/:id' element={<PostPage />}></Route>
               <Route exact path='/restaurant/:sid' element={<Restaurant/>}/>
               <Route exact path='/restaurant/order/:sid' element={<Order/>}/>
-              <Route exact path='/restaurant/cart/' element={<Cart/>}/>
+              <Route exact path='/restaurant/cart/:sid' element={<Cart/>}/>
               <Route exact path='/restaurant/book' element={<BookTable/>}/>
               <Route exact path='/login' element={<Login />}></Route>
               <Route exact path='/singup' element={<Singup />}></Route>

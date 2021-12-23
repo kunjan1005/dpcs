@@ -1,7 +1,13 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import CartList from "../common/CartList";
+import {useDispatch} from 'react-redux'
+import { cartData } from "../actions";
+import { useParams } from "react-router";
 const Cart = () => {
+    let dispatch=useDispatch()
+    let {sid}=useParams('sid')
+    useEffect(()=>{dispatch(cartData(sid))},[1])
     return (
         <>
             <div className="Cart-Container">

@@ -192,11 +192,27 @@ const userPoints=()=>{
       dispatch({type:'FATCH_USER_POINT',payload:response.data.data})
     }
 }
+const cartData=(resId)=>{
+    return async(dispatch,getState)=>{
+        let userData = isUserLoging()
+        let restaurant_id=resId
+        let { user_id, lang, latitude, longitude, access_token } = userData.user
+        let response=await axios.post(`${env.URL}/dipicious/api/user/cart_list`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token,restaurant_id}), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+      dispatch({type:'USER_CART_DATA',payload:response.data.data})
+
+    }
+}
 
 export default storePostData
 export {
     getPostData, like, dislike, contentShow, contentHide, login, logout,
     getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
     getSingleRestaurant, paginatedData,restaurantOrderDetails,increment,
-    userActivity,userFavorites,userfeedback,userPoints
+    userActivity,userFavorites,userfeedback,userPoints,cartData
 }
