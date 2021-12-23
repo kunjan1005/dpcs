@@ -10,6 +10,7 @@ import axios from 'axios'
 import env from '../env'
 import { isUserLoging } from "../authorization/useAuth";
 import Activity from "../common/Activity";
+import ProfileTabContainer from "./ProfileTabContainer";
 const Profile = () => {
   let [user, setUser] = useState({})
   let location=useLocation()
@@ -73,33 +74,10 @@ const Profile = () => {
 
       </div>
       <br />
-
-      <div className='col-lg-8 col-sm-12 m-auto profile_post_container'>
-        <hr />
-        <div className="row m-auto">
-          <div className='col-md-3 col-3'><NavLink to='#activities' className='links'><b>16 </b><h5>ACTIVITIES</h5></NavLink></div>
-          <div className='col-md-3 col-3'><NavLink to='#favriate' className='links'><b>18 </b><h5>FAVRIATE</h5></NavLink></div>
-          <div className='col-md-3 col-3'><NavLink to='#reviews' className='links'><b>26 </b><h5>REVIEWS</h5></NavLink></div>
-          <div className='col-md-3 col-3'><NavLink to='#points' className='links'><b>126 </b><h5>POINTS</h5></NavLink></div>
-        </div>
-        <div className='row post_container'>
-         {tabindex=='activities'?<Activity user_id={user.user_id} access_token={user.access_token} lang={user.lang}/>:""}
-         {tabindex=='favriate'?"":""}
-         {tabindex=='reviews'?"":""}
-         {tabindex=='points'?"":""}
-
-
-
-
-        </div>
-
-
-      </div>
+      <ProfileTabContainer/>
     </div>
   )
 }
 
-// export default withAuthenticationRequired(Profile, {
-//   onRedirecting: () => <Loading />,
-// });
+
 export default Profile
