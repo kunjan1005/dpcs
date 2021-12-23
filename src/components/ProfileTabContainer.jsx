@@ -11,16 +11,16 @@ import env from '../env'
 import { isUserLoging } from "../authorization/useAuth";
 import Activity from "../common/Activity";
 import Favriate from "../common/Favraite";
-import { useDispatch, useSelector} from "react-redux";
-import { userActivity, userFavorites,userfeedback,userPoints } from "../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { userActivity, userFavorites, userfeedback, userPoints } from "../actions";
 import Review from "../common/Review";
 import Point from "./Points";
 
 const ProfileTabContainer = () => {
-    let state=useSelector((state)=>state.profileTabReducer)
+    let state = useSelector((state) => state.profileTabReducer)
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
-    let dispatch=useDispatch()
+    let dispatch = useDispatch()
     useEffect(() => {
         dispatch(userActivity())
         dispatch(userFavorites())
@@ -37,10 +37,10 @@ const ProfileTabContainer = () => {
                 <div className='col-md-3 col-3'><NavLink to='#points' className='links'><b>{state.points.total}</b><h5>POINTS</h5></NavLink></div>
             </div>
             <div className='row post_container'>
-                {tabindex == 'activities' ? <Activity data={state.activity.item}/> : ""}
-                {tabindex == 'favriate' ? <Favriate data={state.favoriate.item}/> : ""}
-                {tabindex == 'reviews' ? <Review data={state.reviews.item}/> : ""}
-                {tabindex == 'points' ?<Point data={state.points.item}/> : ""}
+                {tabindex == 'activities' ? <Activity data={state.activity.item} /> : ""}
+                {tabindex == 'favriate' ? <Favriate data={state.favoriate.item} /> : ""}
+                {tabindex == 'reviews' ? <Review data={state.reviews.item} /> : ""}
+                {tabindex == 'points' ? <Point data={state.points.item} /> : ""}
 
 
 
