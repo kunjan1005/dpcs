@@ -27,7 +27,7 @@ const Recipe = () => {
     return (<>
         <div className="container-fluid mt-2 mb-3">
             <div className="row no-gutters">
-                <div className="col-md-8 m-auto pr-2">
+                <div className="col-sm-12 m-auto pr-2">
                     <div className="res-card">
                         <div className='list ' style={{ height: state.height }}>
                             <div className='row'>

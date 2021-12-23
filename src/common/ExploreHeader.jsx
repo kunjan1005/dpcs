@@ -19,7 +19,8 @@ const ExploreHeader = () => {
   })
 
   return (
-    <div className='container explore_main '>
+    <div className="container">
+    <div className='explore_main '>
       <div className='explore_header m-auto'>
         <ul className='explore_links row'>
           <li className='col-lg-3 col-1'>
@@ -45,6 +46,7 @@ const ExploreHeader = () => {
         </ul>
 
       </div>
+    </div>
     </div>
   )
 }
