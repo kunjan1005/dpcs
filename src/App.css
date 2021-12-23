@@ -2042,9 +2042,9 @@ label.radio input:checked+span::before {
         height:80vh;
         padding: 1rem;
     }
-    .cart-items-container hr{
+    /* .cart-items-container hr{
         margin:20px!important;
-    }
+    } */
     .Cart-Items{
     margin: auto;
     width: 100% !important;

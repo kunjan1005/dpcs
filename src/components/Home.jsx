@@ -17,9 +17,9 @@ const Home = () => {
     let navigate = useNavigate()
 
     useEffect(async () => {
-            dispatch(fatchData())
-        return ()=>{
-            
+        dispatch(fatchData())
+        return () => {
+
         }
     }, [1])
     if (_.isEmpty(state.post)) {
@@ -29,7 +29,7 @@ const Home = () => {
     return (
 
         <div className="container-fluid p-2">
-           
+
             <Post post={state.post} />
         </div>
     )
