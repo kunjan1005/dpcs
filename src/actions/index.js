@@ -125,12 +125,18 @@ const restaurantOrderDetails = (resId) => {
     }
 
 }
-const increment=(id)=>{
+const incrementOrderQty=(id)=>{
   return {
       type:"INCREMENT",
       payload:id
   }
 }
+const decrementOrderQty=(id)=>{
+    return {
+        type:"DECREMENT",
+        payload:id
+    }
+  }
 const userActivity=()=>{
     return async(dispatch,getState)=>{
         let userData = isUserLoging()
@@ -213,6 +219,7 @@ export default storePostData
 export {
     getPostData, like, dislike, contentShow, contentHide, login, logout,
     getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
-    getSingleRestaurant, paginatedData,restaurantOrderDetails,increment,
-    userActivity,userFavorites,userfeedback,userPoints,cartData
+    getSingleRestaurant, paginatedData,restaurantOrderDetails,incrementOrderQty,
+    decrementOrderQty,userActivity,userFavorites,userfeedback,userPoints,
+    cartData
 }

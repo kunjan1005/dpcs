@@ -5,12 +5,12 @@ import { useParams } from 'react-router'
 import { isUserLoging } from '../authorization/useAuth'
 import env from '../env'
 import { IconButton } from '@material-ui/core'
-import { AddShoppingCart } from '@material-ui/icons'
+
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, decrement } from '../actions/index'
 import { NavLink } from 'react-router-dom'
 import Loading from '../common/Loading'
+import {DoneIcon} from '@material-ui/icons/Done';
 
 import _ from 'underscore'
 
@@ -112,7 +112,7 @@ const Order = () => {
                                                     <p>{item.description}</p>
                                                 </div>
                                                 <div className='col-lg-2 items-align-right row'>
-                                                    {item.quantity == undefined ?
+                                                    {item.cart_id == undefined ?
                                                         <IconButton color="primary" aria-label="add to shopping cart">
                                                             <CustomCart
                                                                 user_id={user_id}
@@ -124,12 +124,8 @@ const Order = () => {
                                                                 description={item.description}
                                                                 quantity_increment_decrement={item.quantity == undefined ? 1 : item.quantity}
                                                             />
-                                                        </IconButton> :
-                                                        <div class="quantity">
-                                                            <a href="#" class="quantity__minus"><span>-</span></a>
-                                                            <input name="quantity" type="text" class="quantity__input" value={item.quantity} />
-                                                            <a href="#" class="quantity__plus" onClick={() => dispatch(increment(item.food_item_id))}><span>+</span></a>
-                                                        </div>
+                                                        </IconButton> :<div className='cart_success'>Cart <i class="fa fa-check-circle"></i></div>
+                                                       
                                                     }
 
 
