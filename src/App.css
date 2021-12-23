@@ -1969,6 +1969,7 @@ label.radio input:checked+span::before {
     transition-duration: .5s;
     padding: 10px;
     width: 75%;
+    border-radius: 10px;
 }
 .add {
     margin-bottom: 0rem !important;
@@ -1985,12 +1986,14 @@ label.radio input:checked+span::before {
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     transition-duration: .5s;
+    border-radius: 10px;
 }
 .payment {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     transition-duration: .5s;
     padding: 10px;
     width: 75%;
+    border-radius: 10px;
 }
 .order-btn {
     background-color: #e57d26 !important;
@@ -2000,6 +2003,14 @@ label.radio input:checked+span::before {
 }
 .order-btn:hover {
     background-color: #cf2031 !important;
+}
+/* address book */
+.address-book {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    transition-duration: .5s;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
 }
 @media only screen and (max-width:1024px) {
     .col-md-12 {
