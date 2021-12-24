@@ -1058,7 +1058,7 @@ iframe {
  }
  .profile_title{
      color:#d31f33;
-     margin-left: 30px;
+     /* margin-left: 30px; */
  }
  .sub-title {
      margin-left: 30px;
@@ -1893,7 +1893,6 @@ label.radio input:checked+span::before {
    .subtitle{
     /* line-height: 10px; */
     font-size: 18px;
-    font-family: "Open Sans";
     font-weight: 600;
     color: #909090;
     text-align: center;
@@ -2005,6 +2004,69 @@ label.radio input:checked+span::before {
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
+
+  /* checkout */
+  .collapse-button {
+    width: 100%;
+    background-color: transparent !important;
+    color: #000 !important;
+    border-color: #ccc !important;
+    outline: none !important;
+  }
+  input.cc {
+    width: 40%;
+    border-color: #dc3545;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+.d-add {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    transition-duration: .5s;
+    padding: 10px;
+    width: 75%;
+    border-radius: 10px;
+}
+.add {
+    margin-bottom: 0rem !important;
+}
+.notes {
+    width: 80%;
+    height: 150px;
+    border-radius: 10px;
+    padding: 5px;
+}
+.your-order {
+    background-color: #f5f5f5;
+    width: 75%;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    transition-duration: .5s;
+    border-radius: 10px;
+}
+.payment {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    transition-duration: .5s;
+    padding: 10px;
+    width: 75%;
+    border-radius: 10px;
+}
+.order-btn {
+    background-color: #e57d26 !important;
+    border-radius: 20px !important;
+    width: 74%;
+    color: #fff !important;
+}
+.order-btn:hover {
+    background-color: #cf2031 !important;
+}
+/* address book */
+.address-book {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    transition-duration: .5s;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+}
 @media only screen and (max-width:1024px) {
     .col-md-12 {
         width: 100% !important;
@@ -2034,7 +2096,19 @@ label.radio input:checked+span::before {
     .btn-danger {
         margin-top: 0px !important;
     }
-    .col-12 {
+    .col-12,.col-sm-6 {
+        width: 100% !important;
+    }
+    .your-order,
+    .d-add,
+    .notes,
+    input.cc,
+    .payment,
+    .order-btn  {
+        width: 100%;
+    }
+    p.w-75,
+    hr.w-75 {
         width: 100% !important;
     }
 }
@@ -2078,7 +2152,7 @@ label.radio input:checked+span::before {
     /* border: 1px solid; */
     }
     .cart-heading{
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 700;
     color: #2F3841;
     }
@@ -2087,7 +2161,6 @@ label.radio input:checked+span::before {
     }
     .Action{
     font-size: 14px;
-    font-family: ‘Open Sans’;
     font-weight: 600;
     color: #E44C4C;
     cursor: pointer;

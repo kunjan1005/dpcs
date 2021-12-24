@@ -29,7 +29,9 @@ const CartList = () => {
                     </div>
                     
                 </div>
-                <hr />
+            </div>
+        </div>
+        <hr />
                 
             </>
         })}
