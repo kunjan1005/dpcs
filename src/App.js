@@ -55,6 +55,7 @@ function App() {
               <Route exact path='/restaurant/cart/' element={<Cart/>}/>
               <Route exact path='/restaurant/checkout/' element={<CheckOut/>}/>
               <Route exact path='/restaurant/addresbook/' element={<AddressBook/>}/>
+              <Route exact path='/restaurant/cart/:sid' element={<Cart/>}/>
               <Route exact path='/restaurant/book' element={<BookTable/>}/>
               <Route exact path='/editform' element={<EditForm/>}/>
               <Route exact path='/restaurant/itemdetail/' element={<ItemDetail/>}/>
