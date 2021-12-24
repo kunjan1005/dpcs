@@ -5,6 +5,7 @@ import loginReducer from "./loginReducer";
 import userReducer from './userReducer'
 import restaurantReducer from "./resurantReducer";
 import restaurantOrderReducer from "./restaurantOrderReducer";
+import cartReducer from "./cartReducer";
 import profileTabReducer from './profileTabReducer'
 import {combineReducers} from 'redux'
  const rootReducer=combineReducers({
@@ -15,6 +16,7 @@ import {combineReducers} from 'redux'
      userReducer,
      restaurantReducer,
      restaurantOrderReducer,
-     profileTabReducer
+     profileTabReducer,
+     cartReducer
  })
  export default rootReducer
