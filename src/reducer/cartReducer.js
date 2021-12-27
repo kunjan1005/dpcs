@@ -1,3 +1,4 @@
+import lodash from 'lodash'
 let intialState = {
     item: [],
     totalPrice: 0
@@ -8,8 +9,10 @@ const cartReducer = (state = intialState, action) => {
             return {
                 ...state,
                 item: action.payload,
-                totalPrice:action.payload.length==1?action.payload.reduce((a)=>parseFloat(a.item_price)):action.payload.reduce((a, b) => parseFloat(b.item_price) + parseFloat(a.item_price))
+                totalPrice: action.payload.map(o => parseFloat(o.item_price)).reduce((a, c) => { return a + c })
             }
+            case 'USER_CART_DATA_GET':
+                return state
         case 'INCREMENT':
             console.log(action.payload)
             var updatePlusCart = state.item.map((each) => {

@@ -13,7 +13,8 @@ let restaurantOrderReducer = (state = initialState, action) => {
                 restaurantOrderDetails: action.payload,
                 totalItems: action.payload.totalItems
             }
-    
+        case "GET_RES_ORDER_DATA":
+            return state
         default: return state
 
     }

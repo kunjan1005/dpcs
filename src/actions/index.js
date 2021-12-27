@@ -94,9 +94,33 @@ const getRestaurant = () => {
     }
 }
 const getSingleRestaurant = (payload) => {
-    return {
-        type: "GET_SINGLE_RES",
-        payload
+    return async (dispatch, getState) => {
+        let { user } = isUserLoging()
+        let { user_id, lang, longitude, latitude, access_token } = user
+        axios.post(`${env.URL}/dipicious/api/user/restaurant_detail`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id: payload }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        }).then((response) => {
+            dispatch({ type: 'GET_SINGLE_RES', payload: response.data.data })
+        })
+    }
+}
+const getReviewRestaurant=(payload)=>{
+    return async(dispatch,getState)=>{
+        let { user } = isUserLoging()
+        let { user_id, lang, longitude, latitude, access_token } = user
+        axios.post(`${env.URL}/dipicious/api/user/restaurant_detail_reviews_list`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id: payload }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        }).then((response) => {
+            dispatch({ type: 'GET_RESTAURANT_REVIEW_LIST', payload: response.data })
+        })
 
     }
 }
@@ -107,12 +131,12 @@ const paginatedData = (payload = 5) => {
     }
 }
 const restaurantOrderDetails = (resId) => {
-    return async(dispatch,getState) => {
+    return async (dispatch, getState) => {
         let userData = isUserLoging()
-        let restaurant_id=resId
+        let restaurant_id = resId
         let { user_id, lang, latitude, longitude, access_token } = userData.user
 
-        let response=await axios.post(`${env.URL}/dipicious/api/user/category_product_list`,
+        let response = await axios.post(`${env.URL}/dipicious/api/user/category_product_list`,
             JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id: restaurant_id }), {
             headers: {
                 'Content-Type': 'application/json',
@@ -120,97 +144,124 @@ const restaurantOrderDetails = (resId) => {
             }
         })
         // console.log(response.data)
-      dispatch({type:'FATCH_RES_ORDER_DATA',payload:response.data})
-      
+        dispatch({ type: 'FATCH_RES_ORDER_DATA', payload: response.data })
+
     }
 
 }
-const incrementOrderQty=(id)=>{
-  return {
-      type:"INCREMENT",
-      payload:id
-  }
-}
-const decrementOrderQty=(id)=>{
+const getRestaurantOrderDetails = () => {
     return {
-        type:"DECREMENT",
-        payload:id
+        type: "GET_RES_ORDER_DATA"
+
     }
-  }
-const userActivity=()=>{
-    return async(dispatch,getState)=>{
+}
+const incrementOrderQty = (id) => {
+    return {
+        type: "INCREMENT",
+        payload: id
+    }
+}
+const decrementOrderQty = (id) => {
+    return {
+        type: "DECREMENT",
+        payload: id
+    }
+}
+
+const userActivity = () => {
+    return async (dispatch, getState) => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
 
-        let response=await axios.post(`${env.URL}/dipicious/api/user/user_activity_listing`,
-            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
+        let response = await axios.post(`${env.URL}/dipicious/api/user/user_activity_listing`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
         console.log(response.data)
-      dispatch({type:'FATCH_USER_ACTIVITY',payload:response.data.data})
-      
+        dispatch({ type: 'FATCH_USER_ACTIVITY', payload: response.data.data })
 
 
+
     }
 }
-const userFavorites=()=>{
-    return async(dispatch,getState)=>{
+const userFavorites = () => {
+    return async (dispatch, getState) => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
-        let response=await axios.post(`${env.URL}/dipicious/api/user/user_favorite_listing`,
-            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
+        let response = await axios.post(`${env.URL}/dipicious/api/user/user_favorite_listing`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-      dispatch({type:'FATCH_USER_FAVORIATES',payload:response.data.data})
+        dispatch({ type: 'FATCH_USER_FAVORIATES', payload: response.data.data })
     }
 }
-const userfeedback=()=>{
-    return async(dispatch,getState)=>{
+const userfeedback = () => {
+    return async (dispatch, getState) => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
-        let response=await axios.post(`${env.URL}/dipicious/api/user/user_feedback_listing`,
-            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
+        let response = await axios.post(`${env.URL}/dipicious/api/user/user_feedback_listing`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-      dispatch({type:'FATCH_USER_FEEDBACK',payload:response.data.data})
+        dispatch({ type: 'FATCH_USER_FEEDBACK', payload: response.data.data })
     }
 }
-const userPoints=()=>{
-    return async(dispatch,getState)=>{
+const userPoints = () => {
+    return async (dispatch, getState) => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
-        let response=await axios.post(`${env.URL}/dipicious/api/user/user_point_listing`,
-            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
+        let response = await axios.post(`${env.URL}/dipicious/api/user/user_point_listing`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-      dispatch({type:'FATCH_USER_POINT',payload:response.data.data})
+        dispatch({ type: 'FATCH_USER_POINT', payload: response.data.data })
     }
 }
-const cartData=(resId)=>{
-    return async(dispatch,getState)=>{
+const cartData = (resId) => {
+    return async (dispatch, getState) => {
         let userData = isUserLoging()
-        let restaurant_id=resId
+        let restaurant_id = resId
         let { user_id, lang, latitude, longitude, access_token } = userData.user
-        let response=await axios.post(`${env.URL}/dipicious/api/user/cart_list`,
-            JSON.stringify({ user_id, lang, latitude, longitude, access_token,restaurant_id}), {
+        let response = await axios.post(`${env.URL}/dipicious/api/user/cart_list`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-      dispatch({type:'USER_CART_DATA',payload:response.data.data})
+        dispatch({ type: 'USER_CART_DATA', payload: response.data.data })
+
+    }
+}
+const getCartData = () => {
+    return {
+        type: "USER_CART_DATA_GET"
+    }
+}
+const addressData = () => {
+    return async (dispatch, getState) => {
+        let userData = isUserLoging()
+        let { user_id, lang, access_token } = userData.user
+        let response = await axios.post(`${env.URL}/dipicious/api/user/address_book_list`,
+            JSON.stringify({ user_id, lang, access_token, }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({ type: 'USER_ADDRESS_DATA', payload: response.data.data })
 
     }
 }
@@ -219,7 +270,8 @@ export default storePostData
 export {
     getPostData, like, dislike, contentShow, contentHide, login, logout,
     getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
-    getSingleRestaurant, paginatedData,restaurantOrderDetails,incrementOrderQty,
-    decrementOrderQty,userActivity,userFavorites,userfeedback,userPoints,
-    cartData
+    getSingleRestaurant, paginatedData, restaurantOrderDetails, getRestaurantOrderDetails,
+    incrementOrderQty, decrementOrderQty, userActivity, userFavorites,
+    userfeedback, userPoints, cartData, getCartData, addressData,getReviewRestaurant
+    // removeCartItem
 }

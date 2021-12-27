@@ -1,18 +1,18 @@
 import { Delete } from "@material-ui/icons";
 import React from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import env from "../env";
-import { incrementOrderQty, decrementOrderQty } from '../actions/index'
+import { incrementOrderQty, decrementOrderQty} from '../actions/index'
 
 const CartList = () => {
     let state = useSelector((state) => state.cartReducer)
-    let dispatch=useDispatch()
+    let dispatch = useDispatch()
 
     return (<>
         {state.item.map((each) => {
             return <>
                 <div className="Cart-Items">
-                
+
                     <div className="image-box col-lg-2 col-sm-2">
                         <img src={`${env.URL}/dipicious/${each.image}`} style={{ height: "85px" }} />
                     </div>
@@ -22,17 +22,27 @@ const CartList = () => {
                         <h6 className="subtitle mt-1">{each.item_detail.item_price} KD</h6>
 
                     </div>
-                    <div className="quantity col-lg-2 col-sm-8">
-                        <a href="#" className="quantity__minus" onClick={()=>dispatch(decrementOrderQty(each.cart_id))}><span>-</span></a>
-                        <input name="quantity" type="text" className="quantity__input" value={each.quantity==0?1:each.quantity} />
-                        <a href="#" className="quantity__plus" onClick={()=>dispatch(incrementOrderQty(each.cart_id))} ><span>+</span></a>
+                    <div className="col-sm-2">
+                        <div className="quantity  ">
+                            <a href="#" className="quantity__minus" onClick={() => dispatch(decrementOrderQty(each.cart_id))}><span>-</span></a>
+                            <input name="quantity" type="text" className="quantity__input" value={each.quantity == 0 ? 1 : each.quantity} />
+                            <a href="#" className="quantity__plus" onClick={() => dispatch(incrementOrderQty(each.cart_id))} ><span>+</span></a>
+                        </div>
+                        <div className='mt-3'
+                        style={{textAlign:"center",
+                               fontSize:"20px",
+                               borderRadius:'10rem',
+                               cursor:"pointer",
+                               color:"whitesmoke",
+                               backgroundColor:'#cf2031'}}
+                            //    onClick={()=>{dispatch(removeCartItem(each.cart_id))}}
+                               >
+                            <i class="fa fa-trash" ></i></div>
                     </div>
-                    
                 </div>
-            </div>
-        </div>
-        <hr />
-                
+
+                <hr />
+
             </>
         })}
     </>)

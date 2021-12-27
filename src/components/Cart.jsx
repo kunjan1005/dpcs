@@ -3,11 +3,12 @@ import Scrollbars from "react-custom-scrollbars-2";
 import CartList from "../common/CartList";
 import {useDispatch} from 'react-redux'
 import { cartData } from "../actions";
-import { useParams } from "react-router";
+import { Navigate, useNavigate, useParams } from "react-router";
 import ArrowForwardIcon from '@material-ui/icons/ArrowForwardIos';
 import { useSelector } from "react-redux";
 const Cart = () => {
     let dispatch=useDispatch()
+    let navigate=useNavigate()
     let state=useSelector((state)=>state.cartReducer)
     let {totalPrice}=state
     let {sid}=useParams('sid')
@@ -18,7 +19,7 @@ const Cart = () => {
                 <div class="cart-header">
                     <h3 class="cart-heading">Shopping Cart</h3>
                     <h3 class="cart-heading">Total Amount : Kd {totalPrice}</h3>
-                    <h5 class="Action">Check out <ArrowForwardIcon/></h5>
+                    <h5 class="Action" onClick={()=>{navigate('/restaurant/checkout')}}>Check out <ArrowForwardIcon/></h5>
                 </div>
                 <hr/>
                 <div className="cart-items-container">
