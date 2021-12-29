@@ -728,6 +728,9 @@ select option {
     height:20rem !important;
 
 }
+.user_container .card{
+    width:20rem !important;
+}
 .explore_card{
   width:40rem;
   height:40rem;
