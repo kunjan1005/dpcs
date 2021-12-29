@@ -28,10 +28,10 @@ const Home = () => {
 
     return (
 
-        <div className="container-fluid" style={{padding:"0px"}}>
+        
 
             <Post post={state.post} />
-        </div>
+     
     )
 }
 export default Home

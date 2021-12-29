@@ -43,7 +43,7 @@ function App() {
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
     
-          <div className='container-fluid'>
+          <div className='container-fluid p-0'>
 
             <Routes>
               <Route exact path='/' element={<Home />}></Route>

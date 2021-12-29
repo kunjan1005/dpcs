@@ -30,7 +30,7 @@ const Post = (props) => {
     return (
 
         posts.map((post, index) => {
-            return <div  style={{padding:"0px"}}className={`card m-auto mt-1 ${props.restaurant==1? 'col-lg-7':props.status == 1? "col-lg-12" : "col-lg-7 col-md-12"} `} key={index}>
+            return <div  style={{padding:"0px"}}className={`card m-auto mt-3 ${props.restaurant==1? 'col-lg-7':props.status == 1? "col-lg-12" : "col-lg-7 col-md-12"} `} key={index}>
 
                 <div className="col-md-12 mt-2 p-0" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <span style={{
