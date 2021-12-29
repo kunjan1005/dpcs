@@ -718,8 +718,11 @@ select option {
     }
 }
 .card{
-  width:40rem;
+  width:67% !important;
   height:max-content !important;
+}
+.post_container .card{
+    width:100% !important;
 }
 .main-profile .card{
     height:20rem !important;
@@ -871,7 +874,7 @@ iframe {
  width: 100% !important; 
 } 
 }
-@media only screen and (min-width:1000px) {
+/* @media only screen and (min-width:1000px) {
 
  
   .card{
@@ -879,7 +882,7 @@ iframe {
     height: 45rem;
    }
    
- }
+ } */
  .links{
      text-decoration: none;
      color:#d31f33;
