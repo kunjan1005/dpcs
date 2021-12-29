@@ -6,6 +6,7 @@ import { cartData } from "../actions";
 import { Navigate, useNavigate, useParams } from "react-router";
 import ArrowForwardIcon from '@material-ui/icons/ArrowForwardIos';
 import { useSelector } from "react-redux";
+import _ from 'underscore'
 const Cart = () => {
     let dispatch=useDispatch()
     let navigate=useNavigate()
@@ -13,6 +14,11 @@ const Cart = () => {
     let {totalPrice}=state
     let {sid}=useParams('sid')
     useEffect(()=>{dispatch(cartData(sid))},[2])
+    if(state.empty){
+        return  <div class="cart-header">
+           <h3 class="cart-heading m-auto mt-3">Your cart is empty</h3>
+        </div>
+    }
     return (
         <>
             <div className="Cart-Container mt-3">

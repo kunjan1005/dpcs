@@ -1,13 +1,17 @@
 import lodash from 'lodash'
 let intialState = {
     item: [],
-    totalPrice: 0
+    totalPrice: 0,
+    empty:true
 }
 const cartReducer = (state = intialState, action) => {
     switch (action.type) {
         case 'USER_CART_DATA':
+            if(action.payload==undefined){
+                return {...state}
+            }
             return {
-                ...state,
+                ...state,empty:false,
                 item: action.payload,
                 totalPrice: action.payload.map(o => parseFloat(o.item_price)).reduce((a, c) => { return a + c })
             }

@@ -42,7 +42,7 @@ function App() {
 
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
-          <ScrollBar>
+    
           <div className='container-fluid'>
 
             <Routes>
@@ -67,7 +67,6 @@ function App() {
             </Routes>
 
           </div>
-         </ScrollBar>
         </div>
         <ToastContainer />
       </div>

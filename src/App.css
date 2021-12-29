@@ -855,7 +855,7 @@ iframe {
 
  .card{
    width:100%;
-   height: 35rem !important;
+   /* height: 35rem !important; */
   }
   .card-body{
       flex: 0 !important;
@@ -1231,8 +1231,8 @@ body {
 }
 
 .pre-loader {
-    width: 50%;
-    margin: 3% auto;
+    width: 10%;
+    margin: 10% auto;
     display: block;
 }
 
@@ -2223,4 +2223,8 @@ label.radio input:checked+span::before {
     border-radius: 2px;
     margin-bottom: 2rem;
     background-color: #fafafa;
+}
+.tab-active{
+    border-bottom: 2px solid black;
+    color:black;
 }

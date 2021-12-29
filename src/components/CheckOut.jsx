@@ -44,7 +44,6 @@ const CheckOut = () => {
         })
 
         let total_price = cartReducer.totalPrice + parseFloat(restaurantOrderReducer.restaurantOrderDetails.delivery)
-        alert(total_price)
         axios.post(`${env.URL}/dipicious/api/user/make_order`,
             JSON.stringify({ user_id, lang, access_token, address__id, sub_total: cartReducer.totalPrice, total_price, cart_data, ...order, restaurent_id }), {
             headers: {
@@ -52,7 +51,7 @@ const CheckOut = () => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         }).then((result) => {
-            toast.success('Your order done...')
+            toast.success('Order placed successfully...')
         }).catch((error) => {
             toast.error('order not placed...')
         })
@@ -113,7 +112,7 @@ const CheckOut = () => {
                         <p><b>Delivery Fee</b><span className="float-right">KD {restaurantOrderReducer.restaurantOrderDetails.delivery}</span></p>
 
                         <hr />
-                        <p><b>Total</b><span className="float-right">KD {cartReducer.totalPrice + restaurantOrderReducer.restaurantOrderDetails.delivery}</span></p>
+                        <p><b>Total</b><span className="float-right">KD {cartReducer.totalPrice + parseFloat(restaurantOrderReducer.restaurantOrderDetails.delivery)}</span></p>
                     </div>
 
                     <h5 className="mt-5 text-danger">Pay with</h5>

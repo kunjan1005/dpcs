@@ -22,12 +22,16 @@ import BookTable from './BookTable';
 import DipinForm from '../custom/DipinForm';
 import ResturantMap from '../custom/CustomMap'
 import { getReviewRestaurant } from '../actions/index'
+import Scrollbars from 'react-custom-scrollbars-2'
+import Review from '../common/Review'
+import Post from '../common/Post';
 let SetDipIn = createContext()
 const Restaurant = () => {
     let [restaurant, setRestaurant] = useState({})
     let [open, setOpen] = useState(false)
     let [dip, setDip] = useState(false)
     let location = useLocation()
+    let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
     let restaurant_id = useParams('sid')
     let state = useSelector((state) => state.restaurantReducer)
@@ -37,7 +41,6 @@ const Restaurant = () => {
     let today = new Date()
     let curreDay = today.getDay();
     let userData = isUserLoging()
-
     useEffect(() => {
         dispatch(getSingleRestaurant(restaurant_id.sid))
         dispatch(getReviewRestaurant(restaurant_id.sid))
@@ -126,21 +129,11 @@ const Restaurant = () => {
                                     />
                                 </div>
                             </div>
-                            <hr />
-                            <div className="res-comment-section">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30703867.071679905!2d64.40183608457193!3d20.04915895569306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sus!4v1638357505099!5m2!1sen!2sus"
-
-                                    height="385"
-                                    style={{ border: "0", borderRadius: '1px' }}
-                                    allowFullScreen="true"
-                                    loading="lazy"></iframe>
-
-                            </div>
                         </div>
                         <div className="res-card mt-2">
                             <h6 className='profile_title'>Address</h6>
-                            <div className="res-comment-section">
-                                <ResturantMap />
+                            <div className="res-comment-section" style={{ width: "100%", height: "100%" }}>
+                                <ResturantMap data={restaurant.locations} />
                             </div>
 
                             <div className="res-comment-section">
@@ -316,6 +309,21 @@ const Restaurant = () => {
                             </div>
                         </div>
 
+
+                    </div>
+                    <div className='res-card mt-2 d-flex'>
+                        <div className='offset-1 col-lg-3 text-center'> <NavLink activeclass='tab-active' to='#dipin'><h6 className='mt-2'>Dip ins</h6></NavLink></div>
+                        <div className='col-lg-3 text-center'><NavLink activeclass='tab-active' to='#review'><h6 className='mt-2'>Review</h6></NavLink></div>
+                        <div className='col-lg-3 text-center'><NavLink activeclass='tab-active' to='#event'><h6 className='mt-2'>Events</h6></NavLink></div>
+
+                    </div>
+                    <div className='res-card'>
+                        {tabindex == 'dipin' ? <div className=''>
+                            {restaurantReview.flag == 0 ? <h3>No Dip in </h3> : <Post post={restaurantReview.data} restaurant='1' />}
+                        </div> : ''}
+                        {tabindex == 'review' ? <div className=''>
+                            {restaurantReview.flag == 0 ? <h3>No Review </h3> : <Review data={restaurantReview.data} restaurant='1' />}
+                        </div> : ''}
                     </div>
                 </div>
             </div>

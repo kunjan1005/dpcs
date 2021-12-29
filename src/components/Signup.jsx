@@ -26,23 +26,18 @@ const Singup = () => {
         profile_pic: "",
         gender:""
     })
+    let forminputData = new FormData()
+    const uploadImages = (e) => {
+        let image = document.getElementById('profile_img')
+        image.src = URL.createObjectURL(e.target.files[0])
+        forminputData.append('profile_pic', e.target.files[0])
+    }
     const whileFillUpForm = (e) => {
         const name = e.target.name
-        let value = name == 'profile_pic' ? URL.createObjectURL(e.target.files[0]) : e.target.value
-        if (name == 'profile_pic') {
-            let image = document.getElementById('profile_img')
-            // console.log(e.target.files)
-            image.src = URL.createObjectURL(e.target.files[0])
-
-        }
         setFormData({
             ...formData, [name]: e.target.value
         })
-     
-
-
     }
-
     const singingUp = async(e) => {
         e.preventDefault()
         if (formData.name == '') {
@@ -56,8 +51,12 @@ const Singup = () => {
         } else if (formData.password == '') {
             toast.error('password required!')
         }
-        let jsonData=JSON.stringify({ ...formData })
-         axios.post(`${env.URL}/dipicious/api/user/register`,jsonData,{
+        // for (const [key, value] of Object.entries(formData)) {
+        //     forminputData.append([key],value)
+        //   }
+          
+        // let jsonData=JSON.stringify({ ...formData })
+         axios.post(`${env.URL}/dipicious/api/user/register`,forminputData,{
             headers:{
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
@@ -84,7 +83,7 @@ const Singup = () => {
                     <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
             
                     
-                    <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-5 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-5 col-5' /></span>
+                    <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-4 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-4 col-5' /></span>
                     <div className="card-body p-2">
 
                         <form onSubmit={singingUp}>
@@ -96,7 +95,7 @@ const Singup = () => {
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8xLzLf17gMCxAddkKdchnl_gc4d7KFgHUYZi19MtA8sp4-v1RNrQzjB1ufxOX4R4-e0s&usqp=CAU" id='profile_img' alt="" />
 
                                             <div className="file-loading">
-                                                <input id="avatar-1" name="profile_pic" type="file" onChange={whileFillUpForm} />
+                                                <input id="avatar-1" name="profile_pic" type="file" onChange={uploadImages} />
                                             </div>
                                         </div>
 

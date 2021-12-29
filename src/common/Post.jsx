@@ -27,13 +27,12 @@ const Post = (props) => {
 
 
     let dispatch = useDispatch()
-    let isliked = true
     return (
 
         posts.map((post, index) => {
-            return <div className={`card m-auto mt-1 ${props.status == 1 ? "col-lg-12" : "col-lg-7 col-md-12"} `} key={index}>
+            return <div  style={{padding:"0px"}}className={`card m-auto mt-1 ${props.restaurant==1? 'col-lg-7':props.status == 1? "col-lg-12" : "col-lg-7 col-md-12"} `} key={index}>
 
-                <div className="col-md-12 mt-2 pb-1" style={{ borderBottom: '1px solid whitesmoke' }}>
+                <div className="col-md-12 mt-2 p-0" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <span style={{
                         width: '10rem',
                         paddingRight: "1rem",
@@ -56,7 +55,7 @@ const Post = (props) => {
 
 
                     <h6 className="card-title">
-                        <NavLink to='/profile' style={{ color: "#d31f33" }}>
+                        <NavLink to='/profile#activities' style={{ color: "#d31f33" }}>
                             <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name}
                         </NavLink>
                         <span className='post_side_title' style={{ color: "black" }}> {props.review == 1 ? 'Reviewed' : 'Dip in'} {post.restaurant_name != null ?
@@ -87,11 +86,11 @@ const Post = (props) => {
                     <span><b>{post.comment_count} comments</b></span>&nbsp;&nbsp;
                     <span><b>{post.share_count} share</b></span>
                     <span className='post-icons'>
-                        {isliked ? <Tooltip title='like'>
+                        {post.is_like==1? <Tooltip title='liked'>
 
-                            <LikeIcon className='post-icon' style={{ color: "palevioletred" }} onClick={() => { dispatch(like(index, index + 1)) }} />
-                        </Tooltip> : <Tooltip title='dislike'>
-                            <LikeIcon className='post-icon' style={{ color: "palevioletred" }} onClick={() => { dispatch(dislike(index)) }} />
+                            <LikeIcon className='post-icon' style={{ color: "palevioletred" }} onClick={() => { dispatch(dislike(post.post_id)) }} />
+                        </Tooltip> : <Tooltip title='like'>
+                            <LikeIcon className='post-icon' onClick={() => { dispatch(like(post.post_id)) }} />
                         </Tooltip>}
 
                         <NavLink to={`/restaurant/${post.title}`} style={{ color: "black" }}><Comment className='post-icon' /></NavLink>

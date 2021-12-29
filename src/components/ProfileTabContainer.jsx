@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-
-import Loading from '../common/Loading'
-import Logout from '@material-ui/icons/ExitToApp'
-import _ from 'underscore'
-import Login from "./Login";
-import axios from 'axios'
-import env from '../env'
-import { isUserLoging } from "../authorization/useAuth";
 import Activity from "../common/Activity";
-import Favriate from "../common/Favraite";
+import Favorite from "../common/Favorite";
 import { useDispatch, useSelector } from "react-redux";
 import { userActivity, userFavorites, userfeedback, userPoints } from "../actions";
 import Review from "../common/Review";
@@ -38,7 +30,7 @@ const ProfileTabContainer = () => {
             </div>
             <div className='row post_container'>
                 {tabindex == 'activities' ? <Activity data={state.activity.item} /> : ""}
-                {tabindex == 'favriate' ? <Favriate data={state.favoriate.item} /> : ""}
+                {tabindex == 'favriate' ? <Favorite data={state.favoriate.item} /> : ""}
                 {tabindex == 'reviews' ? <Review data={state.reviews.item} /> : ""}
                 {tabindex == 'points' ? <Point data={state.points.item} /> : ""}
 

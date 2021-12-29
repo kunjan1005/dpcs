@@ -5,8 +5,9 @@ import env from '../env'
 import Post from './Post'
 
 const Review = (props) => {
+    
     return (
-       <Post post={props.data} status="1" review="1"/>
+       <Post post={props.data} status="1" review="1" restaurant={props.restaurant}/>
     )
 }
 export default Review

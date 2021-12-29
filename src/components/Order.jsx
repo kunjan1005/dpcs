@@ -40,9 +40,6 @@ const Order = () => {
     let navigate = useNavigate()
     let state = useSelector((state) => state.restaurantOrderReducer)
     let restaurantData = state.restaurantOrderDetails
-    const redirectCart = () => {
-        alert('ehllo')
-    }
     useEffect(() => {
         dispatch(restaurantOrderDetails(restaurant_id.sid))
     }, [1])
@@ -123,6 +120,7 @@ const Order = () => {
                                                                 quantity={item.quantity == undefined ? 1 : item.quantity}
                                                                 description={item.description}
                                                                 quantity_increment_decrement={item.quantity == undefined ? 1 : item.quantity}
+                                                                redirectTo={()=>{dispatch(restaurantOrderDetails(restaurant_id.sid))}}
                                                             />
                                                         </IconButton> :<div className='cart_success'>Cart <i class="fa fa-check-circle"></i></div>
                                                        

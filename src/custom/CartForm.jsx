@@ -15,6 +15,7 @@ const CustomCart=(props)=>{
             }
           })
           toast.success('product added in the cart...')
+          props.redirectTo()
           
         }catch(error){
             //  alert(error)

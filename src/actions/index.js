@@ -33,17 +33,32 @@ const getPostData = () => {
         dispatch({ type: 'GET_DATA' })
     }
 }
-const like = (id, uid) => {
-    return {
-        type: "LIKE_POST",
-        payload: { id, uid }
-    }
+const like = (id) => {
+    return async(dispatch,getState)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token,post_id:id,flag:1 })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/add_like`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })   
+    } 
 }
 const dislike = (id) => {
-    return {
-        type: "DISLIKE_POST",
-        payload: id
-    }
+    return async(dispatch,getState)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token,post_id:id,flag:0 })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/add_like`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })   
+    } 
+    
 }
 const contentShow = (text) => {
     return {
