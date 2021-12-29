@@ -13,20 +13,8 @@ let restaurantOrderReducer = (state = initialState, action) => {
                 restaurantOrderDetails: action.payload,
                 totalItems: action.payload.totalItems
             }
-        case 'INCREMENT':
-            let updateCart = state.restaurantOrderDetails.data.map((category) => {
-                let updateProduct = category.products.map((item) => {
-                    if (item.food_item_id == action.payload) {
-                        return { ...item, quantity: item.quantity == undefined ? 1 : parseInt(item.quantity) + 1 }
-                    } else {
-                        return item
-                    }
-                })
-                return { ...category, products: updateProduct }
-
-            })
-            let { restaurantOrderDetails } = state
-            return { ...state, restaurantOrderDetails: { ...restaurantOrderDetails, data: updateCart } }
+        case "GET_RES_ORDER_DATA":
+            return state
         default: return state
 
     }

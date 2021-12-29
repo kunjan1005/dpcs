@@ -25,6 +25,9 @@ import Order from './components/Order';
 import Cart from './components/Cart';
 import BookTable from './components/BookTable';
 import ScrollBar from 'react-perfect-scrollbar';
+import CheckOut from './components/CheckOut';
+import AddressBook from './components/AddressBook';
+
 function App() {
   let { isLoading } = useAuth0()
   if (isLoading) {
@@ -39,7 +42,7 @@ function App() {
 
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
-          <ScrollBar>
+    
           <div className='container-fluid'>
 
             <Routes>
@@ -48,6 +51,9 @@ function App() {
               <Route exact path='/restaurant/:sid' element={<Restaurant/>}/>
               <Route exact path='/restaurant/order/:sid' element={<Order/>}/>
               <Route exact path='/restaurant/cart/' element={<Cart/>}/>
+              <Route exact path='/restaurant/checkout/' element={<CheckOut/>}/>
+              <Route exact path='/restaurant/addresbook/' element={<AddressBook/>}/>
+              <Route exact path='/restaurant/cart/:sid' element={<Cart/>}/>
               <Route exact path='/restaurant/book' element={<BookTable/>}/>
               <Route exact path='/login' element={<Login />}></Route>
               <Route exact path='/singup' element={<Singup />}></Route>
@@ -61,7 +67,6 @@ function App() {
             </Routes>
 
           </div>
-         </ScrollBar>
         </div>
         <ToastContainer />
       </div>

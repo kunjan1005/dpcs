@@ -16,6 +16,7 @@ import { getProfile } from '../actions/index'
 import { useSelector, useDispatch } from "react-redux";
 import { isUserLoging } from '../authorization/useAuth';
 import * as rdd from 'react-device-detect'
+import { toast } from 'react-toastify'
 
 // import Custominput from '../custom/CustomInput'
 const Header = () => {
@@ -64,7 +65,8 @@ const Header = () => {
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='explore'>
-                                        <NavLink className='links' activeclass='active' to='/explore#cuisines'><div className="wishlist_icon">
+                                        <NavLink className='links' activeclass='active' to='#' onClick={()=>{
+                                            toast.warn('Download Application for full user Expiriance',{position:'top-center'})}}><div className="wishlist_icon">
                                             {/* <ExploreOutlined  className='header_btn'/> */}
                                             <img src={explore} />
                                         </div>
@@ -73,7 +75,9 @@ const Header = () => {
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='dip'>
-                                        <NavLink className='links' activeclass='active' to='/dip#dipin'><div className="wishlist_icon">
+                                        <NavLink className='links' activeclass='active' to='#'
+                                        onClick={()=>{
+                                            toast.warn('Download Application for full user Expiriance',{position:'top-center'})}}><div className="wishlist_icon">
                                             {/* <TouchAppIcon className='header_btn' /> */}
                                             </div>
                                             <img src={add}/>
@@ -82,7 +86,9 @@ const Header = () => {
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='notifications'>
-                                        <NavLink className='links' activeclass='active' to='/activities'>
+                                        <NavLink className='links' activeclass='active' to='#'
+                                        onClick={()=>{
+                                            toast.warn('Download Application for full user Expiriance',{position:'top-center'})}}>
                                             <div className="wishlist_icon">
                                                 {/* <DirectionsRunIcon className='header_btn' /> */}
                                                 <img src={bell}/>
@@ -92,7 +98,7 @@ const Header = () => {
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='profile'>
-                                        <NavLink className='links' activeclass='active' to='/profile#activities'>
+                                        <NavLink className='links' activeclass='active' to='/profile#favriate'>
                                             <div className="wishlist_icon">
                                                 {/* <Profile className='header_btn' /> */}
                                                 <img src={user}/>

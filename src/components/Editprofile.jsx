@@ -95,7 +95,6 @@ const Editprofile = () => {
 
                 }
             }).then((result) => {
-                //  let {data}=result.data
                 if (result.data.flag == 0) {
                     toast.success('profile not updated..')
                 } else {
