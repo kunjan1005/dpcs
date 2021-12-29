@@ -84,7 +84,7 @@ const Restaurant = () => {
                         <div className="res-card mt-2">
                             <h6 className='profile_title'>Reviews</h6>
                             <div className="d-flex flex-row">
-                                <div className='col-lg-6'>
+                                <div className='col-lg-6 col-6'>
                                     <span>Service</span>,&nbsp;
                                     <b>{restaurantReview.service_rate}</b>
                                     <ReactStars
@@ -106,7 +106,7 @@ const Restaurant = () => {
 
                                     />
                                 </div>
-                                <div className='co-lg-6'>
+                                <div className='co-lg-6 col-6'>
                                     <span>Ambiance</span>,&nbsp;
                                     <b>{restaurantReview.ambiance_rate}</b>
                                     <ReactStars

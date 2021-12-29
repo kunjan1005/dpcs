@@ -66,7 +66,7 @@ const Header = () => {
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='explore'>
                                         <NavLink className='links' activeclass='active' to='#' onClick={()=>{
-                                            toast.warn('Download Application for full user Expiriance',{position:'top-center'})}}><div className="wishlist_icon">
+                                            toast.warn('Download Application for full user Experience',{position:'top-center'})}}><div className="wishlist_icon">
                                             {/* <ExploreOutlined  className='header_btn'/> */}
                                             <img src={explore} />
                                         </div>
@@ -77,7 +77,7 @@ const Header = () => {
                                     <Tooltip title='dip'>
                                         <NavLink className='links' activeclass='active' to='#'
                                         onClick={()=>{
-                                            toast.warn('Download Application for full user Expiriance',{position:'top-center'})}}><div className="wishlist_icon">
+                                            toast.warn('Download Application for full user Experience',{position:'top-center'})}}><div className="wishlist_icon">
                                             {/* <TouchAppIcon className='header_btn' /> */}
                                             </div>
                                             <img src={add}/>
@@ -88,7 +88,7 @@ const Header = () => {
                                     <Tooltip title='notifications'>
                                         <NavLink className='links' activeclass='active' to='#'
                                         onClick={()=>{
-                                            toast.warn('Download Application for full user Expiriance',{position:'top-center'})}}>
+                                            toast.warn('Download Application for full user Experience',{position:'top-center'})}}>
                                             <div className="wishlist_icon">
                                                 {/* <DirectionsRunIcon className='header_btn' /> */}
                                                 <img src={bell}/>
