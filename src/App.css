@@ -925,7 +925,7 @@ iframe {
  }
  .favorite{
     padding: 0px !important;
-     width: 15rem;
+    width: 15rem !important;
  }
 
 .kv-avatar {
@@ -1009,12 +1009,10 @@ iframe {
       
       
     }
-    .row{
-        /* width:100% !important; */
-    }
+  
     .favorite{
         padding: 0px !important;
-        width: 10rem !important;
+         width: 10rem !important;
         margin: auto;
     }
     .main-profile-pick img{
