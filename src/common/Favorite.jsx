@@ -13,7 +13,7 @@ const Favriate = (props) => {
       return <Loading/>
     }
     return (<>
-     <div className='col-lg-12 col-12 border p-3 row' style={{ backgroundColor: 'white' }}>
+     <div className='col-lg-12 col-12 border p-3 d-flex' style={{ backgroundColor: 'white' }}>
         {post.map((each) => {
             return <div className='border mr-1 favorite'>
                     <p style={{

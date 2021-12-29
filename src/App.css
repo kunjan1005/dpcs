@@ -926,6 +926,8 @@ iframe {
  .favorite{
     padding: 0px !important;
     width: 15rem !important;
+    border-radius: .5rem !important;
+    overflow: hidden;
  }
 
 .kv-avatar {
@@ -1042,6 +1044,14 @@ iframe {
          font-size: 8px !important;
      }
 
+ }
+ @media only screen and (max-width:"400px"){
+    .favorite{
+        padding: 0px !important;
+         width: 10rem !important;
+        margin: auto;
+    }
+     
  }
  /* //profile page css  */
  .profile-div{
