@@ -2,7 +2,7 @@ import React from "react"; import { TableHead, Paper, Table, TableContainer, Tab
 
 const Point = (props) => {
     return (<>
-        <div className="col-md-12">
+        <div className="col-lg-12 col-12">
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
