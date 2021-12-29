@@ -69,7 +69,7 @@ const Post = (props) => {
 
                 </div>
                 <p className="text1">{post.time}</p>
-                <Slider {...settings} >
+                <Slider {...settings} className="mt-3" >
                     {post.post_image.map((img) => {
 
                         return <div className="wdt">
