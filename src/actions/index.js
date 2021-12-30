@@ -1,6 +1,12 @@
 import axios from "axios"
 import env from "../env"
 import { isUserLoging } from "../authorization/useAuth"
+const  storeUserProfile=(payload)=>{
+    return {
+        type:"STORE_PROFILE",
+        payload
+    }
+}
 const fatchData = () => {
     return async function (dispatch, getState) {
         let data = isUserLoging()
@@ -256,13 +262,29 @@ const cartData = (resId) => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-        dispatch({ type: 'USER_CART_DATA', payload: response.data.data })
+        dispatch({ type: 'STORE_CART_DATA', payload: response.data.data })
 
     }
 }
 const getCartData = () => {
     return {
         type: "USER_CART_DATA_GET"
+    }
+}
+const removeCartItem=(id,refresh)=>{
+    return async(dispatch,getState)=>{
+        let userData = isUserLoging()
+        let cart_id = id
+        let { user_id, lang, access_token } = userData.user
+        let response=await axios.post(`${env.URL}/dipicious/api/user/add_to_cart`,
+           JSON.stringify({user_id, lang, access_token,cart_id,flag:2}),{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+          })
+        dispatch({ type: 'DELETE_CART_ITEM', payload: id })
+        refresh()
     }
 }
 const addressData = () => {
@@ -282,11 +304,10 @@ const addressData = () => {
 }
 
 export default storePostData
-export {
-    getPostData, like, dislike, contentShow, contentHide, login, logout,
+export {storeUserProfile,getPostData, like, dislike, contentShow, contentHide, login, logout,
     getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
     getSingleRestaurant, paginatedData, restaurantOrderDetails, getRestaurantOrderDetails,
     incrementOrderQty, decrementOrderQty, userActivity, userFavorites,
-    userfeedback, userPoints, cartData, getCartData, addressData,getReviewRestaurant
-    // removeCartItem
+    userfeedback, userPoints, cartData, getCartData, addressData,getReviewRestaurant,
+    removeCartItem
 }

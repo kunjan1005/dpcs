@@ -1,27 +1,13 @@
-import jwt from 'jsonwebtoken'
-import jwt_decode from 'jwt-decode'
-import env from '../env'
-const initialState = {}
+
+const initialState = {
+    data:{},
+    status:0
+}
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'GET_PROFILE':
-            if (localStorage.getItem('token') == '' || localStorage.getItem('token')==null) {
-                return {}
-            }else{
-                let token = localStorage.getItem('token')
-                // console.log('token',token)
-                let isValid = jwt.verify(token, env.JWT_SEC_KEY)
-                if (isValid) {
-                    let user = jwt_decode(token)
-                    if (user != undefined) {
-                        return { ...user }
-                    }
-                }
-            }
-
         case 'STORE_PROFILE':
-            let user = action.payload
-            return { ...user }
+ 
+            return {...state,data:action.payload}
         default: return state
     }
 

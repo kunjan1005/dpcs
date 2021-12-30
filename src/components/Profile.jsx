@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
-import { NavLink, useNavigate,useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import Loading from '../common/Loading'
 import Logout from '@material-ui/icons/ExitToApp'
 import _ from 'underscore'
-import Login from "./Login";
-import axios from 'axios'
-import env from '../env'
 import { isUserLoging } from "../authorization/useAuth";
-import Activity from "../common/Activity";
 import ProfileTabContainer from "./ProfileTabContainer";
+import env from '../env'
+import axios from 'axios'
+import { toast } from "react-toastify";
 const Profile = () => {
   let [user, setUser] = useState({})
-  let location=useLocation()
-  let tabindex=location.hash.split('#')[1]
+  let location = useLocation()
+  let tabindex = location.hash.split('#')[1]
   let navigate = useNavigate()
   useEffect(() => {
     setTimeout(() => {
@@ -27,6 +25,20 @@ const Profile = () => {
     }, 900)
 
   }, [0])
+  const becomeChef=async()=>{
+    let data = isUserLoging()
+    let { user_id, lang, access_token } = data.user
+    let jsonData = JSON.stringify({ user_id, lang, access_token})
+    let response = await axios.post(`${env.URL}/dipicious/api/user/became_chef`, jsonData, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic cm9vdDoxMjM='
+        }
+    })
+    if(response.data.flag==0){
+      toast.success(response.data.msg)
+    }
+  }
 
   if (_.isEmpty(user)) {
     return <Loading></Loading>
@@ -59,6 +71,7 @@ const Profile = () => {
             <h4>{user.followers}</h4>
             <h6>followers</h6>
             <Button variant="outlined" className='mt-5 profile_btn'
+              onClick={() => becomeChef()}
               style={{ backgroundColor: 'orange', color: 'white', border: "none" }}>BECOME A CHEF</Button>
           </div>
         </div>
@@ -74,7 +87,7 @@ const Profile = () => {
 
       </div>
       <br />
-      <ProfileTabContainer/>
+      <ProfileTabContainer />
     </div>
   )
 }

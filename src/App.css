@@ -328,6 +328,7 @@ select option {
        bottom: 0;
        position: fixed;
        z-index: 1;
+       background-color: #d31f33 !important;
      
     }
 .logo-div{
@@ -335,14 +336,13 @@ select option {
     }
     .html_content_body{
         margin-top: 0 !important;
+        height: 100vh !important;
     }
     .nav_link{
         margin:auto !important;
         line-height: 50px;
         display: block !important;
-        text-align: center !important;
-         
-        
+        text-align: center !important;  
     }
     .offset-1 {
         margin-left:0px !important;
@@ -353,7 +353,8 @@ select option {
 }
 
 .wishlist_icon img {
-    width: 100%
+    width: 2rem;
+    /* background-color:white; */
 }
 
 .wishlist_content {

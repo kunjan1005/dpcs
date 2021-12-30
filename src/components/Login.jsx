@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import genrateToken from "../authorization/genrateToken";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from "react-redux";
+import { storeUserProfile } from "../actions";
 
 
 
@@ -15,6 +16,7 @@ import { useDispatch } from "react-redux";
 const Login = () => {
     const { loginWithRedirect } = useAuth0();
     let navigate = useNavigate()
+    let dispatch=useDispatch()
     let [formData, setFormData] = useState({
         username: "",
         language: "",
@@ -45,11 +47,11 @@ const Login = () => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-        console.log(response)
         if (response.data.flag !== 0) {
            
             let token = await genrateToken(response.data.data)
             localStorage.setItem('token', token)
+            dispatch(storeUserProfile(response.data.data))
             toast.success('you are loggin...')
             
             navigate('/profile#activities')

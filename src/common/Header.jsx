@@ -2,15 +2,10 @@ import React, { useEffect, useState } from 'react'
 import logo from '../images/dpcs_logo.png'
 import home from '../images/icon/home.png'
 import explore from '../images/icon/explore.png'
-import bell from '../images/icon/bell.png'
+import bell from '../images/icon/notify.png'
 import add from '../images/icon/add.png'
-import user from '../images/icon/user.png'
-import HomeIcone from '@material-ui/icons/HomeOutlined';
-import ExploreOutlined from '@material-ui/icons/ExploreOutlined'
-import DirectionsRunIcon from '@material-ui/icons/DirectionsRunOutlined';
-import TouchAppIcon from '@material-ui/icons/TouchAppOutlined';
+import user from '../images/icon/profile.png'
 import Tooltip from '@material-ui/core/Tooltip';
-import Profile from '@material-ui/icons/PersonOutlineOutlined'
 import { NavLink } from 'react-router-dom'
 import { getProfile } from '../actions/index'
 import { useSelector, useDispatch } from "react-redux";
@@ -64,10 +59,12 @@ const Header = () => {
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
+                               
                                     <Tooltip title='explore'>
                                         <NavLink className='links' activeclass='active' to='#' onClick={()=>{
-                                            toast.warn('Download Application for full user Experience',{position:'top-center'})}}><div className="wishlist_icon">
-                                            {/* <ExploreOutlined  className='header_btn'/> */}
+                                            toast.warn('Download Application for full user Experience',{position:'top-center'})}}>
+                                            <div className="wishlist_icon">
+                                           
                                             <img src={explore} />
                                         </div>
                                         </NavLink>
@@ -79,8 +76,9 @@ const Header = () => {
                                         onClick={()=>{
                                             toast.warn('Download Application for full user Experience',{position:'top-center'})}}><div className="wishlist_icon">
                                             {/* <TouchAppIcon className='header_btn' /> */}
-                                            </div>
                                             <img src={add}/>
+                                            </div>
+                                           
                                         </NavLink>
                                     </Tooltip>
                                 </div>
