@@ -75,21 +75,21 @@ const Singup = () => {
         <>
             <div className='container-fluid user_container'>
                 <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
-                    <div className='exit_button justify-content-end' ><Exit onClick={() => { navigate('/') }} /></div>
+                    
                     <img src={logo}
                         className='login_card_img'
                         style={{ width: "7.5rem", height: '3rem', margin: 'auto' }}
                         alt="" />
-                    <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
+                    <h6 className='m-auto w-10 text-center'>Sing up to see photos and videos from your near by resturnats</h6>
             
                     
-                    <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-4 col-5' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-4 col-5' /></span>
+                    <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-4 col-4' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-4 col-4' /></span>
                     <div className="card-body p-2">
 
                         <form onSubmit={singingUp}>
                             <div className='row'>
-                                <div className='row'>
-                                    <div className="col-sm-4 text-center m-auto">
+                                <div className='m-auto'>
+                                    <div className="col-sm-7 text-center m-auto">
                                         <div className="kv-avatar" onClick={fileUploadFunction}>
 
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8xLzLf17gMCxAddkKdchnl_gc4d7KFgHUYZi19MtA8sp4-v1RNrQzjB1ufxOX4R4-e0s&usqp=CAU" id='profile_img' alt="" />

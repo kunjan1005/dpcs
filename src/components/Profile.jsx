@@ -37,7 +37,7 @@ const Profile = () => {
       <div className='card col-lg-8 col-sm-12 m-auto profile-div '>
 
         <div className='row '>
-          <div className='logout'><NavLink to='/logout'><Button variant='outlined'><Logout /></Button></NavLink></div>
+          <div className='logout col-12'><NavLink to='/logout'><Button variant='outlined'><Logout /></Button></NavLink></div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
             <h4>{user.following ? 0 : 1}</h4>
             <h6>following</h6>

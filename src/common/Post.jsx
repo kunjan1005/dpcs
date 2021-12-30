@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { LocationOn } from "@material-ui/icons";
 import env from "../env";
+import {toast} from 'react-toastify'
 
 
 const Post = (props) => {
@@ -30,7 +31,7 @@ const Post = (props) => {
     return (
 
         posts.map((post, index) => {
-            return <div  style={{padding:"0px"}}className={`card m-auto mt-1 ${props.restaurant==1? 'col-lg-7':props.status == 1? "col-lg-12" : "col-lg-7 col-md-12"} `} key={index}>
+            return <div  style={{padding:"0px"}}className={`card m-auto mt-3 ${props.restaurant==1? 'col-lg-7':props.status == 1? "col-lg-12" : "col-lg-7 col-md-12"} `} key={index}>
 
                 <div className="col-md-12 mt-2 p-0" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <span style={{
@@ -93,7 +94,12 @@ const Post = (props) => {
                             <LikeIcon className='post-icon' onClick={() => { dispatch(like(post.post_id)) }} />
                         </Tooltip>}
 
-                        <NavLink to={`/restaurant/${post.title}`} style={{ color: "black" }}><Comment className='post-icon' /></NavLink>
+                        <NavLink 
+                        // to={`/restaurant/${post.title}`}
+                        to='#'
+                        onClick={()=>{
+                            toast.warn('Download Application for full user Experience',{position:'top-center'})}} 
+                        style={{ color: "black" }}><Comment className='post-icon' /></NavLink>
                     </span>
                 </div>
             </div>

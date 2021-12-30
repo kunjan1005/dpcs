@@ -20,7 +20,7 @@ const ProfileTabContainer = () => {
         dispatch(userPoints())
     }, [0])
     return (
-        <div className='col-lg-8 col-sm-12 m-auto profile_post_container'>
+        <div className='col-lg-8 col-12 m-auto profile_post_container'>
             <hr />
             <div className="row m-auto">
                 <div className='col-md-3 col-3'><NavLink to='#activities' className='links'><b>{state.activity.total}</b><h5>ACTIVITIES</h5></NavLink></div>

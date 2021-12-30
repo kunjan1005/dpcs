@@ -19,10 +19,10 @@ body {
     
 }
 .html_content_body{
-    padding-bottom: 2vh;
-    margin-top: 8vh;
+    /* padding-bottom: 2vh; */
+    margin-top: 6.5vh;
     height:90vh;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
  
 }
 
@@ -334,7 +334,7 @@ select option {
         display: none;
     }
     .html_content_body{
-        margin-top: 2%;
+        margin-top: 0 !important;
     }
     .nav_link{
         margin:auto !important;
@@ -718,7 +718,7 @@ select option {
     }
 }
 .card{
-  width:67% !important;
+  width:67%;
   height:max-content !important;
 }
 .post_container .card{
@@ -860,9 +860,14 @@ iframe {
    }
 
  .card{
-   width:100%;
+   width:100% !important;
    /* height: 35rem !important; */
   }
+  .main-profile .card{
+    height:auto !important;
+    border: none !important;
+    padding: 1rem !important;
+}
   .card-body{
       flex: 0 !important;
   }
@@ -918,6 +923,12 @@ iframe {
     
         background-color: #fafafa;
 
+ }
+ .favorite{
+    padding: 0px !important;
+    width: 15rem !important;
+    border-radius: .5rem !important;
+    overflow: hidden;
  }
 
 .kv-avatar {
@@ -1001,6 +1012,12 @@ iframe {
       
       
     }
+  
+    .favorite{
+        padding: 0px !important;
+         width: 10rem !important;
+        margin: auto;
+    }
     .main-profile-pick img{
         border-radius:0 !important;
         width: 5rem !important;
@@ -1028,6 +1045,14 @@ iframe {
          font-size: 8px !important;
      }
 
+ }
+ @media only screen and (max-width:"400px"){
+    .favorite{
+        padding: 0px !important;
+         width: 10rem !important;
+        margin: auto;
+    }
+     
  }
  /* //profile page css  */
  .profile-div{
@@ -2079,6 +2104,7 @@ label.radio input:checked+span::before {
     }
 }
 @media only screen and (max-width:400px) {
+    
     .user {
         margin-left: 22%;
     }
@@ -2096,7 +2122,7 @@ label.radio input:checked+span::before {
     .MuiFormControl-root {
         width: 100%;
     }
-    .row>* {
+    .row {
         width: unset !important;
     }
     .btn-danger {
