@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { LocationOn } from "@material-ui/icons";
 import env from "../env";
+import {toast} from 'react-toastify'
 
 
 const Post = (props) => {
@@ -93,7 +94,12 @@ const Post = (props) => {
                             <LikeIcon className='post-icon' onClick={() => { dispatch(like(post.post_id)) }} />
                         </Tooltip>}
 
-                        <NavLink to={`/restaurant/${post.title}`} style={{ color: "black" }}><Comment className='post-icon' /></NavLink>
+                        <NavLink 
+                        // to={`/restaurant/${post.title}`}
+                        to='#'
+                        onClick={()=>{
+                            toast.warn('Download Application for full user Experience',{position:'top-center'})}} 
+                        style={{ color: "black" }}><Comment className='post-icon' /></NavLink>
                     </span>
                 </div>
             </div>

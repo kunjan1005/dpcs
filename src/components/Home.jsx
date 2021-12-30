@@ -17,6 +17,10 @@ const Home = () => {
     let navigate = useNavigate()
 
     useEffect(async () => {
+        let {login}=isUserLoging()
+        if(login){
+            return navigate('/login')
+        }
         dispatch(fatchData())
         return () => {
 
@@ -27,11 +31,7 @@ const Home = () => {
     }
 
     return (
-
-        
-
             <Post post={state.post} />
-     
     )
 }
 export default Home

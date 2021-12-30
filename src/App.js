@@ -24,7 +24,7 @@ import Restaurant from './components/Restaurant';
 import Order from './components/Order';
 import Cart from './components/Cart';
 import BookTable from './components/BookTable';
-import ScrollBar from 'react-perfect-scrollbar';
+import ScrollBar from 'react-custom-scrollbars-2';
 import CheckOut from './components/CheckOut';
 import AddressBook from './components/AddressBook';
 
@@ -42,7 +42,7 @@ function App() {
 
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
-    
+           <ScrollBar>
           <div className='container-fluid p-0'>
 
             <Routes>
@@ -67,6 +67,7 @@ function App() {
             </Routes>
 
           </div>
+          </ScrollBar>
         </div>
         <ToastContainer />
       </div>

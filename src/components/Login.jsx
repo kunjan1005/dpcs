@@ -64,15 +64,12 @@ const Login = () => {
                     className='login_card_img' id='profile_img'
                     style={{ width: "7.5rem", height: '3rem', margin: 'auto' }}
                     alt="" />
-                <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
+                <h6 className='m-auto w-10 text-center'>Sing up to see photos and videos from your near by resturnats</h6>
 
                 <div className="card-body p-2">
 
                     <form onSubmit={loggingIn}>
                         <div className='row'>
-                            <div className='row'>
-
-                            </div>
                             <div className='col-md-12'>
 
                                 <div className="mb-1">
