@@ -18,7 +18,7 @@ const Home = () => {
 
     useEffect(async () => {
         let {login}=isUserLoging()
-        if(login){
+        if(!login){
             return navigate('/login')
         }
         dispatch(fatchData())

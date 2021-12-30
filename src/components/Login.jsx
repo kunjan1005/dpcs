@@ -52,7 +52,7 @@ const Login = () => {
             localStorage.setItem('token', token)
             toast.success('you are loggin...')
             
-            navigate('/profile')
+            navigate('/profile#activities')
         } else {
             toast('Username and Password are incorrect')
         }
