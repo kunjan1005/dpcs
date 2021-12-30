@@ -98,7 +98,7 @@ const Header = () => {
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='profile'>
-                                        <NavLink className='links' activeclass='active' to='/profile#favriate'>
+                                        <NavLink className='links' activeclass='active' to='/profile#activities'>
                                             <div className="wishlist_icon">
                                                 {/* <Profile className='header_btn' /> */}
                                                 <img src={user}/>
