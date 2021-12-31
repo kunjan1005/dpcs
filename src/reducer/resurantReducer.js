@@ -2,7 +2,9 @@ let initialState = {
     restaurants: [],
     restaurant: {},
     restaurantReviewList:{},
-    restaurantLimit: []
+    restaurantLimit: [],
+    locations:[],
+    restaurantlist:[]
 }
 let restaurantReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -22,6 +24,10 @@ let restaurantReducer = (state = initialState, action) => {
                 ...state,
                 restaurantReviewList: { ...state.restaurantReviewList, ...action.payload }
             }
+        case "GET_RESTAURANT_LOCATION_LIST":
+            return {...state,locations:action.payload}
+        case "GET_RESTAURANT_LIST":
+            return {...state,restaurantlist:action.payload}
         case "GET_LIMITED_POST":
             let { current_page, per_page_items } = action.payload
             function paginator(items, per_page_items) {

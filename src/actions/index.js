@@ -129,6 +129,36 @@ const getSingleRestaurant = (payload) => {
         })
     }
 }
+const getLocation=(payload)=>{
+    return async(dispatch,getState)=>{
+        let { user } = isUserLoging()
+        let { user_id, lang, longitude, latitude, access_token } = user
+        axios.post(`${env.URL}/dipicious/api/user/get_location_from_restaurant`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id: payload }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        }).then((response) => {
+            dispatch({ type: 'GET_RESTAURANT_LOCATION_LIST', payload: response.data.data })
+        })
+    }
+}
+const getRestaurantList=()=>{
+    return async(dispatch,getState)=>{
+        let { user } = isUserLoging()
+        let { user_id, lang, longitude, latitude, access_token } = user
+        axios.post(`${env.URL}/dipicious/api/user/resturant_list`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        }).then((response) => {
+            dispatch({ type: 'GET_RESTAURANT_LIST', payload: response.data.data })
+        })
+    }
+}
 const getReviewRestaurant=(payload)=>{
     return async(dispatch,getState)=>{
         let { user } = isUserLoging()
@@ -306,8 +336,8 @@ const addressData = () => {
 export default storePostData
 export {storeUserProfile,getPostData, like, dislike, contentShow, contentHide, login, logout,
     getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
-    getSingleRestaurant, paginatedData, restaurantOrderDetails, getRestaurantOrderDetails,
-    incrementOrderQty, decrementOrderQty, userActivity, userFavorites,
+    getSingleRestaurant, paginatedData,getLocation,restaurantOrderDetails,getRestaurantList,
+     getRestaurantOrderDetails,incrementOrderQty, decrementOrderQty, userActivity, userFavorites,
     userfeedback, userPoints, cartData, getCartData, addressData,getReviewRestaurant,
     removeCartItem
 }
