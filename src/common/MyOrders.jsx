@@ -9,7 +9,7 @@ const MyOrders = () => {
     return (<>
         <div className="conntainer py-3">
             <div className="row">
-                <h1 className="text-center bg-danger text-white">My Orders</h1>
+                <h1 className="text-center bg-danger text-white" style={{width: "100% !important;"}}>My Orders</h1>
                 <div className="col-sm-2"></div>
                 <div className="col-sm-4">
                     <div className="my-orders mt-5">

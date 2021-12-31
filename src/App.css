@@ -988,12 +988,16 @@ iframe {
     #private_data{
         display: block !important;
     }
+    /* profile logout */
+    .logout {
+        width: 100%;
+    }
     .main-profile-pick{
         width:5rem;
         height: 5rem;
         border-radius:10rem !important;
-      
-      
+
+        
     }
     .main-profile-pick img{
         border-radius:0 !important;

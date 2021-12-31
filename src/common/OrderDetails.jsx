@@ -10,7 +10,7 @@ const OrderDetails = () => {
     return (<>
         <div className="conntainer py-3">
             <div className="row">
-                <h1 className="text-center bg-danger text-white">Order Details</h1>
+                <h1 className="text-center bg-danger text-white" style={{width: "100% !important;"}}>Order Details</h1>
                 <div className="col-sm-1"></div>
                 <div className="col-sm-5">
                     <div className="my-orders mt-5">

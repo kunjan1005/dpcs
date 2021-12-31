@@ -8,7 +8,7 @@ const ItemDetail = () => {
     return (<>
         <div className="container py-3">
             <div className="row_">
-                <h1 className="text-center bg-danger text-white">Item Details</h1>
+                <h1 className="text-center bg-danger text-white" style={{width: "100% !important;"}}>Item Details</h1>
                 <div className="item-detail mt-5">
                     <h5 className="text-danger">Test</h5>
                     <hr className="" />
