@@ -2095,6 +2095,34 @@ label.radio input:checked+span::before {
     width: 60% !important;
     margin:0 auto;
 }
+/* MyOrders */
+.logo-salad {
+    width: 100px;
+    border: 1px solid grey;
+    padding: 5px;
+    margin-top: 0%;
+    border-radius: 5px;
+}
+.p {
+    margin-bottom: 0 !important;
+}
+.my-orders {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    padding: 10px;
+    border-radius: 15px;
+}
+i.fa.fa-angle-right {
+    font-size: 30px;
+    float: right;
+    margin-right: 20%;
+    margin-top: 50%;
+}
+.price {
+    margin-top: 50%;
+}
+.arrival {
+    width: 18px;
+}
 @media only screen and (max-width:1024px) {
     .col-md-12 {
         width: 100% !important;
@@ -2124,7 +2152,7 @@ label.radio input:checked+span::before {
     .btn-danger {
         margin-top: 0px !important;
     }
-    .col-12,.col-sm-6 {
+    .col-12 {
         width: 100% !important;
     }
     .your-order,
@@ -2170,8 +2198,7 @@ label.radio input:checked+span::before {
     border-radius: 20px;
     
     }
-
-    .cart-header{
+    .cart-header {
     margin: auto;
     width: 95%;
     height: 5%;
