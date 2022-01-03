@@ -6,23 +6,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import { storeOrderDetails } from '../actions/index'
 import { useState } from 'react'
 import _ from 'underscore'
+import CustomReorderBook from '../custom/CustomReorder'
 
 const OrderDetail = () => {
     let [order, setOrder] = useState({})
+    let [show,showReorder]=useState(false)
     let { orderDetail } = useSelector((state) => state.restaurantOrderReducer)
     let dispatch = useDispatch()
     useEffect(() => {
+        
         setOrder((prev) => {
             return { ...prev, ...orderDetail }
         })
-        return () => {
+        return ()=>{
             setOrder({})
         }
-    })
+      
+    },[2])
     if (_.isEmpty(order)) {
-        return <h3>Loading....</h3>
+        return <h3 className='col-lg-6 text-center mt-5'>Loading....</h3>
     } else if (_.isEmpty(order.items)) {
-        return <h3>Loading....</h3>
+        return <h3 className='col-lg-6'>Loading....</h3>
     }
     return (<>
         <div className="col-lg-6 mt-2 ">
@@ -94,8 +98,13 @@ const OrderDetail = () => {
                         </div>
                     </div>
                 </div>
+                <div className='col-sm-12 mt-3'>
+                    <button className='btn btn-success m-auto' onClick={()=>{showReorder(true)}}>Re-order</button>
+                </div>
             </div>
         </div>
+        {show?<CustomReorderBook close={showReorder} order_id={orderDetail.address_id}/>:''}
+        
     </>)
 }
 export default OrderDetail

@@ -43,10 +43,10 @@ const MyOrders = () => {
                                     {size <= 500 ? <NavLink to={`/restaurant/orderdetails/${each.order_id}`} style={{color:'black'}}>
                                         <i class="fa fa-angle-right"></i>
                                     </NavLink> :
-                                        <i class="fa fa-angle-right" onClick={() => {
-
+                                        <i class="fa fa-angle-right" onClick={async() => {
+                                            await dispatch(storeOrderDetails(each.order_id))
                                             showOrderDetails(true)
-                                            dispatch(storeOrderDetails(each.order_id))
+                                           
 
                                         }}></i>
                                     }
