@@ -52,9 +52,8 @@ const CartList = ({refresh}) => {
                             <i class="fa fa-trash" ></i></div>
                     </div>
                 </div>
-
-                <hr />
-
+          
+                
             </>
         })}
     </>)

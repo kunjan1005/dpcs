@@ -17,13 +17,18 @@ import { toast } from 'react-toastify'
 const Header = () => {
     let [isLogin, setLogin] = useState(false)
     let [curUser, setUser] = useState({})
+    let [size,setSize]=useState (window.screen.width)
     useEffect(() => {
         let { login, user } = isUserLoging()
         setLogin(login)
         setUser(user)
 
     }, [1])
-    // console.log(rdd)
+    window.addEventListener('resize', () => {
+        let size = window.screen.width
+        setSize(size)
+    })
+
     return (
 
 
@@ -59,37 +64,40 @@ const Header = () => {
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
-                               
+
                                     <Tooltip title='explore'>
-                                        <NavLink className='links' activeclass='active' to='#' onClick={()=>{
-                                            toast.warn('Download Application for full user Experience',{position:'top-center'})}}>
+                                        <NavLink className='links' activeclass='active' to='#' onClick={() => {
+                                            toast.warn('Download Application for full user Experience', { position: 'top-center' })
+                                        }}>
                                             <div className="wishlist_icon">
-                                           
-                                            <img src={explore} />
-                                        </div>
+
+                                                <img src={explore} />
+                                            </div>
                                         </NavLink>
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='dip'>
                                         <NavLink className='links' activeclass='active' to='#'
-                                        onClick={()=>{
-                                            toast.warn('Download Application for full user Experience',{position:'top-center'})}}><div className="wishlist_icon">
-                                            {/* <TouchAppIcon className='header_btn' /> */}
-                                            <img src={add}/>
+                                            onClick={() => {
+                                                toast.warn('Download Application for full user Experience', { position: 'top-center' })
+                                            }}><div className="wishlist_icon">
+                                                {/* <TouchAppIcon className='header_btn' /> */}
+                                                <img src={add} />
                                             </div>
-                                           
+
                                         </NavLink>
                                     </Tooltip>
                                 </div>
                                 <div className="d-flex flex-row align-items-center justify-content-end  nav_link">
                                     <Tooltip title='notifications'>
                                         <NavLink className='links' activeclass='active' to='#'
-                                        onClick={()=>{
-                                            toast.warn('Download Application for full user Experience',{position:'top-center'})}}>
+                                            onClick={() => {
+                                                toast.warn('Download Application for full user Experience', { position: 'top-center' })
+                                            }}>
                                             <div className="wishlist_icon">
                                                 {/* <DirectionsRunIcon className='header_btn' /> */}
-                                                <img src={bell}/>
+                                                <img src={bell} />
                                             </div>
                                         </NavLink>
                                     </Tooltip>
@@ -99,7 +107,7 @@ const Header = () => {
                                         <NavLink className='links' activeclass='active' to='/profile#activities'>
                                             <div className="wishlist_icon">
                                                 {/* <Profile className='header_btn' /> */}
-                                                <img src={user}/>
+                                                <img src={user} />
                                             </div>
                                         </NavLink>
                                     </Tooltip>

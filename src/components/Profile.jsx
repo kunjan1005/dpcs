@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Loading from '../common/Loading'
 import Logout from '@material-ui/icons/ExitToApp'
 import _ from 'underscore'
@@ -9,6 +10,7 @@ import ProfileTabContainer from "./ProfileTabContainer";
 import env from '../env'
 import axios from 'axios'
 import { toast } from "react-toastify";
+// import ProfileDropDown from "../custom/ProfiledropDown";
 const Profile = () => {
   let [user, setUser] = useState({})
   let location = useLocation()
@@ -25,17 +27,17 @@ const Profile = () => {
     }, 900)
 
   }, [0])
-  const becomeChef=async()=>{
+  const becomeChef = async () => {
     let data = isUserLoging()
     let { user_id, lang, access_token } = data.user
-    let jsonData = JSON.stringify({ user_id, lang, access_token})
+    let jsonData = JSON.stringify({ user_id, lang, access_token })
     let response = await axios.post(`${env.URL}/dipicious/api/user/became_chef`, jsonData, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic cm9vdDoxMjM='
-        }
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic cm9vdDoxMjM='
+      }
     })
-    if(response.data.flag==0){
+    if (response.data.flag == 0) {
       toast.success(response.data.msg)
     }
   }
@@ -45,11 +47,21 @@ const Profile = () => {
   }
 
   return (
-    <div className='row main-profile mt-2'>
+    <div className='row main-profile mt-3'>
       <div className='card col-lg-8 col-sm-12 m-auto profile-div '>
 
         <div className='row '>
-          <div className='logout col-12'><NavLink to='/logout'><Button variant='outlined'><Logout /></Button></NavLink></div>
+          <div className='logout'>
+
+            <div className="dropdown float-right">
+              <button className="btn btn-default border dropdown-toggle" type="button" data-toggle="dropdown"><i className="fa fa-user-cog"></i>
+                <span className="caret"></span></button>
+              <ul className="dropdown-menu">
+                <li className="text-center"><NavLink to='/logout'><p>Logout</p></NavLink></li>
+                <li className="text-center"><NavLink to="/restaurant/myorders"><p>Orders</p></NavLink></li>
+              </ul>
+            </div>
+          </div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
             <h4>{user.following ? 0 : 1}</h4>
             <h6>following</h6>
