@@ -42,13 +42,10 @@ function App() {
     <>
 
       <div className="super_container">
- 
-
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
            <ScrollBar>
-          <div className='container-fluid p-0'>
-
+          <div className='container-fluid'>
             <Routes>
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/post/:id' element={<PostPage />}></Route>

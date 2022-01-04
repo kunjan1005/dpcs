@@ -90,10 +90,7 @@ const CustomForm = ({ data, restaurant_id }) => {
                         <div className='dip-imag-container ml-1 col-lg-2'>
                                 <img src={img} />
                             </div>   
-
-
-
-                    </div>
+                        </div>
                     <div className='mt-3'>
                         <button className='btn btn-primary m-auto done d-block'>Post</button>
                     </div>

@@ -7,6 +7,7 @@ import { storeOrderDetails } from '../actions/index'
 import { useState } from 'react'
 import _ from 'underscore'
 import CustomReorderBook from '../custom/CustomReorder'
+import env from '../env'
 
 const OrderDetail = () => {
     let [order, setOrder] = useState({})
@@ -38,7 +39,7 @@ const OrderDetail = () => {
                         return <div className="my-orders mt-5">
                             <div className="row p-1">
                                 <div className="col-sm-4">
-                                    <img src={Logo} className="logo-salad"></img>
+                                    <img src={`${env.URL}/dipicious/${each.image}`} className="logo-salad"></img>
                                 </div>
                                 <div className="col-sm-6 order-details">
                                     <p className="p text-warning">{each.item_name}</p>
@@ -103,7 +104,7 @@ const OrderDetail = () => {
                 </div>
             </div>
         </div>
-        {show?<CustomReorderBook close={showReorder} order_id={orderDetail.address_id}/>:''}
+        {show?<CustomReorderBook close={showReorder} order_id={orderDetail.order_id}/>:''}
         
     </>)
 }

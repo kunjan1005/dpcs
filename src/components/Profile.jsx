@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import Loading from '../common/Loading'
 import Logout from '@material-ui/icons/ExitToApp'
 import _ from 'underscore'
@@ -10,13 +10,17 @@ import ProfileTabContainer from "./ProfileTabContainer";
 import env from '../env'
 import axios from 'axios'
 import { toast } from "react-toastify";
+import { storefollowersAndFollowingList } from "../actions";
 // import ProfileDropDown from "../custom/ProfiledropDown";
 const Profile = () => {
   let [user, setUser] = useState({})
   let location = useLocation()
   let tabindex = location.hash.split('#')[1]
+  let state=useSelector((state)=>state.userReducer)
   let navigate = useNavigate()
+  let dispatch=useDispatch()
   useEffect(() => {
+    dispatch(storefollowersAndFollowingList())
     setTimeout(() => {
       let response = isUserLoging()
       if (response.login) {
@@ -63,7 +67,7 @@ const Profile = () => {
             </div>
           </div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
-            <h4>{user.following ? 0 : 1}</h4>
+            <h4>{state.following.total}</h4>
             <h6>following</h6>
             {/* <button className='profile_btn  btn-primary mt-5'>EDIT PROFILE</button> */}
             <NavLink to={`/profile/edit`}>
@@ -80,7 +84,7 @@ const Profile = () => {
             <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{user.name}</h6>
           </div>
           <div className='col-lg-4 col-4 m-auto following order-3'>
-            <h4>{user.followers}</h4>
+            <h4>{state.followers.total}</h4>
             <h6>followers</h6>
             <Button variant="outlined" className='mt-5 profile_btn'
               onClick={() => becomeChef()}

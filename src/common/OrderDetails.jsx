@@ -6,10 +6,12 @@ import _ from 'underscore'
 import Loading from '../common/Loading'
 import { storeOrderDetails } from "../actions"
 import { useParams } from "react-router"
+import CustomReorderBook from '../custom/CustomReorder'
 
 const OrderDetails = () => {
 
     let [order, setOrder] = useState({})
+    let [show,showReorder]=useState(false)
     let { order_id } = useParams('order_id')
     let { orderDetail } = useSelector((state) => state.restaurantOrderReducer)
     let dispatch = useDispatch()
@@ -18,9 +20,6 @@ const OrderDetails = () => {
         setOrder((prev) => {
             return { ...prev, ...orderDetail }
         })
-        return () => {
-            setOrder({})
-        }
     }, [1])
     if (_.isEmpty(order)) {
         return <Loading />
@@ -28,8 +27,10 @@ const OrderDetails = () => {
         return <Loading />
     }
     return (<>
-        <div className="conntainer py-3">
-            <div className="row">
+       
+        <div className="conntainer">
+            {show?<CustomReorderBook close={showReorder} order_id={order.order_id}/>:""}
+            <div className="row pb-5">
                 <h3 className="text-center bg-danger text-white" style={{ width: "100% !important;" }}>Order Details</h3>
                 <div className="col-sm-1"></div>
                 <div className="col-sm-5">
@@ -85,24 +86,27 @@ const OrderDetails = () => {
                                 <p>out Of Delivery</p>
                             </div>
                             <div className="col-sm-4 col-4">
-                                {order.times.map((each) => {
-                                    return <p className="text-right">{each.change_date.split(' ')[1]}</p>
+                                {order.times.map((each,index) => {
+                                    return <p className="text-right" key={index}>{each.change_date.split(' ')[1]}</p>
                                 })}
 
                             </div>
-                            <div className="col-sm-4 col-1">
 
-
-                            </div>
 
                         </div>
+
                     </div>
                 </div>
-                <div className="col-12 col-sm-12">
-                    <button className="btn btn-success m-auto">Re-Order</button>
+                <div className="col-sm-4 col-1 mt-6">
+                    <div className="col-12 col-sm-12">
+                        <button className="btn btn-success m-auto" onClick={()=>showReorder(true)}>Re-order</button>
+                    </div>
+
                 </div>
+
             </div>
         </div>
+    
     </>)
 }
 export default OrderDetails
