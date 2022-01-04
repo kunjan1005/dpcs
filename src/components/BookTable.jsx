@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import env from '../env'
 import Exit from '@material-ui/icons/Clear'
 import { NavLink } from 'react-router-dom'
-import { MentionsInput, Mention } from 'react-mentions'
+import MentionedBox from '../custom/MentionedBox'
 
 let data = [{ id: 1, name: "barot kunjan" }, { id: 2, name: 'dipak thakor' }]
 let guest = []
@@ -26,12 +26,18 @@ function getTimeRanges(interval, language = window.navigator.language) {
 let timeSlot = getTimeRanges(30, 'en')
 
 const BookTable = (props) => {
-    const [user, setUser] = useState('')
-    const [mainendUser, setMentionedUser] = useState([{ id: "", username: "" }])
-    
+    const [user, setUser] = useState({
+        date:"",
+        time:"",
+        numberofpeople:[],
+        description:""
+    })
+
     const onChangeEvent = (e) => {
-       let value=e.target.value
-       setUser(value)
+         console.log(e)
+        setUser((prev)=>{
+            return {...prev,[e.targat.name]:e.targat.value}
+        })
     }
 
     return (<>
@@ -60,20 +66,13 @@ const BookTable = (props) => {
                 </select>
                 <div>
                     {/* <textarea className='gowith' placeholder='@Go With'></textarea> */}
-                    <div className='description'>
-                        <MentionsInput
-                            singleLine="false"
-                            allowSpaceInQuery="true"
-                            value={user}
-                            onChange={onChangeEvent}
-                            markup='${__id__}'
-                            displayTransform={(id) => "${" + id + "}"}
-                        >
-                            <Mention  data={data} />
-                        </MentionsInput>
-                    </div>
+                    <MentionedBox/>
 
-                    <textarea placeholder='Description' className='description'></textarea>
+                    <textarea placeholder='Description' 
+                     value={user.description}
+                     className='description'
+                     onChange={onChangeEvent}
+                     name='description'></textarea>
                 </div>
                 <button className='btn btn-primary m-auto done d-block'>Done</button>
             </form>

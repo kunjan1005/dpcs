@@ -49,7 +49,7 @@ const Profile = () => {
     }
 
 
-  }, [0])
+  }, [1])
   const becomeChef = async () => {
     let data = isUserLoging()
     let { user_id, lang, access_token } = data.user
@@ -98,7 +98,7 @@ const Profile = () => {
           </div>
           <div className='col-lg-4 col-4 order-2'>
             <div className='main-profile-pick m-auto'>
-              <img src={user.profile_image} alt='profile..'></img>
+              <img src={`${env.URL}/dipicious/${user.user_profile_pic}`} alt='profile..'></img>
             </div>
             <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{user.name}</h6>
           </div>
