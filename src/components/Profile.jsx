@@ -45,9 +45,11 @@ const Profile = () => {
               <button class="btn btn-default border dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-user-cog"></i>
                 <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li className="text-center"><NavLink to='/logout'>
-              <Button variant='outlined'><Logout /></Button>
-            </NavLink></li>
+                <li className="text-center">
+                  <NavLink to='/logout'>
+                    <Button variant='outlined'><Logout /></Button>
+                  </NavLink>
+                </li>
                 <li className="text-center"><a href="#">React Js</a></li>
               </ul>
             </div>
