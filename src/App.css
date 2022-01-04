@@ -19,10 +19,11 @@ body {
     
 }
 .html_content_body{
-    padding-bottom: 2vh;
-    margin-top: 8vh;
+    /* padding-bottom: 2vh; */
+    margin-top: 6.5vh;
     height:90vh;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
+    overflow-x:hidden;
  
 }
 
@@ -328,32 +329,33 @@ select option {
        bottom: 0;
        position: fixed;
        z-index: 1;
+       background-color: #d31f33 !important;
      
     }
 .logo-div{
         display: none;
     }
     .html_content_body{
-        margin-top: 2%;
+        margin-top: 0 !important;
+        height: 100vh !important;
     }
     .nav_link{
         margin:auto !important;
         line-height: 50px;
         display: block !important;
-        text-align: center !important;
-         
-        
+        text-align: center !important;  
     }
     .offset-1 {
         margin-left:0px !important;
     }
 }
 .wishlist {
-    margin-right: 50px
+    margin-right: 50px;
 }
 
 .wishlist_icon img {
-    width: 100%
+    width: 1.6rem;
+    /* background-color:white; */
 }
 
 .wishlist_content {
@@ -718,12 +720,18 @@ select option {
     }
 }
 .card{
-  width:40rem;
+  width:67%;
   height:max-content !important;
+}
+.post_container .card{
+    width:100% !important;
 }
 .main-profile .card{
     height:20rem !important;
 
+}
+.user_container .card{
+    width:20rem !important;
 }
 .explore_card{
   width:40rem;
@@ -854,9 +862,14 @@ iframe {
    }
 
  .card{
-   width:100%;
-   height: 35rem !important;
+   width:100% !important;
+   /* height: 35rem !important; */
   }
+  .main-profile .card{
+    height:auto !important;
+    border: none !important;
+    padding: 1rem !important;
+}
   .card-body{
       flex: 0 !important;
   }
@@ -871,7 +884,7 @@ iframe {
  width: 100% !important; 
 } 
 }
-@media only screen and (min-width:1000px) {
+/* @media only screen and (min-width:1000px) {
 
  
   .card{
@@ -879,7 +892,7 @@ iframe {
     height: 45rem;
    }
    
- }
+ } */
  .links{
      text-decoration: none;
      color:#d31f33;
@@ -912,6 +925,12 @@ iframe {
     
         background-color: #fafafa;
 
+ }
+ .favorite{
+    padding: 0px !important;
+    width: 15rem !important;
+    border-radius: .5rem !important;
+    overflow: hidden;
  }
 
 .kv-avatar {
@@ -999,6 +1018,12 @@ iframe {
 
         
     }
+  
+    .favorite{
+        padding: 0px !important;
+         width: 10rem !important;
+        margin: auto;
+    }
     .main-profile-pick img{
         border-radius:0 !important;
         width: 5rem !important;
@@ -1026,6 +1051,14 @@ iframe {
          font-size: 8px !important;
      }
 
+ }
+ @media only screen and (max-width:"400px"){
+    .favorite{
+        padding: 0px !important;
+         width: 10rem !important;
+        margin: auto;
+    }
+     
  }
  /* //profile page css  */
  .profile-div{
@@ -1235,8 +1268,8 @@ body {
 }
 
 .pre-loader {
-    width: 50%;
-    margin: 3% auto;
+    width: 10%;
+    margin: 10% auto;
     display: block;
 }
 
@@ -1873,8 +1906,8 @@ label.radio input:checked+span::before {
     }
    .Cart-Items{
     margin: auto;
-    width: 90%;
-    height: 20%;
+    /* width: 90%;
+    height: 20%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1890,13 +1923,13 @@ label.radio input:checked+span::before {
     /* padding-top: 5px;
     line-height: 5px; */
     text-align: center;
-    font-size: 20px;
+    /* font-size: 20px; */
     font-weight: 600;
     color: #202020;
    }
    .subtitle{
     /* line-height: 10px; */
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 600;
     color: #909090;
     text-align: center;
@@ -2110,10 +2143,13 @@ label.radio input:checked+span::before {
 .p {
     margin-bottom: 0 !important;
 }
+.order-details .p{
+    font-size: 10px !important;
+}
 .my-orders {
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    border: 2px solid whitesmoke;
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 3px;
 }
 i.fa.fa-angle-right {
     font-size: 30px;
@@ -2133,6 +2169,7 @@ i.fa.fa-angle-right {
     }
 }
 @media only screen and (max-width:400px) {
+    
     .user {
         margin-left: 22%;
     }
@@ -2150,7 +2187,7 @@ i.fa.fa-angle-right {
     .MuiFormControl-root {
         width: 100%;
     }
-    .row>* {
+    .row {
         width: unset !important;
     }
     .btn-danger {
@@ -2174,6 +2211,28 @@ i.fa.fa-angle-right {
     hr.w-75 {
         width: 100% !important;
     }
+    .card-body {
+        margin-bottom: 8px;
+    }
+    .post-icons {
+        margin-top: -10px;
+    }
+    #lblCartCount {
+        margin-left: 25px;
+        margin-top: -40px;
+    }
+    i.fa.fa-shopping-cart {
+        color: #000;
+    }
+    .profile_title {
+        margin-top: 10px;
+    }
+    .cart-heading {
+        padding: 0;
+    }
+    .container.w-50.mt-3 {
+        width: 90% !important;
+    } 
 }
 @media only screen and (max-width:500px) {
 .form-popup {
@@ -2192,6 +2251,15 @@ i.fa.fa-angle-right {
         height: 38rem  !important;
         background-color: white;
       }
+      .p {
+        margin-bottom: 0 !important;
+        font-size: 10px !important;
+    }
+    .my-orders {
+        border: 2px solid whitesmoke;
+        padding: 10px;
+        border-radius: 3px;
+    }
 }
 @media only screen and (max-width: 500px) {
 .Cart-Container{
@@ -2248,11 +2316,11 @@ i.fa.fa-angle-right {
     text-align: center;
     }
     .image-box img{
-        height: 51px!important;
+        height: 60px!important;
     }
-    .about{
+    /* .about{
     height: 64% !important;
-    }
+    } */
     .title{
     padding-top: 5px;
     line-height: 5px;
@@ -2285,4 +2353,30 @@ i.fa.fa-angle-right {
     border-radius: 2px;
     margin-bottom: 2rem;
     background-color: #fafafa;
+}
+.tab-active{
+    border-bottom: 2px solid black;
+    color:black;
+}
+.dip-imag-container{
+    border:1px solid black;
+    width:4rem;
+    height: 4rem;
+    border: 1px solid grey;
+    border-radius: 2px;
+}
+.dip-imag-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+.panding,.approve,.checkout{
+    border: 1px solid black;
+    width: 0.5rem;
+    height: 2rem;
+    border-radius: 1rem;
+}
+.status_success{
+    background-color: green;
+    border: 1px solid green;
 }

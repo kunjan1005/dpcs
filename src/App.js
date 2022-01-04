@@ -24,7 +24,7 @@ import Restaurant from './components/Restaurant';
 import Order from './components/Order';
 import Cart from './components/Cart';
 import BookTable from './components/BookTable';
-import ScrollBar from 'react-perfect-scrollbar';
+import ScrollBar from 'react-custom-scrollbars-2';
 import CheckOut from './components/CheckOut';
 import AddressBook from './components/AddressBook';
 import EditForm from './custom/EditForm';
@@ -42,13 +42,10 @@ function App() {
     <>
 
       <div className="super_container">
- 
-
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
-          <ScrollBar>
+           <ScrollBar>
           <div className='container-fluid'>
-
             <Routes>
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/post/:id' element={<PostPage />}></Route>
@@ -62,7 +59,7 @@ function App() {
               <Route exact path='/editform' element={<EditForm/>}/>
               <Route exact path='/restaurant/itemdetail/' element={<ItemDetail/>}/>
               <Route exact path='/restaurant/myorders/' element={<MyOrders/>}/>
-              <Route exact path='/restaurant/orderdetails/' element={<OrderDetails/>}/>
+              <Route exact path='/restaurant/orderdetails/:order_id' element={<OrderDetails/>}/>
               <Route exact path='/login' element={<Login />}></Route>
               <Route exact path='/singup' element={<Singup />}></Route>
               <Route exact path='/fotgot_password' element={<TroubleLogin />}></Route>
@@ -75,7 +72,7 @@ function App() {
             </Routes>
 
           </div>
-         </ScrollBar>
+          </ScrollBar>
         </div>
         <ToastContainer />
       </div>

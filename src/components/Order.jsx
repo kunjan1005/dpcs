@@ -40,9 +40,6 @@ const Order = () => {
     let navigate = useNavigate()
     let state = useSelector((state) => state.restaurantOrderReducer)
     let restaurantData = state.restaurantOrderDetails
-    const redirectCart = () => {
-        alert('ehllo')
-    }
     useEffect(() => {
         dispatch(restaurantOrderDetails(restaurant_id.sid))
     }, [1])
@@ -50,7 +47,7 @@ const Order = () => {
         return <Loading />
     }
     return (<>
-        <div className="container-fluid mt-2 mb-3">
+        <div className="container mt-4 mb-5">
             <div className="row no-gutters">
 
                 <div className="col-md-5 pr-2">
@@ -81,8 +78,8 @@ const Order = () => {
                     <div className="res-card">
                         <div className='category_box'>
                             <div className='row'>
-                            <h6 className='col-lg-10'>Restaurant Products</h6>
-                            <span className='col-lg-2'>
+                            <h6 className='col-lg-10 col-10'>Restaurant Products</h6>
+                            <span className='col-lg-2 col-2'>
                                 <NavLink to={`/restaurant/cart/${restaurantData.data[0].restaurant_id}`} >
                                     <i class="fa fa-shopping-cart" style={{ fontSize: "24px" }}></i>
                                     <span class='badge badge-warning' id='lblCartCount'> {restaurantData.cart_count} </span>
@@ -123,6 +120,7 @@ const Order = () => {
                                                                 quantity={item.quantity == undefined ? 1 : item.quantity}
                                                                 description={item.description}
                                                                 quantity_increment_decrement={item.quantity == undefined ? 1 : item.quantity}
+                                                                redirectTo={()=>{dispatch(restaurantOrderDetails(restaurant_id.sid))}}
                                                             />
                                                         </IconButton> :<div className='cart_success'>Cart <i class="fa fa-check-circle"></i></div>
                                                        

@@ -95,9 +95,8 @@ const Editprofile = () => {
 
                 }
             }).then((result) => {
-                //  let {data}=result.data
                 if (result.data.flag == 0) {
-                    toast.success('profile not updated..')
+                    toast.error('profile not updated..')
                 } else {
                     console.log(result)
                     let jsonData = JSON.stringify({ ...user })

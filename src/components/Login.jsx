@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import genrateToken from "../authorization/genrateToken";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from "react-redux";
+import { storeUserProfile } from "../actions";
 
 
 
@@ -15,6 +16,7 @@ import { useDispatch } from "react-redux";
 const Login = () => {
     const { loginWithRedirect } = useAuth0();
     let navigate = useNavigate()
+    let dispatch=useDispatch()
     let [formData, setFormData] = useState({
         username: "",
         language: "",
@@ -45,14 +47,14 @@ const Login = () => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-        console.log(response)
         if (response.data.flag !== 0) {
            
             let token = await genrateToken(response.data.data)
             localStorage.setItem('token', token)
+            dispatch(storeUserProfile(response.data.data))
             toast.success('you are loggin...')
             
-            navigate('/profile')
+            navigate('/profile#activities')
         } else {
             toast('Username and Password are incorrect')
         }
@@ -64,15 +66,12 @@ const Login = () => {
                     className='login_card_img' id='profile_img'
                     style={{ width: "7.5rem", height: '3rem', margin: 'auto' }}
                     alt="" />
-                <h4 className='m-auto login-title'>Sing up to see photos and videos from your near by resturnats</h4>
+                <h6 className='m-auto w-10 text-center'>Sing up to see photos and videos from your near by resturnats</h6>
 
                 <div className="card-body p-2">
 
                     <form onSubmit={loggingIn}>
                         <div className='row'>
-                            <div className='row'>
-
-                            </div>
                             <div className='col-md-12'>
 
                                 <div className="mb-1">

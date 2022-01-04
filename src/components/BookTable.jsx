@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import env from '../env'
 import Exit from '@material-ui/icons/Clear'
 import { NavLink } from 'react-router-dom'
-// import { MentionsInput, Mention } from 'react-mentions'
-import Editor from '@draft-js-plugins/editor'
-import createMentionPlugin,{defaultSuggestionsFilter} from '@draft-js-plugins/mention'
-import {EditorState} from 'draft-js'
-let data=[{id:1,name:"barot kunjan"},{id:2,name:'dipak thakor'}]
+import { MentionsInput, Mention } from 'react-mentions'
+
+let data = [{ id: 1, name: "barot kunjan" }, { id: 2, name: 'dipak thakor' }]
 let guest = []
 for (let i = 1; i <= 50; i++) { guest.push(i) }
 function getTimeRanges(interval, language = window.navigator.language) {
@@ -28,19 +26,12 @@ function getTimeRanges(interval, language = window.navigator.language) {
 let timeSlot = getTimeRanges(30, 'en')
 
 const BookTable = (props) => {
-    let [state,setState]=useState({
-        editorState:EditorState.createEmpty(),
-        suggestions:data})
-    let mentionPlugin=createMentionPlugin()
-    let {MentionSuggestions}=mentionPlugin
-    let plugins=[mentionPlugin]
-    let onChanegEvent=editorState=>{
-       
-        setState({editorState})
-    }
-    let onSearchChangeEvent=({value})=>{
-        console.log(value)
-        setState({suggestions:defaultSuggestionsFilter(value,data)})
+    const [user, setUser] = useState('')
+    const [mainendUser, setMentionedUser] = useState([{ id: "", username: "" }])
+    
+    const onChangeEvent = (e) => {
+       let value=e.target.value
+       setUser(value)
     }
 
     return (<>
@@ -70,17 +61,18 @@ const BookTable = (props) => {
                 <div>
                     {/* <textarea className='gowith' placeholder='@Go With'></textarea> */}
                     <div className='description'>
-                    <Editor 
-                     editorState={state.editorState} 
-                     plugins={plugins}
-                     onChange={onChanegEvent}
-                  />
-                  <MentionSuggestions
-                  onChange={onSearchChangeEvent}
-                  suggestions={state.suggestions}
-                  />
+                        <MentionsInput
+                            singleLine="false"
+                            allowSpaceInQuery="true"
+                            value={user}
+                            onChange={onChangeEvent}
+                            markup='${__id__}'
+                            displayTransform={(id) => "${" + id + "}"}
+                        >
+                            <Mention  data={data} />
+                        </MentionsInput>
                     </div>
-                    
+
                     <textarea placeholder='Description' className='description'></textarea>
                 </div>
                 <button className='btn btn-primary m-auto done d-block'>Done</button>
