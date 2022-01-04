@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from '../common/Loading'
 import Logout from '@material-ui/icons/ExitToApp'
 import _ from 'underscore'
@@ -10,25 +10,44 @@ import ProfileTabContainer from "./ProfileTabContainer";
 import env from '../env'
 import axios from 'axios'
 import { toast } from "react-toastify";
-import { storefollowersAndFollowingList } from "../actions";
+import { storefollowersAndFollowingList,storeUserProfile } from "../actions";
 // import ProfileDropDown from "../custom/ProfiledropDown";
 const Profile = () => {
   let [user, setUser] = useState({})
   let location = useLocation()
   let tabindex = location.hash.split('#')[1]
-  let state=useSelector((state)=>state.userReducer)
+  let search = location.search
+  let other_user_id = search.split('=')[1]
+  let state = useSelector((state) => state.userReducer)
   let navigate = useNavigate()
-  let dispatch=useDispatch()
-  useEffect(() => {
+  let dispatch = useDispatch()
+  useEffect(async() => {
     dispatch(storefollowersAndFollowingList())
-    setTimeout(() => {
-      let response = isUserLoging()
-      if (response.login) {
-        setUser(response.user)
-      } else {
-        navigate('/login')
+
+    let response = isUserLoging()
+    if (response.login) {
+      if (other_user_id == response.user.user_id) {
+        dispatch(storeUserProfile())
+        setTimeout(() => {
+          setUser(state.data)
+        }, 900)
+      }else if(other_user_id==undefined) {
+        dispatch(storeUserProfile())
+        setTimeout(() => {
+          setUser(state.data)
+        }, 900)
+      }else{
+         // let followers = await axios.post(`${env.URL}/dipicious/api/user/user_id`, jsonData, {
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'Authorization': 'Basic cm9vdDoxMjM='
+        //   }
+        // })
       }
-    }, 900)
+    } else {
+      navigate('/login')
+    }
+
 
   }, [0])
   const becomeChef = async () => {
@@ -67,7 +86,7 @@ const Profile = () => {
             </div>
           </div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
-            <h4>{state.following.total}</h4>
+            <h4>{user.following_count}</h4>
             <h6>following</h6>
             {/* <button className='profile_btn  btn-primary mt-5'>EDIT PROFILE</button> */}
             <NavLink to={`/profile/edit`}>
@@ -84,7 +103,7 @@ const Profile = () => {
             <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{user.name}</h6>
           </div>
           <div className='col-lg-4 col-4 m-auto following order-3'>
-            <h4>{state.followers.total}</h4>
+            <h4>{user.followers}</h4>
             <h6>followers</h6>
             <Button variant="outlined" className='mt-5 profile_btn'
               onClick={() => becomeChef()}

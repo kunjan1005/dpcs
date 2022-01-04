@@ -2,9 +2,17 @@ import axios from "axios"
 import env from "../env"
 import { isUserLoging } from "../authorization/useAuth"
 const storeUserProfile = (payload) => {
-    return {
-        type: "STORE_PROFILE",
-        payload
+    return async(dispatch,getState)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token})
+        let response = await axios.post(`${env.URL}/dipicious/api/user/user_detail`, jsonData, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Basic cm9vdDoxMjM='
+            }
+          })
+          dispatch({ type:"STORE_PROFILE",payload:response.data.data})
     }
 }
 const storefollowersAndFollowingList=()=>{
