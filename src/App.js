@@ -27,6 +27,10 @@ import BookTable from './components/BookTable';
 import ScrollBar from 'react-custom-scrollbars-2';
 import CheckOut from './components/CheckOut';
 import AddressBook from './components/AddressBook';
+import EditForm from './custom/EditForm';
+import ItemDetail from './components/ItemDetail';
+import MyOrders from './common/MyOrders';
+import OrderDetails from './common/OrderDetails';
 
 function App() {
   let { isLoading } = useAuth0()
@@ -38,13 +42,10 @@ function App() {
     <>
 
       <div className="super_container">
- 
-
         <Header />
-        <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
+        <div style={{ backgroundColor: '#fafafa' }} className='html_content_body py-4'>
            <ScrollBar>
-          <div className='container-fluid p-0'>
-
+          <div className='container-fluid'>
             <Routes>
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/post/:id' element={<PostPage />}></Route>
@@ -55,6 +56,10 @@ function App() {
               <Route exact path='/restaurant/addresbook/' element={<AddressBook/>}/>
               <Route exact path='/restaurant/cart/:sid' element={<Cart/>}/>
               <Route exact path='/restaurant/book' element={<BookTable/>}/>
+              <Route exact path='/editform' element={<EditForm/>}/>
+              <Route exact path='/restaurant/itemdetail/' element={<ItemDetail/>}/>
+              <Route exact path='/restaurant/myorders/' element={<MyOrders/>}/>
+              <Route exact path='/restaurant/orderdetails/:order_id' element={<OrderDetails/>}/>
               <Route exact path='/login' element={<Login />}></Route>
               <Route exact path='/singup' element={<Singup />}></Route>
               <Route exact path='/fotgot_password' element={<TroubleLogin />}></Route>

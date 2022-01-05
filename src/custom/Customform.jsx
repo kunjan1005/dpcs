@@ -1,97 +1,124 @@
-import React,{useEffect} from 'react'
+import React, { useState } from 'react'
 import { FormControl, Input } from '@material-ui/core'
 import { PhotoCamera } from '@material-ui/icons'
 import { styled } from '@material-ui/styles'
-import { InputLabel, Button } from '@material-ui/core'
 import Exit from '@material-ui/icons/Clear'
-import { MenuItem, Select, FormHelperText, TextareaAutosize, IconButton } from '@material-ui/core'
-import {useDispatch,useSelector} from 'react-redux'
+import { TextareaAutosize, IconButton } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
 import { SetDipIn } from '../components/Restaurant'
+import { getLocation } from '../actions/index'
+import { useEffect } from 'react'
+import img from '../images/dpcs_logo.png'
 const InputFile = styled('input')({
     display: 'none',
 });
-const CustomForm = () => {
-    // let dispatch=useDispatch()
-    // useEffect(()=>{dispatch()},[1])
+const CustomForm = ({ data, restaurant_id }) => {
+    let dispatch = useDispatch()
+    let [formData, setFormData] = useState({
+        restaurant_id,
+        location_id: '',
+        discription: "",
+        flag: 1
+    })
+    let [location, setLocation] = useState([])
+    let { locations } = useSelector((state) => state.restaurantReducer)
+    useEffect(() => {
+        dispatch(getLocation(restaurant_id))
+
+    }, [1])
+    let images = []
+    let imagepath = []
+    const uploadPicture = (e) => {
+        imagepath.push(URL.createObjectURL(e.target.files[0]))
+        images.push(e.target.files[0])
+    }
+    const onChangeEvent = (e) => {
+        setFormData((prev) => {
+            return { ...prev, [e.target.name]: e.target.value }
+        })
+        dispatch(getLocation(formData.restaurant_id))
+        setLocation(locations)
+    }
+    const saveDipin = () => {
+       let formDataPost=new FormData()
+       formDataPost.append('restaurant_id',formData.restaurant_id)
+       formDataPost.append('location_id',formData.location_id)
+       formDataPost.append('discription',formData.discription)
+       formDataPost.append('flag',formData.flag)
+       
+    //    return ''
+    }
     return (<>
-    <SetDipIn.Consumer >{(setDip)=>{
-        return <>
-        <div className='form-container'>
-        <span style={{float:"right"}}><Exit onClick={()=>setDip(false)} /></span>
-                <h4 className='profile_title' style={{textAlign:'center'}}> 
-                Dip in</h4>
-                <hr></hr>
-            <div className='mt-3'>
-                <FormControl required fullWidth>
-                    <InputLabel id="demo-simple-select-required-label">Choose a restaurant to dip in</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-required-label"
-                        id="demo-simple-select-required"
-                        value=""
-                        label="Restaurant *"
-                        onChange=""
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                    <FormHelperText>Required</FormHelperText>
-                </FormControl>
-            </div>
-            <div className='mt-3'>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Location</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value=""
-                        label="Age"
-                    // onChange={handleChange}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
-            <div className='mt-3'>
-                <FormControl fullWidth>
-                    <TextareaAutosize
-
-                        aria-label="minimum height"
-                        minRows={4}
-                        placeholder="Minimum 3 rows"
-                        style={500}
-                    />
-                </FormControl>
-            </div>
-            <div className='mt-3'>
-                <label>media</label>
-                <hr></hr>
-                <FormControl>
-                    <label htmlFor="icon-button-file">
-                        <InputFile accept="image/*" id="icon-button-file" type="file" />
-                        <div className='input_box'>
-                            <IconButton color="primary" aria-label="upload picture" component="span">
-                                <PhotoCamera />
-                            </IconButton>
+        <SetDipIn.Consumer >{(setDip) => {
+            return <>
+                <div className='form-container'>
+                    <span style={{ float: "right" }}><Exit onClick={() => setDip(false)} /></span>
+                    <h4 className='profile_title' style={{ textAlign: 'center' }}>
+                        Dip in</h4>
+                    <hr></hr>
+                    <div className='p-0'>
+                        <div className='mt-3'>
+                            <select className="form-control" name='restaurant_id' onChange={onChangeEvent}>
+                                <option selected>Select Restaurant</option>
+                                {data.map((each) => {
+                                    return each.restaurant_id == restaurant_id ?
+                                        <option value={each.restaurant_id} selected>{each.restaurant_name}</option> :
+                                        <option value={each.restaurant_id}>{each.restaurant_name}</option>
+                                })}
+                            </select>
                         </div>
-                    </label>
+                        <div className='mt-3'>
 
-                </FormControl>
-                
+                            <div className='mt-3'>
+                                <select className="form-control" name='location_id' onChange={onChangeEvent}>
+                                    <option selected>Select Location</option>
+                                    {location == undefined ? '' : location.map((each) => {
+                                        return <option value={each.location_id} selected>{each.location_name}</option>
+                                    })}
+                                </select>
+                            </div>
+                        </div>
+                        <div className='mt-3'>
+                            <FormControl fullWidth >
+                                <TextareaAutosize
+                                    className='p-1'
+                                    aria-label="minimum height"
+                                    minRows={4}
+                                    placeholder="Minimum 3 rows"
+                                    style={500}
+                                />
+                            </FormControl>
+                        </div>
+                        <div className='mt-3 row p-2'>
+                            <label><b>media</b></label>
 
-            </div>
-            <div className='mt-3'>
-            <button className='btn btn-primary m-auto done d-block'>Post</button>
-            </div>
+                            <FormControl className='col-lg-2 dip-div'>
+                                <label htmlFor="icon-button-file">
+                                    <InputFile accept="image/*" id="icon-button-file" type="file" onChange={uploadPicture} />
+                                    <div className='input_box'>
+                                        <IconButton color="primary" aria-label="upload picture" component="span">
+                                            <PhotoCamera />
+                                        </IconButton>
+                                    </div>
+                                </label>
+                            </FormControl>
+                            <div id='dip-uploaded-iamges'>
+                                {imagepath.map((img)=>{
+                                    return <div className='dip-imag-container ml-1 col-lg-2'>
+                                                 <img src={img} />
+                                   </div>
+                                })}
 
-        </div></>
-    }}
-        
+                            </div>
+                        </div>
+                        <div className='mt-3'>
+                            <button className='btn btn-primary m-auto done d-block' onClick={saveDipin()}>Post</button>
+                        </div>
+                    </div>
+                </div>
+            </>
+        }}
+
         </SetDipIn.Consumer>
     </>)
 }

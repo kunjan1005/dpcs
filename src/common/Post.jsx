@@ -56,7 +56,7 @@ const Post = (props) => {
 
 
                     <h6 className="card-title">
-                        <NavLink to='/profile#activities' style={{ color: "#d31f33" }}>
+                        <NavLink to={`/profile?user_id=${post.user_id}#activities`} style={{ color: "#d31f33" }}>
                             <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name}
                         </NavLink>
                         <span className='post_side_title' style={{ color: "black" }}> {props.review == 1 ? 'Reviewed' : 'Dip in'} {post.restaurant_name != null ?

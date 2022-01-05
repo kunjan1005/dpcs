@@ -2,59 +2,66 @@ import lodash from 'lodash'
 let intialState = {
     item: [],
     totalPrice: 0,
-    empty:true
+    empty: true
 }
 const cartReducer = (state = intialState, action) => {
     switch (action.type) {
-        case 'USER_CART_DATA':
-            if(action.payload==undefined){
-                return {...state}
+        case 'STORE_CART_DATA':
+            if (action.payload == undefined) {
+                return { ...state }
             }
             return {
-                ...state,empty:false,
+                ...state, empty: false,
                 item: action.payload,
-                totalPrice: action.payload.map(o => parseFloat(o.item_price)).reduce((a, c) => { return a + c })
+                totalPrice: action.payload.map(o => parseFloat(o.cart_item_price)).reduce((a, c) => { return a + c })
             }
-            case 'USER_CART_DATA_GET':
-                return state
+        case 'USER_CART_DATA_GET':
+            return { ...state }
         case 'INCREMENT':
-            console.log(action.payload)
-            var updatePlusCart = state.item.map((each) => {
-                if (action.payload == each.cart_id) {
-                    return { ...each, quantity: parseInt(each.quantity) + 1 }
-                } else {
-                    return each
-                }
-            })
-            return {
+            var data = {
                 ...state,
-                totalPrice: updatePlusCart.reduce((a, b) => {
-                    if(b==undefined){
-                        return parseInt(a.quantity) * parseFloat(a.item_price) 
-                    }else{
-                    return parseInt(a.quantity) * parseFloat(a.item_price) + parseInt(b.quantity) * parseFloat(b.item_price)
+                item: state.item.map((each) => {
+                    if (action.payload == each.cart_id) {
+                        return {
+                            ...each, quantity: parseInt(each.quantity) + 1,
+                            cart_item_price: (parseInt(each.quantity) + 1) * parseFloat(each.item_detail.item_price)
+                        }
+                    } else {
+                        return each
                     }
                 }),
-                item: updatePlusCart
+            }
+            return {
+                ...data, totalPrice: data.item.length == 1 ? data.item[0].cart_item_price : data.item.reduce((a = 0, b) => {
+                    return a + b.item_detail.item_price * b.quantity
+                })
             }
         case 'DECREMENT':
-            var updatePlusCart = state.item.map((each) => {
-                if (action.payload == each.cart_id) {
-                    return { ...each, quantity: each.quantity == 0 ? 1 : parseInt(each.quantity) - 1 }
-                } else {
-                    return each
-                }
-            })
-            return {
-                ...state,  totalPrice: updatePlusCart.reduce((a, b) => {
-                    if(b==undefined){
-                        return parseInt(a.quantity) * parseFloat(a.item_price) 
-                    }else{
-                    return parseInt(a.quantity) * parseFloat(a.item_price) + parseInt(b.quantity) * parseFloat(b.item_price)
+            var data = {
+                ...state,
+                item: state.item.map((each) => {
+                    if (action.payload == each.cart_id) {
+                        return {
+                            ...each, quantity: parseInt(each.quantity) - 1,
+                            cart_item_price: (parseInt(each.quantity) - 1) * parseFloat(each.item_detail.item_price)
+                        }
+                    } else {
+                        return each
                     }
                 }),
-                item: updatePlusCart
             }
+            return {
+                ...data, totalPrice: data.item.length == 1 ? data.item[0].cart_item_price : data.item.reduce((a = 0, b) => {
+                    return a + b.item_detail.item_price * b.quantity
+                })
+            }
+        case 'DELETE_CART_ITEM':
+            return {
+                ...state, item: state.item.filter((each) => {
+                    return each.cart_id != action.payload
+                })
+            }
+
         default: return state
     }
 }

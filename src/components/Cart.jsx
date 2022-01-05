@@ -14,10 +14,10 @@ const Cart = () => {
     let {totalPrice}=state
     let {sid}=useParams('sid')
     useEffect(()=>{dispatch(cartData(sid))},[2])
-    if(state.empty){
-        return  <div class="cart-header">
-           <h3 class="cart-heading m-auto mt-3">Your cart is empty</h3>
-        </div>
+    if (_.isEmpty(state.item)) {
+        return <div class="error text-center mt-3">
+                  <h3 class="cart-heading m-auto mt-3">Your cart is empty</h3>
+                </div>
     }
     return (
         <>
@@ -30,7 +30,7 @@ const Cart = () => {
                 <hr/>
                 <div className="cart-items-container">
                     <Scrollbars>
-                      <CartList />
+                      <CartList refresh={()=>dispatch(cartData(sid))} />
                     </Scrollbars>
 
                 </div>
