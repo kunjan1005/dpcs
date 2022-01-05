@@ -10,15 +10,25 @@ import { storeOrder, storeOrderDetails } from '../actions/index'
 import { useSelector } from "react-redux";
 import env from "../env";
 import OrderDetail from "./OrderDetail";
+import _ from 'underscore'
+import Loading from '../common/Loading'
 
 const MyOrders = () => {
     let [orderDetails, showOrderDetails] = useState(false)
+    let [orderdata,setOrder]=useState()
     let [size, setsize] = useState(window.screen.width)
     let dispatch = useDispatch()
     let { orders } = useSelector((state) => state.restaurantOrderReducer)
     useEffect(() => {
         dispatch(storeOrder())
+        setTimeout(()=>{
+            setOrder(orders)
+          },900)
     }, [1])
+   
+    if(_.isEmpty(orderdata)){
+      return <Loading/>
+    }
     window.addEventListener('resize', () => { setsize(window.screen.width) })
     return (<>
         <div className="conntainer pt-2 row mt-2">
