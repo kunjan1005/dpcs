@@ -13,12 +13,13 @@ import { toast } from "react-toastify";
 import { storefollowersAndFollowingList,storeUserProfile } from "../actions";
 // import ProfileDropDown from "../custom/ProfiledropDown";
 const Profile = () => {
-  let [user, setUser] = useState({})
+  // let [user, setUser] = useState({})
   let location = useLocation()
   let tabindex = location.hash.split('#')[1]
   let search = location.search
   let other_user_id = search.split('=')[1]
   let state = useSelector((state) => state.userReducer)
+  let user=state.data
   let navigate = useNavigate()
   let dispatch = useDispatch()
   useEffect(async() => {
@@ -28,21 +29,9 @@ const Profile = () => {
     if (response.login) {
       if (other_user_id == response.user.user_id) {
         dispatch(storeUserProfile())
-        setTimeout(() => {
-          setUser(state.data)
-        }, 900)
-      }else if(other_user_id==undefined) {
+      }
+      else if(other_user_id==undefined) {
         dispatch(storeUserProfile())
-        setTimeout(() => {
-          setUser(state.data)
-        }, 900)
-      }else{
-         // let followers = await axios.post(`${env.URL}/dipicious/api/user/user_id`, jsonData, {
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'Authorization': 'Basic cm9vdDoxMjM='
-        //   }
-        // })
       }
     } else {
       navigate('/login')
