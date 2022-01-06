@@ -9,6 +9,10 @@ import { SetDipIn } from '../components/Restaurant'
 import { getLocation } from '../actions/index'
 import { useEffect } from 'react'
 import img from '../images/dpcs_logo.png'
+import { isUserLoging } from '../authorization/useAuth'
+import axios from 'axios'
+import env from '../env'
+import { toast } from 'react-toastify'
 const InputFile = styled('input')({
     display: 'none',
 });
@@ -18,9 +22,8 @@ const CustomForm = ({ data, restaurant_id }) => {
         restaurant_id,
         location_id: '',
         discription: "",
-        flag: 1
+        post_type: 1
     })
-    let [location, setLocation] = useState([])
     let { locations } = useSelector((state) => state.restaurantReducer)
     useEffect(() => {
         dispatch(getLocation(restaurant_id))
@@ -37,14 +40,33 @@ const CustomForm = ({ data, restaurant_id }) => {
             return { ...prev, [e.target.name]: e.target.value }
         })
         dispatch(getLocation(formData.restaurant_id))
-        setLocation(locations)
+    
     }
     const saveDipin = () => {
+       let {user}= isUserLoging()
+       let { user_id, access_token, lang } =user
        let formDataPost=new FormData()
        formDataPost.append('restaurant_id',formData.restaurant_id)
        formDataPost.append('location_id',formData.location_id)
        formDataPost.append('discription',formData.discription)
-       formDataPost.append('flag',formData.flag)
+       formDataPost.append('post_type',formData.post_type)
+       formDataPost.append('images',images)
+       formDataPost.append('user_id', user_id)
+       formDataPost.append('access_token', access_token)
+       formDataPost.append('lang', lang)
+       axios.post(`${env.URL}/dipicious/api/user/add_post`, formDataPost, {
+           headers: {
+               'Content-Type': 'multipart/form-data',
+               'Authorization': 'Basic cm9vdDoxMjM='
+
+           }
+       }).then((response)=>{
+        if(response.data.flag){
+             toast.success(response.data.msg)
+        }else{
+            toast.error('something went wrong..')
+        }
+       })
        
     //    return ''
     }
@@ -70,9 +92,9 @@ const CustomForm = ({ data, restaurant_id }) => {
                         <div className='mt-3'>
 
                             <div className='mt-3'>
-                                <select className="form-control" name='location_id' onChange={onChangeEvent}>
+                                <select className="form-control" name='location_id' onChange={onChangeEvent} defaultValue={formData.location_id}>
                                     <option selected>Select Location</option>
-                                    {location == undefined ? '' : location.map((each) => {
+                                    {locations == undefined ? '' : locations.map((each) => {
                                         return <option value={each.location_id} selected>{each.location_name}</option>
                                     })}
                                 </select>
@@ -86,6 +108,8 @@ const CustomForm = ({ data, restaurant_id }) => {
                                     minRows={4}
                                     placeholder="Minimum 3 rows"
                                     style={500}
+                                    name='discription'
+                                    onChange={onChangeEvent}
                                 />
                             </FormControl>
                         </div>
@@ -112,7 +136,7 @@ const CustomForm = ({ data, restaurant_id }) => {
                             </div>
                         </div>
                         <div className='mt-3'>
-                            <button className='btn btn-primary m-auto done d-block' onClick={saveDipin()}>Post</button>
+                            <button className='btn btn-primary m-auto done d-block' onClick={saveDipin}>Post</button>
                         </div>
                     </div>
                 </div>

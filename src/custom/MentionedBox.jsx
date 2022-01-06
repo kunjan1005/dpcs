@@ -1,72 +1,98 @@
 import React from 'react'
 import { useState } from 'react'
-const sampleData = [{ id: 1, name: "kunjan" }, { id: 2, name: "raj" }, { id: 3, name: 'kuldeep' }]
+import axios from 'axios'
+import { isUserLoging } from '../authorization/useAuth'
+import env from '../env'
 const MentionedBox = (props) => {
-    const [data,setData]=useState(sampleData)
+    const [data, setData] = useState([])
     const [search, setSearch] = useState('')
-    const [mention, setMentined] = useState([{id:"",name:""}])
-    const onChangeEvent = (e) => {
+    const [mention, setMentined] = useState([])
+    const onChangeEvent = async (e) => {
+        e.preventDefault()
         let value = e.target.value
         let prefix = value.split('@')
+        setSearch(e.target.value)
         if (prefix[0] == '') {
-            setSearch(e.target.value)
+            let data = isUserLoging()
+            let { user_id, lang, access_token } = data.user
+            let jsonData = JSON.stringify({ user_id, lang, access_token, search: prefix[1] })
+            let response = await axios.post(`${env.URL}/dipicious/api/user/user_search_table_booking`, jsonData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic cm9vdDoxMjM='
+                }
+            })
+            
+            setData(response.data.data)
         } else {
             setSearch('')
         }
     }
-    const onEnterPress = (e) => {
-    //     if (e.key == 'Enter') {
-    //         e.preventDefault()
-    //         setMentined((prev) => {
-    //             return [...prev, search]
-    //         })
-    //         setSearch('')
-            
-    //     }
+    const saveMentioned = (id) => {
+        setMentined((prev) => {
+            let result = data.filter((each) => {
+                return each.user_id == id
+            })
+            return [...prev, result[0]]
+        })
+        props.mentioned((prev) => {
+            let [result] = data.filter((each) => {
+                return each.user_id == id
+            })
+            return {
+                ...prev,
+                going_with: [...prev.going_with, result.user_id]
+            }
+        })
+        setSearch('')
+        setData([])
     }
-    const saveMentioned=(id)=>{
-        alert(id)
-       setMentined(()=>{
-          return data.map((each)=>{
-              return each.id==id
-          })
-       })
+    const cleanMention = (id) => {
+        setMentined((prev) => {
+            return prev.filter((each) => {
+                return each.user_id != id
+            })
+        })
+       
+        props.mentioned((prev) => {
+            return {
+                ...prev, going_with: prev.going_with.filter((each) => {
+                    return each != id
+                })
+            }
+        })
     }
     const suggestions = () => {
-       return sampleData.filter((each,index)=>{
-               let pattern=`*${search}*`
-               return pattern.match(each.name);   
-
-       })
+        return data
     }
     return (<>
         <div className='description'>
             <div id="master_div">
-                <div id="categories">
-                    {mention.map((each, index) => {
-                        return <span key={index}>{each}<small>&times;</small></span>
+                {mention.length != 0 ? <div id="categories">
+                    {mention.map((each) => {
+                        return <span key={each.user_id}>{each.username}<small onClick={() => cleanMention(each.user_id)}>&times;</small></span>
 
                     })}
 
-                </div>
+                </div> : ''}
                 <div id="input">
                     <input type="text"
                         value={search}
                         onChange={onChangeEvent}
-                        onKeyPress={onEnterPress}
+                        // onKeyPress={onEnterPress}
                         placeholder='@go with'
                         name={props.name}
                     />
                 </div>
-                {suggestions().length!=0?
-                <div className='suggestions'>
-                    <ul>
-                       {suggestions().map((sugge,index)=>{
-                           return  <li onClick={()=>saveMentioned(sugge.id)}>{sugge.name}</li>
-                       })}
-                    </ul>
-                </div>
-                :''}
+                {suggestions().length != 0 ?
+                    <div className='suggestions'>
+                        <ul>
+                            {suggestions().map((sugge) => {
+                                return <li onClick={() => saveMentioned(sugge.user_id)} key={sugge.user_id}>{sugge.username}</li>
+                            })}
+                        </ul>
+                    </div>
+                    : ''}
             </div>
         </div>
     </>)

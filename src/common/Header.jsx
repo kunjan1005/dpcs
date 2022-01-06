@@ -28,6 +28,16 @@ const Header = () => {
         let size = window.screen.width
         setSize(size)
     })
+    const onappRedirect=()=>{
+        if(navigator.userAgent.toLowerCase().indexOf("android") > -1){
+            window.location.href = 'https://play.google.com/store/apps/details?id=com.app.dipiciousnew';
+        }
+        else if(navigator.userAgent.toLowerCase().indexOf("iphone") > -1){
+            window.location.href = 'https://apps.apple.com/app/capsigo/id1547746310';
+        }else {
+            window.location.href = 'https://capsigo.com';
+        }
+    }
 
     return (
 
@@ -80,7 +90,8 @@ const Header = () => {
                                     <Tooltip title='dip'>
                                         <NavLink className='links' activeclass='active' to='#'
                                             onClick={() => {
-                                                toast.warn('Download Application for full user Experience', { position: 'top-center' })
+                                                onappRedirect()
+                                                // toast.warn('Download Application for full user Experience', { position: 'top-center' })
                                             }}><div className="wishlist_icon">
                                                 {/* <TouchAppIcon className='header_btn' /> */}
                                                 <img src={add} />

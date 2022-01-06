@@ -40,9 +40,9 @@ const Post = (props) => {
                         textAlign: 'right',
                         color: "whitesmoke",
                         borderRadius: "0 1rem 1rem 0",
-                        backgroundColor: props.review == 1 ? 'lightgreen' : "#d31f33",
+                        backgroundColor: props.review == 1 ? 'lightgreen' :post.post_type==1?"#d31f33":post.post_type==2?"lightgreen":"orange",
                         padding: "5px 50px 5px 5px", display: "inline-block"
-                    }}><b>{props.review == 1 ? 'Reviewed' : 'Dip in'}</b></span>
+                    }}><b>{props.review == 1 ? 'Reviewed' : post.post_type==1?"Dip in":post.post_type==2?"Reviewed":"Dip out"}</b></span>
 
                     {props.review == 1 ? <span style={{
                         float: "right",
@@ -59,7 +59,7 @@ const Post = (props) => {
                         <NavLink to={`/profile?user_id=${post.user_id}#activities`} style={{ color: "#d31f33" }}>
                             <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />{post.name}
                         </NavLink>
-                        <span className='post_side_title' style={{ color: "black" }}> {props.review == 1 ? 'Reviewed' : 'Dip in'} {post.restaurant_name != null ?
+                        <span className='post_side_title' style={{ color: "black" }}> {props.review == 1 ? 'Reviewed' : post.post_type==1?"Dip in":post.post_type==2?"Reviewed":"Dip out"} {post.restaurant_name != null ?
                             <NavLink to={`/restaurant/${post.restaurant_id}`}>
                                 <span style={{ color: "orange" }} className="resturant_name">@{post.restaurant_name}</span>
                             </NavLink> : ""} {post.location_name !== null ? <span>
