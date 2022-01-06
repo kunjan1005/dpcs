@@ -11,6 +11,7 @@ import Slider from "react-slick";
 import { LocationOn } from "@material-ui/icons";
 import env from "../env";
 import {toast} from 'react-toastify'
+import onappRedirect from "../authorization/redirectApplication";
 
 
 const Post = (props) => {
@@ -79,7 +80,6 @@ const Post = (props) => {
                         </div>
                     })}
                 </Slider>
-                {/* <img className="card-img-top" src={post.picture} alt="Card image cap" /> */}
                 <div className="card-body">
                     <h5 className="card-title">{post.title}</h5>
                     <p className="card-text">{post.discription}</p>
@@ -89,17 +89,23 @@ const Post = (props) => {
                     <span className='post-icons'>
                         {post.is_like==1? <Tooltip title='liked'>
 
-                            <LikeIcon className='post-icon' style={{ color: "palevioletred" }} onClick={() => { dispatch(dislike(post.post_id)) }} />
+                            <LikeIcon className='post-icon' style={{ color: "palevioletred" }}
+                            //  onClick={() => { dispatch(dislike(post.post_id)) }}
+                                onClick={onappRedirect}
+                              />
                         </Tooltip> : <Tooltip title='like'>
-                            <LikeIcon className='post-icon' onClick={() => { dispatch(like(post.post_id)) }} />
+                            <LikeIcon className='post-icon'
+                             onClick={() => { dispatch(like(post.post_id)) }}
+                             onClick={onappRedirect}
+                             />
                         </Tooltip>}
 
-                        <NavLink 
-                        // to={`/restaurant/${post.title}`}
-                        to='#'
+                     
+                      
+                        <Comment className='post-icon'  
                         onClick={()=>{
-                            toast.warn('Download Application for full user Experience',{position:'top-center'})}} 
-                        style={{ color: "black" }}><Comment className='post-icon' /></NavLink>
+                            onappRedirect()
+                        }}  />
                     </span>
                 </div>
             </div>

@@ -8,7 +8,7 @@ import { userActivity, userFavorites, userfeedback, userPoints } from "../action
 import Review from "../common/Review";
 import Point from "./Points";
 
-const ProfileTabContainer = () => {
+const ProfileTabContainer = ({other_user_id}) => {
     let state = useSelector((state) => state.profileTabReducer)
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]

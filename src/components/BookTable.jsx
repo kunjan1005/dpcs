@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import env from '../env'
 import Exit from '@material-ui/icons/Clear'
-import { NavLink } from 'react-router-dom'
+import { NavLink,useNavigate } from 'react-router-dom'
 import MentionedBox from '../custom/MentionedBox'
 import axios from 'axios'
 import { isUserLoging } from '../authorization/useAuth'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getLocation } from '../actions'
+import { toast } from 'react-toastify'
+
 
 
 let guest = []
@@ -35,13 +37,15 @@ const BookTable = (props) => {
         date: "",
         time: "",
         no_of_people: 0,
-        going_with: [],
+        going_with:'',
         description: "",
         location_id: '',
         restaurant_id: props.restaurant_id,
+        booking_table_id:''
     })
     let { locations } = useSelector((state) => state.restaurantReducer)
     let dispatch = useDispatch()
+    let navigate=useNavigate()
     const onChangeEvent = (e) => {
         setTableDetails((prev) => {
             return { ...prev, [e.target.name]: e.target.value }
@@ -51,8 +55,9 @@ const BookTable = (props) => {
         dispatch(getLocation(props.restaurant_id))
     }, [1])
 
-    const bookAtable = async () => {
+    const bookAtable = async (e) => {
         try {
+            e.preventDefault()
             let data = isUserLoging()
             let { user_id, lang, access_token } = data.user
             let jsonData = JSON.stringify({ user_id, lang, access_token,...tableDetails})
@@ -62,7 +67,12 @@ const BookTable = (props) => {
                     'Authorization': 'Basic cm9vdDoxMjM='
                 }
             })
-            console.log()
+            if(response.data.flag){
+                toast.success('table booked successfully...')
+                props.state(false)
+            }else{
+                toast.error("sorry you can't book a table")
+            }
         } catch (err) {
 
         }

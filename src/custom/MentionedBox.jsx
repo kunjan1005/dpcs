@@ -6,7 +6,7 @@ import env from '../env'
 const MentionedBox = (props) => {
     const [data, setData] = useState([])
     const [search, setSearch] = useState('')
-    const [mention, setMentined] = useState([])
+    const [mention, setMentined] = useState({user_id:"",username:""})
     const onChangeEvent = async (e) => {
         e.preventDefault()
         let value = e.target.value
@@ -33,7 +33,7 @@ const MentionedBox = (props) => {
             let result = data.filter((each) => {
                 return each.user_id == id
             })
-            return [...prev, result[0]]
+            return {...prev,user_id:result[0].id,username:result[0].username}
         })
         props.mentioned((prev) => {
             let [result] = data.filter((each) => {
@@ -41,26 +41,27 @@ const MentionedBox = (props) => {
             })
             return {
                 ...prev,
-                going_with: [...prev.going_with, result.user_id]
+                going_with:mention.username
             }
         })
         setSearch('')
         setData([])
     }
     const cleanMention = (id) => {
-        setMentined((prev) => {
-            return prev.filter((each) => {
-                return each.user_id != id
-            })
-        })
-       
-        props.mentioned((prev) => {
-            return {
-                ...prev, going_with: prev.going_with.filter((each) => {
-                    return each != id
-                })
-            }
-        })
+        // setMentined((prev) => {
+        //     return prev.filter((each) => {
+        //         return each.user_id != id
+        //     })
+        // })
+        setMentined({user_id:"",username:""})
+        props.mentioned('')
+        // props.mentioned((prev) => {
+        //     return {
+        //         ...prev, going_with: prev.going_with.filter((each) => {
+        //             return each != id
+        //         })
+        //     }
+        // })
     }
     const suggestions = () => {
         return data
@@ -69,10 +70,11 @@ const MentionedBox = (props) => {
         <div className='description'>
             <div id="master_div">
                 {mention.length != 0 ? <div id="categories">
-                    {mention.map((each) => {
+                    {/* {mention.map((each) => {
                         return <span key={each.user_id}>{each.username}<small onClick={() => cleanMention(each.user_id)}>&times;</small></span>
 
-                    })}
+                    })} */}
+                    <span key={mention.user_id}>{mention.username}<small onClick={() => cleanMention()}>&times;</small></span>
 
                 </div> : ''}
                 <div id="input">
