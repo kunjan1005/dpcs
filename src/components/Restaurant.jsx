@@ -15,7 +15,7 @@ import env from '../env'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSingleRestaurant ,fatchRetaurant, getRestaurantList} from '../actions/index'
+import { getSingleRestaurant, fatchRetaurant, getRestaurantList } from '../actions/index'
 import Loading from '../common/Loading'
 import _ from 'underscore'
 import BookTable from './BookTable';
@@ -45,7 +45,7 @@ const Restaurant = () => {
         dispatch(getRestaurantList())
         dispatch(getSingleRestaurant(restaurant_id.sid))
         dispatch(getReviewRestaurant(restaurant_id.sid))
-        
+
         return () => {
             setRestaurant({})
         }
@@ -72,8 +72,10 @@ const Restaurant = () => {
     return (<>
         <SetDipIn.Provider value={setDip}>
             <div className="container-fluid mt-2 mb-3">
-                {open ? <BookTable img={restaurant.image_restaurant[0].image_url} state={setOpen} {...userData.user} /> : ''}
-                {dip ? <DipinForm restaurant_id={restaurant_id.sid}/> : ""}
+                {open ? <BookTable img={restaurant.image_restaurant[0].image_url}
+                         restaurant_id={restaurant_id.sid} 
+                         state={setOpen} {...userData.user} /> : ''}
+                {dip ? <DipinForm restaurant_id={restaurant_id.sid} /> : ""}
                 <div className="row no-gutters">
                     <div className="col-md-5 pr-2">
                         <div className="res-card">
@@ -200,10 +202,6 @@ const Restaurant = () => {
                                                     <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
                                                 </Tooltip></div></div>}
                                 </div>
-
-
-
-
                             </div>
                             <div className="res-card mt-2"> <span className='profile_title'><b>Cuisine</b></span>
                                 <hr />
@@ -303,8 +301,6 @@ const Restaurant = () => {
                                                 })}
 
                                             </TableRow>
-
-
                                         </TableBody>
                                     </Table>
                                 </TableContainer>

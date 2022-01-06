@@ -3,8 +3,13 @@ import env from '../env'
 import Exit from '@material-ui/icons/Clear'
 import { NavLink } from 'react-router-dom'
 import MentionedBox from '../custom/MentionedBox'
+import axios from 'axios'
+import { isUserLoging } from '../authorization/useAuth'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getLocation } from '../actions'
 
-let data = [{ id: 1, name: "barot kunjan" }, { id: 2, name: 'dipak thakor' }]
+
 let guest = []
 for (let i = 1; i <= 50; i++) { guest.push(i) }
 function getTimeRanges(interval, language = window.navigator.language) {
@@ -26,18 +31,41 @@ function getTimeRanges(interval, language = window.navigator.language) {
 let timeSlot = getTimeRanges(30, 'en')
 
 const BookTable = (props) => {
-    const [user, setUser] = useState({
-        date:"",
-        time:"",
-        numberofpeople:[],
-        description:""
+    const [tableDetails, setTableDetails] = useState({
+        date: "",
+        time: "",
+        no_of_people: 0,
+        going_with: [],
+        description: "",
+        location_id: '',
+        restaurant_id: props.restaurant_id,
     })
-
+    let { locations } = useSelector((state) => state.restaurantReducer)
+    let dispatch = useDispatch()
     const onChangeEvent = (e) => {
-         console.log(e)
-        setUser((prev)=>{
-            return {...prev,[e.targat.name]:e.targat.value}
+        setTableDetails((prev) => {
+            return { ...prev, [e.target.name]: e.target.value }
         })
+    }
+    useEffect(() => {
+        dispatch(getLocation(props.restaurant_id))
+    }, [1])
+
+    const bookAtable = async () => {
+        try {
+            let data = isUserLoging()
+            let { user_id, lang, access_token } = data.user
+            let jsonData = JSON.stringify({ user_id, lang, access_token,...tableDetails})
+            let response = await axios.post(`${env.URL}/dipicious/api/user/book_table`, jsonData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic cm9vdDoxMjM='
+                }
+            })
+            console.log()
+        } catch (err) {
+
+        }
     }
 
     return (<>
@@ -51,30 +79,35 @@ const BookTable = (props) => {
                     alt="" />Book a table</h4>
                 <hr></hr>
                 <div className='d-flex justify-content-between book-table'>
-                    <input type="date" className="date-picker" name='datepicker'></input>
+                    <input type="date" className="date-picker"
+                        name='date'
+                        value={tableDetails.date}
+                        onChange={onChangeEvent}></input>
 
-                    <select className='guest'>
-                        {guest.map((e) => <option value={e}>{e} Guests</option>)}
+                    <select className='guest' name='no_of_people' value={tableDetails.no_of_people} onChange={onChangeEvent}>
+                        {guest.map((e, index) => <option value={e} key={index + 1}>{e} People</option>)}
                     </select>
                 </div>
-                <select className='guest'>
-                    {timeSlot.map((e) => <option value={e}>{e}</option>)}
+                <select className='guest' name='time' value={tableDetails.time} onChange={onChangeEvent}>
+                    {timeSlot.map((e, index) => <option value={e} key={index + 1}>{e}</option>)}
                 </select>
-                <select className='location'>
+                <select className='location' name='location_id' value={tableDetails.location_id} onChange={onChangeEvent}>
                     <option selected>Select Location</option>
-                    <option>sola, Ahmedabad</option>
+                    {locations.map((each) => {
+                        return <option value={each.location_id} key={each.location_id}>{each.location_name}</option>
+                    })}
                 </select>
                 <div>
                     {/* <textarea className='gowith' placeholder='@Go With'></textarea> */}
-                    <MentionedBox/>
+                    <MentionedBox mentioned={setTableDetails} />
 
-                    <textarea placeholder='Description' 
-                     value={user.description}
-                     className='description'
-                     onChange={onChangeEvent}
-                     name='description'></textarea>
+                    <textarea placeholder='Description'
+                        value={tableDetails.description}
+                        className='description'
+                        onChange={onChangeEvent}
+                        name='description'></textarea>
                 </div>
-                <button className='btn btn-primary m-auto done d-block'>Done</button>
+                <button className='btn btn-primary m-auto done d-block' onClick={bookAtable}>Done</button>
             </form>
         </div>
     </>)
