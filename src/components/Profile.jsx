@@ -30,7 +30,10 @@ const Profile = () => {
       if (other_user_id == response.user.user_id) {
         dispatch(storeUserProfile())
       }
-      else if(other_user_id==undefined) {
+      else if(other_user_id!=undefined) {
+        dispatch(storeUserProfile(other_user_id))
+        
+      }else{
         dispatch(storeUserProfile())
       }
     } else {
@@ -111,7 +114,7 @@ const Profile = () => {
 
       </div>
       <br />
-      <ProfileTabContainer />
+      <ProfileTabContainer other_user_id={other_user_id} />
     </div>
   )
 }
