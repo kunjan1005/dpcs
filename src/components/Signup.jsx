@@ -30,7 +30,11 @@ const Singup = () => {
     const uploadImages = (e) => {
         let image = document.getElementById('profile_img')
         image.src = URL.createObjectURL(e.target.files[0])
-        forminputData.append('profile_pic', e.target.files[0])
+        const name = e.target.name
+        setFormData({
+            ...formData, [name]: e.target.files[0]
+        })
+        
     }
     const whileFillUpForm = (e) => {
         const name = e.target.name
@@ -51,15 +55,21 @@ const Singup = () => {
         } else if (formData.password == '') {
             toast.error('password required!')
         }
-        // for (const [key, value] of Object.entries(formData)) {
-        //     forminputData.append([key],value)
-        //   }
-          
-        // let jsonData=JSON.stringify({ ...formData })
+        forminputData.append('name',formData.name)
+        forminputData.append('username',formData.username)
+        forminputData.append('email',formData.email)  
+        forminputData.append('mobile',formData.mobile)
+        forminputData.append('password',formData.password)
+        forminputData.append('gender',formData.gender)
+        forminputData.append('lang',formData.lang)
+        forminputData.append('profile_pic',formData.profile_pic)
+
+        
          axios.post(`${env.URL}/dipicious/api/user/register`,forminputData,{
             headers:{
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic cm9vdDoxMjM='
+                'Authorization': 'Basic cm9vdDoxMjM=',
+                'Content-Type':'multipart/form-data'
             }
         }).then(async(response)=>{
             if(response.data.flag==1){
@@ -95,7 +105,7 @@ const Singup = () => {
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8xLzLf17gMCxAddkKdchnl_gc4d7KFgHUYZi19MtA8sp4-v1RNrQzjB1ufxOX4R4-e0s&usqp=CAU" id='profile_img' alt="" />
 
                                             <div className="file-loading">
-                                                <input id="avatar-1" name="profile_pic" type="file" onChange={uploadImages} />
+                                                <input id="avatar-1" name="profile_pic" type="file" onChange={uploadImages} multiple/>
                                             </div>
                                         </div>
 

@@ -9,6 +9,8 @@ import { isUserLoging } from '../authorization/useAuth'
 import _ from 'underscore'
 import Loading from '../common/Loading';
 import env from '../env'
+import { storeUserProfile } from '../actions';
+import {useSelector,useDispatch} from 'react-redux'
 const Editprofile = () => {
     let [isLoading, setLoading] = useState(true)
     let [user, setUser] = useState({
@@ -26,29 +28,30 @@ const Editprofile = () => {
 
     })
     let navigate = useNavigate()
+    let dispatch=useDispatch()
+    let state = useSelector((state) => state.userReducer)
+    let data=state.data
     const openFileUpload = () => {
         const fileInput = document.getElementById('edit_file')
         fileInput.click()
     }
     useEffect(() => {
-
-        setTimeout(() => {
-
-            let response = isUserLoging()
-            if (response.login) {
-
-                setUser(response.user)
-
-            } else {
-                navigate('/login')
-            }
-            setLoading(false)
-        }, 900);
+        dispatch(storeUserProfile())
+       
         return () => {
 
             setUser({})
         }
     }, [1])
+    setTimeout(() => {
+        let response = isUserLoging()
+        if (response.login) {
+            setUser(data)
+        } else {
+            navigate('/login')
+        }
+        setLoading(false)
+    }, 900);
     let formData = new FormData()
     const uploadImages = (e) => {
 
@@ -124,7 +127,7 @@ const Editprofile = () => {
             <div className='row col-md-8 col-12 m-auto mt-3 p-3  edit_profile_container'>
                 <div className='col-lg-3 col-12'>
                     <div className="circular m-auto">
-                        <input type="file" name='profile_pic' id='edit_file' onChange={uploadImages} style={{ display: 'none' }} />
+                        <input type="file" name='profile_pic' id='edit_file' onChange={uploadImages} style={{ display: 'none' }} multiple/>
                         <img src={user.profile_image} id='profile_img' />
                     </div>
                     <div className='edit_button mt-1 row'>
