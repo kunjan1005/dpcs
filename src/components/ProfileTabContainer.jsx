@@ -14,10 +14,10 @@ const ProfileTabContainer = ({other_user_id}) => {
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
     useEffect(() => {
-        dispatch(userActivity())
-        dispatch(userFavorites())
-        dispatch(userfeedback())
-        dispatch(userPoints())
+        dispatch(userActivity(other_user_id))
+        dispatch(userFavorites(other_user_id))
+        dispatch(userfeedback(other_user_id))
+        dispatch(userPoints(other_user_id))
     }, [0])
     return (
         <div className='col-lg-8 col-12 m-auto profile_post_container'>

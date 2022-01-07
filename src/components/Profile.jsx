@@ -10,7 +10,7 @@ import ProfileTabContainer from "./ProfileTabContainer";
 import env from '../env'
 import axios from 'axios'
 import { toast } from "react-toastify";
-import { storefollowersAndFollowingList,storeUserProfile } from "../actions";
+import { storefollowersAndFollowingList,storeOtherUserProfile,storeUserProfile } from "../actions";
 // import ProfileDropDown from "../custom/ProfiledropDown";
 const Profile = () => {
   // let [user, setUser] = useState({})
@@ -26,12 +26,14 @@ const Profile = () => {
     dispatch(storefollowersAndFollowingList())
 
     let response = isUserLoging()
+   
     if (response.login) {
       if (other_user_id == response.user.user_id) {
         dispatch(storeUserProfile())
       }
       else if(other_user_id!=undefined) {
-        dispatch(storeUserProfile(other_user_id))
+        // alert(other_user_id)
+        dispatch(storeOtherUserProfile(other_user_id))
         
       }else{
         dispatch(storeUserProfile())
@@ -74,6 +76,7 @@ const Profile = () => {
               <ul className="dropdown-menu">
                 <li className="text-center"><NavLink to='/logout'><p>Logout</p></NavLink></li>
                 <li className="text-center"><NavLink to="/restaurant/myorders"><p>Orders</p></NavLink></li>
+                <li className="text-center"><NavLink to="/restaurant/booking"><p>Table Reservations</p></NavLink></li>
               </ul>
             </div>
           </div>

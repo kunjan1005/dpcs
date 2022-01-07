@@ -29,46 +29,50 @@ const CustomForm = ({ data, restaurant_id }) => {
         dispatch(getLocation(restaurant_id))
 
     }, [1])
-    let images = []
+    // let images = []
+    let images=''
     let imagepath = []
     const uploadPicture = (e) => {
         imagepath.push(URL.createObjectURL(e.target.files[0]))
-        images.push(e.target.files[0])
+        // images.push(e.target.files[0])
+        images=e.target.files
     }
     const onChangeEvent = (e) => {
         setFormData((prev) => {
             return { ...prev, [e.target.name]: e.target.value }
         })
-        dispatch(getLocation(formData.restaurant_id))
-    
+        if (e.target.name == 'restaurant_id') {
+            dispatch(getLocation(e.target.value))
+        }
     }
     const saveDipin = () => {
-       let {user}= isUserLoging()
-       let { user_id, access_token, lang } =user
-       let formDataPost=new FormData()
-       formDataPost.append('restaurant_id',formData.restaurant_id)
-       formDataPost.append('location_id',formData.location_id)
-       formDataPost.append('discription',formData.discription)
-       formDataPost.append('post_type',formData.post_type)
-       formDataPost.append('images',images)
-       formDataPost.append('user_id', user_id)
-       formDataPost.append('access_token', access_token)
-       formDataPost.append('lang', lang)
-       axios.post(`${env.URL}/dipicious/api/user/add_post`, formDataPost, {
-           headers: {
-               'Content-Type': 'multipart/form-data',
-               'Authorization': 'Basic cm9vdDoxMjM='
+        let { user } = isUserLoging()
+        let { user_id, access_token, lang } = user
+        let formDataPost = new FormData()
+        formDataPost.append('restaurant_id', formData.restaurant_id)
+        formDataPost.append('location_id', formData.location_id)
+        formDataPost.append('discription', formData.discription)
+        formDataPost.append('post_type', formData.post_type)
+        formDataPost.append('images', images)
+        formDataPost.append('user_id', user_id)
+        formDataPost.append('access_token', access_token)
+        formDataPost.append('lang', lang)
+        console.log(formDataPost)
+        axios.post(`${env.URL}/dipicious/api/user/add_post`, formDataPost, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Basic cm9vdDoxMjM='
 
-           }
-       }).then((response)=>{
-        if(response.data.flag){
-             toast.success(response.data.msg)
-        }else{
-            toast.error('something went wrong..')
-        }
-       })
-       
-    //    return ''
+            }
+        }).then((response) => {
+            if (response.data.flag) {
+                toast.success(response.data.msg)
+            } else {
+                toast.error('something went wrong..')
+            }
+        })
+
+        //    return ''
     }
     return (<>
         <SetDipIn.Consumer >{(setDip) => {
@@ -118,7 +122,7 @@ const CustomForm = ({ data, restaurant_id }) => {
 
                             <FormControl className='col-lg-2 dip-div'>
                                 <label htmlFor="icon-button-file">
-                                    <InputFile accept="image/*" id="icon-button-file" type="file" onChange={uploadPicture} />
+                                    <InputFile accept="image/*" id="icon-button-file" type="file"  onChange={uploadPicture} multiple/>
                                     <div className='input_box'>
                                         <IconButton color="primary" aria-label="upload picture" component="span">
                                             <PhotoCamera />
@@ -127,10 +131,10 @@ const CustomForm = ({ data, restaurant_id }) => {
                                 </label>
                             </FormControl>
                             <div id='dip-uploaded-iamges'>
-                                {imagepath.map((img)=>{
+                                {imagepath.map((img) => {
                                     return <div className='dip-imag-container ml-1 col-lg-2'>
-                                                 <img src={img} />
-                                   </div>
+                                        <img src={img} />
+                                    </div>
                                 })}
 
                             </div>
