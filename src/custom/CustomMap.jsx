@@ -11,7 +11,7 @@ const CustomMap = (props) => {
     return (
   
             <GoogleMapExmaple
-              containerElement={<div style={{height:'400px',width:'500px'}} />}
+              containerElement={<div style={{height:'400px',width:'100%'}} />}
               mapElement={<div style={{height:'400px'}} />}
             />)
 }

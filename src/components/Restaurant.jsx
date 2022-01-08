@@ -138,7 +138,8 @@ const Restaurant = () => {
                         <div className="res-card mt-2">
                             <h6 className='profile_title'>Address</h6>
                             <div className="res-comment-section" style={{ width: "100%", height: "100%" }}>
-                              <ResturantMap lat={restaurant.lattitude} lng={restaurant.logtitude}/>
+                              <ResturantMap lat={restaurant.lattitude==undefined?userData.user.lattitude:restaurant.lattitude} 
+                                            lng={restaurant.logtitude==undefined?userData.user.logtitude:restaurant.logtitude}/>
                             </div>
 
                             <div className="res-comment-section">
