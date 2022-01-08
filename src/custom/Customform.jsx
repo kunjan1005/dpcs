@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FormControl, Input } from '@material-ui/core'
-import { PhotoCamera } from '@material-ui/icons'
+import { Height, PhotoCamera } from '@material-ui/icons'
 import { styled } from '@material-ui/styles'
 import Exit from '@material-ui/icons/Clear'
 import { TextareaAutosize, IconButton } from '@material-ui/core'

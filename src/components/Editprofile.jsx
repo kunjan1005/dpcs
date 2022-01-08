@@ -10,13 +10,14 @@ import _ from 'underscore'
 import Loading from '../common/Loading';
 import env from '../env'
 import { storeUserProfile } from '../actions';
-import {useSelector,useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 const Editprofile = () => {
     let [isLoading, setLoading] = useState(true)
     let [user, setUser] = useState({
         user_id: "",
         name: '',
         username: "",
+        access_token:'',
         website: '',
         dob: "",
         mobile: "",
@@ -24,31 +25,29 @@ const Editprofile = () => {
         description: "",
         lang: "",
         gender: "",
-        profile_pic: ''
+        profile_pic: '',
+        editMode:false
 
     })
     let navigate = useNavigate()
-    let dispatch=useDispatch()
+    let dispatch = useDispatch()
     let state = useSelector((state) => state.userReducer)
-    let data=state.data
+    let data = state.data
     const openFileUpload = () => {
         const fileInput = document.getElementById('edit_file')
         fileInput.click()
     }
     useEffect(() => {
         dispatch(storeUserProfile())
-       
-        return () => {
-
-            setUser({})
-        }
-    }, [1])
+    }, [0])
     setTimeout(() => {
         let response = isUserLoging()
-        if (response.login) {
-            setUser(data)
-        } else {
+        if (!response.login) {
             navigate('/login')
+        } else {
+            if(!user.editMode){
+                  setUser(data)
+            }
         }
         setLoading(false)
     }, 900);
@@ -57,14 +56,18 @@ const Editprofile = () => {
 
         let image = document.getElementById('profile_img')
         image.src = URL.createObjectURL(e.target.files[0])
-        formData.append('profile_pic', e.target.files[0])
+        const name = e.target.name
+        setUser((prev) => {
+            return { ...prev, [name]: e.target.files[0],editMode:true }
+        })
+
 
     }
     const whileFillUpForm = (e) => {
         const name = e.target.name
         let value = e.target.value
-        setUser(() => {
-            return { ...user, [name]: value }
+        setUser((prev) => {
+            return { ...prev, [name]: value,editMode:true}
         })
     }
     const onSubmitForm = async () => {
@@ -87,35 +90,34 @@ const Editprofile = () => {
         } else if (user.lang == '') {
             toast.error('language required!')
         } else {
-            let { user_id, access_token, lang } = user
-            formData.append('user_id', user_id)
-            formData.append('access_token', access_token)
-            formData.append('lang', lang)
-            axios.post(`${env.URL}/dipicious/api/user/user_profile_picture_update`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Basic cm9vdDoxMjM='
+            let response = isUserLoging()
+            let {access_token}=response.user
+            formData.append('profile_pic', user.profile_pic)
+            formData.append('user_id', user.user_id)
+            formData.append('access_token',access_token)
+            formData.append('name', user.name)
+            formData.append('username', user.username)
+            formData.append('email', user.email)
+            formData.append('mobile', user.mobile)
+            formData.append('website', user.website)
+            formData.append('description', user.description)
+            formData.append('gender', user.gender)
+            formData.append('dob', user.dob)
+            formData.append('lang', user.lang)
 
+            axios.post(`${env.URL}/dipicious/api/user/save_profile`, formData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic cm9vdDoxMjM=',
+                    'Content-Type': 'multipart/form-data',
                 }
-            }).then((result) => {
-                if (result.data.flag == 0) {
-                    toast.error('profile not updated..')
-                } else {
-                    console.log(result)
-                    let jsonData = JSON.stringify({ ...user })
-                    axios.post(`${env.URL}/dipicious/api/user/save_profile`, jsonData, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Basic cm9vdDoxMjM='
-                        }
-                    }).then(async (response) => {
-                        if (response.data.flag == 1) {
-                            toast.success('your account updated')
-                            navigate('/profile/edit')
-                        }
-                    })
+            }).then(async (response) => {
+                if (response.data.flag == 1) {
+                    toast.success('your account updated')
+                    navigate('/profile#activities')
                 }
             })
+
         }
 
     }
@@ -127,8 +129,8 @@ const Editprofile = () => {
             <div className='row col-md-8 col-12 m-auto mt-3 p-3  edit_profile_container'>
                 <div className='col-lg-3 col-12'>
                     <div className="circular m-auto">
-                        <input type="file" name='profile_pic' id='edit_file' onChange={uploadImages} style={{ display: 'none' }} multiple/>
-                        <img src={user.profile_image} id='profile_img' />
+                        <input type="file" name='profile_pic' id='edit_file' onChange={uploadImages} style={{ display: 'none' }} multiple />
+                        <img src={data.profile_image} id='profile_img' />
                     </div>
                     <div className='edit_button mt-1 row'>
                         <Button size='small' variant="outlined" className='btn col-5' onClick={openFileUpload}><Edit /></Button>&nbsp;
@@ -147,6 +149,7 @@ const Editprofile = () => {
                             <input type="text" className="form-control"
                                 id="" name='name' placeholder='Name'
                                 onChange={whileFillUpForm}
+                                // defaultValue={}
                                 value={user.name} />
                         </div>
                         <div className="mb-1 col-lg-6">
@@ -170,7 +173,7 @@ const Editprofile = () => {
                             <input type="text" className="form-control"
                                 id="" name='mobile' placeholder='Mobile No'
                                 onChange={whileFillUpForm}
-                                value={user.mobile ? user.mobile : user.temp_mobile_no} />
+                                value={user.mobile} />
                         </div>
                     </div>
                     <div className="mb-1 mt-1">
@@ -200,8 +203,8 @@ const Editprofile = () => {
                             <label>Select Gender</label>
                             <select name="gender" id="" className="form-control mt-1" onChange={whileFillUpForm}>
                                 <option value='' selected disabled>Select Gender</option>
-                                <option value="0">Male</option>
-                                <option value="1">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                         </div>
                     </div>
@@ -210,7 +213,7 @@ const Editprofile = () => {
                         <input type="date" className="form-control"
                             name='dob' placeholder=''
                             onChange={whileFillUpForm}
-                            value={user.dob} />
+                        />
                     </div>
 
 

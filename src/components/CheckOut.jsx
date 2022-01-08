@@ -63,13 +63,13 @@ const CheckOut = () => {
     return (<>
 
       {tabindex=='address'?<CustomAddressBook/>:''}
-        <div className="container py-2">
-          
-            <h3 className="text-center bg-danger text-white">Checkout</h3>
+      <h3 className="text-center bg-danger text-white" data-toggle="modal" data-target="#myModal">Checkout</h3>
+        <div className="container py-5">
 
             <button type="button" className="btn collapse-button mt-5" data-toggle="collapse" data-target="#demo">
                 <span className="float-left">Have a coupon?</span><span className="float-right">Click here to enter code</span>
             </button>
+            
             <div id="demo" className="collapse mt-3">
                 <input type="text" name="coupon" className="cc" placeholder="Enter coupon code here"></input>
             </div>
@@ -124,7 +124,7 @@ const CheckOut = () => {
                         <p>Knet<span className="float-right"><input type="radio" id="" name="payment_method" onChange={onchangesHandle} ></input></span></p>
                     </div>
 
-                    <button className="btn order-btn btn-lg mt-5" onClick={placeOrder}>Place Order<i className="fa fa-left-arrow"></i></button>
+                    <button className="btn order-btn btn-lg mt-5 mb-3" onClick={placeOrder}>Place Order<i className="fa fa-left-arrow"></i></button>
                 </div>
             </div>
         </div>
