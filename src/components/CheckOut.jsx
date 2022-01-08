@@ -63,7 +63,7 @@ const CheckOut = () => {
     return (<>
 
       {tabindex=='address'?<CustomAddressBook/>:''}
-      <h3 className="text-center bg-danger text-white" data-toggle="modal" data-target="#myModal">Checkout</h3>
+      <h3 className="text-center bg-danger text-white mt-4" data-toggle="modal" data-target="#myModal">Checkout</h3>
         <div className="container py-5">
 
             <button type="button" className="btn collapse-button mt-5" data-toggle="collapse" data-target="#demo">
