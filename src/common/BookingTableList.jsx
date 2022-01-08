@@ -26,7 +26,7 @@ const BookingTableList = () => {
     return (<>
         <div className="conntainer pt-2 row mt-2">
             <div className={orderDetails ? "col-lg-6" : "col-lg-8 m-auto"}>
-                <h4 className="text-center" style={{ width: "100% !important;" }}>My Orders</h4>
+                <h4 className="text-center" style={{ width: "100% !important;" }}>Table Reservation</h4>
                 <hr />
 
                 <div className="col-sm-10 m-auto">

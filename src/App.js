@@ -44,7 +44,7 @@ function App() {
 
       <div className="super_container">
         <Header />
-        <div style={{ backgroundColor: '#fafafa' }} className='html_content_body py-4'>
+        <div style={{ backgroundColor: '#fafafa' }} className='html_content_body pb-4'>
            <ScrollBar>
           <div className='container-fluid'>
             <Routes>
