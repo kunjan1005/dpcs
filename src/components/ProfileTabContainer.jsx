@@ -28,6 +28,7 @@ const ProfileTabContainer = ({other_user_id}) => {
                 <div className='col-md-3 col-3'><NavLink to='#reviews' className='links'><b>{state.reviews.total} </b><h5>REVIEWS</h5></NavLink></div>
                 <div className='col-md-3 col-3'><NavLink to='#points' className='links'><b>{state.points.total}</b><h5>POINTS</h5></NavLink></div>
             </div>
+            <hr />
             <div className='row post_container'>
                 {tabindex == 'activities' ? <Activity data={state.activity.item} /> : ""}
                 {tabindex == 'favriate' ? <Favorite data={state.favoriate.item} /> : ""}

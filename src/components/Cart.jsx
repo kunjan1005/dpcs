@@ -21,7 +21,7 @@ const Cart = () => {
     }
     return (
         <>
-            <div className="Cart-Container mt-3">
+            <div className="Cart-Container mt-4">
                 <div class="cart-header">
                     <h3 class="cart-heading">Shopping Cart</h3>
                     <h3 class="cart-heading">Total Amount : Kd {totalPrice}</h3>
