@@ -38,8 +38,9 @@ const AddresssBook = () => {
         <div className="container w-50 mt-3" style={{ backgroundColor: 'white', boxShadow: '1px 25px 25px grey,-1px -10px 25px grey' }}>
             <div className="row">
 
-                <h6 className="bg-danger text-white">Address Book</h6>
-                <h6 style={{ textAlign: "right", zIndex: '99', position: "absolute" }} onClick={() => navigate('#')}>Close</h6>
+                <h6 className="bg-danger text-white">Address Book
+                    <button type="button" class="btn-close" aria-label="Close" style={{ float: "right" }} onClick={() => navigate('#')}></button>
+                </h6>
                 <div className="col-sm-12 p-2" style={{ height: "30rem" }}>
                     <Scrollbars>
                         {state.item.map((each) => {
