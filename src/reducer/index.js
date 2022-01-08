@@ -7,6 +7,7 @@ import restaurantOrderReducer from "./restaurantOrderReducer";
 import cartReducer from "./cartReducer";
 import profileTabReducer from './profileTabReducer'
 import addressReducer from "./addressReducer";
+import bookingTableDetails from "./bookingTableDetails";
 import {combineReducers} from 'redux'
  const rootReducer=combineReducers({
      storePostData,
@@ -17,6 +18,7 @@ import {combineReducers} from 'redux'
      restaurantOrderReducer,
      profileTabReducer,
      cartReducer,
-     addressReducer
+     addressReducer,
+     bookingTableDetails
  })
  export default rootReducer
