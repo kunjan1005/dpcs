@@ -279,8 +279,8 @@ const storeTableBookingDetails = (id) => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
 
-        let response = await axios.post(`${env.URL}/dipicious/api/user/order_detail`,
-            JSON.stringify({ user_id, lang, latitude, longitude, access_token,order_id:id}), {
+        let response = await axios.post(`${env.URL}/dipicious/api/user/table_booking_list`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token}), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
