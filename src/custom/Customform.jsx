@@ -13,6 +13,8 @@ import { isUserLoging } from '../authorization/useAuth'
 import axios from 'axios'
 import env from '../env'
 import { toast } from 'react-toastify'
+import _ from 'underscore'
+import Loading from '../common/Loading'
 const InputFile = styled('input')({
     display: 'none',
 });
@@ -21,9 +23,10 @@ const CustomForm = ({ data, restaurant_id }) => {
     let [formData, setFormData] = useState({
         restaurant_id,
         location_id: '',
-        discription: "",
+        description: "",
         post_type: 1
     })
+    let [loading,setLoading]=useState(false)
     let { locations } = useSelector((state) => state.restaurantReducer)
     useEffect(() => {
         dispatch(getLocation(restaurant_id))
@@ -35,7 +38,7 @@ const CustomForm = ({ data, restaurant_id }) => {
     const uploadPicture = (e) => {
         imagepath.push(URL.createObjectURL(e.target.files[0]))
         // images.push(e.target.files[0])
-        images=e.target.files
+        images=e.target.files[0]
     }
     const onChangeEvent = (e) => {
         setFormData((prev) => {
@@ -51,21 +54,24 @@ const CustomForm = ({ data, restaurant_id }) => {
         let formDataPost = new FormData()
         formDataPost.append('restaurant_id', formData.restaurant_id)
         formDataPost.append('location_id', formData.location_id)
-        formDataPost.append('discription', formData.discription)
+        formDataPost.append('description', formData.description)
         formDataPost.append('post_type', formData.post_type)
-        formDataPost.append('images', images)
+        formDataPost.append('profile_pic', images)
         formDataPost.append('user_id', user_id)
         formDataPost.append('access_token', access_token)
         formDataPost.append('lang', lang)
         console.log(formDataPost)
-        axios.post(`${env.URL}/dipicious/api/user/add_post`, formDataPost, {
+        setLoading(true)
+        axios.post(`${env.URL}/dipicious/api/user/add_post_web`, formDataPost, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': 'Basic cm9vdDoxMjM='
+                'Authorization': 'Basic cm9vdDoxMjM=',
+                'Content-Type':'Application-json'
 
             }
         }).then((response) => {
-            if (response.data.flag) {
+             setLoading(false)
+              if (response.data.flag) {
                 toast.success(response.data.msg)
             } else {
                 toast.error('something went wrong..')
@@ -74,10 +80,12 @@ const CustomForm = ({ data, restaurant_id }) => {
 
         //    return ''
     }
+
     return (<>
         <SetDipIn.Consumer >{(setDip) => {
             return <>
                 <div className='form-container'>
+                    
                     <span style={{ float: "right" }}><Exit onClick={() => setDip(false)} /></span>
                     <h4 className='profile_title' style={{ textAlign: 'center' }}>
                         Dip in</h4>
@@ -112,7 +120,7 @@ const CustomForm = ({ data, restaurant_id }) => {
                                     minRows={4}
                                     placeholder="Minimum 3 rows"
                                     style={500}
-                                    name='discription'
+                                    name='description'
                                     onChange={onChangeEvent}
                                 />
                             </FormControl>
@@ -139,6 +147,7 @@ const CustomForm = ({ data, restaurant_id }) => {
 
                             </div>
                         </div>
+                        {loading?<div className='text-center'><b>Please wait while post adding....</b></div>:''}
                         <div className='mt-3'>
                             <button className='btn btn-primary m-auto done d-block' onClick={saveDipin}>Post</button>
                         </div>

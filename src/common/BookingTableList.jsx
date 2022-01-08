@@ -17,7 +17,7 @@ const BookingTableList = () => {
     let [orderDetails, showOrderDetails] = useState(false)
     let [size, setsize] = useState(window.screen.width)
     let dispatch = useDispatch()
-    let { tableDetails } = useSelector((state) => state.restaurantOrderReducer)
+    let { tableDetails } = useSelector((state) => state.bookingTableDetails)
     useEffect(() => {
         dispatch(storeTableBookingDetails())
 
@@ -31,15 +31,16 @@ const BookingTableList = () => {
 
                 <div className="col-sm-10 m-auto">
        
-                    <div className="my-orders mt-1 ">
+                    {tableDetails.map((each)=>{
+                        return <div className="my-orders mt-1 ">
                             <div className="row">
                                 <div className="col-sm-4 col-4">
-                                    <img src={Logo} className="logo-salad"></img>
+                                    <img src={`${env.URL}/dipicious/${each.image_url}`} className="logo-salad"></img>
                                 </div>
                                 <div className="col-sm-6 col-6">
-                                    <p className="p text-danger">test</p>
+                                    <p className="p text-danger">{each.restaurant_name}</p>
                                     <p className="p text-success">
-                                        panding
+                                        {each.description}
                                         {/* {each.status == 1 ? "Pending" : each.status == 2 ? "Approved" : "Out for delivery"} */}
                                         </p> 
                                     <p className="p"></p>
@@ -53,7 +54,8 @@ const BookingTableList = () => {
                                 
                                 </div>
                             </div>
-                        </div>
+                        </div>})
+                        }
 
 
                 </div>
