@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from '../common/Loading'
 import Logout from '@material-ui/icons/ExitToApp'
 import _ from 'underscore'
@@ -10,27 +10,40 @@ import ProfileTabContainer from "./ProfileTabContainer";
 import env from '../env'
 import axios from 'axios'
 import { toast } from "react-toastify";
-import { storefollowersAndFollowingList } from "../actions";
+import { storefollowersAndFollowingList,storeOtherUserProfile,storeUserProfile } from "../actions";
 // import ProfileDropDown from "../custom/ProfiledropDown";
 const Profile = () => {
-  let [user, setUser] = useState({})
+  // let [user, setUser] = useState({})
   let location = useLocation()
   let tabindex = location.hash.split('#')[1]
-  let state=useSelector((state)=>state.userReducer)
+  let search = location.search
+  let other_user_id = search.split('=')[1]
+  let state = useSelector((state) => state.userReducer)
+  let user=state.data
   let navigate = useNavigate()
-  let dispatch=useDispatch()
-  useEffect(() => {
+  let dispatch = useDispatch()
+  useEffect(async() => {
     dispatch(storefollowersAndFollowingList())
-    setTimeout(() => {
-      let response = isUserLoging()
-      if (response.login) {
-        setUser(response.user)
-      } else {
-        navigate('/login')
-      }
-    }, 900)
 
-  }, [0])
+    let response = isUserLoging()
+   
+    if (response.login) {
+      if (other_user_id == response.user.user_id) {
+        dispatch(storeUserProfile())
+      }
+      else if(other_user_id!=undefined) {
+        // alert(other_user_id)
+        dispatch(storeOtherUserProfile(other_user_id))
+        
+      }else{
+        dispatch(storeUserProfile())
+      }
+    } else {
+      navigate('/login')
+    }
+
+
+  }, [1])
   const becomeChef = async () => {
     let data = isUserLoging()
     let { user_id, lang, access_token } = data.user
@@ -63,11 +76,12 @@ const Profile = () => {
               <ul className="dropdown-menu">
                 <li className="text-center"><NavLink to='/logout'><p>Logout</p></NavLink></li>
                 <li className="text-center"><NavLink to="/restaurant/myorders"><p>Orders</p></NavLink></li>
+                <li className="text-center"><NavLink to="/restaurant/booking"><p>Table Reservations</p></NavLink></li>
               </ul>
             </div>
           </div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
-            <h4>{state.following.total}</h4>
+            <h4>{user.following_count}</h4>
             <h6>following</h6>
             {/* <button className='profile_btn  btn-primary mt-5'>EDIT PROFILE</button> */}
             <NavLink to={`/profile/edit`}>
@@ -79,12 +93,12 @@ const Profile = () => {
           </div>
           <div className='col-lg-4 col-4 order-2'>
             <div className='main-profile-pick m-auto'>
-              <img src={user.profile_image} alt='profile..'></img>
+              <img src={`${env.URL}/dipicious/${user.user_profile_pic}`} alt='profile..'></img>
             </div>
             <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{user.name}</h6>
           </div>
           <div className='col-lg-4 col-4 m-auto following order-3'>
-            <h4>{state.followers.total}</h4>
+            <h4>{user.followers}</h4>
             <h6>followers</h6>
             <Button variant="outlined" className='mt-5 profile_btn'
               onClick={() => becomeChef()}
@@ -103,7 +117,7 @@ const Profile = () => {
 
       </div>
       <br />
-      <ProfileTabContainer />
+      <ProfileTabContainer other_user_id={other_user_id} />
     </div>
   )
 }

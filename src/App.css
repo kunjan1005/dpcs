@@ -2380,3 +2380,46 @@ i.fa.fa-angle-right {
     background-color: green;
     border: 1px solid green;
 }
+.description{
+    border: 2px solid whitesmoke;
+    padding: 0px;
+    background-color: whitesmoke;
+}
+.description input {
+    height: 100%;
+}
+.description #categories{
+    padding: 2px;
+    font-size: 12px;
+}
+.description #categories span{
+    padding: 1px;
+    border-radius: 2px;
+    background-color: #d31f33;
+    color: white;
+    margin:1px;
+}
+.description #categories span small{
+    cursor: pointer;
+} 
+.suggestions{
+    border: 1px solid black;
+    z-index: 99;
+    margin-top: -15px !important;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    border: none;
+    border-radius:5px;
+    box-shadow:1px 2px 5px grey,-1px 10px 20px grey;
+    padding: 5px;
+}
+.suggestions ul{
+    text-align: left;
+    font-weight:bold;
+    color: grey;
+}
+.suggestions ul li{
+    cursor: pointer;
+}

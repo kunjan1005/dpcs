@@ -28,6 +28,7 @@ const Header = () => {
         let size = window.screen.width
         setSize(size)
     })
+ 
 
     return (
 
@@ -80,6 +81,7 @@ const Header = () => {
                                     <Tooltip title='dip'>
                                         <NavLink className='links' activeclass='active' to='#'
                                             onClick={() => {
+                                              
                                                 toast.warn('Download Application for full user Experience', { position: 'top-center' })
                                             }}><div className="wishlist_icon">
                                                 {/* <TouchAppIcon className='header_btn' /> */}

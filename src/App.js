@@ -31,6 +31,7 @@ import EditForm from './custom/EditForm';
 import ItemDetail from './components/ItemDetail';
 import MyOrders from './common/MyOrders';
 import OrderDetails from './common/OrderDetails';
+import BookingTableList from './common/BookingTableList'
 
 function App() {
   let { isLoading } = useAuth0()
@@ -43,7 +44,7 @@ function App() {
 
       <div className="super_container">
         <Header />
-        <div style={{ backgroundColor: '#fafafa' }} className='html_content_body'>
+        <div style={{ backgroundColor: '#fafafa' }} className='html_content_body py-4'>
            <ScrollBar>
           <div className='container-fluid'>
             <Routes>
@@ -55,7 +56,7 @@ function App() {
               <Route exact path='/restaurant/checkout/' element={<CheckOut/>}/>
               <Route exact path='/restaurant/addresbook/' element={<AddressBook/>}/>
               <Route exact path='/restaurant/cart/:sid' element={<Cart/>}/>
-              <Route exact path='/restaurant/book' element={<BookTable/>}/>
+              <Route exact path='/restaurant/booking' element={<BookingTableList/>}/>
               <Route exact path='/editform' element={<EditForm/>}/>
               <Route exact path='/restaurant/itemdetail/' element={<ItemDetail/>}/>
               <Route exact path='/restaurant/myorders/' element={<MyOrders/>}/>
