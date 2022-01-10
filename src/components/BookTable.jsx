@@ -68,7 +68,8 @@ const BookTable = (props) => {
                 }
             })
             if(response.data.flag){
-                toast.success('table booked successfully...')
+                // toast.success('table booked successfully...')
+                props.showSucess(true)
                 props.state(false)
             }else{
                 toast.error("sorry you can't book a table")

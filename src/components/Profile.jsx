@@ -64,8 +64,8 @@ const Profile = () => {
   }
 
   return (
-    <div className='row main-profile mt-3'>
-      <div className='card col-lg-8 col-sm-12 m-auto profile-div '>
+    <div className='row main-profile'>
+      <div className='card col-lg-8 col-sm-12 m-auto profile-div mt-3'>
 
         <div className='row '>
           <div className='logout'>

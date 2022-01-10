@@ -23,11 +23,13 @@ import { getReviewRestaurant } from '../actions/index'
 import Scrollbars from 'react-custom-scrollbars-2'
 import Review from '../common/Review'
 import Post from '../common/Post';
+import SuccessModel from '../custom/SuccessModel';
 let SetDipIn = createContext()
 const Restaurant = () => {
     let [restaurant, setRestaurant] = useState({})
     let [open, setOpen] = useState(false)
     let [dip, setDip] = useState(false)
+    let [success,showSucess]=useState(false)
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
@@ -71,11 +73,13 @@ const Restaurant = () => {
         return <Loading />
     }
     return (<>
+         {success?<SuccessModel close={showSucess}/>:''}
         <SetDipIn.Provider value={setDip}>
             <div className="container-fluid mt-2 mb-3">
                 {open ? <BookTable img={restaurant.image_restaurant[0].image_url}
                     restaurant_id={restaurant_id.sid}
-                    state={setOpen} {...userData.user} /> : ''}
+                    state={setOpen} {...userData.user} 
+                    showSucess={showSucess}/> : ''}
                 {dip ? <DipinForm restaurant_id={restaurant_id.sid} /> : ""}
                 <div className="row no-gutters">
                     <div className="col-md-5 pr-2">
@@ -138,8 +142,8 @@ const Restaurant = () => {
                         <div className="res-card mt-2">
                             <h6 className='profile_title'>Address</h6>
                             <div className="res-comment-section" style={{ width: "100%", height: "100%" }}>
-                              <ResturantMap lat={restaurant.lattitude==undefined?userData.user.lattitude:restaurant.lattitude} 
-                                            lng={restaurant.logtitude==undefined?userData.user.logtitude:restaurant.logtitude}/>
+                                <ResturantMap lat={restaurant.lattitude == undefined ? userData.user.lattitude : restaurant.lattitude}
+                                    lng={restaurant.logtitude == undefined ? userData.user.logtitude : restaurant.logtitude} />
                             </div>
 
                             <div className="res-comment-section">

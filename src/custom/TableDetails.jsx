@@ -1,10 +1,14 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import _ from 'underscore'
+import Loading from '../common/Loading'
 
 const TableDetails = (props) => {
     let dispatch = useDispatch()
     const { table } = useSelector((state) =>state.bookingTableDetails)
-    
+    if(_.isEmpty(table)){
+        return <Loading/>
+    }
     return <>
         <div className="form-popup py-1 m-auto " >
             <div className='col-sm-6 m-auto bg-white'>
