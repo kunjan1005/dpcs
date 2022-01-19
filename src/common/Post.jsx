@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import LikeIcon from '@material-ui/icons/Favorite'
 import Comment from '@material-ui/icons/MessageOutlined'
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getPostData, like, dislike, fatchData } from '../actions/index'
+import { useDispatch } from "react-redux";
+import { like, dislike, userfeedback } from '../actions/index'
 import { Tooltip } from "@material-ui/core";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { LocationOn } from "@material-ui/icons";
 import env from "../env";
-import { toast } from 'react-toastify'
 import onappRedirect from "../authorization/redirectApplication";
-
+import Comments from "../custom/Commetns";
+import ShareIcon from '@material-ui/icons/Share';
+import copy from "copy-to-clipboard";
+import { toast } from 'react-toastify'
 
 const Post = (props) => {
-
     let [posts, setPosts] = useState([])
+    let [show, setShow] = useState(false)
     var settings = {
         dots: true,
         infinite: true,
@@ -32,7 +34,7 @@ const Post = (props) => {
     return (
 
         posts.map((post, index) => {
-            return <div style={{ padding: "0px" }} className={`card m-auto mt-3 mt_3 ${props.restaurant == 1 ? 'col-lg-7' : props.status == 1 ? "col-lg-12" : "col-lg-7 col-md-12"} `} key={index}>
+            return <><div style={{ padding: "0px" }} className={`card m-auto mt-3 mt_3 ${props.restaurant == 1 ? 'col-lg-7' : props.status == 1 ? "col-lg-12" : "col-lg-7 col-md-12"} `} key={index}>
 
                 <div className="col-md-12 mt-2 p-0" style={{ borderBottom: '1px solid whitesmoke' }}>
                     <span style={{
@@ -84,32 +86,50 @@ const Post = (props) => {
                 <div className="card-body">
                     <h5 className="card-title">{post.title}</h5>
                     <p className="card-text">{post.discription}</p>
-                    <span><b>{post.like_count} likes</b></span>&nbsp;&nbsp;
-                    <span><b>{post.comment_count} comments</b></span>&nbsp;&nbsp;
-                    <span><b>{post.share_count} share</b></span>
-                    <span className='post-icons'>
-                        {post.is_like == 1 ? <Tooltip title='liked'>
-
-                            <LikeIcon className='post-icon' style={{ color: "palevioletred" }}
-                                //  onClick={() => { dispatch(dislike(post.post_id)) }}
-                                onClick={onappRedirect}
-                            />
-                        </Tooltip> : <Tooltip title='like'>
-                            <LikeIcon className='post-icon'
-                                onClick={() => { dispatch(like(post.post_id)) }}
-                                onClick={onappRedirect}
-                            />
-                        </Tooltip>}
-
-
-
-                        <Comment className='post-icon'
+                    <span><b>{post.like_count}{post.is_like == 1 ? <Tooltip title={props.review == 1 ? 'appriciated' : 'liked'}>
+                        {props.review == 1 ? <i class="far fa-handshake post-icon" style={{ color: "palevioletred" }}
                             onClick={() => {
-                                onappRedirect()
-                            }} />
-                    </span>
+                                dispatch(dislike(post.post_id))
+                                dispatch(userfeedback())
+                            }}></i> : <LikeIcon className='post-icon' style={{ color: "palevioletred" }}
+                                onClick={() => {
+                                    dispatch(dislike(post.post_id))
+                                    dispatch(userfeedback())
+                                }}
+                        // onClick={onappRedirect}
+                        />}
+
+                    </Tooltip> : <Tooltip title={props.review == 1 ? 'appriciate' : 'like'}>
+                        {props.review == 1 ? <i class="far fa-handshake"
+                            onClick={() => {
+                                dispatch(like(post.post_id))
+                                dispatch(userfeedback())
+                            }}></i> : <LikeIcon className='post-icon'
+                                onClick={() => {
+                                    dispatch(like(post.post_id))
+                                    dispatch(userfeedback())
+                                }}
+                        // onClick={onappRedirect}
+                        />}
+
+                    </Tooltip>}
+
+
+                    </b></span>&nbsp;&nbsp;
+                    <span><b>{post.comment_count}  <Comment className='post-icon'
+                        onClick={() => {
+                            // onappRedirect()
+                            show ? setShow(false) : setShow(true)
+                        }} /></b></span>&nbsp;&nbsp;
+                    <span><b>{post.share_count} <ShareIcon onClick={() => {
+                        copy(`${env.URL}/dipicious/${post.post_image[0].image_url}`);
+                        toast.info('link copied')
+                    }} /></b></span>
                 </div>
+                {show ? <Comments /> : ''}
             </div>
+
+            </>
 
         })
     )

@@ -2439,3 +2439,17 @@ i.fa.fa-shopping-cart {
 .suggestions ul li{
     cursor: pointer;
 }
+.fa-redo-alt{
+    width:2.5rem !important;
+    color: #d31f33;
+}
+.reposted{
+    /* background-color:grey; */
+    font-size: large;
+    font-weight: bold;
+    color: grey;
+    /* border: 1px solid grey; */
+    padding: 0.7;
+    border-radius: 5px;
+    background-color: lightpink;
+}

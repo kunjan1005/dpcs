@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import env from '../env'
 import Exit from '@material-ui/icons/Clear'
-import { NavLink,useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import MentionedBox from '../custom/MentionedBox'
 import axios from 'axios'
 import { isUserLoging } from '../authorization/useAuth'

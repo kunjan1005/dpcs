@@ -29,7 +29,7 @@ const Restaurant = () => {
     let [restaurant, setRestaurant] = useState({})
     let [open, setOpen] = useState(false)
     let [dip, setDip] = useState(false)
-    let [success,showSucess]=useState(false)
+    let [success, showSucess] = useState(false)
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
@@ -73,13 +73,13 @@ const Restaurant = () => {
         return <Loading />
     }
     return (<>
-         {success?<SuccessModel close={showSucess}/>:''}
+        {success ? <SuccessModel close={showSucess} /> : ''}
         <SetDipIn.Provider value={setDip}>
             <div className="container-fluid mt-2 mb-3">
                 {open ? <BookTable img={restaurant.image_restaurant[0].image_url}
                     restaurant_id={restaurant_id.sid}
-                    state={setOpen} {...userData.user} 
-                    showSucess={showSucess}/> : ''}
+                    state={setOpen} {...userData.user}
+                    showSucess={showSucess} /> : ''}
                 {dip ? <DipinForm restaurant_id={restaurant_id.sid} /> : ""}
                 <div className="row no-gutters">
                     <div className="col-md-5 pr-2">
@@ -142,8 +142,8 @@ const Restaurant = () => {
                         <div className="res-card mt-2">
                             <h6 className='profile_title'>Address</h6>
                             <div className="res-comment-section" style={{ width: "100%", height: "100%" }}>
-                                <ResturantMap lat={restaurant.lattitude == undefined ? userData.user.lattitude : restaurant.lattitude}
-                                    lng={restaurant.logtitude == undefined ? userData.user.logtitude : restaurant.logtitude} />
+                                <ResturantMap lat={restaurant.lattitude == undefined ? userData.user.lattitude : restaurant.locations[0].lat}
+                                    lng={restaurant.logtitude == undefined ? userData.user.logtitude : restaurant.locations[0].lng} />
                             </div>
 
                             <div className="res-comment-section">
@@ -176,7 +176,8 @@ const Restaurant = () => {
                                         <div className="res-card  p-1" >
                                             <div className="res-card-body">
                                                 <Tooltip title='Delivery available'>
-                                                    <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<Call />}>Call</Button>
+
+                                                    <a href={`tel:${restaurant.restaurant_phone}`}>  <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<Call />}>Call</Button></a>
                                                 </Tooltip></div> </div> :
                                         <div className="res-card  p-1" >
                                             <div className="res-card-body">
@@ -326,7 +327,7 @@ const Restaurant = () => {
                             {restaurantReview.flag == 0 ? <h3>No Dip in </h3> : <Post post={restaurantReview.data} restaurant='1' />}
                         </div> : ''}
                         {tabindex == 'review' ? <div className=''>
-                            {restaurantReview.flag == 0 ? <h3>No Review </h3> : <Review data={restaurantReview.data} restaurant='1' />}
+                            {restaurantReview.flag == 0 ? <h3>No Review </h3> : <Review data={restaurantReview.data} restaurant='1' restab='0' />}
                         </div> : ''}
                     </div>
                 </div>
