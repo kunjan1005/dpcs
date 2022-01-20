@@ -38,10 +38,10 @@ const OrderDetail = () => {
                     {orderDetail.items.map((each) => {
                         return <div className="my-orders mt-5">
                             <div className="row p-1">
-                                <div className="col-sm-4">
+                                <div className="col-sm-5">
                                     <img src={`${env.URL}/dipicious/${each.image}`} className="logo-salad"></img>
                                 </div>
-                                <div className="col-sm-6 order-details">
+                                <div className="col-sm-5 order-details">
                                     <p className="p text-warning">{each.item_name}</p>
                                     <p className="p text-success">Qty : <span className="text-warning">{each.quantity}</span></p>
                                     <p className="p">{each.created_date}</p>
@@ -99,7 +99,7 @@ const OrderDetail = () => {
                         </div>
                     </div>
                 </div>
-                <div className='col-sm-12 mt-3'>
+                <div className='col-sm-12 mt-3 col-12'>
                     <button className='btn btn-success m-auto' onClick={()=>{showReorder(true)}}>Re-order</button>
                 </div>
             </div>

@@ -97,9 +97,9 @@ const OrderDetails = () => {
 
                     </div>
                 </div>
-                <div className="col-sm-4 col-1 mt-6">
-                    <div className="col-12 col-sm-12">
-                        <button className="btn btn-success m-auto" onClick={()=>showReorder(true)}>Re-order</button>
+                <div className="col-sm-4 col-12 mt-6 mb-3">
+                    <div className="col-12 col-sm-12 mt-3">
+                        <button className="btn btn-success m-auto re-order" onClick={()=>showReorder(true)}>Re-order</button>
                     </div>
 
                 </div>

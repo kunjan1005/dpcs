@@ -1,20 +1,14 @@
 import React, { useState } from "react"
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import LikeIcon from '@material-ui/icons/Favorite'
-import Comment from '@material-ui/icons/MessageOutlined'
-import { LocationOn } from "@material-ui/icons";
-import Logo from '../images/salad.png'
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { storeOrder, storeTableBookingDetails } from '../actions/index'
+import { storeTableDetails,storeTableBookingDetails } from '../actions/index'
 import { useSelector } from "react-redux";
 import env from "../env";
-import OrderDetail from "./OrderDetail";
 import _ from 'underscore'
-import Loading from '../common/Loading'
+import TableDetails from "../custom/TableDetails";
 
 const BookingTableList = () => {
-    let [orderDetails, showOrderDetails] = useState(false)
+    let [show, showTableDetails] = useState(false)
     let [size, setsize] = useState(window.screen.width)
     let dispatch = useDispatch()
     let { tableDetails } = useSelector((state) => state.bookingTableDetails)
@@ -22,17 +16,24 @@ const BookingTableList = () => {
         dispatch(storeTableBookingDetails())
 
     }, [1])
+ 
    
     return (<>
         <div className="conntainer pt-2 row mt-2">
-            <div className={orderDetails ? "col-lg-6" : "col-lg-8 m-auto"}>
+          {show?<TableDetails close={showTableDetails } />:''}
+            <div className="col-lg-8 m-auto">
                 <h4 className="text-center" style={{ width: "100% !important;" }}>Table Reservation</h4>
                 <hr />
 
                 <div className="col-sm-10 m-auto">
        
                     {tableDetails.map((each)=>{
-                        return <div className="my-orders mt-1 ">
+                         
+                        return  <> <div className="my-orders mt-1 " onClick={()=>{
+                            dispatch(storeTableDetails(each.booking_table_id))
+                            showTableDetails(true)
+                            }}>
+                           
                             <div className="row">
                                 <div className="col-sm-4 col-4">
                                     <img src={`${env.URL}/dipicious/${each.image_url}`} className="logo-salad"></img>
@@ -47,14 +48,9 @@ const BookingTableList = () => {
                                     <p className="p"><b>ORDER ID </b>: 123</p>
                                 </div>
                                 <div className="col-sm-2 col-2 ">
-                                  <NavLink to={`/restaurant/orderdetails/`} style={{ color: 'black' }}>
-                                        <i class="fa fa-angle-right"></i>
-                                    </NavLink> :
-                                        <i class="fa fa-angle-right"></i>
-                                
                                 </div>
                             </div>
-                        </div>})
+                        </div></>})
                         }
 
 

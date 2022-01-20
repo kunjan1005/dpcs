@@ -19,22 +19,25 @@ import _ from 'underscore'
 import BookTable from './BookTable';
 import DipinForm from '../custom/DipinForm';
 import ResturantMap from '../custom/CustomMap'
-import { getReviewRestaurant } from '../actions/index'
+import { getReviewRestaurant, getDipinRestaurant } from '../actions/index'
 import Scrollbars from 'react-custom-scrollbars-2'
 import Review from '../common/Review'
 import Post from '../common/Post';
+import SuccessModel from '../custom/SuccessModel';
+import Shimmer from 'react-js-loading-shimmer'
 let SetDipIn = createContext()
 const Restaurant = () => {
     let [restaurant, setRestaurant] = useState({})
     let [open, setOpen] = useState(false)
     let [dip, setDip] = useState(false)
+    let [success, showSucess] = useState(false)
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
     let restaurant_id = useParams('sid')
     let state = useSelector((state) => state.restaurantReducer)
     let restaurantData = state.restaurant
-    let restaurantReview = state.restaurantReviewList
+    let { restaurantReviewList, restaurantDipList } = state
     let daysInWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     let today = new Date()
     let curreDay = today.getDay();
@@ -43,6 +46,7 @@ const Restaurant = () => {
         dispatch(getRestaurantList())
         dispatch(getSingleRestaurant(restaurant_id.sid))
         dispatch(getReviewRestaurant(restaurant_id.sid))
+        dispatch(getDipinRestaurant(restaurant_id.sid))
 
         return () => {
             setRestaurant({})
@@ -71,18 +75,20 @@ const Restaurant = () => {
         return <Loading />
     }
     return (<>
+        {success ? <SuccessModel close={showSucess} /> : ''}
         <SetDipIn.Provider value={setDip}>
             <div className="container-fluid mt-2 mb-3">
                 {open ? <BookTable img={restaurant.image_restaurant[0].image_url}
                     restaurant_id={restaurant_id.sid}
-                    state={setOpen} {...userData.user} /> : ''}
+                    state={setOpen} {...userData.user}
+                    showSucess={showSucess} /> : ''}
                 {dip ? <DipinForm restaurant_id={restaurant_id.sid} /> : ""}
                 <div className="row no-gutters">
                     <div className="col-md-5 pr-2">
                         <div className="res-card">
                             <div className="demo">
                                 <ul id="lightSlider">
-                                    <li data-thumb=""> <img src={`${env.URL}/dipicious/${restaurant.image_restaurant[0].image_url}`} /> </li>
+                                    <li data-thumb=""> {_.isEmpty(restaurant)?<Shimmer/>:<img src={`${env.URL}/dipicious/${restaurant.image_restaurant[0].image_url}`} />} </li>
                                 </ul>
                             </div>
                         </div>
@@ -91,44 +97,44 @@ const Restaurant = () => {
                             <div className="d-flex flex-row">
                                 <div className='col-lg-6 col-6'>
                                     <span>Service</span>,&nbsp;
-                                    <b>{restaurantReview.service_rate}</b>
+                                    <b>{_.isEmpty(restaurant)?<Shimmer/>:restaurantReviewList.service_rate}</b>
                                     <ReactStars
                                         count={5}
                                         // onChange={ratingChanged}
                                         size={24}
-                                        value={restaurantReview.service_rate}
+                                        value={_.isEmpty(restaurant)?<Shimmer/>:restaurantReviewList.service_rate}
                                         activeColor="#ffd700"
 
                                     />
                                     <span>Food</span>,&nbsp;
-                                    <b>{restaurantReview.food_rate}</b>
+                                    <b>{_.isEmpty(restaurant)?<Shimmer/>:restaurantReviewList.food_rate}</b>
                                     <ReactStars
                                         count={5}
                                         // onChange={ratingChanged}
                                         size={24}
-                                        value={restaurantReview.food_rate}
+                                        value={_.isEmpty(restaurant)?<Shimmer/>:restaurantReviewList.food_rate}
                                         activeColor="#ffd700"
 
                                     />
                                 </div>
                                 <div className='co-lg-6 col-6'>
                                     <span>Ambiance</span>,&nbsp;
-                                    <b>{restaurantReview.ambiance_rate}</b>
+                                    <b>{_.isEmpty(restaurant)?<Shimmer/>:restaurantReviewList.ambiance_rate}</b>
                                     <ReactStars
                                         count={5}
                                         // onChange={ratingChanged}
                                         size={24}
-                                        value={restaurantReview.ambiance_rate}
+                                        value={_.isEmpty(restaurant)?<Shimmer/>:restaurantReviewList.ambiance_rate}
                                         activeColor="#ffd700"
 
                                     />
                                     <span>Noise Level</span>,&nbsp;
-                                    <b>{restaurantReview.noise_level}</b>
+                                    <b>{_.isEmpty(restaurant)?<Shimmer/>:restaurantReviewList.noise_level}</b>
                                     <ReactStars
                                         count={5}
                                         // onChange={ratingChanged}
                                         size={24}
-                                        value={restaurantReview.noise_level}
+                                        value={_.isEmpty(restaurant)?<Shimmer/>:restaurantReviewList.noise_level}
                                         activeColor="#ffd700"
 
                                     />
@@ -138,13 +144,13 @@ const Restaurant = () => {
                         <div className="res-card mt-2">
                             <h6 className='profile_title'>Address</h6>
                             <div className="res-comment-section" style={{ width: "100%", height: "100%" }}>
-                              <ResturantMap lat={restaurant.lattitude==undefined?userData.user.lattitude:restaurant.lattitude} 
-                                            lng={restaurant.logtitude==undefined?userData.user.logtitude:restaurant.logtitude}/>
+                                <ResturantMap lat={restaurant.lattitude == undefined ? userData.user.lattitude : restaurant.locations[0].lat}
+                                    lng={restaurant.logtitude == undefined ? userData.user.logtitude : restaurant.locations[0].lng} />
                             </div>
 
                             <div className="res-comment-section">
                                 <ul>
-                                    {restaurant.locations.map((each, index) => {
+                                    {_.isEmpty(restaurant)?<Shimmer/>:restaurant.locations.map((each, index) => {
                                         return index <= 4 ? <li>
                                             <p>{each.location} <NavLink to='#' target='_blank' onClick={() => onMapRedirect(each.lng, each.lat)}>Get Directions</NavLink></p><hr />
                                         </li> : ''
@@ -157,8 +163,8 @@ const Restaurant = () => {
                     <div className="col-md-7">
                         <div className="res-card">
                             <div className="res-bout">
-                                <h4><span className="font-weight-bold profile_title">{restaurant.restaurant_name}</span></h4>
-                                <h6 className="font-weight-bold">{restaurant.username}</h6>
+                                <h4><span className="font-weight-bold profile_title">{_.isEmpty(restaurant)?<Shimmer/>:restaurant.restaurant_name}</span></h4>
+                                <h6 className="font-weight-bold">{_.isEmpty(restaurant)?<Shimmer/>:restaurant.username}</h6>
                             </div>
                             <div className="res-buttons">
                                 <button className="btn btn-outline-danger btn-long res-cart" onClick={() => setDip(true)}>DIP-IN</button>&nbsp;
@@ -172,7 +178,8 @@ const Restaurant = () => {
                                         <div className="res-card  p-1" >
                                             <div className="res-card-body">
                                                 <Tooltip title='Delivery available'>
-                                                    <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<Call />}>Call</Button>
+
+                                                    <a href={`tel:${restaurant.restaurant_phone}`}>  <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<Call />}>Call</Button></a>
                                                 </Tooltip></div> </div> :
                                         <div className="res-card  p-1" >
                                             <div className="res-card-body">
@@ -208,7 +215,7 @@ const Restaurant = () => {
                             <div className="res-card mt-2"> <span className='profile_title'><b>Cuisine</b></span>
                                 <hr />
                                 <div className="res-similar-products mt-2 d-flex flex-row">
-                                    {restaurant.cuisine.map((each) => {
+                                    {_.isEmpty(restaurant)?<Shimmer/>:restaurant.cuisine.map((each) => {
                                         return <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
                                             <img src={`${env.URL}/dipicious/${each.icon}`} className="res-img" alt="..." />
                                             <div className="res-card-body">
@@ -223,7 +230,7 @@ const Restaurant = () => {
                             <div className="res-card mt-2 row"> <span className='profile_title'><b>Restaurant type</b></span>
                                 <hr />
                                 <div className="res-similar-products mt-2 d-flex flex-row col-lg-6">
-                                    {restaurant.restaurant_type.map((each) => {
+                                    {_.isEmpty(restaurant)?<Shimmer/>:restaurant.restaurant_type.map((each) => {
                                         return <div className="res-card  p-1" style={{ width: "3rem", marginRight: "10px" }}>
                                             <img src={`${env.URL}/dipicious/${each.icon}`} className="res-img" alt="..." />
                                             <div className="res-ard-body">
@@ -319,10 +326,10 @@ const Restaurant = () => {
                     </div>
                     <div className='res-card'>
                         {tabindex == 'dipin' ? <div className=''>
-                            {restaurantReview.flag == 0 ? <h3>No Dip in </h3> : <Post post={restaurantReview.data} restaurant='1' />}
+                            {restaurantDipList.flag == 0 ? <h3>No Dip in </h3> : <Post post={restaurantDipList.data} restaurant='1' />}
                         </div> : ''}
                         {tabindex == 'review' ? <div className=''>
-                            {restaurantReview.flag == 0 ? <h3>No Review </h3> : <Review data={restaurantReview.data} restaurant='1' />}
+                            {restaurantReviewList.flag == 0 ? <h3>No Review </h3> : <Review data={restaurantReviewList.data} restaurant='1' restab='0' />}
                         </div> : ''}
                     </div>
                 </div>

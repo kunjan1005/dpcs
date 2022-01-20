@@ -1,6 +1,4 @@
-import axios from 'axios'
-import { isUserLoging } from '../authorization/useAuth'
-import env from '../env'
+
 const initialState = []
 const storePostData = (state = initialState, action) => {
     switch (action.type) {
