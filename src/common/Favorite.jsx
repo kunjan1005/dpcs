@@ -3,12 +3,15 @@ import { NavLink } from 'react-router-dom'
 import env from '../env'
 import _  from 'underscore'
 import { useState } from 'react'
+import {useDispatch} from 'react-redux'
+import {getSingleRestaurant} from '../actions/index'
 import Loading from './Loading'
 const Favriate = (props) => {
     let [post,setPost]=useState([])
     setTimeout(()=>{
     setPost(props.data)
-    },1000)
+    },900)
+    let dispatch=useDispatch()
     if(_.isEmpty(props.data)){
       return <Loading/>
     }
@@ -24,7 +27,9 @@ const Favriate = (props) => {
 
                         backgroundColor: 'green'
                     }}>{each.feedback==0?"0.0":each.feedback}</p>
-                    <NavLink to={`/restaurant/${each.restaurant_id}`}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
+                    <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={()=>{
+                         dispatch(getSingleRestaurant(each.restaurant_id))
+                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
                         <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
                     </div>
                     </NavLink>

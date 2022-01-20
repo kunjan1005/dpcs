@@ -11,9 +11,9 @@ import env from '../env'
 import axios from 'axios'
 import { toast } from "react-toastify";
 import { storefollowersAndFollowingList,storeOtherUserProfile,storeUserProfile } from "../actions";
-// import ProfileDropDown from "../custom/ProfiledropDown";
+import Shimmer from 'react-js-loading-shimmer';
 const Profile = () => {
-  // let [user, setUser] = useState({})
+
   let location = useLocation()
   let tabindex = location.hash.split('#')[1]
   let search = location.search
@@ -81,7 +81,7 @@ const Profile = () => {
             </div>
           </div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
-            <h4>{user.following_count}</h4>
+            <h4>{user.following_count==undefined?<Shimmer/>:user.following_count}</h4>
             <h6>following</h6>
             {/* <button className='profile_btn  btn-primary mt-5'>EDIT PROFILE</button> */}
             <NavLink to={`/profile/edit`}>
@@ -93,12 +93,12 @@ const Profile = () => {
           </div>
           <div className='col-lg-4 col-4 order-2'>
             <div className='main-profile-pick m-auto'>
-              <img src={`${env.URL}/dipicious/${user.user_profile_pic}`} alt='profile..'></img>
+              {user.user_profile_pic==undefined?<Shimmer />:<img src={`${env.URL}/dipicious/${user.user_profile_pic}`} alt='profile..'></img>}
             </div>
-            <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{user.name}</h6>
+            <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{user.name==undefined?<Shimmer/>:user.name}</h6>
           </div>
           <div className='col-lg-4 col-4 m-auto following order-3'>
-            <h4>{user.followers}</h4>
+            <h4>{user.followers==undefined?<Shimmer/>:user.followers}</h4>
             <h6>followers</h6>
             <Button variant="outlined" className='mt-5 profile_btn'
               onClick={() => becomeChef()}
@@ -107,9 +107,9 @@ const Profile = () => {
         </div>
         <div className='row profile_links'>
           <div className='col-md-12'>
-            <span>dipicious@dipicious</span><br />
+            <span></span><br />
             <span>{user.description}</span><br />
-            <NavLink to='#' className='links'>{user.website}</NavLink>
+            <NavLink to='#' className='links'>{user.website==undefined?<Shimmer/>:user.website}</NavLink>
             <span></span>
 
           </div>

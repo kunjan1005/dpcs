@@ -2453,3 +2453,7 @@ i.fa.fa-shopping-cart {
     border-radius: 5px;
     background-color: lightpink;
 }
+.like-container img{
+    height:3rem;
+    width: 3rem;
+}

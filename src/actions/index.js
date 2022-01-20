@@ -69,6 +69,34 @@ const fatchData = () => {
 
     }
 }
+const postLikes = (id) => {
+    return async (dispatch, getState) => {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token,post_id:id})
+        let response = await axios.post(`${env.URL}/dipicious/api/user/like_list`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({ type: "FATCH_POST_LIKES", payload: response.data.data })
+    }
+}
+const postComments = (id) => {
+    return async (dispatch, getState) => {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token,post_id:id})
+        let response = await axios.post(`${env.URL}/dipicious/api/user/comment_post_listing`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({ type: "FATCH_POST_COMMETNS", payload: response.data.data })
+    }
+}
 const setSinglePost = (payload) => {
     return {
         type: "SINGLE_POST",
@@ -97,7 +125,7 @@ const like = (id) => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-  
+
     }
 }
 const dislike = (id) => {
@@ -223,6 +251,22 @@ const getReviewRestaurant = (payload) => {
 
     }
 }
+const getDipinRestaurant = (payload) => {
+    return async (dispatch, getState) => {
+        let { user } = isUserLoging()
+        let { user_id, lang, longitude, latitude, access_token } = user
+        axios.post(`${env.URL}/dipicious/api/user/restaurant_dip_ins`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id: payload }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        }).then((response) => {
+            dispatch({ type: 'GET_RESTAURANT_DIP_LIST', payload: response.data })
+        })
+
+    }
+}
 const paginatedData = (payload = 5) => {
     return {
         type: "GET_LIMITED_POST",
@@ -298,7 +342,7 @@ const storeTableDetails = (id) => {
         let { user_id, lang, access_token } = userData.user
 
         let response = await axios.post(`${env.URL}/dipicious/api/user/table_booking_detail`,
-            JSON.stringify({ user_id, lang, access_token,booking_table_id:id }), {
+            JSON.stringify({ user_id, lang, access_token, booking_table_id: id }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
@@ -444,10 +488,10 @@ const addressData = () => {
 
 export default storePostData
 export {
-    storeUserProfile, storeOtherUserProfile, storefollowersAndFollowingList, getPostData, like, dislike, contentShow, contentHide,
-    login, logout, getProfile, fatchData, setSinglePost, fatchRetaurant, getRestaurant,
-    getSingleRestaurant, paginatedData, getLocation, restaurantOrderDetails, getRestaurantList,
-    getRestaurantOrderDetails, storeTableBookingDetails,storeTableDetails,incrementOrderQty, decrementOrderQty, userActivity, userFavorites,
-    userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
-    removeCartItem, storeOrder, storeOrderDetails
+    storeUserProfile, storeOtherUserProfile, storefollowersAndFollowingList, getPostData, like, dislike,
+    postLikes,contentShow, contentHide,login, logout, getProfile, fatchData, setSinglePost, fatchRetaurant,
+    getRestaurant,getSingleRestaurant, paginatedData, getLocation, restaurantOrderDetails, getRestaurantList,
+    getRestaurantOrderDetails, storeTableBookingDetails, storeTableDetails, incrementOrderQty, decrementOrderQty,
+    userActivity, userFavorites,userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
+    removeCartItem, storeOrder, storeOrderDetails,getDipinRestaurant,postComments
 }

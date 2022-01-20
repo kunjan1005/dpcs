@@ -1,80 +1,45 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import _ from 'underscore'
+import env from '../env'
 
-const Comments=(props)=>{
+const Comments = (props) => {
+    let { comment } = useSelector(state => state.postlikesListreducer)
     return (<>
-    <div className="coment-bottom  p-2 px-4">
-                                    <h5>Commments</h5>
+        <div className="form-popup " style={{zIndex:"99"}} >
+         {/* <div className='col-sm-4'></div> */}
+            <div className='col-sm-5 text-center   bg-white'>
+                <span style={{
+                    float: 'right',
+                    zIndex: 99,
+                    color: "black",
+                    cursor: "pointer"
+                }}
+                    onClick={() => { props.close(false) }}>&times;</span>
+                <div className="mt-3 col-12 p-2">
+                    <div className="coment-bottom  p-2 px-4">
+                        <h5>Comments</h5>
+                        <div className="d-flex flex-row add-comment-section mt-3 mb-3 col-12">
+                            <img className="img-fluid img-responsive rounded-circle mr-3" src="https://i.imgur.com/qdiP4DB.jpg" width="38" />&nbsp;<input type="text" className="form-control mr-2" placeholder="Add comment" />&nbsp;<button className="btn btn-primary" type="button">Post</button></div>
+                        <hr />
+                        {_.isEmpty(comment)?"List Empty":comment.map((each) => {
+                            return <>
+                                <div className="commented-section">
                                     <div className="d-flex flex-row add-comment-section mt-3 mb-3 col-12">
-                                        <img className="img-fluid img-responsive rounded-circle mr-3" src="https://i.imgur.com/qdiP4DB.jpg" width="38" />&nbsp;<input type="text" className="form-control mr-2" placeholder="Add comment" />&nbsp;<button className="btn btn-primary" type="button">Post</button></div>
-                                    <hr />
-                                    <div className="commented-section mt-2">
-                                        <div className="d-flex flex-row align-items-center commented-user">
-                                            <h6 className="mr-2">Corey oates</h6><span className="dot mb-1"></span><span className="mb-1 ml-2">4 hours ago</span>
-                                        </div>
-                                        <div className="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                                        <div className="reply-section">
-                                            <div className="align-items-center voting-icons"><span className="ml-2">10</span><span className="dot ml-2"></span>
-                                                <span className="ml-2 mt-1" id='reply' style={{ cursor: 'pointer' }}><b>Reply</b></span>
-                                                {/* <br /> */}
+                                        <img className="img-fluid img-responsive rounded-circle mr-3" src={`${env.URL}/dipicious/${each.user_profile_pic}`} width="38" />&nbsp;<b>{each.name==''?"unknown":each.name}</b>&nbsp;&nbsp;{each.time} ago</div>
 
-                                                <div className=" add-comment-section comment-reply mt-1 mb-3 row" style={{ marginLeft: "1rem", display: "none" }}>
-                                                    <div classNameName='replyBack'>
-                                                        <div className="d-flex flex-row add-comment-section mt-3 mb-3 offsetcol-4 col-md-12">
-                                                            <img className="img-fluid img-responsive rounded-circle mr-3" src="https://i.imgur.com/qdiP4DB.jpg" width="38" />&nbsp;<input type="text" className="form-control mr-2" placeholder="Reply..." />&nbsp;<button className="btn btn-primary" type="button">send</button>
-                                                        </div>
-                                                    </div>
-                                                    <div className='col-md-12'>
-                                                        <img className="img-fluid img-responsive rounded-circle mr-3" src="https://i.imgur.com/qdiP4DB.jpg" width="38" />&nbsp;<b>user name</b>
-                                                        <hr />
-
-                                                        <div className="comment-text-sm" style={{ fontSize: '13px' }}><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                                                    </div>
-                                                    <div className='col-md-12'>
-                                                        <img className="img-fluid img-responsive rounded-circle mr-3" src="https://i.imgur.com/qdiP4DB.jpg" width="38" />&nbsp;<b>user name</b>
-                                                        <hr />
-
-                                                        <div className="comment-text-sm" style={{ fontSize: '13px' }}><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div className="commented-section mt-2">
-                                        <div className="d-flex flex-row align-items-center commented-user">
-                                            <h6 className="mr-2">Corey oates</h6><span className="dot mb-1"></span><span className="mb-1 ml-2">4 hours ago</span>
-                                        </div>
-                                        <div className="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                                        <div className="reply-section">
-                                            <div className="align-items-center voting-icons"><span className="ml-2">10</span><span className="dot ml-2"></span>
-                                                <span className="ml-2 mt-1" id='reply' style={{ cursor: 'pointer' }}><b>Reply</b></span>
-                                                {/* <br /> */}
-
-                                                <div className=" add-comment-section comment-reply mt-1 mb-3 row" style={{ marginLeft: "1rem", display: "none" }}>
-                                                    <div classNameName='replyBack'>
-                                                        <div className="d-flex flex-row add-comment-section mt-3 mb-3 offsetcol-4 col-md-12">
-                                                            <img className="img-fluid img-responsive rounded-circle mr-3" src="https://i.imgur.com/qdiP4DB.jpg" width="38" />&nbsp;<input type="text" className="form-control mr-2" placeholder="Reply..." />&nbsp;<button className="btn btn-primary" type="button">send</button>
-                                                        </div>
-                                                    </div>
-                                                    <div className='col-md-12'>
-                                                        <img className="img-fluid img-responsive rounded-circle mr-3" src="https://i.imgur.com/qdiP4DB.jpg" width="38" />&nbsp;<b>user name</b>
-                                                        <hr />
-
-                                                        <div className="comment-text-sm" style={{ fontSize: '13px' }}><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                                                    </div>
-                                                    <div className='col-md-12'>
-                                                        <img className="img-fluid img-responsive rounded-circle mr-3" src="https://i.imgur.com/qdiP4DB.jpg" width="38" />&nbsp;<b>user name</b>
-                                                        <hr />
-
-                                                        <div className="comment-text-sm" style={{ fontSize: '13px' }}><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <p className='text-left ml-5'><span>{each.comment}</span></p>
 
                                 </div>
+
+                            </>
+                        })}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </>)
 }
 export default Comments
