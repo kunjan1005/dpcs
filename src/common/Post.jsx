@@ -20,7 +20,7 @@ import CustomeLikeList from '../custom/CustomeLikeList'
 import Shimmer from "react-js-loading-shimmer";
 const Post = (props) => {
     let [posts, setPosts] = useState([])
-    let [show, setShow] = useState(false)
+    let [show, setShow] = useState(true)
     let [likes, showLikes] = useState(false)
     var settings = {
         dots: true,
@@ -58,10 +58,7 @@ const Post = (props) => {
                         width: "1.5rem"
                     }}>{post==undefined?<Shimmer/>:parseFloat(post.overall_rate)}</span> : ""}
                 </div>
-
                 <div className="card-body d-flex">
-
-
                     <h6 className="card-title">
                         <NavLink to={`/profile?user_id=${post.user_id}#activities`} style={{ color: "#d31f33" }}>
                            {post==undefined?<Shimmer/>:<img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />} {post.name==undefined?<Shimmer/>:post.name}
@@ -90,7 +87,9 @@ const Post = (props) => {
                 <div className="card-body">
                     {/* <h5 className="card-title">{post.title==undefined?<Shimmer/>:post.title}</h5>
                     <p className="card-text">{post.discription==undefined?<Shimmer/>:post.description}</p> */}
-                    <span><b><span style={{cursor:'pointer'}}onClick={()=>{
+                    <span><b><span
+                        data-toggle="modal" data-target="#myModal" 
+                        style={{cursor:'pointer'}}onClick={()=>{
                         dispatch(postLikes(post.post_id))
                         showLikes(true)}}>{post.like_count}</span>{post.is_like == 1 ? <Tooltip title={props.review == 1 ? 'appriciated' : 'liked'}>
                         {props.review == 1 ? <i class="far fa-handshake post-icon" style={{ color: "palevioletred" }}
@@ -122,7 +121,7 @@ const Post = (props) => {
 
 
                     </b></span>&nbsp;&nbsp;
-                    <span><b>{post==undefined?<Shimmer/>:post.comment_count}  <Comment className='post-icon'
+                    <span><b>{post==undefined?<Shimmer/>:post.comment_count}  <Comment className='post-icon' data-toggle="modal" data-target="#myModal"
                         onClick={() => {
                             show ? setShow(false) : setShow(true)
                             dispatch(postComments(post.post_id))
