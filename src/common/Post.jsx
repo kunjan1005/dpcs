@@ -88,7 +88,7 @@ const Post = (props) => {
                     {/* <h5 className="card-title">{post.title==undefined?<Shimmer/>:post.title}</h5>
                     <p className="card-text">{post.discription==undefined?<Shimmer/>:post.description}</p> */}
                     <span><b><span
-                        data-toggle="modal" data-target="#myModal" 
+                        data-toggle="modal" data-target="#myModal1" 
                         style={{cursor:'pointer'}}onClick={()=>{
                         dispatch(postLikes(post.post_id))
                         showLikes(true)}}>{post.like_count}</span>{post.is_like == 1 ? <Tooltip title={props.review == 1 ? 'appriciated' : 'liked'}>
