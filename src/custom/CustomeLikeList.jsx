@@ -6,7 +6,7 @@ import Scrollbars from 'react-custom-scrollbars-2'
 const CustomeLikeList = (props) => {
     let state = useSelector((state) => state.postlikesListreducer)
     return <>
-        <div className="modal fade" id="myModal" role="dialog">
+        <div className="modal fade" id="myModal1" role="dialog">
             <div className="modal-dialog">
 
 
