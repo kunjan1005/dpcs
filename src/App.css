@@ -2457,3 +2457,23 @@ i.fa.fa-shopping-cart {
     height:3rem;
     width: 3rem;
 }
+
+/* order-1 */
+
+.firstimg {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.img1 {
+    width: 100%;
+    height: 100%;
+}
+.change:focus,
+.gr-btn:focus {
+    outline: none;
+    box-shadow:none !important;
+}
+.gr-btn:hover {
+    background-color: #212121;
+    color:#fff !important;
+}
