@@ -44,9 +44,11 @@ const Restaurant = () => {
     let userData = isUserLoging()
     useEffect(() => {
         dispatch(getRestaurantList())
-        dispatch(getSingleRestaurant(restaurant_id.sid))
-        dispatch(getReviewRestaurant(restaurant_id.sid))
-        dispatch(getDipinRestaurant(restaurant_id.sid))
+        
+    console.log(restaurantData)
+        // dispatch(getSingleRestaurant(restaurantData.restaurant_id))
+        dispatch(getReviewRestaurant(restaurantData.restaurant_id))
+        dispatch(getDipinRestaurant(restaurantData.restaurant_id))
 
         return () => {
             setRestaurant({})
@@ -55,7 +57,7 @@ const Restaurant = () => {
     const setFavroaite = (flag) => {
         let { user_id, lang, access_token } = userData.user
         axios.post(`${env.URL}/dipicious/api/user/user_like_restaurant`,
-            JSON.stringify({ user_id, lang, access_token, restaurant_id: restaurant_id.sid, flag }), {
+            JSON.stringify({ user_id, lang, access_token, restaurant_id: restaurant.restaurant_id, flag }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
