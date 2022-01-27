@@ -22,7 +22,7 @@ const Order1 = () => {
 
                         <p>
                             <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-1e6f880f67285c2e" fill="#d31f33"><path d="M12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4112 20 20 16.4112 20 12C20 7.5888 16.4112 4 12 4C7.5888 4 4 7.5888 4 12C4 16.4112 7.5888 20 12 20ZM11 17V10H13V17H11ZM11.9934 6.69997C12.7444 6.69997 13.2846 7.22697 13.2846 7.91205C13.2846 8.59722 12.7444 9.13738 11.9934 9.13738C11.2556 9.13738 10.7155 8.59722 10.7155 7.91205C10.7155 7.22697 11.2556 6.69997 11.9934 6.69997Z"></path></svg>
-                            <span> Info</span><span> <NavLink to=""><svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M7.11621 19.1161L8.88398 20.8839L17.7679 12L8.88398 3.11612L7.11621 4.88389L14.2323 12L7.11621 19.1161Z"></path></svg></NavLink></span>
+                            <span> Info</span><span> <NavLink to="#" style={{ borderBottom: '0' }}><svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M7.11621 19.1161L8.88398 20.8839L17.7679 12L8.88398 3.11612L7.11621 4.88389L14.2323 12L7.11621 19.1161Z"></path></svg></NavLink></span>
                         </p>
 
                         <p>
@@ -76,6 +76,161 @@ const Order1 = () => {
                 </div>
             </div>
             <hr />
+
+            <div class="col-sm-12" id="spy">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#scroll1">First Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scroll2">Second Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scroll3">Third Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scroll4">Fourth Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scroll5">Five Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scroll6">Six Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scroll7">Seven Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scroll8">Eight Section</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scroll9">Nine Section</a></li>
+                </ul>
+            </div>
+
+            <div className='row'>
+                <div class="col-sm-7 scrollspy-example" data-spy="scroll" data-target="#spy">
+                    <div id="scroll1">
+                        <h2>First Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scroll2">
+                        <h2>Second Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scroll3">
+                        <h2>Third Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scroll4">
+                        <h2>Fourth Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scroll5">
+                        <h2>Fourth Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scroll6">
+                        <h2>Fourth Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scroll7">
+                        <h2>Fourth Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scroll8">
+                        <h2>Fourth Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scroll9">
+                        <h2>Fourth Section</h2>
+                        <div className='div1'>
+                            <div className='row'>
+                                <div className='col-sm-9'>
+                                    <p style={{ fontSize: '16px' }}>Success Meal  وجبة النجاح</p>
+                                    <p>1 Large Hand Tossed Pizza with Chicken Kickers 6 pcs., Potato Wedges and Chocolate Lava Souffle'. عدد 1 بيتزا كبيرة بالعجينة الأصلية مع 6 قطع دجاج كيكرز مع بطاطا ودجز مشوي و شوكليت لافا سوفليه.</p>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <img src={foodImg} className='imgsection' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='col-sm-5'>
+                    <div className='div2'>
+                        <svg height="90" width="90" viewBox="0 0 24 24" class="img-basket"><path d="M14 15V13H10V15H14ZM15 15H19.1872L19.7172 13H15V15ZM14 12V10H15V12H19.9822L20.5122 10H3.48783L4.01783 12H9V10H10V12H14ZM14 18V16H10V18H14ZM15 18H18.3922L18.9222 16H15V18ZM9 15V13H4.28283L4.81283 15H9ZM9 18V16H5.07783L5.60783 18H9ZM7 8V3H17V8H23L20 20H4L1 8H7ZM9 8H15V5H9V8Z"></path></svg>
+                        <br/>
+                        <p className='text-center'>Your basket is empty</p>
+                        <br/>
+                        <button type="button" disabled="" class="btn-btn-btn" tabindex="0"><span class="ccl-cce251427bbe4ec4">Go to checkout</span></button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
