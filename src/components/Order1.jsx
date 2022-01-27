@@ -14,13 +14,21 @@ const Order1 = () => {
                     <div className='col-lg-5 col-md-5 col-sm-5 col-12'>
                         <h1>Domino's Pizza دومينوز بيتزا - Kuwait City West</h1>
                         <p>25 min ·<span></span> Pizza ·<span></span> Italian</p>
-                        <p><svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205" fill="#d31f33"><path d="M12 1L9 9H2L7 14.0001L5 21L12 17.0001L19 21L17 14.0001L22 9H15L12 1Z"></path></svg>
-                            <span> 4.3 Very good</span> · <span> (500+)</span> · <span> 10.73 km away</span> · <span> Free delivery</span> · <span> KD 3.500</span> <span style={{marginLeft:'27px'}}>minimum</span></p>
+
+                        <p>
+                            <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205" fill="#d31f33"><path d="M12 1L9 9H2L7 14.0001L5 21L12 17.0001L19 21L17 14.0001L22 9H15L12 1Z"></path></svg>
+                            <span> 4.3 Very good</span> · <span> (500+)</span> · <span> 10.73 km away</span> · <span> Free delivery</span> · <span> KD 3.500</span> <span style={{ marginLeft: '27px' }}>minimum</span>
+                        </p>
+
                         <p>
                             <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-1e6f880f67285c2e" fill="#d31f33"><path d="M12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4112 20 20 16.4112 20 12C20 7.5888 16.4112 4 12 4C7.5888 4 4 7.5888 4 12C4 16.4112 7.5888 20 12 20ZM11 17V10H13V17H11ZM11.9934 6.69997C12.7444 6.69997 13.2846 7.22697 13.2846 7.91205C13.2846 8.59722 12.7444 9.13738 11.9934 9.13738C11.2556 9.13738 10.7155 8.59722 10.7155 7.91205C10.7155 7.22697 11.2556 6.69997 11.9934 6.69997Z"></path></svg>
-                            <span> Info</span><span> <NavLink to=""><svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M7.11621 19.1161L8.88398 20.8839L17.7679 12L8.88398 3.11612L7.11621 4.88389L14.2323 12L7.11621 19.1161Z"></path></svg></NavLink></span></p>
-                        <p><svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-1e6f880f67285c2e" fill="#d31f33"><path d="M18 17.5C18 18.3272 18.6729 19 19.5 19C20.3271 19 21 18.3272 21 17.5C21 16.6729 20.3271 16 19.5 16C18.6729 16 18 16.6729 18 17.5ZM5.3 15H10.4L9.4 11.2C7.51643 11.7024 5.96055 13.1418 5.3 15ZM6 17C6 18.1028 6.89717 19 8 19C9.10283 19 10 18.1028 10 17H6ZM10 9H11.1L12.5 15H17.1C17.2812 14.7495 17.5412 14.5548 17.8 14.4L15.9 7H17.9L18.3172 8.53691C18.5665 8.20869 18.9409 8 19.3594 8H21V11H19.3594C19.2236 11 19.0924 10.978 18.9686 10.9371L19.8 14C21.584 14.1289 23 15.6407 23 17.5C23 19.4266 21.433 21 19.5 21C17.567 21 16 19.4266 16 17.5C16 17.3151 16.0127 17.1476 16 17H12C12 19.1983 10.2056 21 8 21C5.79442 21 4 19.1983 4 17H3C3 14.5841 4.04808 12.4308 5.7 11H3L2 10V4L3 3H9L10 4V9Z"></path></svg>
-                            <span> Delivered by Domino's Pizza دومينوز بيتزا - Kuwait City West This </span><span style={{ marginLeft: '27px' }}>means you won’t be able to follow your order or get live updates</span></p>
+                            <span> Info</span><span> <NavLink to=""><svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-ed34b65f78f16205 ccl-c738ab1fde928049"><path d="M7.11621 19.1161L8.88398 20.8839L17.7679 12L8.88398 3.11612L7.11621 4.88389L14.2323 12L7.11621 19.1161Z"></path></svg></NavLink></span>
+                        </p>
+
+                        <p>
+                            <svg height="24" width="24" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-1e6f880f67285c2e" fill="#d31f33"><path d="M18 17.5C18 18.3272 18.6729 19 19.5 19C20.3271 19 21 18.3272 21 17.5C21 16.6729 20.3271 16 19.5 16C18.6729 16 18 16.6729 18 17.5ZM5.3 15H10.4L9.4 11.2C7.51643 11.7024 5.96055 13.1418 5.3 15ZM6 17C6 18.1028 6.89717 19 8 19C9.10283 19 10 18.1028 10 17H6ZM10 9H11.1L12.5 15H17.1C17.2812 14.7495 17.5412 14.5548 17.8 14.4L15.9 7H17.9L18.3172 8.53691C18.5665 8.20869 18.9409 8 19.3594 8H21V11H19.3594C19.2236 11 19.0924 10.978 18.9686 10.9371L19.8 14C21.584 14.1289 23 15.6407 23 17.5C23 19.4266 21.433 21 19.5 21C17.567 21 16 19.4266 16 17.5C16 17.3151 16.0127 17.1476 16 17H12C12 19.1983 10.2056 21 8 21C5.79442 21 4 19.1983 4 17H3C3 14.5841 4.04808 12.4308 5.7 11H3L2 10V4L3 3H9L10 4V9Z"></path></svg>
+                            <span> Delivered by Domino's Pizza دومينوز بيتزا - Kuwait City West This </span><span style={{ marginLeft: '27px' }}>means you won’t be able to follow your order or get live updates</span>
+                        </p>
                     </div>
 
                     <div className='col-lg-4 col-sm-4 col-md-4 col-12'>
@@ -45,8 +53,10 @@ const Order1 = () => {
                                                     <span>
                                                         {/* change button */}
                                                     </span>
-                                                    <p ><svg height="16" width="16" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-1e6f880f67285c2e"><path d="M13 12L15.2025 15.8789L13.4704 16.8789L11 12.6V6H13V12ZM12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20Z"></path></svg>
-                                                        <span> Deliver in around 25 min</span></p>
+                                                    <p >
+                                                        <svg height="16" width="16" viewBox="0 0 24 24" class="ccl-0f24ac4b87ce1f67 ccl-abe5c41af1b9498e ccl-1e6f880f67285c2e"><path d="M13 12L15.2025 15.8789L13.4704 16.8789L11 12.6V6H13V12ZM12 2C17.5228 2 22 6.47717 22 12C22 17.5228 17.5228 22 12 22C6.47717 22 2 17.5228 2 12C2 6.47717 6.47717 2 12 2ZM12 20C16.4113 20 20 16.4113 20 12C20 7.58875 16.4113 4 12 4C7.58875 4 4 7.58875 4 12C4 16.4113 7.58875 20 12 20Z"></path></svg>
+                                                        <span> Deliver in around 25 min</span>
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

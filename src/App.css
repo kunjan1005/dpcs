@@ -751,7 +751,7 @@ select option {
 .search_input{
     padding: 4px;
     outline: none;
-    /* width:100%; */
+    width:93%;
     border:none;
     background-color:#fafafa !important;
     
