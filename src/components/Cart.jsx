@@ -19,6 +19,7 @@ const Cart = () => {
                   <h3 class="cart-heading m-auto mt-3">Your cart is empty</h3>
                 </div>
     }
+    console.log("cart data",totalPrice)
     return (
         <>
             <div className="Cart-Container mt-4">

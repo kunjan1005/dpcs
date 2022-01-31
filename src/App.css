@@ -751,7 +751,7 @@ select option {
 .search_input{
     padding: 4px;
     outline: none;
-    /* width:100%; */
+    width:93%;
     border:none;
     background-color:#fafafa !important;
     
@@ -2456,4 +2456,82 @@ i.fa.fa-shopping-cart {
 .like-container img{
     height:3rem;
     width: 3rem;
+}
+
+/* order-1 */
+
+.firstimg {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.img1 {
+    width: 100%;
+    height: 100%;
+}
+.change:focus,
+.gr-btn:focus {
+    outline: none;
+    box-shadow:none !important;
+}
+.gr-btn:hover {
+    background-color: #212121;
+    color:#fff !important;
+}
+button.btn.border:hover {
+    background-color: #212121;
+    border:1px solid #ffffff;
+    color: #fff;
+}
+.scrollspy-example {
+    position: relative;
+    height: 250px;
+    overflow: auto;
+}
+.scrollspy-example::-webkit-scrollbar {
+    width: 0px;
+}
+div#scroll1 {
+    margin-top: 25px;
+}
+.div1 {
+    box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+    padding: 10px;
+    border-radius: 4px;
+}
+.div2 {
+    box-shadow: 0 6px 20px rgb(0 0 0 / 8%);
+    padding: 10px;
+}
+.btn-btn-btn-disabled{
+    cursor: not-allowed !important;
+    border: none;
+    color: #abadad;
+    background: #e2e5e5;
+    min-height: 58px;
+    margin: auto;
+    padding: 12px 24px;
+    display: block;
+    width: 100%;
+}
+.btn-btn-btn-open{
+    cursor: pointer !important;
+    border: none;
+    color: #abadad;
+    background:green;
+    min-height: 58px;
+    margin: auto;
+    padding: 12px 24px;
+    display: block;
+    width: 100%;
+}
+.img-basket {
+    margin: auto;
+    display: block;
+}
+.div1:hover {
+    box-shadow: 0 22px 24px 0 rgb(0 0 0 / 8%);
+}
+.imgsection {
+    margin-top: 15px;
+    width: 100px;
 }

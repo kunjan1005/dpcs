@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './components/Login';
 import Header from './common/Header';
-// import  Post  from './common/Post';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from 'react-router';
@@ -21,7 +20,7 @@ import Logout from './components/Logout';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loading from './common/Loading';
 import Restaurant from './components/Restaurant';
-import Order from './components/Order';
+import Order1 from './components/Order1';
 import Cart from './components/Cart';
 import BookTable from './components/BookTable';
 import ScrollBar from 'react-custom-scrollbars-2';
@@ -51,7 +50,8 @@ function App() {
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/post/:id' element={<PostPage />}></Route>
               <Route exact path='/restaurant/:sid' element={<Restaurant/>}/>
-              <Route exact path='/restaurant/order/:sid' element={<Order/>}/>
+              {/* <Route exact path='/restaurant/order/:sid' element={<Order/>}/> */}
+              <Route exact path='/restaurant/order/:sid' element={<Order1/>}/>
               <Route exact path='/restaurant/cart/' element={<Cart/>}/>
               <Route exact path='/restaurant/checkout/' element={<CheckOut/>}/>
               <Route exact path='/restaurant/addresbook/' element={<AddressBook/>}/>

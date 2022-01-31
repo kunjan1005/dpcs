@@ -17,8 +17,8 @@ const Home = () => {
     let navigate = useNavigate()
 
     useEffect(async () => {
-        let {login}=isUserLoging()
-        if(!login){
+        let { login } = isUserLoging()
+        if (!login) {
             return navigate('/login')
         }
         dispatch(fatchData())
@@ -26,12 +26,8 @@ const Home = () => {
 
         }
     }, [1])
-    if (_.isEmpty(state.post)) {
-        return <Loading />
-    }
-
     return (
-            <Post post={state.post} />
+        <Post post={state.post} />
     )
 }
 export default Home
