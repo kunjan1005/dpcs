@@ -8,8 +8,6 @@ const CustomeLikeList = (props) => {
     return <>
         <div className="modal fade" id="myModal1" role="dialog">
             <div className="modal-dialog">
-
-
                 <div className="modal-content">
                     <div className="modal-header">
                     <h4 className="modal-title">Liked By</h4>

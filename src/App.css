@@ -2513,6 +2513,9 @@ div#scroll1 {
     display: block;
     width: 100%;
 }
+.modal-backdrop.show {
+    opacity: 0 !important;
+}
 .btn-btn-btn-open{
     cursor: pointer !important;
     border: none;
