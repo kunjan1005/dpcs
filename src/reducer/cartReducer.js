@@ -18,23 +18,22 @@ const cartReducer = (state = intialState, action) => {
         case 'USER_CART_DATA_GET':
             return { ...state }
         case 'INCREMENT':
+            let sum = 0
             var data = {
                 ...state,
                 item: state.item.map((each) => {
                     if (action.payload == each.cart_id) {
                         return {
                             ...each, quantity: parseInt(each.quantity) + 1,
-                            cart_item_price: (parseInt(each.quantity) + 1) * parseFloat(each.item_detail.item_price)
+                            cart_item_price: (parseInt(each.quantity) + 1) * parseInt(each.item_detail.item_price)
                         }
                     } else {
-                        return each
+                        return { ...each, cart_item_price: (parseInt(each.quantity)) * parseInt(each.item_detail.item_price) }
                     }
                 }),
             }
             return {
-                ...data, totalPrice: data.item.length == 1 ? data.item[0].cart_item_price : data.item.reduce((a = 0, b) => {
-                    return a + b.item_detail.item_price * b.quantity
-                })
+                ...data, totalPrice: data.item.length == 1 ? data.item[0].cart_item_price : data.item.map(o => parseFloat(o.cart_item_price)).reduce((a, c) => { return a + c })
             }
         case 'DECREMENT':
             var data = {
@@ -51,9 +50,7 @@ const cartReducer = (state = intialState, action) => {
                 }),
             }
             return {
-                ...data, totalPrice: data.item.length == 1 ? data.item[0].cart_item_price : data.item.reduce((a = 0, b) => {
-                    return a + b.item_detail.item_price * b.quantity
-                })
+                ...data, totalPrice: data.item.length == 1 ? data.item[0].cart_item_price : data.item.map(o => parseFloat(o.cart_item_price)).reduce((a, c) => { return a + c })
             }
         case 'DELETE_CART_ITEM':
             return {

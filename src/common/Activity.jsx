@@ -9,10 +9,8 @@ const Activity = (props) => {
     let [post,setPost]=useState([])
     setTimeout(()=>{
     setPost(props.data)
-    },1000)
-    if(_.isEmpty(props.data)){
-      return <Loading/>
-    }
+    },900)
+  
     return (
        <Post post={props.data} status="1"/>
     )

@@ -42,8 +42,8 @@ const Order1 = () => {
     let restaurantData = state.restaurantOrderDetails
     useEffect(() => {
         // setTimeout(() => {
-        //     dispatch(restaurantOrderDetails(restaurantData.cart_restaurant_id))
-        //     dispatch(cartData(restaurantData.cart_restaurant_id))
+            dispatch(restaurantOrderDetails(restaurantData.cart_restaurant_id))
+            dispatch(cartData(restaurantData.cart_restaurant_id))
         // }, 900)
     }, [1])
 
@@ -94,14 +94,14 @@ const Order1 = () => {
             </div>
 
             <div className='row'>
-                <div class="col-sm-7 scrollspy-example" data-spy="scroll" data-target="#spy">
+                <div class="col-sm-7 col-12 scrollspy-example" data-spy="scroll" data-target="#spy">
                     {  _.isEmpty(restaurantData) ? <Shimmer /> :_.isEmpty(restaurantData.data) ? <span>no data found</span> : restaurantData.data.map((each, index) => {
                         return <div id={`scroll${index + 1}`}>
                             <h2>{each.category_name}</h2>
                             {each.products.map((item, index) => {
                                 return <div className='div1'>
                                     <div className='row'>
-                                        <div className='col-sm-9'>
+                                        <div className='col-sm-9 col-12'>
                                             <p style={{ fontSize: '16px' }}>Success Meal {item.item_name}</p>
                                             <p>Kd {item.item_price},</p>
                                             <p>{item.description}</p>
@@ -116,7 +116,7 @@ const Order1 = () => {
                                                         quantity={item.quantity == undefined ? 1 : item.quantity}
                                                         description={item.description}
                                                         quantity_increment_decrement={item.quantity == undefined ? 1 : item.quantity}
-                                                        redirectTo={() => { dispatch(restaurantOrderDetails(restaurant_id.sid)) }}
+                                                        redirectTo={() => { dispatch(restaurantOrderDetails(each.restaurant_id)) }}
                                                     />
                                                 </IconButton> : <div className='cart_success'>Cart <i class="fa fa-check-circle"></i></div>
 
