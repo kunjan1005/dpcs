@@ -2502,11 +2502,22 @@ div#scroll1 {
     box-shadow: 0 6px 20px rgb(0 0 0 / 8%);
     padding: 10px;
 }
-.btn-btn-btn {
+.btn-btn-btn-disabled{
     cursor: not-allowed !important;
     border: none;
     color: #abadad;
     background: #e2e5e5;
+    min-height: 58px;
+    margin: auto;
+    padding: 12px 24px;
+    display: block;
+    width: 100%;
+}
+.btn-btn-btn-open{
+    cursor: pointer !important;
+    border: none;
+    color: #abadad;
+    background:green;
     min-height: 58px;
     margin: auto;
     padding: 12px 24px;

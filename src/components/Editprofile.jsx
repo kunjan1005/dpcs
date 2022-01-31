@@ -11,13 +11,14 @@ import Loading from '../common/Loading';
 import env from '../env'
 import { storeUserProfile } from '../actions';
 import { useSelector, useDispatch } from 'react-redux'
+import Shimmer from 'react-js-loading-shimmer';
 const Editprofile = () => {
     let [isLoading, setLoading] = useState(true)
     let [user, setUser] = useState({
         user_id: "",
         name: '',
         username: "",
-        access_token:'',
+        access_token: '',
         website: '',
         dob: "",
         mobile: "",
@@ -26,7 +27,7 @@ const Editprofile = () => {
         lang: "",
         gender: "",
         profile_pic: '',
-        editMode:false
+        editMode: false
 
     })
     let navigate = useNavigate()
@@ -45,8 +46,8 @@ const Editprofile = () => {
         if (!response.login) {
             navigate('/login')
         } else {
-            if(!user.editMode){
-                  setUser(data)
+            if (!user.editMode) {
+                setUser(data)
             }
         }
         setLoading(false)
@@ -58,7 +59,7 @@ const Editprofile = () => {
         image.src = URL.createObjectURL(e.target.files[0])
         const name = e.target.name
         setUser((prev) => {
-            return { ...prev, [name]: e.target.files[0],editMode:true }
+            return { ...prev, [name]: e.target.files[0], editMode: true }
         })
 
 
@@ -67,7 +68,7 @@ const Editprofile = () => {
         const name = e.target.name
         let value = e.target.value
         setUser((prev) => {
-            return { ...prev, [name]: value,editMode:true}
+            return { ...prev, [name]: value, editMode: true }
         })
     }
     const onSubmitForm = async () => {
@@ -91,10 +92,10 @@ const Editprofile = () => {
             toast.error('language required!')
         } else {
             let response = isUserLoging()
-            let {access_token}=response.user
+            let { access_token } = response.user
             formData.append('profile_pic', user.profile_pic)
             formData.append('user_id', user.user_id)
-            formData.append('access_token',access_token)
+            formData.append('access_token', access_token)
             formData.append('name', user.name)
             formData.append('username', user.username)
             formData.append('email', user.email)
@@ -121,16 +122,16 @@ const Editprofile = () => {
         }
 
     }
-    if (isLoading) {
-        return <Loading></Loading>
-    }
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
     return (
         <>
             <div className='row col-md-8 col-12 m-auto mt-3 p-3  edit_profile_container'>
                 <div className='col-lg-3 col-12'>
                     <div className="circular m-auto">
                         <input type="file" name='profile_pic' id='edit_file' onChange={uploadImages} style={{ display: 'none' }} multiple />
-                        <img src={data.profile_image} id='profile_img' />
+                        {isLoading ? <Shimmer /> : <img src={data.profile_image} id='profile_img' />}
                     </div>
                     <div className='edit_button mt-1 row'>
                         <Button size='small' variant="outlined" className='btn col-5' onClick={openFileUpload}><Edit /></Button>&nbsp;
@@ -145,75 +146,101 @@ const Editprofile = () => {
                     <hr />
                     <div className='row'>
                         <div className="mb-1 col-lg-6 form-group">
-                            <label>Name</label>
-                            <input type="text" className="form-control"
-                                id="" name='name' placeholder='Name'
-                                onChange={whileFillUpForm}
-                                // defaultValue={}
-                                value={user.name} />
+                            {isLoading ? <Shimmer /> :
+                                <><label>Name</label>
+                                    <input type="text" className="form-control"
+                                        id="" name='name' placeholder='Name'
+                                        onChange={whileFillUpForm}
+                                        // defaultValue={}
+                                        value={user.name} />
+                                </>
+                            }
                         </div>
                         <div className="mb-1 col-lg-6">
-                            <label>Username</label>
-                            <input type="text" className="form-control"
-                                id="" name='username' placeholder='user name'
-                                onChange={whileFillUpForm}
-                                value={user.username} />
+                            {isLoading ? <Shimmer /> : <>
+                                <label>Username</label>
+                                <input type="text" className="form-control"
+                                    id="" name='username' placeholder='user name'
+                                    onChange={whileFillUpForm}
+                                    value={user.username} />
+                            </>}
+
                         </div>
                     </div>
                     <div className='row'>
                         <div className="mb-1 col-lg-6 form-group">
-                            <label>Website</label>
-                            <input type="text" className="form-control"
-                                id="" name='website' placeholder='Website'
-                                onChange={whileFillUpForm}
-                                value={user.website == "0" ? '' : user.website} />
+                            {isLoading ? <Shimmer /> : <>
+                                <label>Website</label>
+                                <input type="text" className="form-control"
+                                    id="" name='website' placeholder='Website'
+                                    onChange={whileFillUpForm}
+                                    value={user.website == "0" ? '' : user.website} />
+                            </>
+                            }
                         </div>
                         <div className="mb-1 col-lg-6">
-                            <label>Mobile no</label>
-                            <input type="text" className="form-control"
-                                id="" name='mobile' placeholder='Mobile No'
-                                onChange={whileFillUpForm}
-                                value={user.mobile} />
+                            {isLoading ? <Shimmer /> : <>
+                                <label>Mobile no</label>
+                                <input type="text" className="form-control"
+                                    id="" name='mobile' placeholder='Mobile No'
+                                    onChange={whileFillUpForm}
+                                    value={user.mobile} />
+                            </>
+                            }
                         </div>
                     </div>
                     <div className="mb-1 mt-1">
-                        <label>Email</label>
-                        <input type="text" className="form-control"
-                            id="" name='email' placeholder='email'
-                            onChange={whileFillUpForm}
-                            value={user.email} />
+                        {isLoading ? <Shimmer /> : <>
+                            <label>Email</label>
+                            <input type="text" className="form-control"
+                                id="" name='email' placeholder='email'
+                                onChange={whileFillUpForm}
+                                value={user.email} />
+                        </>}
                     </div>
                     <div className="mb-1 mt-1">
-                        <label>Description</label>
-                        <textarea className="form-control"
-                            name='description' placeholder='Description...'
-                            onChange={whileFillUpForm}
-                            value={user.description != 0 ? user.description : ''} />
+                        {isLoading ? <Shimmer /> : <>
+                            <label>Description</label>
+                            <textarea className="form-control"
+                                name='description' placeholder='Description...'
+                                onChange={whileFillUpForm}
+                                value={user.description != 0 ? user.description : ''} />
+                        </>
+                        }
                     </div>
                     <div className='row mt-3'>
                         <div className="mb-1 col-lg-6">
-                            <label>Select Language</label>
-                            <select name="lang" id="" className="form-control mt-1" onChange={whileFillUpForm}>
-                                <option value='' selected disabled>Select Language</option>
-                                <option value="0">English</option>
-                                <option value="1">Arabic</option>
-                            </select>
+                            {isLoading ? <Shimmer /> : <>
+                                <label>Select Language</label>
+                                <select name="lang" id="" className="form-control mt-1" onChange={whileFillUpForm}>
+                                    <option value='' selected disabled>Select Language</option>
+                                    <option value="0">English</option>
+                                    <option value="1">Arabic</option>
+                                </select>
+                            </>
+                            }
                         </div>
                         <div className="mb-1 col-lg-6">
-                            <label>Select Gender</label>
-                            <select name="gender" id="" className="form-control mt-1" onChange={whileFillUpForm}>
-                                <option value='' selected disabled>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
+                            {isLoading ? <Shimmer /> : <>
+                                <label>Select Gender</label>
+                                <select name="gender" id="" className="form-control mt-1" onChange={whileFillUpForm}>
+                                    <option value='' selected disabled>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </>
+                            }
                         </div>
                     </div>
                     <div className="mb-1 mt-1">
-                        <label>Date of Birth</label>
-                        <input type="date" className="form-control"
-                            name='dob' placeholder=''
-                            onChange={whileFillUpForm}
-                        />
+                        {isLoading ? <Shimmer /> : <>
+                            <label>Date of Birth</label>
+                            <input type="date" className="form-control"
+                                name='dob' placeholder=''
+                                onChange={whileFillUpForm}
+                            />
+                        </>
+                        }
                     </div>
 
 

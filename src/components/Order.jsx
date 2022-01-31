@@ -5,16 +5,12 @@ import { useParams } from 'react-router'
 import { isUserLoging } from '../authorization/useAuth'
 import env from '../env'
 import { IconButton } from '@material-ui/core'
-
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import Loading from '../common/Loading'
 import {DoneIcon} from '@material-ui/icons/Done';
-
 import _ from 'underscore'
-
-
 import { restaurantOrderDetails } from '../actions/index'
 import CustomCart from '../custom/CartForm';
 $(document).on('click', '.category_btn', function () {
@@ -125,9 +121,6 @@ const Order = () => {
                                                         </IconButton> :<div className='cart_success'>Cart <i class="fa fa-check-circle"></i></div>
                                                        
                                                     }
-
-
-
                                                 </div>
                                             </div>
                                         })}
