@@ -22,9 +22,7 @@ const Favriate = (props) => {
                         backgroundColor: 'green'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
-                        dispatch(getSingleRestaurant(each.restaurant_id))
-                        dispatch(getReviewRestaurant(each.restaurant_id))
-                        dispatch(getDipinRestaurant(each.restaurant_id))
+                          localStorage.setItem('restaurant',each.restaurant_id)
                     }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
                             <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
                         </div>

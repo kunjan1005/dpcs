@@ -25,11 +25,8 @@ const Comments = (props) => {
                                 <div classNameName="commented-section">
                                     <div classNameName="d-flex flex-row add-comment-section mt-3 mb-3 col-12">
                                         <img classNameName="img-fluid img-responsive rounded-circle mr-3" src={`${env.URL}/dipicious/${each.user_profile_pic}`} width="38" />&nbsp;<b>{each.name == '' ? "unknown" : each.name}</b>&nbsp;&nbsp;{each.time} ago</div>
-
                                     <p classNameName='text-left ml-5'><span>{each.comment}</span></p>
-
                                 </div>
-
                             </>
                         })}
                         </Scrollbars>
