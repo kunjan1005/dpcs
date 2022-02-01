@@ -70,9 +70,10 @@ const Post = (props) => {
                             <span className='post_side_title' style={{ color: "black" }}> {props.review == 1 ? 'Reviewed' : post.post_type == 1 ? "Dip in" : post.post_type == 2 ? "Reviewed" : "Dip out"}
                                 {post.restaurant_name != undefined ?
                                     <NavLink to={`/restaurant/${post.restaurant_name}`} onClick={() => {
-                                        dispatch(getSingleRestaurant(post.restaurant_id))
-                                        dispatch(getReviewRestaurant(post.restaurant_id))
-                                        dispatch(getDipinRestaurant(post.restaurant_id))
+                                        localStorage.setItem('restaurant',post.restaurant_id)
+                                        // dispatch(getSingleRestaurant(post.restaurant_id))
+                                        // dispatch(getReviewRestaurant(post.restaurant_id))
+                                        // dispatch(getDipinRestaurant(post.restaurant_id))
                                     }}>
                                         <span style={{ color: "orange" }} className="resturant_name">@{post == undefined ? <Shimmer /> : post.restaurant_name}</span>
                                     </NavLink> : ""} {post.location_name !== null ? <span>

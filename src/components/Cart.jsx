@@ -12,8 +12,8 @@ const Cart = () => {
     let navigate=useNavigate()
     let state=useSelector((state)=>state.cartReducer)
     let {totalPrice}=state
-    let {sid}=useParams('sid')
-    useEffect(()=>{dispatch(cartData(sid))},[2])
+    let restaurant_id=localStorage.getItem('restaurant')
+    useEffect(()=>{dispatch(cartData(restaurant_id))},[2])
     if (_.isEmpty(state.item)) {
         return <div class="error text-center mt-3">
                   <h3 class="cart-heading m-auto mt-3">Your cart is empty</h3>
@@ -31,7 +31,7 @@ const Cart = () => {
                 <hr/>
                 <div className="cart-items-container">
                     <Scrollbars>
-                      <CartList refresh={()=>dispatch(cartData(sid))} />
+                      <CartList refresh={()=>dispatch(cartData(restaurant_id))} />
                     </Scrollbars>
 
                 </div>

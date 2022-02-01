@@ -38,7 +38,7 @@ const CheckOut = () => {
         let userData = isUserLoging()
         let { user_id, lang, access_token } = userData.user
         let { address__id } = addressReducer.default
-        let { restaurent_id } = cartReducer.item[0]
+        let restaurent_id = localStorage.getItem('restaurant')
         let cart_data = cartReducer.item.map((each) => {
             return each.cart_id
         })

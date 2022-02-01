@@ -32,19 +32,17 @@ $(document).on('click', '.category_btn', function () {
 const Order1 = () => {
     let { user } = isUserLoging()
     let { user_id, lang, access_token } = user
-    let location = useLocation()
     let [restaurant, setRestaurant] = useState({})
-    let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
-    let restaurant_id = useParams('sid')
     let navigate = useNavigate()
     let state = useSelector((state) => state.restaurantOrderReducer)
     let restaurantData = state.restaurantOrderDetails
+    let restaurant_id=localStorage.getItem('restaurant')
     useEffect(() => {
-        // setTimeout(() => {
-            dispatch(restaurantOrderDetails(restaurantData.cart_restaurant_id))
-            dispatch(cartData(restaurantData.cart_restaurant_id))
-        // }, 900)
+        setTimeout(() => {
+            dispatch(restaurantOrderDetails(restaurant_id))
+            dispatch(cartData(restaurant_id))
+        }, 900)
     }, [1])
 
     return (

@@ -34,7 +34,7 @@ const Restaurant = () => {
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
-    let restaurant_id = useParams('sid')
+    // let restaurant_id = useParams('sid')
     let state = useSelector((state) => state.restaurantReducer)
     let restaurantData = state.restaurant
     let { restaurantReviewList, restaurantDipList } = state
@@ -42,11 +42,12 @@ const Restaurant = () => {
     let today = new Date()
     let curreDay = today.getDay();
     let userData = isUserLoging()
+    let restaurant_id=localStorage.getItem('restaurant')
     useEffect(() => {
         dispatch(getRestaurantList())
-        dispatch(getSingleRestaurant(restaurantData.restaurant_id))
-        dispatch(getReviewRestaurant(restaurantData.restaurant_id))
-        dispatch(getDipinRestaurant(restaurantData.restaurant_id))
+        dispatch(getSingleRestaurant(restaurant_id))
+        dispatch(getReviewRestaurant(restaurant_id))
+        dispatch(getDipinRestaurant(restaurant_id))
 
         return () => {
             setRestaurant({})
@@ -55,13 +56,13 @@ const Restaurant = () => {
     const setFavroaite = (flag) => {
         let { user_id, lang, access_token } = userData.user
         axios.post(`${env.URL}/dipicious/api/user/user_like_restaurant`,
-            JSON.stringify({ user_id, lang, access_token, restaurant_id: restaurantData.restaurant_id, flag }), {
+            JSON.stringify({ user_id, lang, access_token, restaurant_id: restaurant_id, flag }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         }).then((response) => {
-            dispatch(getSingleRestaurant(restaurantData.restaurant_id))
+            dispatch(getSingleRestaurant(restaurant_id))
         })
 
     }
