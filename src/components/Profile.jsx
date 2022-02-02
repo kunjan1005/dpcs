@@ -41,7 +41,9 @@ const Profile = () => {
     } else {
       navigate('/login')
     }
-
+    return ()=>{
+       user={}
+    }
 
   }, [1])
   const becomeChef = async () => {
@@ -58,11 +60,6 @@ const Profile = () => {
       toast.success(response.data.msg)
     }
   }
-
-  if (_.isEmpty(user)) {
-    return <Loading></Loading>
-  }
-
   return (
     <div className='row main-profile'>
       <div className='card col-lg-8 col-sm-12 m-auto profile-div mt-3'>
@@ -81,7 +78,7 @@ const Profile = () => {
             </div>
           </div>
           <div className='col-lg-4 col-4 m-auto followers order-1'>
-            <h4>{user.following_count==undefined?<Shimmer/>:user.following_count}</h4>
+            <h4>{_.isEmpty(user)?<Shimmer/>:user.following_count}</h4>
             <h6>following</h6>
             {/* <button className='profile_btn  btn-primary mt-5'>EDIT PROFILE</button> */}
             <NavLink to={`/profile/edit`}>
@@ -93,12 +90,12 @@ const Profile = () => {
           </div>
           <div className='col-lg-4 col-4 order-2'>
             <div className='main-profile-pick m-auto'>
-              {user.user_profile_pic==undefined?<Shimmer />:<img src={`${env.URL}/dipicious/${user.user_profile_pic}`} alt='profile..'></img>}
+              {_.isEmpty(user)?<Shimmer />:<img src={`${env.URL}/dipicious/${user.user_profile_pic}`} alt='profile..'></img>}
             </div>
-            <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{user.name==undefined?<Shimmer/>:user.name}</h6>
+            <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{_.isEmpty(user)?<Shimmer/>:user.name}</h6>
           </div>
           <div className='col-lg-4 col-4 m-auto following order-3'>
-            <h4>{user.followers==undefined?<Shimmer/>:user.followers}</h4>
+            <h4>{_.isEmpty(user)?<Shimmer/>:user.followers}</h4>
             <h6>followers</h6>
             <Button variant="outlined" className='mt-5 profile_btn'
               onClick={() => becomeChef()}
@@ -109,7 +106,7 @@ const Profile = () => {
           <div className='col-md-12'>
             <span></span><br />
             <span>{user.description}</span><br />
-            <NavLink to='#' className='links'>{user.website==undefined?<Shimmer/>:user.website}</NavLink>
+            <NavLink to='#' className='links'>{_.isEmpty(user)?<Shimmer/>:user.website}</NavLink>
             <span></span>
 
           </div>

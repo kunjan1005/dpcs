@@ -8,8 +8,6 @@ const CustomeLikeList = (props) => {
     return <>
         <div className="modal fade" id="myModal1" role="dialog">
             <div className="modal-dialog">
-
-
                 <div className="modal-content">
                     <div className="modal-header">
                     <h4 className="modal-title">Liked By</h4>
@@ -34,7 +32,7 @@ const CustomeLikeList = (props) => {
                         </Scrollbars>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-default" data-dismiss="modal" onClick={()=>props.close(false)}>Close</button>
                     </div>
                 </div>
 

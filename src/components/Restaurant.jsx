@@ -13,7 +13,7 @@ import env from '../env'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSingleRestaurant, fatchRetaurant, getRestaurantList } from '../actions/index'
+import { getSingleRestaurant, fatchRetaurant, getRestaurantList,restaurantOrderDetails} from '../actions/index'
 import Loading from '../common/Loading'
 import _ from 'underscore'
 import BookTable from './BookTable';
@@ -34,7 +34,7 @@ const Restaurant = () => {
     let location = useLocation()
     let tabindex = location.hash.split('#')[1]
     let dispatch = useDispatch()
-    let restaurant_id = useParams('sid')
+    // let restaurant_id = useParams('sid')
     let state = useSelector((state) => state.restaurantReducer)
     let restaurantData = state.restaurant
     let { restaurantReviewList, restaurantDipList } = state
@@ -42,13 +42,12 @@ const Restaurant = () => {
     let today = new Date()
     let curreDay = today.getDay();
     let userData = isUserLoging()
+    let restaurant_id=localStorage.getItem('restaurant')
     useEffect(() => {
         dispatch(getRestaurantList())
-        
-    console.log(restaurantData)
-        // dispatch(getSingleRestaurant(restaurantData.restaurant_id))
-        dispatch(getReviewRestaurant(restaurantData.restaurant_id))
-        dispatch(getDipinRestaurant(restaurantData.restaurant_id))
+        dispatch(getSingleRestaurant(restaurant_id))
+        dispatch(getReviewRestaurant(restaurant_id))
+        dispatch(getDipinRestaurant(restaurant_id))
 
         return () => {
             setRestaurant({})
@@ -57,13 +56,13 @@ const Restaurant = () => {
     const setFavroaite = (flag) => {
         let { user_id, lang, access_token } = userData.user
         axios.post(`${env.URL}/dipicious/api/user/user_like_restaurant`,
-            JSON.stringify({ user_id, lang, access_token, restaurant_id: restaurant.restaurant_id, flag }), {
+            JSON.stringify({ user_id, lang, access_token, restaurant_id: restaurant_id, flag }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         }).then((response) => {
-            dispatch(getSingleRestaurant(restaurant_id.sid))
+            dispatch(getSingleRestaurant(restaurant_id))
         })
 
     }
@@ -73,18 +72,18 @@ const Restaurant = () => {
     setTimeout(() => {
         setRestaurant(restaurantData)
     }, 900);
-    if (_.isEmpty(restaurant)) {
-        return <Loading />
-    }
+    // if (_.isEmpty(restaurant)) {
+    //     return <Loading />
+    // }
     return (<>
         {success ? <SuccessModel close={showSucess} /> : ''}
         <SetDipIn.Provider value={setDip}>
             <div className="container-fluid mt-2 mb-3">
                 {open ? <BookTable img={restaurant.image_restaurant[0].image_url}
-                    restaurant_id={restaurant_id.sid}
+                    restaurant_id={restaurantData.restaurant_id}
                     state={setOpen} {...userData.user}
                     showSucess={showSucess} /> : ''}
-                {dip ? <DipinForm restaurant_id={restaurant_id.sid} /> : ""}
+                {dip ? <DipinForm restaurant_id={restaurantData.restaurant_id} /> : ""}
                 <div className="row no-gutters">
                     <div className="col-md-5 pr-2">
                         <div className="res-card">
@@ -146,8 +145,9 @@ const Restaurant = () => {
                         <div className="res-card mt-2">
                             <h6 className='profile_title'>Address</h6>
                             <div className="res-comment-section" style={{ width: "100%", height: "100%" }}>
+                                 {_.isEmpty(restaurant)?<Shimmer/>:
                                 <ResturantMap lat={restaurant.lattitude == undefined ? userData.user.lattitude : restaurant.locations[0].lat}
-                                    lng={restaurant.logtitude == undefined ? userData.user.logtitude : restaurant.locations[0].lng} />
+                                    lng={restaurant.logtitude == undefined ? userData.user.logtitude : restaurant.locations[0].lng} />}
                             </div>
 
                             <div className="res-comment-section">
@@ -169,8 +169,8 @@ const Restaurant = () => {
                                 <h6 className="font-weight-bold">{_.isEmpty(restaurant)?<Shimmer/>:restaurant.username}</h6>
                             </div>
                             <div className="res-buttons">
-                                <button className="btn btn-outline-danger btn-long res-cart" onClick={() => setDip(true)}>DIP-IN</button>&nbsp;
-                                <button className="btn btn-outline-danger btn-long buy" onClick={() => restaurant.is_fav ? setFavroaite(0) : setFavroaite(1)}>{restaurant.is_fav ? "UN-FAVORITE" : "FAVORITE"}</button>
+                               <button className="btn btn-outline-danger btn-long res-cart" onClick={() => setDip(true)}>{_.isEmpty(restaurant)?<Shimmer/>:"DIP-IN"}</button>&nbsp;
+                                <button className="btn btn-outline-danger btn-long buy" onClick={() => restaurant.is_fav ? setFavroaite(0) : setFavroaite(1)}>{_.isEmpty(restaurant)?<Shimmer/>:restaurant.is_fav ? "UN-FAVORITE" : "FAVORITE"}</button>
                                 {restaurant.is_open == 1 ? <small ><Active style={{ width: "15px", color: "greenyellow" }} /><b>Open</b></small> : <small ><Active style={{ width: "15px", color: "red" }} /><b>Closed</b></small>}
                             </div>
                             <div className="res-product-description">
@@ -180,38 +180,39 @@ const Restaurant = () => {
                                         <div className="res-card  p-1" >
                                             <div className="res-card-body">
                                                 <Tooltip title='Delivery available'>
-
-                                                    <a href={`tel:${restaurant.restaurant_phone}`}>  <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<Call />}>Call</Button></a>
+                                                   {_.isEmpty(restaurant)?<Shimmer/>:<a href={`tel:${restaurant.restaurant_phone}`}>  <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<Call />}>Call</Button></a>}
                                                 </Tooltip></div> </div> :
                                         <div className="res-card  p-1" >
                                             <div className="res-card-body">
                                                 <Tooltip title='Delivery not available'>
-                                                    <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
+                                                    {_.isEmpty(restaurant)?<Shimmer/>:<Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>}
                                                 </Tooltip></div></div>
                                     }
                                     {restaurant.is_online_order == 1 ?
                                         <div className="res-card  p-1" >
                                             <div className="res-card-body">
-                                                <Tooltip title='online order'>
-                                                    <NavLink to={`/restaurant/order/${restaurant.restaurant_id}`}><Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />}>Order</Button></NavLink>
-                                                </Tooltip></div></div> :
+                                                {_.isEmpty(restaurant)?<Shimmer/>:<Tooltip title='online order'>
+                                                    <NavLink to={`/restaurant/order/${restaurant.restaurant_name}`} onClick={()=>{
+                                                          dispatch(restaurantOrderDetails(restaurant.restaurant_id))
+                                                    }}><Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />}>Order</Button></NavLink>
+                                                </Tooltip>}</div></div> :
                                         <div className="res-card  p-1">
                                             <div className="res-card-body">
-                                                <Tooltip title='offline order'>
+                                                {_.isEmpty(restaurant)?<Shimmer/>:<Tooltip title='offline order'>
                                                     <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<LocalShippingOutlined />} disabled>Closed</Button>
-                                                </Tooltip></div></div>}
+                                                </Tooltip>}</div></div>}
 
                                     {restaurant.is_table_online == 1 ?
                                         <div className="res-card  p-1">
                                             <div className="res-card-body">
-                                                <Tooltip title='table availabel'>
+                                                {_.isEmpty(restaurant)?<Shimmer/>:<Tooltip title='table availabel'>
                                                     <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} onClick={() => { setOpen(true) }}>Book Table</Button>
-                                                </Tooltip></div></div> :
+                                                </Tooltip>}</div></div> :
                                         <div className="res-card  p-1">
                                             <div className="res-card-body">
-                                                <Tooltip title='offline table only'>
+                                                {_.isEmpty(restaurant)?<Shimmer/>:<Tooltip title='offline table only'>
                                                     <Button className='res_btn' style={{ backgroundColor: 'lightgreen' }} variant="contained" startIcon={<RestaurantIcon />} disabled>Closed</Button>
-                                                </Tooltip></div></div>}
+                                                </Tooltip>}</div></div>}
                                 </div>
                             </div>
                             <div className="res-card mt-2"> <span className='profile_title'><b>Cuisine</b></span>
@@ -245,9 +246,9 @@ const Restaurant = () => {
                                 </div>
                                 <div className="res-similar-products mt-2  col-lg-6">
                                     <ul style={{ fontSize: "10px", color: "#d31f33" }}>
-                                        <li><b>AVERAGE TIME TO DELIVER</b><br /><span style={{ color: "grey" }}>{restaurant.delivery_time_estimation} min</span></li>
-                                        <li><b>MINIMUM ORDER</b>  <br /><span style={{ color: "grey" }}>KD {restaurant.min_order_price}</span></li>
-                                        <li><b>PAYMENT OPTIONS</b>  <br /><span style={{ color: "grey" }}>{restaurant.disable_online_payment ? 'Closed' : 'Open'}</span></li>
+                                        <li><b>AVERAGE TIME TO DELIVER</b><br /><span style={{ color: "grey" }}>{_.isEmpty(restaurant)?<Shimmer/>:restaurant.delivery_time_estimation} min</span></li>
+                                        <li><b>MINIMUM ORDER</b>  <br /><span style={{ color: "grey" }}>KD {_.isEmpty(restaurant)?<Shimmer/>:restaurant.min_order_price}</span></li>
+                                        <li><b>PAYMENT OPTIONS</b>  <br /><span style={{ color: "grey" }}>{_.isEmpty(restaurant)?<Shimmer/>:restaurant.disable_online_payment ? 'Closed' : 'Open'}</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -257,7 +258,7 @@ const Restaurant = () => {
                         <div className="res-card mt-2"> <span className='profile_title'><b>Restaurant Pictures</b></span>
                             <hr />
                             <div className="res-similar-products mt-2 d-flex flex-row">
-                                {restaurant.image_restaurant.map((each) => {
+                                {_.isEmpty(restaurant)?<Shimmer/>:restaurant.image_restaurant.map((each) => {
                                     return <div className="res-card  p-1" style={{ width: "9rem", marginRight: "3px" }}> <img src={`${env.URL}/dipicious/${each.image_url}`} className="res-img" alt="..." />
 
                                     </div>
@@ -268,7 +269,7 @@ const Restaurant = () => {
                         <div className="res-card mt-2"> <span className='profile_title'><b>Discounts</b></span>
                             <hr />
                             <div className="res-similar-products mt-2 d-flex flex-row">
-                                {restaurant.discount.length == 0 ? <h6>There is no discount/offers at this time</h6>
+                                {_.isEmpty(restaurant)?<Shimmer/>:restaurant.discount.length == 0 ? <h6>There is no discount/offers at this time</h6>
                                     :
                                     restaurant.discount.map((each) => { return <div className='discount'>{each.discount_name}</div> })}
 
@@ -284,7 +285,7 @@ const Restaurant = () => {
                                         <TableHead style={{ backgroundColor: "#d31f33" }}>
                                             <TableRow  >
                                                 <TableCell></TableCell>
-                                                {restaurant.hour_full_data.map((each, index) => {
+                                                {_.isEmpty(restaurant)?<Shimmer/>:restaurant.hour_full_data.map((each, index) => {
                                                     return daysInWeek[index] == daysInWeek[curreDay] ? <TableCell style={{ fontSize: "15px", color: "white", fontWeight: "bolder" }}><Active style={{ width: "15px", color: "greenyellow" }} />{daysInWeek[index]}</TableCell> :
                                                         <TableCell style={{ fontSize: "15px", color: "white", fontWeight: "bolder" }}>{daysInWeek[index]}</TableCell>
                                                 })}
@@ -297,7 +298,7 @@ const Restaurant = () => {
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">Morning</TableCell>
-                                                {restaurant.hour_full_data.map((each, index) => {
+                                                {_.isEmpty(restaurant)?<Shimmer/>:restaurant.hour_full_data.map((each, index) => {
                                                     return <TableCell align="right" style={{ fontSize: "10px" }}>{each.strat_time_morning}-{each.end_time_morning}</TableCell>
                                                 })}
 
@@ -307,7 +308,7 @@ const Restaurant = () => {
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">Afternoon</TableCell>
-                                                {restaurant.hour_full_data.map((each) => {
+                                                {_.isEmpty(restaurant)?<Shimmer/>:restaurant.hour_full_data.map((each) => {
                                                     return <TableCell align="right" style={{ fontSize: "10px" }}>{each.strat_time_afternoon}-{each.end_time_afternoon}</TableCell>
                                                 })}
 
@@ -328,10 +329,10 @@ const Restaurant = () => {
                     </div>
                     <div className='res-card'>
                         {tabindex == 'dipin' ? <div className=''>
-                            {restaurantDipList.flag == 0 ? <h3>No Dip in </h3> : <Post post={restaurantDipList.data} restaurant='1' />}
+                            {restaurantDipList.flag == 0 ? <h3 className='text-center'>No Dip in </h3> : <Post post={restaurantDipList.data} restaurant='1' />}
                         </div> : ''}
                         {tabindex == 'review' ? <div className=''>
-                            {restaurantReviewList.flag == 0 ? <h3>No Review </h3> : <Review data={restaurantReviewList.data} restaurant='1' restab='0' />}
+                            {restaurantReviewList.flag == 0 ? <h3 className='text-center'>No Review </h3> : <Review data={restaurantReviewList.data} restaurant='1' restab='0' />}
                         </div> : ''}
                     </div>
                 </div>
