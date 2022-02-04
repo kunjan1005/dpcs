@@ -1,7 +1,10 @@
 import React from "react";
 import Scrollbars from "react-custom-scrollbars-2"
 import { NavLink } from "react-router-dom";
+import {useSelector} from 'react-redux'; 
+import _ from 'underscore';
 const FriendRequiestList = (props) => {
+    let state=useSelector(state=>state.friendRequiestListReducer)
     return (
         <div className="modal fade" id="myModal5" role="dialog">
             <div className="modal-dialog">
@@ -12,20 +15,7 @@ const FriendRequiestList = (props) => {
 
                     </div>
                     <div className="modal-body row" style={{ height: "30rem" }}>
-                        <div className="col-lg-6">
-                            <h6>FRIEND REQUEST</h6>
-                            <ul>
-                                <li className="text-center"><NavLink to='/profile/edit'><p>Edit Profile</p></NavLink></li>
-                                <li className="text-center"><NavLink to="/restaurant/myorders"><p>Change Password</p></NavLink></li>
-                                <li className="text-center"><NavLink to="/restaurant/booking"><p>Blocked Users</p></NavLink></li>
-                                <li className="text-center"><NavLink to="/restaurant/booking"><p>View hidden posts</p></NavLink></li>
-                                <li className="text-center"><NavLink to="/restaurant/booking"><p>Push notification settings</p></NavLink></li>
-                                <li className="text-center"><NavLink to="/restaurant/booking"><p>Blocked Users</p></NavLink></li>
-                                <li className="text-center"><NavLink to="/restaurant/booking"><p>Private Account</p></NavLink></li>
-                                <li className="text-center"><NavLink to="/restaurant/booking"><p>Change Language</p></NavLink></li>
-                            </ul>
-                        </div>
-
+                         {_.isEmpty(state)?<h6 className="text-center">List Empty</h6>:""}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-default" data-dismiss="modal" onClick={() => props.close(false)}>Close</button>
