@@ -13,13 +13,14 @@ const Favriate = (props) => {
     return (<>
         <div className='border p-3 d-flex scroll_'>
             {post.map((each) => {
-                return <><div className='border mr-1'>
+                return <><div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
@@ -37,13 +38,14 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1'>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
@@ -61,13 +63,14 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1'>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
@@ -85,13 +88,14 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1'>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
@@ -109,13 +113,14 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1'>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
@@ -133,13 +138,14 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1'>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
@@ -157,13 +163,14 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1'>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
@@ -181,13 +188,14 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1'>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
@@ -205,13 +213,14 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1'>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
