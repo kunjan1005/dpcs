@@ -173,7 +173,7 @@ const Profile = () => {
                 style={{ backgroundColor: 'orange', color: 'white', border: "none" }}>CHAT</Button>}
             </div>
           </div>
-          <div className='row profile_links'>
+          {/* <div className='row profile_links'>
             <div className='col-md-12'>
               <span></span><br />
               <span>{user.description}</span><br />
@@ -181,8 +181,7 @@ const Profile = () => {
               <span></span>
 
             </div>
-          </div>
-
+          </div> */}
         </div>
         <br />
         <ProfileTabContainer other_user_id={other_user_id} />
