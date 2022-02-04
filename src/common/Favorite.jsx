@@ -11,20 +11,21 @@ const Favriate = (props) => {
     let dispatch = useDispatch()
     setTimeout(()=>{setPost(props.data)},900)
     return (<>
-        <div className='border p-3 d-flex'>
+        <div className='border p-3 d-flex scroll_'>
             {post.map((each) => {
-                return <><div className='border mr-1 favorite'>
+                return <><div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
@@ -37,18 +38,19 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1 favorite' style={{width:'10rem'}}>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
@@ -61,18 +63,19 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1 favorite' style={{width:'10rem'}}>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
@@ -85,18 +88,19 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1 favorite' style={{width:'10rem'}}>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
@@ -109,18 +113,19 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1 favorite' style={{width:'10rem'}}>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
@@ -133,18 +138,19 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1 favorite' style={{width:'10rem'}}>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
@@ -157,18 +163,19 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1 favorite' style={{width:'10rem'}}>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
@@ -181,18 +188,19 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1 favorite' style={{width:'10rem'}}>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
@@ -205,18 +213,19 @@ const Favriate = (props) => {
                             <span style={{ margin: 'auto' }}>{Math.round(each.distance)} KM</span></div>
                     </div>
                 </div>
-                <div className='border mr-1 favorite' style={{width:'10rem'}}>
+                <div className='border mr-1 br_5'>
                     <p style={{
                         float: 'right',
                         position: "absolute",
                         zIndex: 99,
                         color: 'white',
-                        backgroundColor: 'green'
+                        backgroundColor: 'green',
+                        borderTopLeftRadius: '5px'
                     }}>{_.isEmpty(post)?<Shimmer/>:each.feedback == 0 ? "0.0" : each.feedback}</p>
                     <NavLink to={`/restaurant/${each.restaurant_name}`} onClick={() => {
                           localStorage.setItem('restaurant',each.restaurant_id)
-                    }}><div className='m-auto' style={{ height: "50%", width: '100%' }}>
-                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '100%' }} />
+                    }}><div className='m-auto'>
+                            <img src={`${env.URL}/dipicious/${each.image_url}`} style={{ height: "100%", width: '150px' }} />
                         </div>
                     </NavLink>
                     <div className='mt-1'>
