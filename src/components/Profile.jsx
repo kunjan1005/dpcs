@@ -156,7 +156,6 @@ const Profile = () => {
 
             </div>
           </div>
-
         </div>
         <br />
         <ProfileTabContainer other_user_id={other_user_id} />

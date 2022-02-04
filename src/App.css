@@ -2538,3 +2538,11 @@ div#scroll1 {
     margin-top: 15px;
     width: 100px;
 }
+/* fav page */
+.scroll_ {
+    overflow: scroll;
+
+}
+.scroll_::-webkit-scrollbar {
+  width: 10px;
+}
