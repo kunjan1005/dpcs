@@ -46,10 +46,63 @@ const storefollowersAndFollowingList = () => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-        console.log(followers, following)
         dispatch({
             type: "STORE_FOLLOWING_FOLLOWERS",
             payload: { followers: followers.data.data, following: following.data.data }
+        })
+
+    }
+}
+const follower_list = () => {
+    return async (dispatch, getState) => {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let followers = await axios.post(`${env.URL}/dipicious/api/user/follower_list`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_FOLLOWERS",
+            payload:followers.data.data
+        })
+
+    }
+}
+const following_list = () => {
+    return async (dispatch, getState) => {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let following = await axios.post(`${env.URL}/dipicious/api/user/following_list`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_FOLLOWING",
+            payload: following.data.data
+        })
+
+    }
+}
+const friend_request_list = () => {
+    return async (dispatch, getState) => {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/freind_request_list`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_FRIEND_REQUESTS",
+            payload: response.data.data
         })
 
     }
@@ -493,5 +546,6 @@ export {
     getRestaurant,getSingleRestaurant, paginatedData, getLocation, restaurantOrderDetails, getRestaurantList,
     getRestaurantOrderDetails, storeTableBookingDetails, storeTableDetails, incrementOrderQty, decrementOrderQty,
     userActivity, userFavorites,userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
-    removeCartItem, storeOrder, storeOrderDetails,getDipinRestaurant,postComments
+    removeCartItem, storeOrder, storeOrderDetails,getDipinRestaurant,postComments,follower_list,following_list,
+    friend_request_list
 }
