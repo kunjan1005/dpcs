@@ -71,11 +71,11 @@ const follower_list = () => {
 
     }
 }
-const following_list = () => {
+const following_list = (offset=10,other_user_id='') => {
     return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
-        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let jsonData = JSON.stringify({ user_id, lang, access_token,other_user_id,offset})
         let following = await axios.post(`${env.URL}/dipicious/api/user/following_list`, jsonData, {
             headers: {
                 'Content-Type': 'application/json',
