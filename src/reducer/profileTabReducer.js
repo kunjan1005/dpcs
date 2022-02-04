@@ -10,7 +10,7 @@ const profileTabReducer = (state = intialState, action) => {
         case "FATCH_USER_ACTIVITY":
             return {
                 ...state, activity: {
-                    total: action.payload.length,
+                    total: action.payload.total,
                     item: action.payload
                 }
             }

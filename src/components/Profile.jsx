@@ -27,13 +27,11 @@ const Profile = () => {
   let other_user_id = search.split('=')[1]
   let state = useSelector((state) => state.userReducer)
   let user = state.data
+  let response = isUserLoging()
   let navigate = useNavigate()
   let dispatch = useDispatch()
   useEffect(async () => {
     dispatch(storefollowersAndFollowingList())
-
-    let response = isUserLoging()
-
     if (response.login) {
       if (other_user_id == response.user.user_id) {
         dispatch(storeUserProfile())
@@ -82,11 +80,31 @@ const Profile = () => {
       dispatch(storeUserProfile())
     }
   }
+  const followUnfollowStatus=async(opp_user_id)=>{
+    let data = isUserLoging()
+    let { user_id, lang, access_token } = data.user
+    let jsonData = JSON.stringify({ user_id, lang, access_token,opp_user_id})
+    let response = await axios.post(`${env.URL}/dipicious/api/user/unfollow_post`, jsonData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic cm9vdDoxMjM='
+      }
+    })
+    if (response.data.flag == 1) {
+      toast.success(response.data.msg)
+      if(response.user.user_id==user.user_id){
+        dispatch(storeUserProfile())
+      }else{
+        dispatch(storeOtherUserProfile(user.user_id))
+      }
+
+    }
+  }
   return (
     <>
       {/* {show? */}
       <ProfileSetting close={setShow} />
-      <Following close={showFollowing}/>
+      <Following close={showFollowing} other_user_id={response.user.user_id==user.user_id?"":user.user_id}/>
       <Followers close={showFollowing}/>
       <FriendRequiestList close={showFollowing}/>
       <div className='row main-profile'>
@@ -94,7 +112,7 @@ const Profile = () => {
 
           <div className='row '>
             <div className='logout'>
-              <div className="dropdown float-left">
+             { response.user.user_id==user.user_id?<><div className="dropdown float-left">
                 <button className="btn btn-default border dropdown-toggle" type="button" data-toggle="dropdown">
                   <span className="caret"> Profile </span></button>
                 <ul className="dropdown-menu">
@@ -120,17 +138,21 @@ const Profile = () => {
                 <li className="text-center"><NavLink to="/restaurant/booking"><p>Table Reservations</p></NavLink></li>
               </ul> */}
               </div>
+              </>:""}
             </div>
             <div className='col-lg-4 col-4 m-auto followers order-1'>
-              <h4 data-toggle="modal" data-target="#myModal3" onClick={()=>dispatch(following_list())}>{_.isEmpty(user) ? <Shimmer /> : user.following_count}</h4>
+              <h4 data-toggle="modal" data-target="#myModal3" onClick={()=>user.user_id==response.user.user_id?dispatch(following_list()):dispatch(following_list(10,user.user_id))}>{_.isEmpty(user) ? <Shimmer /> : user.following_count}</h4>
               <h6>following</h6>
               {/* <button className='profile_btn  btn-primary mt-5'>EDIT PROFILE</button> */}
-              <NavLink to={`/profile/edit`}>
+              {user.user_id==response.user.user_id?<NavLink to={`/profile/edit`}>
                 <Button variant="outlined" className='mt-5 profile_btn'
                   style={{ backgroundColor: 'palevioletred', color: 'white', border: "none" }} data-id={user.user_id} >
                   EDIT PROFILE
                 </Button>
-              </NavLink>
+              </NavLink>:<Button variant="outlined" className='mt-5 profile_btn'
+                  style={{ backgroundColor: 'palevioletred', color: 'white', border: "none" }} data-id={user.user_id} >
+                  {user.is_follow?'UNFOLLOW':"FOLLOW"}
+                </Button>}
             </div>
             <div className='col-lg-4 col-4 order-2'>
               <div className='main-profile-pick m-auto'>
@@ -142,9 +164,13 @@ const Profile = () => {
             <div className='col-lg-4 col-4 m-auto following order-3'>
               <h4 data-toggle="modal" data-target="#myModal4" onClick={()=>dispatch(follower_list())}>{_.isEmpty(user) ? <Shimmer /> : user.followers}</h4>
               <h6>followers</h6>
+              {user.user_id==response.user.user_id?
               <Button variant="outlined" className='mt-5 profile_btn'
                 onClick={() => becomeChef()}
-                style={{ backgroundColor: 'orange', color: 'white', border: "none" }}>BECOME A CHEF</Button>
+                style={{ backgroundColor: 'orange', color: 'white', border: "none" }}>BECOME A CHEF</Button>:
+                <Button variant="outlined" className='mt-5 profile_btn'
+                onClick={() => becomeChef()}
+                style={{ backgroundColor: 'orange', color: 'white', border: "none" }}>CHAT</Button>}
             </div>
           </div>
           <div className='row profile_links'>

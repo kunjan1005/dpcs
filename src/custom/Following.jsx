@@ -1,11 +1,20 @@
 import React from "react";
+import { useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2"
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import _ from 'underscore';
+import { following_list } from "../actions";
 import env from "../env";
 const Following = (props) => {
+    let [offset,setOffset]=useState(10)
+    let dispatch=useDispatch()
     let state=useSelector(state=>state.followingReducer)
+    const scrollHandle=()=>{
+        if(state.list.length>5){
+            // dispatch(following_list(offset,props.other_user_id))
+        }
+    }
     return (
         <div className="modal fade" id="myModal3" role="dialog">
             <div className="modal-dialog">
@@ -15,8 +24,10 @@ const Following = (props) => {
                         <button type="button" className="close" data-dismiss="modal">&times;</button>
 
                     </div>
-                    <div className="modal-body" style={{ height: "30rem" }}>
-                        <Scrollbars style={{ overflowX: 'hidden' }}>
+                    <div className="modal-body" style={{ height: "30rem" }}> 
+                        <Scrollbars style={{ overflowX: 'hidden' }} onScroll={()=>{
+                            setOffset((prev)=>prev+4)
+                            scrollHandle()}}>
                             {_.isEmpty(state.list) ? 'List Empty' : state.list.map((each) => {
                                 return <><div className="row">
                                     <div className="col-sm-2 col-4 like-container">
