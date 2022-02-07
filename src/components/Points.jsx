@@ -1,6 +1,7 @@
-import React from "react"; import { TableHead, Paper, Table, TableContainer, TableRow, TableCell, TableBody } from '@material-ui/core'
+import React from "react";
+import { TableHead, Paper, Table, TableContainer, TableRow, TableCell, TableBody,Button } from '@material-ui/core'
 import _ from "underscore";
-import Shimmer from "react-js-loading-shimmer";
+import Shimmer from "react-js-loading-shimmer"
 
 const Point = (props) => {
     return (<>
@@ -54,7 +55,7 @@ const Point = (props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-
+            <Button variant='contained' color='danger' style={{backgroundColor: "#d31f33",marginTop:"10px",marginLeft:"10px",width:"100%"}}>STORE</Button>
         </div>
     </>)
 }

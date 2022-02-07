@@ -160,6 +160,7 @@ const Profile = () => {
               </div>
               <h6 className='m-auto profile_title ' style={{ textAlign: 'center' }}>{_.isEmpty(user) ? <Shimmer /> :
              <>{user.status==1?<i class="fas fa-circle" style={{color:"green"}}></i>:user.status==2?<i class="fas fa-circle" style={{color:"red"}}/>:<i class="fas fa-circle" style={{color:"orange"}}/>}{user.name}</>}</h6>
+               {!user.user_id==response.user.user_id?<Button variant='outlined' className='profile_btn m-auto'>BLOCK</Button>:""} 
             </div>
             <div className='col-lg-4 col-4 m-auto following order-3'>
               <h4 data-toggle="modal" data-target="#myModal4" onClick={()=>dispatch(follower_list())}>{_.isEmpty(user) ? <Shimmer /> : user.followers}</h4>
