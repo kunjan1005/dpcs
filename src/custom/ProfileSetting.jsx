@@ -7,8 +7,8 @@ const ProfileSetting = (props) => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h4 className="modal-title">Liked By</h4>
-                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                        <h4 className="modal-title">Settings</h4>
+                        <button type="button" className="close" data-dismiss="modal" onClick={()=>props.close(false)}>&times;</button>
                     </div>
                     <div className="modal-body row">
                         <div className="col-lg-6">
@@ -119,7 +119,7 @@ const ProfileSetting = (props) => {
                                 </li>
                             </ul>
                         </div>
-                        <NavLink to='/logout'><button className="btn btn-lg btn-warning">LOGOUT</button></NavLink>
+                        <NavLink to='/logout'><button className="btn btn-lg btn-warning w-100">LOGOUT</button></NavLink>
                     </div>
                 </div>
 
