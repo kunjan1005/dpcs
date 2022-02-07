@@ -119,12 +119,8 @@ const ProfileSetting = (props) => {
                                 </li>
                             </ul>
                         </div>
-                        <button className="btn btn-lg btn-warning">LOGOUT</button>
+                        <NavLink to='/logout'><button className="btn btn-lg btn-warning">LOGOUT</button></NavLink>
                     </div>
-
-                    {/* <div className="modal-footer">
-                        <button type="button" className="btn btn-default" data-dismiss="modal" onClick={() => props.close(false)}>Close</button>
-                    </div> */}
                 </div>
 
             </div>
