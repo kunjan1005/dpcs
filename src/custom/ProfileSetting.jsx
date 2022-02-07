@@ -122,9 +122,9 @@ const ProfileSetting = (props) => {
                         <button className="btn btn-lg btn-warning">LOGOUT</button>
                     </div>
 
-                    <div className="modal-footer">
+                    {/* <div className="modal-footer">
                         <button type="button" className="btn btn-default" data-dismiss="modal" onClick={() => props.close(false)}>Close</button>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>
