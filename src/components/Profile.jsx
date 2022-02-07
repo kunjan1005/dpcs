@@ -129,7 +129,7 @@ const Profile = () => {
               </div>
 
               <div className="float-right">
-                <button className="btn" onClick={() => setShow(true)} data-toggle="modal" data-target="#myModal2"><i className="fa fa-user-cog"></i></button>
+                <button className="btn border" onClick={() => setShow(true)} data-toggle="modal" data-target="#myModal2"><i className="fa fa-user-cog"></i></button>
                 {/* <button className="btn btn-default border dropdown-toggle" type="button" data-toggle="dropdown"><i className="fa fa-user-cog"></i>
                 <span className="caret"></span></button>
               <ul className="dropdown-menu">
