@@ -31,6 +31,7 @@ import ItemDetail from './components/ItemDetail';
 import MyOrders from './common/MyOrders';
 import OrderDetails from './common/OrderDetails';
 import BookingTableList from './common/BookingTableList'
+import Store from './components/Store';
 
 function App() {
   let { isLoading } = useAuth0()
@@ -68,6 +69,7 @@ function App() {
               <Route exact path='/dip' element={<Dip />}></Route>
               <Route exact path='/profile' element={<Profile />}></Route>
               <Route exact path='/profile/edit' element={<Editprofile />}></Route>
+              <Route exact path='profile/store' element={<Store/>}></Route>
               <Route exact path='/logout' element={<Logout />}></Route>
               <Route path='*' element={<Error />}></Route>
             </Routes>
