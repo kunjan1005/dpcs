@@ -582,8 +582,14 @@ select option {
     background: #FFFFFF;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1)
 }
-
-
+div#myModal6,
+div#myModal7,
+div#myModal8,
+div#myModal9,
+div#myModal10,
+div#myModal11{
+    z-index: 9999;
+}
 @media only screen and (max-width: 480px) {
     div#myModal2 {
         padding-left: 0px !important;
@@ -1685,7 +1691,7 @@ label.radio input:checked+span::before {
     /* display: none; Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 50px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */

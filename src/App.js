@@ -32,6 +32,7 @@ import MyOrders from './common/MyOrders';
 import OrderDetails from './common/OrderDetails';
 import BookingTableList from './common/BookingTableList'
 import Store from './components/Store';
+import HiddenPost from './custom/HiddenPost';
 
 function App() {
   let { isLoading } = useAuth0()
@@ -50,6 +51,7 @@ function App() {
             <Routes>
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/post/:id' element={<PostPage />}></Route>
+              <Route exact path='/post/hidden' element={<HiddenPost/>}></Route>
               <Route exact path='/restaurant/:sid' element={<Restaurant/>}/>
               {/* <Route exact path='/restaurant/order/:sid' element={<Order/>}/> */}
               <Route exact path='/restaurant/order/:sid' element={<Order1/>}/>

@@ -20,34 +20,34 @@ const Store = () => {
                 <div className="col-lg-6 col-md-6 col-sm-6 col-6">
                     <h6 className="text-right mt-3">List Empty</h6>
                 </div>
-                <p style={{ float: "right" }} className="text-center">See more</p>
+                <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
             </div>
             <div className="row m-2 border bg-white">
                 <h6 className="mt-3">Car Wash (QB CarWash)</h6>
                 <div className='row'>
                     <StoreProduct />
-                    <p style={{ float: "right" }}>See more</p>
+                    <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
                 </div>
             </div>
             <div className="row m-2 border bg-white">
                 <h6 className="mt-3">Coupons</h6>
                 <div className='row'>
                     <StoreProduct />
-                    <p style={{ float: "right" }}>See more</p>
+                    <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
                 </div>
             </div>
             <div className="row m-2 border bg-white">
                 <h6>Fitness</h6>
                 <div className='row'>
                     <StoreProduct />
-                    <p style={{ float: "right" }}>See more</p>
+                    <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
                 </div>
             </div>
             <div className="row m-2 border bg-white">
                 <h6 className="mt-3">Kitchen Appliances</h6>
                 <div className='row'>
                     <StoreProduct />
-                    <p style={{ float: "right" }}>See more</p>
+                    <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
                 </div>
             </div>
         </div>

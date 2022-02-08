@@ -12,6 +12,10 @@ import postlikesListreducer from './postlikesListreducer'
 import followersReducer from './followersReducer';
 import followingReducer from "./followingReducer";
 import friendRequiestReducer from './friendRequiestReducer'
+import blockUserReducer from './blockUserReducer'
+import hiddenPostReducer from "./hiddenPostReducer";
+import helpCenterReducer from './helpCenterReducer';
+import privacyPolicyReducer from "./privacyPolicyReducer";
 import {combineReducers} from 'redux'
  const rootReducer=combineReducers({
      storePostData,
@@ -27,6 +31,10 @@ import {combineReducers} from 'redux'
      postlikesListreducer,
      followersReducer,
      followingReducer,
-     friendRequiestReducer
+     friendRequiestReducer,
+     blockUserReducer,
+     hiddenPostReducer,
+     helpCenterReducer,
+     privacyPolicyReducer
  })
  export default rootReducer

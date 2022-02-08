@@ -11,7 +11,7 @@ import { isUserLoging } from "../authorization/useAuth";
 import axios from "axios";
 import env from "../env";
 
-const AddresssBook = () => {
+const AddresssBook = ({setting}) => {
    
     let navigate = useNavigate()
     let dispatch = useDispatch()
@@ -35,12 +35,12 @@ const AddresssBook = () => {
         
     }
     return (<>
-        <div className="container w-50 mt-3" style={{ backgroundColor: 'white', boxShadow: '1px 25px 25px grey,-1px -10px 25px grey' }}>
+        <div className={setting?"container":"container w-50 mt-3"} style={setting?{backgroundColor: 'white'}:{backgroundColor: 'white', boxShadow: '1px 25px 25px grey,-1px -10px 25px grey' }}>
             <div className="row">
 
-                <h6 className="bg-danger text-white">Address Book
+                {setting?null:<h6 className="bg-danger text-white">Address Book
                     <button type="button" class="btn-close" aria-label="Close" style={{ float: "right" }} onClick={() => navigate('#')}></button>
-                </h6>
+                </h6>}
                 <div className="col-sm-12 p-2" style={{ height: "30rem" }}>
                     <Scrollbars>
                         {state.item.map((each) => {

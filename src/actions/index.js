@@ -107,6 +107,74 @@ const friend_request_list = () => {
 
     }
 }
+const blockUserList=()=>{
+    return async(dispatch,getState)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/block_user_list`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_BLOCK_USER",
+            payload: response.data.data
+        })
+    }
+}
+const hiddenPost=()=>{
+    return async(dispatch,getState)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/hidden_post_listing`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_HIDDEN_POST",
+            payload: response.data.data
+        })
+    }
+}
+const helpCenter=()=>{
+    return async(dispatch,getState)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/help_center`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_HELP_CENTER",
+            payload: response.data.data
+        })
+    }
+}
+const privacyPolicy=()=>{
+    return async(dispatch,getState)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/privacy_policy`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_PRIVACY_POLICY",
+            payload: response.data.data
+        })
+    }
+}
 const fatchData = () => {
     return async function (dispatch, getState) {
         let data = isUserLoging()
@@ -547,5 +615,5 @@ export {
     getRestaurantOrderDetails, storeTableBookingDetails, storeTableDetails, incrementOrderQty, decrementOrderQty,
     userActivity, userFavorites,userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
     removeCartItem, storeOrder, storeOrderDetails,getDipinRestaurant,postComments,follower_list,following_list,
-    friend_request_list
+    friend_request_list,blockUserList,hiddenPost,helpCenter,privacyPolicy
 }
