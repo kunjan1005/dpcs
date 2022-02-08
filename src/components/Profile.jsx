@@ -103,7 +103,7 @@ const Profile = () => {
   return (
     <>
       {/* {show? */}
-      <ProfileSetting close={setShow} />
+      {show?<ProfileSetting close={setShow} />:""}
       <Following close={showFollowing} other_user_id={response.user.user_id==user.user_id?"":user.user_id}/>
       <Followers close={showFollowing}/>
       <FriendRequiestList close={showFollowing}/>

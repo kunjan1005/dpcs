@@ -582,7 +582,12 @@ select option {
     background: #FFFFFF;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1)
 }
-div#myModal6 {
+div#myModal6,
+div#myModal7,
+div#myModal8,
+div#myModal9,
+div#myModal10,
+div#myModal11{
     z-index: 9999;
 }
 @media only screen and (max-width: 480px) {

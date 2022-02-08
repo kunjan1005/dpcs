@@ -23,7 +23,7 @@ import CustomeLikeList from '../custom/CustomeLikeList'
 import Shimmer from "react-js-loading-shimmer";
 import _ from 'underscore'
 const Post = (props) => {
-    let [posts, setPosts] = useState([])
+    let [posts, setPosts] = useState(props.post)
     let [show, setShow] = useState(true)
     let [likes, showLikes] = useState(false)
     var settings = {
@@ -34,9 +34,7 @@ const Post = (props) => {
         slidesToShow: 1,
         slidesToScroll: 1
     };
-    useEffect(() => { setPosts(props.post) }, [2])
     let dispatch = useDispatch()
-
     return (
         <>
             {likes ? <CustomeLikeList close={showLikes} /> : ''}
