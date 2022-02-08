@@ -31,13 +31,12 @@ const ChangePassword = (props) => {
                   toast.success(response.data.msg);
                   setFormData({current_password:"",new_password:"",retype_password:""});
                 }else{
-                    toast.error('Password could not be changed');
+                    toast.error('Password could not be changed !!');
                 }
               })
           }
         }catch(error){
             toast.error(`something went wrong..`);
-
         }
     }
     return (<>
