@@ -2525,6 +2525,7 @@ div#scroll1 {
 }
 .modal-backdrop.show {
     opacity: 0 !important;
+    display: none !important;
 }
 .btn-btn-btn-open{
     cursor: pointer !important;
