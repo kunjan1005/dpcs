@@ -587,7 +587,9 @@ div#myModal7,
 div#myModal8,
 div#myModal9,
 div#myModal10,
-div#myModal11{
+div#myModal11,
+div#myModal12,
+div#myModal13{
     z-index: 9999;
 }
 @media only screen and (max-width: 480px) {

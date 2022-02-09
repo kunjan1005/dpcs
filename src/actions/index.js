@@ -58,7 +58,7 @@ const follower_list = () => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
         let jsonData = JSON.stringify({ user_id, lang, access_token })
-        let followers = await axios.post(`${env.URL}/dipicious/api/user/follower_list`, jsonData, {
+        let followers = await axios.post(`${env.URL}/dipicious/api/user/recipe_listing`, jsonData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
@@ -171,6 +171,23 @@ const privacyPolicy=()=>{
         })
         dispatch({
             type: "STORE_PRIVACY_POLICY",
+            payload: response.data.data
+        })
+    }
+}
+const termAndConditon=()=>{
+    return async(dispatch,getState)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/terms_condition`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_TERM_AND_CONDITION",
             payload: response.data.data
         })
     }
@@ -554,6 +571,34 @@ const userPoints = (payload) => {
         dispatch({ type: 'FATCH_USER_POINT', payload: response.data.data })
     }
 }
+const userRecipi = (payload) => {
+    return async (dispatch, getState) => {
+        let userData = isUserLoging()
+        let { user_id, lang, latitude, longitude, access_token } = userData.user
+        let response = await axios.post(`${env.URL}/dipicious/api/user/recipe_listing`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token, other_user_id: payload }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({ type: 'STORE_USER_RECIPI', payload: response.data.data })
+    }
+}
+const userRecipiDetial = (payload) => {
+    return async (dispatch, getState) => {
+        let userData = isUserLoging()
+        let { user_id, lang, latitude, longitude, access_token } = userData.user
+        let response = await axios.post(`${env.URL}/dipicious/api/user/recipe_detail`,
+            JSON.stringify({ user_id, lang, latitude, longitude, access_token, recipe_id: payload }), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({ type: 'STORE_USER_RECIPI_DETAIL', payload: response.data.data })
+    }
+}
 const cartData = (resId) => {
     return async (dispatch, getState) => {
         let userData = isUserLoging()
@@ -615,5 +660,5 @@ export {
     getRestaurantOrderDetails, storeTableBookingDetails, storeTableDetails, incrementOrderQty, decrementOrderQty,
     userActivity, userFavorites,userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
     removeCartItem, storeOrder, storeOrderDetails,getDipinRestaurant,postComments,follower_list,following_list,
-    friend_request_list,blockUserList,hiddenPost,helpCenter,privacyPolicy
+    friend_request_list,blockUserList,hiddenPost,helpCenter,privacyPolicy,termAndConditon,userRecipi,userRecipiDetial
 }

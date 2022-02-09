@@ -3,7 +3,7 @@ import Scrollbars from "react-custom-scrollbars-2"
 import { NavLink } from "react-router-dom";
 import ChangePassword from "./ChangePassword";
 import BlockUserList from './BlockUserList';
-import { blockUserList, hiddenPost, storeUserProfile,helpCenter,privacyPolicy} from "../actions";
+import { blockUserList, hiddenPost, storeUserProfile,helpCenter,privacyPolicy, termAndConditon} from "../actions";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { isUserLoging } from "../authorization/useAuth";
@@ -14,13 +14,15 @@ import ChangeLanguage from "./ChangeLanguage";
 import HelpCenter from "./HelpCenter";
 import AddressSetting from "../custom/AddressSetting";
 import PrivacyPolicy from "./PrivacyPolicy";
+import TermAndCondition from "./TermAndConditon";
 const ProfileSetting = (props) => {
     const [showpassword, setShowPassword] = useState(false);
     const [showBlockUser, setShowBlockUser] = useState(false);
     const [showLangauge, setShowLanguage] = useState(false);
     const [showHelpCenter, setShowHelpCenter]=useState(false);
     const [showAddressBook,setShowAddressBook]=useState(false);
-    const [showPrivacyPolicy,setShowPrivacyPolicy]=useState(false)
+    const [showPrivacyPolicy,setShowPrivacyPolicy]=useState(false);
+    const [showTermAndCondition,setShowTermAndCondition]=useState(false);
     let { data } = useSelector(state => state.userReducer)
     let dispatch = useDispatch()
 
@@ -52,6 +54,7 @@ const ProfileSetting = (props) => {
             {showHelpCenter ? <HelpCenter close={setShowHelpCenter} /> : null}
             {showAddressBook?<AddressSetting close={setShowAddressBook}/>:null}
             {showPrivacyPolicy?<PrivacyPolicy close={setShowPrivacyPolicy}/>:null}
+            {showTermAndCondition?<TermAndCondition close={setShowTermAndCondition}/>:null}
             <div className="modal fade" id="myModal2" role="dialog">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -178,7 +181,12 @@ const ProfileSetting = (props) => {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/termsandconitions">
+                                        <NavLink to="#"
+                                        onClick={()=>{
+                                            dispatch(termAndConditon());
+                                            setShowTermAndCondition(true)
+                                        }}
+                                        data-toggle="modal" data-target="#myModal12">
                                             <p className="li-nav-p">Terms of Condition</p>
                                         </NavLink>
                                     </li>
