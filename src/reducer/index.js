@@ -16,6 +16,9 @@ import blockUserReducer from './blockUserReducer'
 import hiddenPostReducer from "./hiddenPostReducer";
 import helpCenterReducer from './helpCenterReducer';
 import privacyPolicyReducer from "./privacyPolicyReducer";
+import termAndConditonReducer from "./termAndConditonReducer";
+import recipiReducer from "./recipiReducer";
+import storeProuctReducer from "./storeProuctReducer"
 import {combineReducers} from 'redux'
  const rootReducer=combineReducers({
      storePostData,
@@ -35,6 +38,9 @@ import {combineReducers} from 'redux'
      blockUserReducer,
      hiddenPostReducer,
      helpCenterReducer,
-     privacyPolicyReducer
+     privacyPolicyReducer,
+     termAndConditonReducer,
+     recipiReducer,
+     storeProuctReducer
  })
  export default rootReducer

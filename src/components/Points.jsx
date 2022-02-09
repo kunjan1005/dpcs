@@ -2,8 +2,13 @@ import React from "react";
 import { TableHead, Paper, Table, TableContainer, TableRow, TableCell, TableBody,Button } from '@material-ui/core'
 import _ from "underscore";
 import Shimmer from "react-js-loading-shimmer"
+import { useDispatch } from "react-redux";
+import { storeProducts } from "../actions";
+import { useNavigate } from "react-router";
 
 const Point = (props) => {
+    let dispatch=useDispatch()
+    let navigate=useNavigate()
     return (<>
         <div className="col-lg-12 col-12">
 
@@ -55,7 +60,12 @@ const Point = (props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button variant='contained' color='danger' style={{backgroundColor: "#d31f33",marginTop:"10px",marginLeft:"10px",width:"100%"}}>STORE</Button>
+        <Button variant='contained' color='danger' 
+        style={{backgroundColor: "#d31f33",marginTop:"10px",marginLeft:"10px",width:"100%"}} 
+        onClick={()=>{
+          dispatch(storeProducts())
+          navigate('/profile/store')
+        }}>STORE</Button>
         </div>
     </>)
 }
