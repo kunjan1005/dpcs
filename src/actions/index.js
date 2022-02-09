@@ -66,16 +66,16 @@ const follower_list = () => {
         })
         dispatch({
             type: "STORE_FOLLOWERS",
-            payload:followers.data.data
+            payload: followers.data.data
         })
 
     }
 }
-const following_list = (offset=10,other_user_id='') => {
+const following_list = (offset = 10, other_user_id = '') => {
     return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
-        let jsonData = JSON.stringify({ user_id, lang, access_token,other_user_id,offset})
+        let jsonData = JSON.stringify({ user_id, lang, access_token, other_user_id, offset })
         let following = await axios.post(`${env.URL}/dipicious/api/user/following_list`, jsonData, {
             headers: {
                 'Content-Type': 'application/json',
@@ -107,8 +107,8 @@ const friend_request_list = () => {
 
     }
 }
-const blockUserList=()=>{
-    return async(dispatch,getState)=>{
+const blockUserList = () => {
+    return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
         let jsonData = JSON.stringify({ user_id, lang, access_token })
@@ -124,8 +124,8 @@ const blockUserList=()=>{
         })
     }
 }
-const hiddenPost=()=>{
-    return async(dispatch,getState)=>{
+const hiddenPost = () => {
+    return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
         let jsonData = JSON.stringify({ user_id, lang, access_token })
@@ -141,8 +141,8 @@ const hiddenPost=()=>{
         })
     }
 }
-const helpCenter=()=>{
-    return async(dispatch,getState)=>{
+const helpCenter = () => {
+    return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
         let jsonData = JSON.stringify({ user_id, lang, access_token })
@@ -158,8 +158,8 @@ const helpCenter=()=>{
         })
     }
 }
-const privacyPolicy=()=>{
-    return async(dispatch,getState)=>{
+const privacyPolicy = () => {
+    return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
         let jsonData = JSON.stringify({ user_id, lang, access_token })
@@ -175,8 +175,8 @@ const privacyPolicy=()=>{
         })
     }
 }
-const termAndConditon=()=>{
-    return async(dispatch,getState)=>{
+const termAndConditon = () => {
+    return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
         let jsonData = JSON.stringify({ user_id, lang, access_token })
@@ -188,6 +188,23 @@ const termAndConditon=()=>{
         })
         dispatch({
             type: "STORE_TERM_AND_CONDITION",
+            payload: response.data.data
+        })
+    }
+}
+const storeProducts = () => {
+    return async (dispatch, getState) => {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/category_wise_product_list_order`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_POINT_PRODUCT",
             payload: response.data.data
         })
     }
@@ -204,14 +221,13 @@ const fatchData = () => {
             }
         })
         dispatch({ type: "FATCH_DATA", payload: response.data.data })
-
     }
 }
 const postLikes = (id) => {
     return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
-        let jsonData = JSON.stringify({ user_id, lang, access_token,post_id:id})
+        let jsonData = JSON.stringify({ user_id, lang, access_token, post_id: id })
         let response = await axios.post(`${env.URL}/dipicious/api/user/like_list`, jsonData, {
             headers: {
                 'Content-Type': 'application/json',
@@ -225,7 +241,7 @@ const postComments = (id) => {
     return async (dispatch, getState) => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
-        let jsonData = JSON.stringify({ user_id, lang, access_token,post_id:id})
+        let jsonData = JSON.stringify({ user_id, lang, access_token, post_id: id })
         let response = await axios.post(`${env.URL}/dipicious/api/user/comment_post_listing`, jsonData, {
             headers: {
                 'Content-Type': 'application/json',
@@ -244,7 +260,6 @@ const setSinglePost = (payload) => {
 const storePostData = () => {
     return {
         type: 'STORE_DATA',
-
     }
 }
 const getPostData = () => {
@@ -386,7 +401,6 @@ const getReviewRestaurant = (payload) => {
         }).then((response) => {
             dispatch({ type: 'GET_RESTAURANT_REVIEW_LIST', payload: response.data })
         })
-
     }
 }
 const getDipinRestaurant = (payload) => {
@@ -402,7 +416,6 @@ const getDipinRestaurant = (payload) => {
         }).then((response) => {
             dispatch({ type: 'GET_RESTAURANT_DIP_LIST', payload: response.data })
         })
-
     }
 }
 const paginatedData = (payload = 5) => {
@@ -416,7 +429,6 @@ const restaurantOrderDetails = (resId) => {
         let userData = isUserLoging()
         let restaurant_id = resId
         let { user_id, lang, latitude, longitude, access_token } = userData.user
-
         let response = await axios.post(`${env.URL}/dipicious/api/user/category_product_list`,
             JSON.stringify({ user_id, lang, latitude, longitude, access_token, restaurant_id: restaurant_id }), {
             headers: {
@@ -424,16 +436,13 @@ const restaurantOrderDetails = (resId) => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-        dispatch({ type: 'FATCH_RES_ORDER_DATA', payload: response.data })
-
+       dispatch({ type: 'FATCH_RES_ORDER_DATA', payload: response.data })
     }
-
 }
 const storeOrder = () => {
     return async (dispatch, getState) => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
-
         let response = await axios.post(`${env.URL}/dipicious/api/user/my_order_list`,
             JSON.stringify({ user_id, lang, latitude, longitude, access_token }), {
             headers: {
@@ -448,7 +457,6 @@ const storeOrderDetails = (id) => {
     return async (dispatch, getState) => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
-
         let response = await axios.post(`${env.URL}/dipicious/api/user/order_detail`,
             JSON.stringify({ user_id, lang, latitude, longitude, access_token, order_id: id }), {
             headers: {
@@ -463,7 +471,6 @@ const storeTableBookingDetails = (id) => {
     return async (dispatch, getState) => {
         let userData = isUserLoging()
         let { user_id, lang, latitude, longitude, access_token } = userData.user
-
         let response = await axios.post(`${env.URL}/dipicious/api/user/table_booking_list`,
             JSON.stringify({ user_id, lang, latitude, longitude, access_token }), {
             headers: {
@@ -487,14 +494,11 @@ const storeTableDetails = (id) => {
             }
         })
         dispatch({ type: 'STORE_TABLE_DETAILS', payload: response.data.data })
-
-
     }
 }
 const getRestaurantOrderDetails = () => {
     return {
         type: "GET_RES_ORDER_DATA"
-
     }
 }
 const incrementOrderQty = (id) => {
@@ -509,7 +513,6 @@ const decrementOrderQty = (id) => {
         payload: id
     }
 }
-
 const userActivity = (payload) => {
     return async (dispatch, getState) => {
         let userData = isUserLoging()
@@ -522,11 +525,7 @@ const userActivity = (payload) => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-        console.log(response.data)
         dispatch({ type: 'FATCH_USER_ACTIVITY', payload: response.data.data })
-
-
-
     }
 }
 const userFavorites = (payload) => {
@@ -655,10 +654,11 @@ const addressData = () => {
 export default storePostData
 export {
     storeUserProfile, storeOtherUserProfile, storefollowersAndFollowingList, getPostData, like, dislike,
-    postLikes,contentShow, contentHide,login, logout, getProfile, fatchData, setSinglePost, fatchRetaurant,
-    getRestaurant,getSingleRestaurant, paginatedData, getLocation, restaurantOrderDetails, getRestaurantList,
+    postLikes, contentShow, contentHide, login, logout, getProfile, fatchData, setSinglePost, fatchRetaurant,
+    getRestaurant, getSingleRestaurant, paginatedData, getLocation, restaurantOrderDetails, getRestaurantList,
     getRestaurantOrderDetails, storeTableBookingDetails, storeTableDetails, incrementOrderQty, decrementOrderQty,
-    userActivity, userFavorites,userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
-    removeCartItem, storeOrder, storeOrderDetails,getDipinRestaurant,postComments,follower_list,following_list,
-    friend_request_list,blockUserList,hiddenPost,helpCenter,privacyPolicy,termAndConditon,userRecipi,userRecipiDetial
+    userActivity, userFavorites, userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
+    removeCartItem, storeOrder, storeOrderDetails, getDipinRestaurant, postComments, follower_list, following_list,
+    friend_request_list, blockUserList, hiddenPost, helpCenter, privacyPolicy, termAndConditon, userRecipi, userRecipiDetial,
+    storeProducts
 }

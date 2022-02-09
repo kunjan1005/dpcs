@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import { NavLink } from "react-router-dom";
-import StoreProduct from "../common/StoreProduct";
+import StoreRecipi from "../common/StoreRecipi";
 import logo from '../images/salad.png'
 import RecipiDetail from '../custom/RecipiDetail';
 import env from '../env'
@@ -17,7 +17,7 @@ const ChefRecipi = (props) => {
                     <h6 className="col-lg-11 col-10">{item.name}</h6>
                     <img src={`${env.URL}/dipicious/${item.icon}`} className='profile_pick col-1' style={{float:'right'}}/>
                     <div className='row'>
-                        <StoreProduct data={item.recipe_data}
+                        <StoreRecipi data={item.recipe_data}
                         open={setShow}/>
                         <p style={{ float: "right" }}>See more</p>
                     </div>
