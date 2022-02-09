@@ -14,8 +14,8 @@ const ChefRecipi = (props) => {
                  key={item.cuisine_id} onClick={()=>{
                      
                  }}>
-                    <h6 className="col-lg-11">{item.name}</h6>
-                    <img src={`${env.URL}/dipicious/${item.icon}`} className='profile_pick' style={{float:'right'}}/>
+                    <h6 className="col-lg-11 col-10">{item.name}</h6>
+                    <img src={`${env.URL}/dipicious/${item.icon}`} className='profile_pick col-1' style={{float:'right'}}/>
                     <div className='row'>
                         <StoreProduct data={item.recipe_data}
                         open={setShow}/>

@@ -28,15 +28,15 @@ const RecipiDetail = (props) => {
                     </div>
                     <div className="modal-body h-20">
                         <div className='row'>
-                            <Slider {...settings} className="mt-1 col-lg-6"  style={{ height: "15rem" }}>
+                            <Slider {...settings} className="mt-1 col-lg-6 col-12"  style={{ height: "15rem" }}>
                                 {state.data.images != undefined ? state.data.images.map((img) => {
 
-                                    return <div className="wdt" >
+                                    return <div className="wdt1" >
                                         <img className="card-img-top home-img" src={`${env.URL}/dipicious/${img.image_url}`} style={{ height: "15rem" }} />
                                     </div>
                                 }) : <Shimmer className='card-img-top home-img' />}
                             </Slider>
-                            <div className='col-lg-6'>
+                            <div className='col-lg-6 col-12'>
                                 <h6 className='profile_title'>{state.data.recipe_name}</h6>
                                 <p>preparation time: {state.data.preparation_time}m</p>
                                 <p>Cooking time: {state.data.cooking_time}m </p>
@@ -49,7 +49,7 @@ const RecipiDetail = (props) => {
                                 /></span>
                             </div>
                         </div>
-                        <div className='row'>
+                        <div className='row mt-5'>
                             <h6 className='profile_title'>Ingredients</h6>
                             <ul>
                                 {state.data.ingredients!=undefined?state.data.ingredients.map((item,index)=>{
