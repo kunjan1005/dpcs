@@ -11,6 +11,7 @@ import { getProfile } from '../actions/index'
 import { useSelector, useDispatch } from "react-redux";
 import { isUserLoging } from '../authorization/useAuth';
 import * as rdd from 'react-device-detect'
+import onappRedirect from "../authorization/redirectApplication";
 import { toast } from 'react-toastify'
 
 // import Custominput from '../custom/CustomInput'
@@ -28,11 +29,7 @@ const Header = () => {
         let size = window.screen.width
         setSize(size)
     })
- 
-
     return (
-
-
         <header className="header">
             <div className="header_main">
                 <div className="container">
@@ -68,7 +65,8 @@ const Header = () => {
 
                                     <Tooltip title='explore'>
                                         <NavLink className='links' activeclass='active' to='#' onClick={() => {
-                                            toast.warn('Download Application for full user Experience', { position: 'top-center' })
+                                            onappRedirect()
+                                            // toast.warn('Download Application for full user Experience', { position: 'top-center' })
                                         }}>
                                             <div className="wishlist_icon">
 
@@ -81,8 +79,8 @@ const Header = () => {
                                     <Tooltip title='dip'>
                                         <NavLink className='links' activeclass='active' to='#'
                                             onClick={() => {
-                                              
-                                                toast.warn('Download Application for full user Experience', { position: 'top-center' })
+                                                onappRedirect()
+                                                // toast.warn('Download Application for full user Experience', { position: 'top-center' })
                                             }}><div className="wishlist_icon">
                                                 {/* <TouchAppIcon className='header_btn' /> */}
                                                 <img src={add} />
@@ -95,7 +93,8 @@ const Header = () => {
                                     <Tooltip title='notifications'>
                                         <NavLink className='links' activeclass='active' to='#'
                                             onClick={() => {
-                                                toast.warn('Download Application for full user Experience', { position: 'top-center' })
+                                                onappRedirect()
+                                                // toast.warn('Download Application for full user Experience', { position: 'top-center' })
                                             }}>
                                             <div className="wishlist_icon">
                                                 {/* <DirectionsRunIcon className='header_btn' /> */}

@@ -1,7 +1,9 @@
 import { toast } from "react-toastify";
 
 const onappRedirect=()=>{
-    if(navigator.userAgent.toLowerCase().indexOf("android") > -1){
+    // console.log(navigator.userAgent.toLowerCase().indexOf("android"),'this is  app')
+    // return
+    if(navigator.userAgent.toLowerCase().indexOf("android") >= -1){
         window.location.href = 'https://play.google.com/store/apps/details?id=com.app.dipiciousnew';
     }
     else if(navigator.userAgent.toLowerCase().indexOf("iphone") > -1){

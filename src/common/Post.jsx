@@ -14,7 +14,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { LocationOn } from "@material-ui/icons";
 import env from "../env";
-import onappRedirect from "../authorization/redirectApplication";
 import Comments from "../custom/Commetns";
 import ShareIcon from '@material-ui/icons/Share';
 import copy from "copy-to-clipboard";
