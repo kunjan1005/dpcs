@@ -7,8 +7,11 @@ import { useSelector } from 'react-redux';
 import Shimmer from 'react-js-loading-shimmer';
 import ReactStars from 'react-rating-stars-component';
 import _ from 'underscore';
+import axios from 'axios';
+import { isUserLoging } from '../authorization/useAuth';
+import { toast } from 'react-toastify';
 
-const StoreProductDetail = (props) => {
+const StoreProductDetail =(props) => {
     var settings = {
         dots: true,
         infinite: true,
@@ -18,6 +21,22 @@ const StoreProductDetail = (props) => {
         slidesToScroll: 1
     };
     let state=useSelector(state=>state.storeProuctReducer)
+    const makeOrder=async (address_id,product_point,product_id)=>{
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token,address_id,product_point,product_id })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/make_point_order`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        if(response.data.flag){
+            toast.success('Order placed successfully..')
+        }else{
+            toast.error('Order not placed..')
+        }
+    }
     return (<>
         <div className="modal fade" id="myModal14" role="dialog">
             <div className="modal-dialog">
@@ -50,6 +69,10 @@ const StoreProductDetail = (props) => {
                         <div className='row'>
                             <h6 className='profile_title'>Description</h6>
                              <p>{state.data.description}</p>
+                        </div>
+                        <div className='row'>
+                            <button className='btn btn-danger' onClick={()=>{
+                                makeOrder(state.data.address_data.address_id,state.data.point,state.data.product_id)}}>Order</button>
                         </div>
                     </div>
                 </div>
