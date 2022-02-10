@@ -205,6 +205,23 @@ const storeProducts = () => {
         })
         dispatch({
             type: "STORE_POINT_PRODUCT",
+            payload: response.data
+        })
+    }
+}
+const userProductDetial = (id) => {
+    return async (dispatch, getState) => {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token,product_id:id })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/product_detail`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({
+            type: "STORE_PRODUCT_DETAIL",
             payload: response.data.data
         })
     }
@@ -436,7 +453,7 @@ const restaurantOrderDetails = (resId) => {
                 'Authorization': 'Basic cm9vdDoxMjM='
             }
         })
-       dispatch({ type: 'FATCH_RES_ORDER_DATA', payload: response.data })
+        dispatch({ type: 'FATCH_RES_ORDER_DATA', payload: response.data })
     }
 }
 const storeOrder = () => {
@@ -660,5 +677,5 @@ export {
     userActivity, userFavorites, userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
     removeCartItem, storeOrder, storeOrderDetails, getDipinRestaurant, postComments, follower_list, following_list,
     friend_request_list, blockUserList, hiddenPost, helpCenter, privacyPolicy, termAndConditon, userRecipi, userRecipiDetial,
-    storeProducts
+    storeProducts,userProductDetial
 }
