@@ -1,15 +1,20 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { NavLink } from "react-router-dom";
 import StoreProduct from "../common/StoreProduct";
-import { useSelector } from "react-redux";
-import logo from '../images/salad.png'
+import { useSelector, useDispatch } from "react-redux";
+import {storeProducts} from '../actions'
+import StorePoroductDetail from '../custom/StoreProductDetail'
 import _ from "underscore";
 const Store = () => {
+    let [show,setShow]=useState(false);
     let state=useSelector(state=>state.storeProuctReducer)
-    console.log(state.list);
-    return (
+    let dispatch=useDispatch()
+    useEffect(()=>{
+        dispatch(storeProducts())
+    },[1])
+    return (<>
+        {show?<StorePoroductDetail close={setShow}/>:null}
         <div className="mb-5 container mt-3">
-          
             <div className='row border bg-white'>
                 <div className="col-lg-6 col-md-6 col-6">
                     <p className="total mt-3">Total Points</p>
@@ -32,36 +37,14 @@ const Store = () => {
                  <div className="row m-2 border bg-white">
                 <h6 className="mt-3">{item.name}</h6>
                 <div className='row'>
-                    <StoreProduct  data={item.products}/>
+                    <StoreProduct  data={item.products} open={setShow}/>
                     <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
                 </div>
             </div>
                 </>
             }):null}
-       
-           
-            {/* <div className="row m-2 border bg-white">
-                <h6 className="mt-3">Coupons</h6>
-                <div className='row'>
-                    <StoreProduct />
-                    <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
-                </div>
-            </div>
-            <div className="row m-2 border bg-white">
-                <h6>Fitness</h6>
-                <div className='row'>
-                    <StoreProduct />
-                    <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
-                </div>
-            </div>
-            <div className="row m-2 border bg-white">
-                <h6 className="mt-3">Kitchen Appliances</h6>
-                <div className='row'>
-                    <StoreProduct />
-                    <p style={{ float: "right" }} className="text-center"><NavLink to="#">See more</NavLink></p>
-                </div>
-            </div> */}
         </div>
+        </>
     )
 }
 export default Store;
