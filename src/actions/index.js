@@ -58,7 +58,7 @@ const follower_list = () => {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
         let jsonData = JSON.stringify({ user_id, lang, access_token })
-        let followers = await axios.post(`${env.URL}/dipicious/api/user/recipe_listing`, jsonData, {
+        let followers = await axios.post(`${env.URL}/dipicious/api/user/follower_list`, jsonData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM='
@@ -230,7 +230,7 @@ const fatchData = () => {
     return async function (dispatch, getState) {
         let data = isUserLoging()
         let { user_id, lang, access_token } = data.user
-        let jsonData = JSON.stringify({ user_id, lang, access_token, offset: 10 })
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
         let response = await axios.post(`${env.URL}/dipicious/api/user/global_post_listing`, jsonData, {
             headers: {
                 'Content-Type': 'application/json',
@@ -238,6 +238,20 @@ const fatchData = () => {
             }
         })
         dispatch({ type: "FATCH_DATA", payload: response.data.data })
+    }
+}
+const personaData = () => {
+    return async function (dispatch, getState) {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/personal_post_listing`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        dispatch({ type: "PERSONAL_DATA", payload: response.data.data })
     }
 }
 const postLikes = (id) => {
@@ -677,5 +691,5 @@ export {
     userActivity, userFavorites, userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
     removeCartItem, storeOrder, storeOrderDetails, getDipinRestaurant, postComments, follower_list, following_list,
     friend_request_list, blockUserList, hiddenPost, helpCenter, privacyPolicy, termAndConditon, userRecipi, userRecipiDetial,
-    storeProducts, userProductDetial
+    storeProducts, userProductDetial, personaData
 }

@@ -34,7 +34,17 @@ div {
     -moz-box-sizing: border-box;
     box-sizing: border-box
 }
+.post-tab-container{
+    background-color: #d31f33;
+}
+.post-tab-container div{
+    text-align: center;
+    /* background-color: #d31f33; */
+}
 
+.post-tab-container .row {
+    cursor: pointer;
+}
 ul {
     list-style: none;
     margin-bottom: 0px
