@@ -24,7 +24,7 @@ const Singup = () => {
         mobile: '',
         password: "",
         profile_pic: "",
-        gender:""
+        gender: ""
     })
     let forminputData = new FormData()
     const uploadImages = (e) => {
@@ -34,7 +34,7 @@ const Singup = () => {
         setFormData({
             ...formData, [name]: e.target.files[0]
         })
-        
+
     }
     const whileFillUpForm = (e) => {
         const name = e.target.name
@@ -42,7 +42,7 @@ const Singup = () => {
             ...formData, [name]: e.target.value
         })
     }
-    const singingUp = async(e) => {
+    const singingUp = async (e) => {
         e.preventDefault()
         if (formData.name == '') {
             toast.error('name required!')
@@ -55,27 +55,27 @@ const Singup = () => {
         } else if (formData.password == '') {
             toast.error('password required!')
         }
-        forminputData.append('name',formData.name)
-        forminputData.append('username',formData.username)
-        forminputData.append('email',formData.email)  
-        forminputData.append('mobile',formData.mobile)
-        forminputData.append('password',formData.password)
-        forminputData.append('gender',formData.gender)
-        forminputData.append('lang',formData.lang)
-        forminputData.append('profile_pic',formData.profile_pic)
+        forminputData.append('name', formData.name)
+        forminputData.append('username', formData.username)
+        forminputData.append('email', formData.email)
+        forminputData.append('mobile', formData.mobile)
+        forminputData.append('password', formData.password)
+        forminputData.append('gender', formData.gender)
+        forminputData.append('lang', formData.lang)
+        forminputData.append('profile_pic', formData.profile_pic)
 
-        
-         axios.post(`${env.URL}/dipicious/api/user/register`,forminputData,{
-            headers:{
+
+        axios.post(`${env.URL}/dipicious/api/user/register`, forminputData, {
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic cm9vdDoxMjM=',
-                'Content-Type':'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
-        }).then(async(response)=>{
-            if(response.data.flag==1){
+        }).then(async (response) => {
+            if (response.data.flag == 1) {
                 toast.success('your account created')
-                let token=await genrateToken(response.data.data)
-                localStorage.setItem('token',token)
+                let token = await genrateToken(response.data.data)
+                localStorage.setItem('token', token)
                 navigate('/profile')
             }
         })
@@ -85,14 +85,14 @@ const Singup = () => {
         <>
             <div className='container-fluid user_container'>
                 <div className="card m-auto " style={{ height: "38rem", padding: "1rem" }}>
-                    
+
                     <img src={logo}
                         className='login_card_img'
                         style={{ width: "7.5rem", height: '3rem', margin: 'auto' }}
                         alt="" />
                     <h6 className='m-auto w-10 text-center'>Sing up to see photos and videos from your near by resturnats</h6>
-            
-                    
+
+
                     <span className='row mt-3' style={{ lineHeight: '0.1rem' }}><hr className='col-lg-4 col-4' /><span className='col-lg-2 col-2' >OR</span><hr className='col-lg-4 col-4' /></span>
                     <div className="card-body p-2">
 
@@ -105,7 +105,7 @@ const Singup = () => {
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8xLzLf17gMCxAddkKdchnl_gc4d7KFgHUYZi19MtA8sp4-v1RNrQzjB1ufxOX4R4-e0s&usqp=CAU" id='profile_img' alt="" />
 
                                             <div className="file-loading">
-                                                <input id="avatar-1" name="profile_pic" type="file" onChange={uploadImages} multiple/>
+                                                <input id="avatar-1" name="profile_pic" type="file" onChange={uploadImages} multiple />
                                             </div>
                                         </div>
 

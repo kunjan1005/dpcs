@@ -48,9 +48,9 @@ const Post = (props) => {
                             textAlign: 'right',
                             color: "whitesmoke",
                             borderRadius: "0 1rem 1rem 0",
-                            backgroundColor: props.review == 1 ? 'lightgreen' : post.post_type == 1 ? "#d31f33" : post.post_type == 2 ? "lightgreen" : "orange",
+                            backgroundColor: props.review == 1 ? 'lightgreen' : post.post_type == 1 ? "#d31f33" : post.post_type == 2 ? "orange" : "lightgreen",
                             padding: "5px 50px 5px 5px", display: "inline-block"
-                        }}><b>{props.review == 1 ? 'Reviewed' : post.post_type == 1 ? "Dip in" : post.post_type == 2 ? "Reviewed" : "Dip out"}</b></span>
+                        }}><b>{props.review == 1 ? 'Reviewed' : post.post_type == 1 ? "Dip in" : post.post_type == 2 ? "Dip out" : "Reviewed"}</b></span>
 
                         {props.review == 1 ? <span style={{
                             float: "right",
@@ -64,10 +64,10 @@ const Post = (props) => {
                             <NavLink to={`/profile?user_id=${post.user_id}#activities`} style={{ color: "#d31f33" }}>
                                 {_.isEmpty(post) ? <Shimmer /> : <img src={`${env.URL}/dipicious/${post.user_profile_pic}`} className='profile_pick' />} {post.name == undefined ? <Shimmer /> : post.name}
                             </NavLink>
-                            <span className='post_side_title' style={{ color: "black" }}> {props.review == 1 ? 'Reviewed' : post.post_type == 1 ? "Dip in" : post.post_type == 2 ? "Reviewed" : "Dip out"}
+                            <span className='post_side_title' style={{ color: "black" }}> {props.review == 1 ? 'Reviewed' : post.post_type == 1 ? "Dip in" : post.post_type == 2 ? "Dip out" : "Reviewed"}
                                 {post.restaurant_name != undefined ?
                                     <NavLink to={`/restaurant/${post.restaurant_name}`} onClick={() => {
-                                        localStorage.setItem('restaurant',post.restaurant_id)
+                                        localStorage.setItem('restaurant', post.restaurant_id)
                                         // dispatch(getSingleRestaurant(post.restaurant_id))
                                         // dispatch(getReviewRestaurant(post.restaurant_id))
                                         // dispatch(getDipinRestaurant(post.restaurant_id))
