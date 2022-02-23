@@ -28,7 +28,7 @@ const Home = () => {
     return (
         <>
             <PostTab />
-            <Post post={state.post} />
+            {/* <Post post={state.post} /> */}
         </>
     )
 }
