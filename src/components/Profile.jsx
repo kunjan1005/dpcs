@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core'
+import userRequest from '../images/icon/userRequest.png';
+import userSetting from '../images/icon/userSetting.png';
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from '../common/Loading'
@@ -124,12 +126,12 @@ const Profile = () => {
               <div className="dropdown float-left ml-3">
                 <button className="btn btn-default border" type="button" data-toggle="modal" data-target="#myModal5" 
                 onClick={()=>dispatch(friend_request_list())}>
-                  <i class="fas fa-user-plus"></i>
+                  <img src={userRequest} style={{width:"1.5rem",height:"1.5rem"}}></img>
                 </button>
               </div>
 
               <div className="float-right">
-                <button className="btn border" onClick={() => setShow(true)} data-toggle="modal" data-target="#myModal2"><i className="fa fa-user-cog"></i></button>
+                <button className="btn border" onClick={() => setShow(true)} data-toggle="modal" data-target="#myModal2"><img src={userSetting} style={{width:"1.5rem",height:"1.5rem"}}></img></button>
                 {/* <button className="btn btn-default border dropdown-toggle" type="button" data-toggle="dropdown"><i className="fa fa-user-cog"></i>
                 <span className="caret"></span></button>
               <ul className="dropdown-menu">
