@@ -16,6 +16,7 @@ import { LocationOn } from "@material-ui/icons";
 import env from "../env";
 import Comments from "../custom/Commetns";
 import ShareIcon from '@material-ui/icons/Share';
+import view from '../images/icon/view.png'
 import copy from "copy-to-clipboard";
 import { toast } from 'react-toastify'
 import CustomeLikeList from '../custom/CustomeLikeList'
@@ -134,7 +135,7 @@ const Post = (props) => {
                         <span><b>{post.share_count} <ShareIcon onClick={() => {
                             copy(`${env.URL}/dipicious/${post.post_image[0].image_url}`);
                             toast.info('link copied')
-                        }} /></b></span>
+                        }} /></b>&nbsp;&nbsp;{post.view_count!=0?<span><img src={view} style={{width:"2rem",height:"2rem"}}/>&nbsp;&nbsp;{post.view_count}</span>:null}</span>
                     </div>
 
 
