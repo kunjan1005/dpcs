@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { isUserLoging } from "../authorization/useAuth";
 import { useNavigate } from "react-router";
-import Post from './Post';
+import PersonalPost from './HomePost';
+import GlobalPost from './GlobalPost';
+import {NavLink} from 'react-router-dom'
 
 
 const PostTab = () => {
     let [tab, setTab] = useState(false);
-    let state = useSelector((state) => {
-        return { post: state.storePostData, likes: state.likeDislike }
-    })
+ 
     let navigate = useNavigate()
     useEffect(async () => {
         let { login } = isUserLoging()
@@ -31,17 +31,17 @@ const PostTab = () => {
                     dispatch(fatchData())
                     setTab(false)
                 }}>
-                    <h6>GLOBAL</h6>
+                    <h6><NavLink to="#" style={{color: "white"}}>GLOBAL</NavLink></h6>
                 </div>
                 <div className="col-lg-6 col-6" onClick={() => {
                     dispatch(personaData())
                     setTab(true)
                 }}>
-                    <h6>PERSONAL</h6>
+                    <h6><NavLink to="#" style={{color: "white"}}>PERSONAL</NavLink></h6>
                 </div>
             </div>
         </div>
-        {tab ? <Post post={state.post.personal} /> : <Post post={state.post.global} />}
+        {tab ? <PersonalPost/> : <GlobalPost/>}
     </>)
 }
 export default PostTab

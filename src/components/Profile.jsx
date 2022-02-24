@@ -170,8 +170,8 @@ const Profile = () => {
                 onClick={() => becomeChef()}
                 style={{ backgroundColor: 'orange', color: 'white', border: "none" }}>BECOME A CHEF</Button>:
                 <Button variant="outlined" className='mt-5 profile_btn'
-                onClick={() => becomeChef()}
-                style={{ backgroundColor: 'orange', color: 'white', border: "none" }}>CHAT</Button>}
+                // onClick={() => becomeChef()}
+                style={{ backgroundColor: 'orange', color: 'white', border: "none" }}>{user.is_block==1?"UNBLOCK":"BLOCK"}</Button>}
             </div>
           </div>
           {/* <div className='row profile_links'>

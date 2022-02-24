@@ -80,7 +80,7 @@ const BookTable = (props) => {
     }
 
     return (<>
-        <div className="form-popup py-1">
+        <div className="form-popup py-1 book_table_popup">
 
             <form action="#" className="form-container">
                 <span style={{ float: "right" }}><Exit onClick={() => props.state(false)} /></span>

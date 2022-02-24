@@ -2520,6 +2520,7 @@ div#scroll1 {
     box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
     padding: 10px;
     border-radius: 4px;
+    background-color:white;
 }
 .div2 {
     box-shadow: 0 6px 20px rgb(0 0 0 / 8%);
@@ -2560,7 +2561,8 @@ div#scroll1 {
 }
 .imgsection {
     margin-top: 15px;
-    width: 100px;
+    width: 70px;
+    height: 70px;
 }
 /* favorite page */
 .scroll_ {
@@ -2578,4 +2580,32 @@ div#scroll1 {
 }
 .ul {
     padding-left: 0 !important;
+}
+/* restaurant new page desing */
+.restaurant_tab{
+    background-color:grey;
+    /* border:1px solid black; */
+    line-height:3rem;
+  }
+.restaurant_tab ul li {
+    color:white;
+    cursor: pointer;
+
+}
+.active_restaurnt_tab{
+    color:#d31f33 !important;
+    border-bottom: 1px solid #d31f33;
+}
+.book_table_popup{
+    top:-0rem;
+    position: fixed;
+}
+.order_product_tab{
+    /* border: 1px solid black !important; */
+    margin:5px;
+    padding:1px !important;
+    border-radius:10% !important; 
+}
+.active_tab_product{
+
 }

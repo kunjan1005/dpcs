@@ -33,6 +33,7 @@ import OrderDetails from './common/OrderDetails';
 import BookingTableList from './common/BookingTableList'
 import Store from './components/Store';
 import HiddenPost from './custom/HiddenPost';
+import Restaurant_new from './components/Restaurant_new';
 
 function App() {
   let { isLoading } = useAuth0()
@@ -42,7 +43,7 @@ function App() {
 
   return (
     <>
-
+    {/* this is basic routing for all the pages in app.js */}
       <div className="super_container">
         <Header />
         <div style={{ backgroundColor: '#fafafa' }} className='html_content_body mt-5'>
@@ -52,7 +53,7 @@ function App() {
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/post/:id' element={<PostPage />}></Route>
               <Route exact path='/post/hidden' element={<HiddenPost/>}></Route>
-              <Route exact path='/restaurant/:sid' element={<Restaurant/>}/>
+              <Route exact path='/restaurant/:sid' element={<Restaurant/>}></Route>
               {/* <Route exact path='/restaurant/order/:sid' element={<Order/>}/> */}
               <Route exact path='/restaurant/order/:sid' element={<Order1/>}/>
               <Route exact path='/restaurant/cart/' element={<Cart/>}/>
