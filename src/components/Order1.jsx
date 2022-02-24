@@ -85,22 +85,23 @@ const Order1 = () => {
             <div class="col-sm-12" id="spy">
                 <ul class="nav nav-pills">
                     {_.isEmpty(restaurantData) ? <Shimmer /> :_.isEmpty(restaurantData.data) ? <span>no data found</span> : restaurantData.data.map((each, index) => {
-                        return <li class="nav-item"><a class="nav-link" href={`#scroll${index + 1}`}>{each.category_name}</a></li>
+                        return <li class="nav-item"><a class="nav-link order_product_tab" href={`#scroll${index + 1}`}>{each.category_name}</a></li>
                     })
                     }
                 </ul>
             </div>
 
             <div className='row'>
-                <div class="col-sm-7 col-12 scrollspy-example" data-spy="scroll" data-target="#spy">
+                <div class="col-sm-8 col-12 scrollspy-example" data-spy="scroll" data-target="#spy">
                     {  _.isEmpty(restaurantData) ? <Shimmer /> :_.isEmpty(restaurantData.data) ? <span>no data found</span> : restaurantData.data.map((each, index) => {
-                        return <div id={`scroll${index + 1}`}>
+                        return <div id={`scroll${index + 1}`} className="container">
                             <h2>{each.category_name}</h2>
+                            <div className="row">
                             {each.products.map((item, index) => {
-                                return <div className='div1'>
+                                return <div className='div1 col-lg-6'>
                                     <div className='row'>
                                         <div className='col-sm-9 col-12'>
-                                            <p style={{ fontSize: '16px' }}>Success Meal {item.item_name}</p>
+                                            <p style={{ fontSize: '16px',color:"black" }}>Success Meal {item.item_name}</p>
                                             <p>Kd {item.item_price},</p>
                                             <p>{item.description}</p>
                                             {item.cart_id == undefined ?
@@ -126,6 +127,7 @@ const Order1 = () => {
                                     </div>
                                 </div>
                             })}
+                            </div>
 
                         </div>
                     })}
@@ -133,7 +135,7 @@ const Order1 = () => {
 
                 </div>
 
-                <div className='col-sm-5'>
+                <div className='col-sm-4'>
                     <div className='div2'>
                         <svg height="90" width="90" viewBox="0 0 24 24" class="img-basket"><path d="M14 15V13H10V15H14ZM15 15H19.1872L19.7172 13H15V15ZM14 12V10H15V12H19.9822L20.5122 10H3.48783L4.01783 12H9V10H10V12H14ZM14 18V16H10V18H14ZM15 18H18.3922L18.9222 16H15V18ZM9 15V13H4.28283L4.81283 15H9ZM9 18V16H5.07783L5.60783 18H9ZM7 8V3H17V8H23L20 20H4L1 8H7ZM9 8H15V5H9V8Z"></path></svg>
                         <br />
