@@ -254,6 +254,21 @@ const personaData = () => {
         dispatch({ type: "PERSONAL_DATA", payload: response.data.data })
     }
 }
+const search_post =(search)=>{
+    return async (dispatch, getState) => {
+        let data = isUserLoging()
+        let { user_id, lang, access_token } = data.user
+        let jsonData = JSON.stringify({ user_id, lang, access_token,search })
+        let response = await axios.post(`${env.URL}/dipicious/api/user/hashtag_search`, jsonData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic cm9vdDoxMjM='
+            }
+        })
+        console.log(response.data.data)
+        dispatch({ type: "SEARCH_POST", payload: response.data.data })
+    }
+}
 const postLikes = (id) => {
     return async (dispatch, getState) => {
         let data = isUserLoging()
@@ -691,5 +706,5 @@ export {
     userActivity, userFavorites, userfeedback, userPoints, cartData, getCartData, addressData, getReviewRestaurant,
     removeCartItem, storeOrder, storeOrderDetails, getDipinRestaurant, postComments, follower_list, following_list,
     friend_request_list, blockUserList, hiddenPost, helpCenter, privacyPolicy, termAndConditon, userRecipi, userRecipiDetial,
-    storeProducts, userProductDetial, personaData
+    storeProducts, userProductDetial, personaData,search_post
 }

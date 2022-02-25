@@ -15,10 +15,12 @@ import onappRedirect from "../authorization/redirectApplication";
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import env from '../env'
+import {search_post} from '../actions/index'
 // import Custominput from '../custom/CustomInput'
 const Header = () => {
     let [isLogin, setLogin] = useState(false)
     let [curUser, setUser] = useState({})
+    let dispatch = useDispatch()
     let [size, setSize] = useState(window.screen.width)
     useEffect(() => {
         let { login, user } = isUserLoging()
@@ -32,20 +34,8 @@ const Header = () => {
     })
 
     //this is on search evet and for search global post and personal post and restauratn on the header
-    const onChangeEvent = async (e) => {
-        let data = isUserLoging()
-        let { user_id, lang, access_token } = data.user
-        let jsonData = JSON.stringify({ user_id, lang, access_token, search: e.target.value })
-        let response = await axios.post(`${env.URL}/dipicious/api/user/restaurant_search`, jsonData, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic cm9vdDoxMjM='
-            }
-        })
-        console.log(response)
-        if (response.data.flag == 0) {
-            // toast.success(response.data.msg)
-        }
+    const onChangeEvent =(e) => {
+            dispatch(search_post(e.target.value))
     }
 
 

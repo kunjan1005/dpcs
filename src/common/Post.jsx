@@ -14,6 +14,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { LocationOn } from "@material-ui/icons";
 import env from "../env";
+import handshackPink from '../images/icon/handshackPink.png'
+import handshack from '../images/icon/handshack.png'
 import Comments from "../custom/Commetns";
 import ShareIcon from '@material-ui/icons/Share';
 import view from '../images/icon/view.png'
@@ -23,6 +25,7 @@ import CustomeLikeList from '../custom/CustomeLikeList'
 import Shimmer from "react-js-loading-shimmer";
 import _ from 'underscore'
 const Post = (props) => {
+    // alert(props.review)
     let [posts, setPosts] = useState(props.post)
     let [show, setShow] = useState(true)
     let [likes, showLikes] = useState(false)
@@ -98,11 +101,12 @@ const Post = (props) => {
                                 dispatch(postLikes(post.post_id))
                                 showLikes(true)
                             }}>{post.like_count}</span>{post.is_like == 1 ? <Tooltip title={props.review == 1 ? 'appriciated' : 'liked'}>
-                                {props.review == 1 ? <i class="far fa-handshake post-icon" style={{ color: "palevioletred" }}
+                                {post.post_type != 1 && post.post_type !=2? <img style={{width:'2rem',height:"2rem" }}
+                                 src={handshackPink}
                                     onClick={() => {
                                         dispatch(dislike(post.post_id))
                                         dispatch(userfeedback())
-                                    }}></i> : <LikeIcon className='post-icon' style={{ color: "palevioletred" }}
+                                    }}/> : <LikeIcon className='post-icon' style={{ color: "palevioletred" }}
                                         onClick={() => {
                                             dispatch(dislike(post.post_id))
                                             dispatch(userfeedback())
@@ -111,11 +115,12 @@ const Post = (props) => {
                                 />}
 
                             </Tooltip> : <Tooltip title={props.review == 1 ? 'appriciate' : 'like'}>
-                                {props.review == 1 ? <i class="far fa-handshake"
+                                {post.post_type != 1 && post.post_type !=2? <img style={{width:'2rem',height:"2rem" }}
+                                 src={handshack}
                                     onClick={() => {
-                                        dispatch(like(post.post_id))
+                                        dispatch(dislike(post.post_id))
                                         dispatch(userfeedback())
-                                    }}></i> : <LikeIcon className='post-icon'
+                                    }}/> : <LikeIcon className='post-icon'
                                         onClick={() => {
                                             dispatch(like(post.post_id))
                                             dispatch(userfeedback())

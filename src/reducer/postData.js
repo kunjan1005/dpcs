@@ -1,7 +1,8 @@
 
 const initialState = {
     global: [],
-    personal: []
+    personal: [],
+    search:[],
 }
 const storePostData = (state = initialState, action) => {
     switch (action.type) {
@@ -12,6 +13,8 @@ const storePostData = (state = initialState, action) => {
         case 'GET_DATA': return state;
         case 'PERSONAL_DATA':
             return { ...state, personal: action.payload }
+        case "SEARCH_POST":
+            return {...state,search: action.payload}
         case 'SINGLE_POST':
             // let id=action.payload
             return action.payload

@@ -7,11 +7,13 @@ import { useNavigate } from "react-router";
 import PersonalPost from './HomePost';
 import GlobalPost from './GlobalPost';
 import {NavLink} from 'react-router-dom'
+import Post from './Post';
+import _ from 'underscore';
 
 
 const PostTab = () => {
     let [tab, setTab] = useState(false);
- 
+    let state=useSelector(state=>state.storePostData)
     let navigate = useNavigate()
     useEffect(async () => {
         let { login } = isUserLoging()
@@ -41,7 +43,8 @@ const PostTab = () => {
                 </div>
             </div>
         </div>
-        {tab ? <PersonalPost/> : <GlobalPost/>}
+        {!_.isUndefined(state.search)?<Post post={state.search}/>:tab ? <PersonalPost/> : <GlobalPost/>}
+    
     </>)
 }
 export default PostTab
